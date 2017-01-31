@@ -23,8 +23,8 @@ public class UserRepository {
     }
 
     public List<User> queryUsers(int page, int itemPerPage){
-        String sql = "select * from USERS LIMIT ? OFFSET ?";
         int offset = (page-1) * itemPerPage;
+        String sql = "select * from USERS LIMIT ? OFFSET ?";
         List <User> users = jdbcTemplate.query(sql, new Object[]{itemPerPage, offset},
                 new UserRowMapper());
         return users;
