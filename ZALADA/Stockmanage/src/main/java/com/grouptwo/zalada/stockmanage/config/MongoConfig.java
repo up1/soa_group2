@@ -1,10 +1,12 @@
 package com.grouptwo.zalada.stockmanage.config;
 
+import com.grouptwo.zalada.stockmanage.repository.ProductRepository;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 
 public class MongoConfig extends AbstractMongoConfiguration {
@@ -27,7 +29,6 @@ public class MongoConfig extends AbstractMongoConfiguration {
     @Override
     public MongoMappingContext mongoMappingContext()
             throws ClassNotFoundException {
-        // TODO Auto-generated method stub
         return super.mongoMappingContext();
     }
     @Override
@@ -37,8 +38,12 @@ public class MongoConfig extends AbstractMongoConfiguration {
     }
     @Override
     protected String getDatabaseName() {
-        // TODO Auto-generated method stub
         return mongoDB;
+    }
+
+    @Bean
+    public MongoTemplate mongoTemplate() throws Exception {
+        return new MongoTemplate(mongo(), mongoDB);
     }
 }
 

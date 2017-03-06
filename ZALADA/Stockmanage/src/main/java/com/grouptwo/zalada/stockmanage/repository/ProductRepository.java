@@ -1,11 +1,75 @@
 package com.grouptwo.zalada.stockmanage.repository;
 
 import com.grouptwo.zalada.stockmanage.domain.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+
 @Repository
-public interface ProductRepository extends MongoRepository<Product, String>{
+public class ProductRepository {
+
+    @Autowired
+    private MongoTemplate mongoTemplete;
+
+    public void update(String id, Product updateProduct) {
+        Query query = new Query(where("id").is(id));
+        boolean isProductExits = mongoTemplete.exists(query, Product.class, Product.COLLECTION_NAME);
+        boolean isProductMatch = updateProduct.getId().equals(id);
+        if (!isProductMatch && !isProductExits)
+            return;
+        Long timestamp = System.currentTimeMillis() / 1000L;
+
+        Update update = new Update();
+
+        try {
+            for (PropertyDescriptor pd : Introspector.getBeanInfo(Product.class).getPropertyDescriptors()) {
+                if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updateProduct) != null) {
+                    update.set(pd.getName(), pd.getReadMethod().invoke(updateProduct).toString());
+                }
+            }
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        update.set("editDate", timestamp);
+        mongoTemplete.updateFirst(query, update, Product.class);
+    }
+
+    public Product findById(String id) {
+        Query query = new Query(where("id").is(id));
+        return mongoTemplete.findOne(query, Product.class, Product.COLLECTION_NAME);
+    }
+
+    public Page<Product> findAll(Pageable pageable){
+        List<Product> stories = null;
+
+        Query query = new Query();
+        query.with(pageable);
+
+        stories = mongoTemplete.find(query, Product.class);
+
+        long total = mongoTemplete.count(query, Product.class);
+        Page<Product> productPage = new PageImpl<Product>(stories, pageable, total);
+
+        return productPage;
+    }
+
+    public void insert(Product product){
+        Long timestamp = System.currentTimeMillis() / 1000L;
+        product.setSaleDate(timestamp);
+        mongoTemplete.insert(product);
+    }
 }

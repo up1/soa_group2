@@ -16,6 +16,7 @@ public class Product {
     private Long saleDate;
     private Long editDate;
 
+    public static final String COLLECTION_NAME = "product";
 
     public Product(){}
 
