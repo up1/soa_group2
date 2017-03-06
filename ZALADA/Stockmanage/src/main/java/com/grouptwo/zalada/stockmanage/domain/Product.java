@@ -1,18 +1,20 @@
-package stockmanage;
+package com.grouptwo.zalada.stockmanage.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "product")
 public class Product {
 
     @Id
     private String id;
     private String name;
     private String detail;
-    private int price;
-    private int amount;
+    private Integer price;
+    private Integer amount;
     private String owner;
-    private String saleDate;
-    private String editDate;
+    private Long saleDate;
+    private Long editDate;
 
 
     public Product(){}
@@ -49,35 +51,35 @@ public class Product {
         this.detail = detail;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public int getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
-    public String getSaleDate() {
+    public Long getSaleDate() {
         return saleDate;
     }
 
-    public void setSaleDate(String saleDate) {
+    public void setSaleDate(Long saleDate) {
         this.saleDate = saleDate;
     }
 
-    public String getEditDate() {
+    public Long getEditDate() {
         return editDate;
     }
 
-    public void setEditDate(String editDate) {
+    public void setEditDate(Long editDate) {
         this.editDate = editDate;
     }
 

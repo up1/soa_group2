@@ -8,7 +8,7 @@
     <artifactId>zalada-service-stockmanage</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>zalada-stockmanage</name>
+    <name>com.grouptwo.zalada-stockmanage</name>
 
 
     <parent>
@@ -71,7 +71,7 @@
             <activeByDefault>true</activeByDefault>
         </activation>
   <build>
-        <finalName>user-service</finalName>
+        <finalName>com.grouptwo.zalada-stockmanage</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
