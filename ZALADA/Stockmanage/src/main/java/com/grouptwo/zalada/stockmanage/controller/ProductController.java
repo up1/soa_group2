@@ -8,9 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class ProductController {
 @CrossOrigin(origins = "*")
-public class ProductController implements ProductRepositoryCustom {
+public class ProductController {
 
     @Autowired
     private ProductRepository productRepository;
@@ -42,3 +41,4 @@ public class ProductController implements ProductRepositoryCustom {
         productRepository.update(id, upDateProduct);
     }
 }
+
