@@ -2,23 +2,20 @@ package stockmanage;
 
 import org.springframework.data.annotation.Id;
 
-/**
- * Created by new_z on 04/03/2017.
- */
-public class Item {
+public class Product {
 
     @Id
     private String id;
-    private String owner;
     private String name;
     private String detail;
     private int price;
     private int amount;
+    private String owner;
     private String saleDate;
     private String editDate;
 
 
-    public Item(){}
+    public Product(){}
 
     public String getId() {
         return id;
@@ -88,7 +85,7 @@ public class Item {
     @Override
     public String toString() {
         return String.format(
-                "Stock.Item[id=%s, name='%s', detail='%s', price=%s, amount=%s, owner='%s', saleDate='%s', editDate='%s']",
+                "Stock.Product[id=%s, name='%s', detail='%s', price=%s, amount=%s, owner='%s', saleDate='%s', editDate='%s']",
                 id, name, detail, price, amount, owner, saleDate, editDate);
     }
 }
