@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> ZALADA Shop </title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="utf-8">
+
+
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Mitr:300" rel="stylesheet">
+
+</head>
+
+<body style="font-family: 'Mitr', sans-serif;">
+
+<div class="container">
+
+    <form action="#" class="form-horizontal" style="margin-top: 25px; margin-left: auto; margin-right: auto;" id="product-form">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>เพิ่มสินค้า</legend>
+
+            <!-- upload Button -->
+
+            <img src="https://firebasestorage.googleapis.com/v0/b/scanmove-app.appspot.com/o/method-draw-image.svg?alt=media&token=0fa953f5-b60c-49e7-a17e-7212851da72b" id="pdimage-preview-holder"
+                 class="img-responsive" alt="Image"
+                 style="display: block; margin-left: auto; margin-right: auto; max-width: 500px; max-height: 300px;">
+
+            <img src="#" id="pdimage-preview-real"
+                 class="img-responsive" alt="Image"
+                 style="margin-left: auto; margin-right: auto; max-width: 500px; max-height: 300px; display: none; -webkit-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);">
+
+            <div class="form-group" style="margin-top: 25px;">
+                <label class="col-md-4 control-label" for="pdchooseimage">อัพโหลดรูปภาพสินค้า</label>
+                <div class="col-md-4">
+                    <input id="pdchooseimage" name="filebutton" class="input-file" type="file" required>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">ชื่อสินค้า</label>
+                <div class="col-md-4">
+                    <input id="pdname-input" name="name" type="text" placeholder="" class="form-control input-md"
+                           required>
+                </div>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textarea">รายละเอียดสินค้า</label>
+                <div class="col-md-4">
+                    <textarea class="form-control" id="textarea" name="detail"></textarea>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">ราคา (บาท)</label>
+                <div class="col-md-4">
+                    <input id="pdprice-input" name="price" type="number" placeholder="ราคาของสินค้า"
+                           class="form-control input-md" required="" min="1" max="1000000">
+                    <span class="help-block">ตัวอย่าง -&gt; 1200</span>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">จำนวน</label>
+                <div class="col-md-2">
+                    <input id="textinput" name="amount" type="number" placeholder="จำนวนของสินค้าที่มี"
+                           class="form-control input-md" required="" min="1" max="100">
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="submitbutton"></label>
+                <div class="col-md-4">
+                    <button id="submitbutton" class="btn btn-success" onclick="sendData()">Submit</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+
+<script src="js/jquery.serialize-object.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#pdimage-preview-real').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function sendData() {
+
+        var mydata = $('form#product-form').serializeJSON();
+
+        alert("sending...")
+//        event.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/product",
+            // The key needs to match your method's input parameter (case-sensitive).
+            data: mydata,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data){
+                console.log("success");
+                alert(data);
+            },
+            failure: function(errMsg) {
+                console.log("failure");
+                alert(errMsg);
+            }
+        });
+
+
+//
+//        request = JSONRequest.post(
+//            "http://localhost:8080/product",
+//            {
+//                name: "Fanteach gamming mouse HAHN V4 FTM-T557",
+//                detail: "ซูฮก บ๊อกซ์มั้ย เมจิคริคเตอร์พุดดิ้ง หลวงพี่บาร์บี้แต๋วซิ่ง สไตล์บอร์ด คอนเฟิร์มควิกแพ็ค เซาท์คาเฟ่ดีพาร์ตเมนต์ยากูซ่ารีสอร์ท สะบึมส์ฟีเวอร์"
+//            },
+//            function (request, value, exception) {
+//                if (value) {
+//                    alert(value)
+//                } else {
+//                    alert(exception)
+//                }
+//            }
+//        );
+    }
+
+    $("#pdchooseimage").change(function () {
+        document.getElementById('pdimage-preview-holder').style.display = 'none';
+        readURL(this);
+        document.getElementById('pdimage-preview-real').style.display = 'block';
+    });
+
+//    $("#submitbutton").onclick(function () {
+//        alert("clicked!!");
+//        sendData();
+//    });
+
+</script>
+
+</body>
+
+
+</html>
