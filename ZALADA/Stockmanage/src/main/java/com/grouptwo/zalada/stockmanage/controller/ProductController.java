@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = "*")
 public class ProductController {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/zalada-service-stockmanage
 
     @Autowired
     private ProductRepository productRepository;
