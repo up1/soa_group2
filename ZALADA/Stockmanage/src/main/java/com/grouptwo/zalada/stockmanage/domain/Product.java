@@ -15,6 +15,7 @@ public class Product {
     private String owner;
     private Long saleDate;
     private Long editDate;
+    private String category;
 
     public static final String COLLECTION_NAME = "product";
 
@@ -85,10 +86,20 @@ public class Product {
     }
 
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+
     @Override
     public String toString() {
         return String.format(
                 "Stock.Product[id=%s, name='%s', detail='%s', price=%s, amount=%s, owner='%s', saleDate='%s', editDate='%s']",
                 id, name, detail, price, amount, owner, saleDate, editDate);
     }
+
 }

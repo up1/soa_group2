@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 public class ProductController {
 
-
     @Autowired
     private ProductRepository productRepository;
 
@@ -42,3 +41,4 @@ public class ProductController {
         productRepository.update(id, upDateProduct);
     }
 }
+
