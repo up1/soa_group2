@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.client.RestTemplate;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -24,13 +25,16 @@ public class ProductRepository {
     @Autowired
     private MongoTemplate mongoTemplete;
 
+    @Autowired
+    RestTemplate restTemplate;
+
     public void update(String id, Product updateProduct) {
         Long timestamp = System.currentTimeMillis() / 1000L;
         Query query = new Query(where("id").is(id));
         Update update = new Update();
         try {
             for (PropertyDescriptor pd : Introspector.getBeanInfo(Product.class).getPropertyDescriptors()) {
-                if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updateProduct) != null) {
+                if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updateProduct) != null && !pd.getName().equals("id")) {
                     update.set(pd.getName(), pd.getReadMethod().invoke(updateProduct).toString());
                 }
             }
@@ -56,9 +60,8 @@ public class ProductRepository {
         stories = mongoTemplete.find(query, Product.class);
 
         long total = mongoTemplete.count(query, Product.class);
-        Page<Product> productPage = new PageImpl<Product>(stories, pageable, total);
 
-        return productPage;
+        return new PageImpl<Product>(stories, pageable, total);
     }
 
     public void insert(Product product){

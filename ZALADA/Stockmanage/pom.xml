@@ -8,7 +8,7 @@
     <artifactId>zalada-service-stockmanage</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>com.grouptwo.zalada-stockmanage</name>
+    <name>zalada-stockmanage</name>
 
 
     <parent>

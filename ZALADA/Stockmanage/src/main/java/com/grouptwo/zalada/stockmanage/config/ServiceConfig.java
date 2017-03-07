@@ -1,15 +1,17 @@
 package com.grouptwo.zalada.stockmanage.config;
 
-import com.grouptwo.zalada.stockmanage.repository.ProductRepository;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
+import org.springframework.web.client.RestTemplate;
 
-public class MongoConfig extends AbstractMongoConfiguration {
+@Configuration
+public class ServiceConfig extends AbstractMongoConfiguration {
 
     @Value("${spring.profiles.active}")
     private String profileActive;
@@ -44,6 +46,11 @@ public class MongoConfig extends AbstractMongoConfiguration {
     @Bean
     public MongoTemplate mongoTemplate() throws Exception {
         return new MongoTemplate(mongo(), mongoDB);
+    }
+
+    @Bean
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
     }
 }
 
