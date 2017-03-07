@@ -25,15 +25,9 @@ public class ProductRepository {
     private MongoTemplate mongoTemplete;
 
     public void update(String id, Product updateProduct) {
-        Query query = new Query(where("id").is(id));
-        boolean isProductExits = mongoTemplete.exists(query, Product.class, Product.COLLECTION_NAME);
-        boolean isProductMatch = updateProduct.getId().equals(id);
-        if (!isProductMatch && !isProductExits)
-            return;
         Long timestamp = System.currentTimeMillis() / 1000L;
-
+        Query query = new Query(where("id").is(id));
         Update update = new Update();
-
         try {
             for (PropertyDescriptor pd : Introspector.getBeanInfo(Product.class).getPropertyDescriptors()) {
                 if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updateProduct) != null) {

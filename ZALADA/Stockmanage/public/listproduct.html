@@ -180,14 +180,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h2>Modal Header</h2>
+                <h2>แก้ไขข้อมูลสินค้า</h2>
             </div>
             <div class="modal-body">
                 <form action="#" class="form-horizontal" style="margin-top: 25px; margin-left: auto; margin-right: auto;" id="product-form">
                     <fieldset>
-
-                        <!-- Form Name -->
-                        <legend>เพิ่มสินค้า</legend>
 
                         <!-- upload Button -->
 
@@ -253,7 +250,7 @@ box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);">
                 </form>
             </div>
             <div class="modal-footer">
-                <h3>Modal Footer</h3>
+                <h3>ZALADA</h3>
             </div>
         </div>
 
@@ -359,10 +356,7 @@ box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);">
                         success: function (data) {
                             alert(data.content[n].id);
                             $.ajax({
-                                type: "POST",
-                                headers: { 
-                                    "Content-Type": "application/json",
-                                    "X-HTTP-Method-Override": "PUT" },
+                                type: "PUT",
                                 url: "http://localhost:8080/product/"+data.content[n].id,
                                 // The key needs to match your method's input parameter (case-sensitive).
                                 data: mydata ,
