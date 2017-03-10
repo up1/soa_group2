@@ -20,6 +20,10 @@ public class Bill {
     private String tel;
     private String email;
 
+    public static final String COLLECTION_NAME = "billing";
+    public static final int STATUSCODE_NOTPAY = 0;
+    public static final int STATUSCODE_PAY = 1;
+
     public String getId() {
         return id;
     }
