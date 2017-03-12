@@ -5,9 +5,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 
-@Document(collection = "bill")
-public class Bill {
+@Document(collection = "purchaseOrder")
+public class PurchaseOrder {
 
+    public static final String COLLECTION_NAME = "purchaseOrder";
     @Id
     private String id;
     private String buyer;
@@ -16,7 +17,7 @@ public class Bill {
     private Long paidDate;
     private ArrayList<Product> buyProducts;
     private String deliveryAddress;
-    private Integer billStatus;
+    private Integer payStatus;
     private String tel;
     private String email;
 
@@ -26,6 +27,12 @@ public class Bill {
 
     public String getId() {
         return id;
+    }
+
+    public PurchaseOrder(){}
+
+    public PurchaseOrder(Cart cart){
+        this.buyProducts = new ArrayList<>(cart.getProducts());
     }
 
     public void setId(String id) {
@@ -80,12 +87,12 @@ public class Bill {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public Integer getBillStatus() {
-        return billStatus;
+    public Integer getPayStatus() {
+        return payStatus;
     }
 
-    public void setBillStatus(Integer billStatus) {
-        this.billStatus = billStatus;
+    public void setPayStatus(Integer payStatus) {
+        this.payStatus = payStatus;
     }
 
     public String getTel() {
@@ -102,5 +109,21 @@ public class Bill {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Billing.purchaseOrder[" +
+                "id='" + id + '\'' +
+                ", buyer='" + buyer + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", buyDate=" + buyDate +
+                ", paidDate=" + paidDate +
+                ", buyProducts=" + buyProducts +
+                ", deliveryAddress='" + deliveryAddress + '\'' +
+                ", payStatus=" + payStatus +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                ']';
     }
 }

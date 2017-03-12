@@ -10,7 +10,7 @@ public class Product {
     private String owner;
     private Long saleDate;
     private Long editDate;
-    private String category;
+    private Category category;
 
     public Product(){}
 
@@ -79,21 +79,28 @@ public class Product {
     }
 
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
 
     @Override
     public String toString() {
-        return String.format(
-                "Stock.Product[id=%s, name='%s', detail='%s', price=%s, amount=%s, owner='%s', saleDate='%s', editDate='%s']",
-                id, name, detail, price, amount, owner, saleDate, editDate);
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", detail='" + detail + '\'' +
+                ", price=" + price +
+                ", amount=" + amount +
+                ", owner='" + owner + '\'' +
+                ", saleDate=" + saleDate +
+                ", editDate=" + editDate +
+                ", category=" + category +
+                '}';
     }
-
 }
 
