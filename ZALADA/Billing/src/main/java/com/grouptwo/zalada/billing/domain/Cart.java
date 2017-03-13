@@ -2,12 +2,37 @@ package com.grouptwo.zalada.billing.domain;
 
 import java.util.ArrayList;
 
-/**
- * Created by new_z on 10/03/2017.
- */
 public class Cart {
-    String id;
-    ArrayList<Product> products;
+    private String id;
+    private ArrayList<Product> products;
+    private String buyer;
+    private Float totalPrice;
+
+    public String getBuyer() {
+        return buyer;
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "id='" + id + '\'' +
+                ", products=" + products +
+                ", buyer='" + buyer + '\'' +
+                ", totalPrice=" + totalPrice +
+                '}';
+    }
+
+    public void setBuyer(String buyer) {
+        this.buyer = buyer;
+    }
+
+    public Float getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Float totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     public String getId() {
         return id;
@@ -25,11 +50,4 @@ public class Cart {
         this.products = products;
     }
 
-    @Override
-    public String toString() {
-        return "Cart{" +
-                "id='" + id + '\'' +
-                ", products=" + products +
-                '}';
-    }
 }

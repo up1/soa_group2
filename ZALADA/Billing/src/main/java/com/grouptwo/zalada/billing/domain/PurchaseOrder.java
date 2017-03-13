@@ -5,23 +5,23 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 
-@Document(collection = "purchaseOrder")
+@Document(collection = "purchaseorder")
 public class PurchaseOrder {
 
-    public static final String COLLECTION_NAME = "purchaseOrder";
+    public static final String COLLECTION_NAME = "purchaseorder";
     @Id
     private String id;
     private String buyer;
     private Integer totalPrice;
     private Long buyDate;
     private Long paidDate;
+    private Long payScheduled;
     private ArrayList<Product> buyProducts;
     private String deliveryAddress;
     private Integer payStatus;
     private String tel;
     private String email;
 
-    public static final String COLLECTION_NAME = "billing";
     public static final int STATUSCODE_NOTPAY = 0;
     public static final int STATUSCODE_PAY = 1;
 
@@ -125,5 +125,13 @@ public class PurchaseOrder {
                 ", tel='" + tel + '\'' +
                 ", email='" + email + '\'' +
                 ']';
+    }
+
+    public Long getPayScheduled() {
+        return payScheduled;
+    }
+
+    public void setPayScheduled(Long payScheduled) {
+        this.payScheduled = payScheduled;
     }
 }

@@ -24,34 +24,34 @@ import java.io.IOException;
 public class BillingController {
 
     @Autowired
+    private
     BillingRepository billingRepository;
 
     @Autowired
     SaleRepository saleRepository;
 
-    @RequestMapping(value = "/billing", method = RequestMethod.GET)
-    public Page<Bill> listBillByPage(Pageable pageable){
-        return billingRepository.findAll(pageable);
-    }
-
     @Value("classpath:zalada-pay-form.pdf")
     private Resource payForm;
 
-    //TODO Check email pattern
-    @RequestMapping(value = "billing/purchaseOrder", method = RequestMethod.POST)
-    public ResponseEntity createPurchaseOrder(@RequestBody Cart cart, @RequestParam String email, @RequestParam String deliveryAddress){
-        PurchaseOrder purchaseOrder = new PurchaseOrder(cart);
-        purchaseOrder.setPayStatus(0);
-        purchaseOrder.setDeliveryAddress(deliveryAddress);
-        billingRepository.insert(purchaseOrder);
-        return new ResponseEntity<>(purchaseOrder, HttpStatus.OK);
-    }
-        return billingRepository.findById(id);
-    public Bill findBill(@PathVariable String id){
-    @RequestMapping(value = "/billing/{id}", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/billing/purchaseorder", method = RequestMethod.GET)
+    public Page<PurchaseOrder> listBillByPage(Pageable pageable){
+        return billingRepository.findAll(pageable);
     }
 
-    @RequestMapping(value = "billing/purchaseOrder", method = RequestMethod.PATCH)
+    //TODO Check email pattern
+    @RequestMapping(value = "billing/purchaseorder", method = RequestMethod.POST)
+    public ResponseEntity createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder){
+        billingRepository.insert(purchaseOrder);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/billing/purchaseorder/{id}", method = RequestMethod.GET)
+    public PurchaseOrder findBill(@PathVariable String id){
+        return billingRepository.findById(id);
+    }
+
+    @RequestMapping(value = "billing/payslip/{poNumber}", method = RequestMethod.PATCH)
     public ResponseEntity<String> updatePurchaseOrder(@RequestBody PurchaseOrder purchaseOrder){
         if(purchaseOrder.getPayStatus() == null && purchaseOrder.getId() != null){
             billingRepository.updateStatus(purchaseOrder);
@@ -62,17 +62,12 @@ public class BillingController {
         }
     }
 
-    @RequestMapping(value = "billing/payslip/{poNumber}", method = RequestMethod.PATCH)
-    public void payPurchase(@PathVariable String poNumber){
-
-    }
-
     @RequestMapping(value="billing/payslip/{poNumber}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getPaySlip(@PathVariable String poNumber){
-        ByteArrayOutputStream paySlipFile = null;
+        ByteArrayOutputStream paySlipFile;
 
         PurchaseOrder purchaseOrder = billingRepository.getPurchaseOrder(poNumber);
-        if(purchaseOrder.getId().equals(null)){
+        if(purchaseOrder == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
@@ -84,7 +79,7 @@ public class BillingController {
             paySlipFile = pdfManager.getFile();
             pdfManager.close();
         } catch (IOException e) {
-            return new ResponseEntity<>(e.getMessage().getBytes(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getMessage().getBytes(), HttpStatus.BAD_GATEWAY);
         }
 
         HttpHeaders headers = new HttpHeaders();
