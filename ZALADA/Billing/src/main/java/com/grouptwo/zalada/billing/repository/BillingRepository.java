@@ -24,6 +24,7 @@ public class BillingRepository {
     public PurchaseOrder findById(String id){
         return mongoTemplate.findOne(getQueryId(id), PurchaseOrder.class, PurchaseOrder.COLLECTION_NAME);
     }
+
     public Page<PurchaseOrder> findAll(Pageable pageable){
         Query query = new Query().with(pageable);
         List<PurchaseOrder> stories = mongoTemplate.find(query, PurchaseOrder.class);
@@ -35,6 +36,11 @@ public class BillingRepository {
         purchaseOrder.setBuyDate(timestamp);
         purchaseOrder.setPayScheduled(timestamp + 86400);
         mongoTemplate.save(purchaseOrder);
+    }
+
+    public PurchaseOrder removePurchaseOrder(String id){
+        return mongoTemplate.findAndRemove(getQueryId(id), PurchaseOrder.class);
+
     }
 
 
@@ -53,9 +59,6 @@ public class BillingRepository {
         return mongoTemplate.findOne(query, PurchaseOrder.class);
     }
 
-    private boolean isPaidStatus(int statusCode){
-        return statusCode == 1;
-    }
 
     private Long getTimeStamp(){
         return System.currentTimeMillis() / 1000L;

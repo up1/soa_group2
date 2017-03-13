@@ -1,4 +1,4 @@
-package com.grouptwo.zalada.billing;
+package com.grouptwo.zalada.billing.utils;
 
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
 import org.apache.pdfbox.pdmodel.PDDocument;

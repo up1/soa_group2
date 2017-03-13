@@ -1,6 +1,7 @@
-package com.grouptwo.zalada.billing;
+package com.grouptwo.zalada.billing.utils;
 
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
+import com.grouptwo.zalada.billing.utils.PdfManager;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
@@ -8,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by new_z on 12/03/2017.
  */
-public class PaySlipPdfManager extends  PdfManager
+public class PaySlipPdfManager extends PdfManager
 
 {
     public PaySlipPdfManager(Resource pdfFile) throws IOException {

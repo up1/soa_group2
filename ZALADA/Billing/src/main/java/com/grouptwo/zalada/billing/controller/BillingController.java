@@ -1,7 +1,7 @@
 package com.grouptwo.zalada.billing.controller;
 
-import com.grouptwo.zalada.billing.PaySlipPdfManager;
-import com.grouptwo.zalada.billing.domain.Cart;
+import com.grouptwo.zalada.billing.utils.EmailValidator;
+import com.grouptwo.zalada.billing.utils.PaySlipPdfManager;
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
 import com.grouptwo.zalada.billing.repository.BillingRepository;
 import com.grouptwo.zalada.billing.repository.SaleRepository;
@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
@@ -30,6 +29,9 @@ public class BillingController {
     @Autowired
     SaleRepository saleRepository;
 
+    @Autowired
+    EmailValidator emailValidator;
+
     @Value("classpath:zalada-pay-form.pdf")
     private Resource payForm;
 
@@ -39,11 +41,25 @@ public class BillingController {
         return billingRepository.findAll(pageable);
     }
 
-    //TODO Check email pattern
+    @RequestMapping(value = "/billing/purchaseorder/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deletePurchaseOrder(@PathVariable String id){
+        PurchaseOrder purchaseOrder = billingRepository.removePurchaseOrder(id);
+        if(purchaseOrder == null){
+            return new ResponseEntity("item not found", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(purchaseOrder, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "billing/purchaseorder", method = RequestMethod.POST)
     public ResponseEntity createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder){
-        billingRepository.insert(purchaseOrder);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if(emailValidator.validate(purchaseOrder.getEmail())){
+            billingRepository.insert(purchaseOrder);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity("invalidate email", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @RequestMapping(value = "/billing/purchaseorder/{id}", method = RequestMethod.GET)
