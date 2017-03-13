@@ -20,7 +20,7 @@ import java.util.List;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @Repository
-public class ProductRepository {
+public class StockRepository {
 
     @Autowired
     private MongoTemplate mongoTemplete;
