@@ -1,23 +1,25 @@
 package com.grouptwo.zalada.stockmanage.repository;
 
+import com.google.common.collect.Lists;
+import com.grouptwo.zalada.stockmanage.domain.Category;
 import com.grouptwo.zalada.stockmanage.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.client.RestTemplate;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
+import org.springframework.web.client.RestTemplate;
 
 @Repository
 public class StockRepository {
@@ -25,12 +27,8 @@ public class StockRepository {
     @Autowired
     private MongoTemplate mongoTemplete;
 
-    @Autowired
-    RestTemplate restTemplate;
-
-    public void update(String id, Product updateProduct) {
-        Long timestamp = System.currentTimeMillis() / 1000L;
-        Query query = new Query(where("id").is(id));
+    public void updateProduct(String id, Product updateProduct) {
+        Long timestamp = getTimeStamp();
         Update update = new Update();
         try {
             for (PropertyDescriptor pd : Introspector.getBeanInfo(Product.class).getPropertyDescriptors()) {
@@ -43,30 +41,96 @@ public class StockRepository {
         }
 
         update.set("editDate", timestamp);
-        mongoTemplete.updateFirst(query, update, Product.class);
+        mongoTemplete.updateFirst(queryById(id), update, Product.class);
     }
 
-    public Product findById(String id) {
-        Query query = new Query(where("id").is(id));
-        return mongoTemplete.findOne(query, Product.class, Product.COLLECTION_NAME);
+    public void updateCategory(String name, Category updateCategory) {
+        Update update = new Update();
+        try {
+            for (PropertyDescriptor pd : Introspector.getBeanInfo(Category.class).getPropertyDescriptors()) {
+                if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updateCategory) != null && !pd.getName().equals("id")) {
+                    update.set(pd.getName(), pd.getReadMethod().invoke(updateCategory).toString());
+                }
+            }
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        mongoTemplete.updateFirst(queryByName(name), update, Category.class);
     }
 
-    public Page<Product> findAll(Pageable pageable){
-        List<Product> stories = null;
+    public Product findProductById(String id) {
+        return mongoTemplete.findOne(queryById(id), Product.class);
+    }
 
-        Query query = new Query();
+    public Category findCategoryByName(String name) {
+        return mongoTemplete.findOne(queryByName(name), Category.class);
+    }
+
+    public ArrayList findAllProduct(Pageable pageable){
+        return getPaging(Product.class, pageable, new Query());
+    }
+
+    public  List<Product> findAllProduct(){
+        return mongoTemplete.findAll(Product.class);
+    }
+
+    public ArrayList findAllProductByCategory(Pageable pageable, String categoryName){
+        Category category = mongoTemplete.findOne(queryByName(categoryName), Category.class);
+        return getPaging(Product.class, pageable, new Query(where("category").is(category)));
+    }
+
+    public  List<Product> findAllProductByCategory(String categoryName){
+        Category category = mongoTemplete.findOne(queryByName(categoryName), Category.class);
+        return mongoTemplete.find(new Query(where("category").is(category)), Product.class);
+    }
+
+    public void insertProduct(Product product){
+        String id = (mongoTemplete.findOne(queryByName(product.getCategory().getName()), Category.class)).getId();
+        if( id != null ){
+            product.setSaleDate(getTimeStamp());
+            product.getCategory().setId(id);
+            mongoTemplete.insert(product);
+        }
+    }
+
+    public void insertCategory(Category category){
+        mongoTemplete.insert(category);
+    }
+
+    public void deleteProduct(String id) {
+        mongoTemplete.remove(queryById(id), Product.class);
+    }
+
+    public void deleteCategory(String name) {
+        mongoTemplete.remove(queryByName(name), Category.class);
+    }
+
+    public ArrayList findAllCategory(Pageable pageable) {
+        return getPaging(Category.class, pageable, new Query());
+    }
+
+    public List<Category> findAllCategory(){
+        return mongoTemplete.findAll(Category.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    private ArrayList getPaging(Class domainClass, Pageable pageable, Query query){
+        List domains;
         query.with(pageable);
-
-        stories = mongoTemplete.find(query, Product.class);
-
-        long total = mongoTemplete.count(query, Product.class);
-
-        return new PageImpl<Product>(stories, pageable, total);
+        domains = mongoTemplete.find(query, domainClass);
+        long total = mongoTemplete.count(query, domainClass);
+        return Lists.newArrayList((new PageImpl(domains, pageable, total)));
     }
 
-    public void insert(Product product){
-        Long timestamp = System.currentTimeMillis() / 1000L;
-        product.setSaleDate(timestamp);
-        mongoTemplete.insert(product);
+    private Query queryById(String id){
+        return new Query(where("id").is(id));
+    }
+
+    private Query queryByName(String name){
+        return new Query(where("name").is(name));
+    }
+
+    private Long getTimeStamp(){
+        return System.currentTimeMillis() / 1000L;
     }
 }
