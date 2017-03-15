@@ -48,6 +48,11 @@ public class StockController {
         stockRepository.updateProduct(id, upDateProduct);
     }
 
+    @RequestMapping(value = "/product/{id}", method = RequestMethod.DELETE)
+    public void deleteProduct(@PathVariable String id){
+        stockRepository.deleteProduct(id);
+    }
+
     @RequestMapping(value = "/category", method =  RequestMethod.GET)
     public ArrayList findAllCategory(@RequestParam(required = false, name = "page")Integer page,
                                      @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
@@ -56,12 +61,6 @@ public class StockController {
         }
         Pageable pageable = new PageRequest(page, size);
         return stockRepository.findAllCategory(pageable);
-    }
-    
-    
-    @RequestMapping(value = "/product/{id}", method = RequestMethod.DELETE)
-    public void deleteProduct(@PathVariable String id){
-        stockRepository.deleteProduct(id);
     }
 }
 

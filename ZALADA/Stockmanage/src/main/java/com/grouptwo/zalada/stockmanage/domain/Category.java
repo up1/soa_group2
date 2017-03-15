@@ -11,7 +11,7 @@ public class Category {
     public static final String COLLECTION_NAME = "category";
     @Id
     private String id;
-    private String current;
+    private String name;
     private ArrayList<String> parents;
     private ArrayList<String> childs;
 
@@ -23,12 +23,12 @@ public class Category {
         this.id = id;
     }
 
-    public String getCurrent() {
-        return current;
+    public String getName() {
+        return name;
     }
 
-    public void setCurrent(String current) {
-        this.current = current;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public ArrayList<String> getParents() {
@@ -51,7 +51,7 @@ public class Category {
     public String toString() {
         return "Category{" +
                 "id='" + id + '\'' +
-                ", current='" + current + '\'' +
+                ", name='" + name + '\'' +
                 ", parents=" + parents +
                 ", childs=" + childs +
                 '}';
