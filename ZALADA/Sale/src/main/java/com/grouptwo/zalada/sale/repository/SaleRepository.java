@@ -9,18 +9,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
-
 
 @Repository
 public class SaleRepository {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    public Product findProductById(String id) {
+        return mongoTemplate.findOne(queryById(id), Product.class);
+    }
 
     public ArrayList findAllProduct(Pageable pageable){
         return getPaging(Product.class, pageable, new Query());
@@ -39,29 +41,8 @@ public class SaleRepository {
         return Lists.newArrayList((new PageImpl(domains, pageable, total)));
     }
 
-    public void insertProduct(Product product){
-        String id = (mongoTemplate.findOne(queryByName(product.getCategory().getName()), Category.class)).getId();
-        if( id != null ){
-            product.setSaleDate(getTimeStamp());
-            product.getCategory().setId(id);
-            mongoTemplate.insert(product);
-        }
-    }
-
-    public void insertCategory(Category category){
-        mongoTemplate.insert(category);
-    }
-
     private Query queryById(String id){
         return new Query(where("id").is(id));
-    }
-
-    private Query queryByName(String name){
-        return new Query(where("name").is(name));
-    }
-
-    private Long getTimeStamp(){
-        return System.currentTimeMillis() / 1000L;
     }
 
 }

@@ -3,6 +3,7 @@ package com.grouptwo.zalada.sale.controller;
 import com.grouptwo.zalada.sale.domain.Category;
 import com.grouptwo.zalada.sale.domain.Product;
 import com.grouptwo.zalada.sale.repository.SaleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 @CrossOrigin(origins = "*")
 public class SaleController {
 
+    @Autowired
     private SaleRepository saleRepository;
 
     public SaleController(SaleRepository saleRepository) {
@@ -33,14 +35,10 @@ public class SaleController {
         return saleRepository.findAllProduct(pageable);
     }
 
-    /*  insert */
-    @RequestMapping(value = "/product", method = RequestMethod.POST)
-    public void insertProduct(@RequestBody Product product) {
-        saleRepository.insertProduct(product);
+    @RequestMapping(value = "/sale/{id}", method = RequestMethod.GET)
+    public Product findProduct(@PathVariable String id) {
+        return saleRepository.findProductById(id);
     }
-
-    @RequestMapping(value = "/category", method = RequestMethod.POST)
-    public void insertCategory(@RequestBody Category category) { saleRepository.insertCategory(category); }
 
 
 }
