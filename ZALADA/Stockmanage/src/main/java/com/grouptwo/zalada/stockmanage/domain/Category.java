@@ -8,12 +8,15 @@ import java.util.ArrayList;
 @Document(collection = "category")
 public class Category {
 
-    public static final String COLLECTION_NAME = "category";
     @Id
     private String id;
     private String name;
-    private ArrayList<String> parents;
     private ArrayList<String> childs;
+    private ArrayList<String> parents;
+
+    public static final String COLLECTION_NAME = "category";
+
+    public Category(){}
 
     public String getId() {
         return id;
@@ -31,14 +34,6 @@ public class Category {
         this.name = name;
     }
 
-    public ArrayList<String> getParents() {
-        return parents;
-    }
-
-    public void setParents(ArrayList<String> parents) {
-        this.parents = parents;
-    }
-
     public ArrayList<String> getChilds() {
         return childs;
     }
@@ -47,8 +42,16 @@ public class Category {
         this.childs = childs;
     }
 
+    public ArrayList<String> getParents() {
+        return parents;
+    }
+
+    public void setParents(ArrayList<String> parents) {
+        this.parents = parents;
+    }
+
     @Override
-    public String toString() {
+    public String toString(){
         return "Category{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
@@ -56,4 +59,5 @@ public class Category {
                 ", childs=" + childs +
                 '}';
     }
+
 }

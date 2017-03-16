@@ -85,7 +85,6 @@ public class Product {
         this.editDate = editDate;
     }
 
-
     public Category getCategory() {
         return category;
     }
@@ -93,7 +92,6 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-
 
     @Override
     public String toString() {

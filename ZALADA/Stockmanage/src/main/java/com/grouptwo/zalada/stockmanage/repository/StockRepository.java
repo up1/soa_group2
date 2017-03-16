@@ -27,7 +27,6 @@ public class StockRepository {
     @Autowired
     private MongoTemplate mongoTemplete;
 
-    
     public void updateProduct(String id, Product updateProduct) {
         Long timestamp = getTimeStamp();
         Update update = new Update();
@@ -45,50 +44,93 @@ public class StockRepository {
         mongoTemplete.updateFirst(queryById(id), update, Product.class);
     }
 
+    public void updateCategory(String name, Category updateCategory) {
+        Update update = new Update();
+        try {
+            for (PropertyDescriptor pd : Introspector.getBeanInfo(Category.class).getPropertyDescriptors()) {
+                if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updateCategory) != null && !pd.getName().equals("id")) {
+                    update.set(pd.getName(), pd.getReadMethod().invoke(updateCategory).toString());
+                }
+            }
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        mongoTemplete.updateFirst(queryByName(name), update, Category.class);
+    }
+
     public Product findProductById(String id) {
         return mongoTemplete.findOne(queryById(id), Product.class);
     }
 
+    public Category findCategoryByName(String name) {
+        return mongoTemplete.findOne(queryByName(name), Category.class);
+    }
+
     public ArrayList findAllProduct(Pageable pageable){
-        return getPaging(Product.class, pageable);
+        return getPaging(Product.class, pageable, new Query());
+    }
+
+    public  List<Product> findAllProduct(){
+        return mongoTemplete.findAll(Product.class);
+    }
+
+    public ArrayList findAllProductByCategory(Pageable pageable, String categoryName){
+        Category category = mongoTemplete.findOne(queryByName(categoryName), Category.class);
+        return getPaging(Product.class, pageable, new Query(where("category").is(category)));
+    }
+
+    public  List<Product> findAllProductByCategory(String categoryName){
+        Category category = mongoTemplete.findOne(queryByName(categoryName), Category.class);
+        return mongoTemplete.find(new Query(where("category").is(category)), Product.class);
     }
 
     public void insertProduct(Product product){
-        product.setSaleDate(getTimeStamp());
-        mongoTemplete.insert(product);
+        String id = (mongoTemplete.findOne(queryByName(product.getCategory().getName()), Category.class)).getId();
+        if( id != null ){
+            product.setSaleDate(getTimeStamp());
+            product.getCategory().setId(id);
+            mongoTemplete.insert(product);
+        }
+    }
+
+    public void insertCategory(Category category){
+        mongoTemplete.insert(category);
     }
 
     public void deleteProduct(String id) {
         mongoTemplete.remove(queryById(id), Product.class);
     }
 
-    private Query queryById(String id){
-        return new Query(where("id").is(id));
-    }
-
-    private Long getTimeStamp(){
-        return System.currentTimeMillis() / 1000L;
+    public void deleteCategory(String name) {
+        mongoTemplete.remove(queryByName(name), Category.class);
     }
 
     public ArrayList findAllCategory(Pageable pageable) {
-        return getPaging(Category.class, pageable);
+        return getPaging(Category.class, pageable, new Query());
     }
 
     public List<Category> findAllCategory(){
         return mongoTemplete.findAll(Category.class);
     }
 
-    public  List<Product> findAllProdcut(){
-        return mongoTemplete.findAll(Product.class);
-    }
-
     @SuppressWarnings("unchecked")
-    private ArrayList getPaging(Class domainClass, Pageable pageable){
-        Query query = new Query();
+    private ArrayList getPaging(Class domainClass, Pageable pageable, Query query){
         List domains;
         query.with(pageable);
         domains = mongoTemplete.find(query, domainClass);
         long total = mongoTemplete.count(query, domainClass);
         return Lists.newArrayList((new PageImpl(domains, pageable, total)));
+    }
+
+    private Query queryById(String id){
+        return new Query(where("id").is(id));
+    }
+
+    private Query queryByName(String name){
+        return new Query(where("name").is(name));
+    }
+
+    private Long getTimeStamp(){
+        return System.currentTimeMillis() / 1000L;
     }
 }
