@@ -16,6 +16,7 @@ public class Product {
     private Long saleDate;
     private Long editDate;
     private Category category;
+    private String imagePath;
 
     public static final String COLLECTION_NAME = "product";
 
@@ -100,4 +101,11 @@ public class Product {
                 id, name, detail, price, amount, owner, saleDate, editDate);
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 }
