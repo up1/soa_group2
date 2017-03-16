@@ -3,6 +3,8 @@ package com.grouptwo.zalada.stockmanage.repository;
 import com.google.common.collect.Lists;
 import com.grouptwo.zalada.stockmanage.domain.Category;
 import com.grouptwo.zalada.stockmanage.domain.Product;
+import com.grouptwo.zalada.stockmanage.exception.RepositoryException;
+import com.grouptwo.zalada.stockmanage.exception.RequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
-import org.springframework.web.client.RestTemplate;
 
 @Repository
 public class StockRepository {
@@ -84,13 +85,19 @@ public class StockRepository {
         return mongoTemplete.find(new Query(where("category").is(category)), Product.class);
     }
 
-    public void insertProduct(Product product){
-        String id = (mongoTemplete.findOne(queryByName(product.getCategory().getName()), Category.class)).getId();
-        if( id != null ){
-            product.setSaleDate(getTimeStamp());
-            product.getCategory().setId(id);
-            mongoTemplete.insert(product);
+    public void insertProduct(Product product) throws RepositoryException, RequestException {
+        if(product.getCategory() == null){
+            throw new RequestException("Category Not Provide");
         }
+        Category category = mongoTemplete.findOne(queryByName(product.getCategory().getName()), Category.class);
+        if(category == null){
+            throw new RepositoryException("Category Not Match");
+        }
+
+        String id = category.getId();
+        product.setSaleDate(getTimeStamp());
+        product.getCategory().setId(id);
+        mongoTemplete.insert(product);
     }
 
     public void insertCategory(Category category){
