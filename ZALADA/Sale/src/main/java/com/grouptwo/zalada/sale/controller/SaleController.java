@@ -40,5 +40,16 @@ public class SaleController {
         return saleRepository.findProductById(id);
     }
 
+    @RequestMapping(value = "sale/category/{categoryName}", method = RequestMethod.GET)
+    public ArrayList findProductByCategory(@RequestParam(required = false, name = "page") Integer page,
+                                           @RequestParam(required = false, defaultValue = "10", name = "size") Integer size,
+                                           @PathVariable String categoryName) {
+        if(page == null){
+            return (ArrayList) saleRepository.findAllProductByCategory(categoryName);
+        }
+        Pageable pageable = new PageRequest(page, size);
+        return saleRepository.findAllProductByCategory(pageable, categoryName);
+    }
+
 
 }

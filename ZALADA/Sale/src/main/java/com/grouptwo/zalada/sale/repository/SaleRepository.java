@@ -32,6 +32,16 @@ public class SaleRepository {
         return mongoTemplate.findAll(Product.class);
     }
 
+    public ArrayList findAllProductByCategory(Pageable pageable, String categoryName){
+        Category category = mongoTemplate.findOne(queryByName(categoryName), Category.class);
+        return getPaging(Product.class, pageable, new Query(where("category").is(category)));
+    }
+
+    public  List<Product> findAllProductByCategory(String categoryName){
+        Category category = mongoTemplate.findOne(queryByName(categoryName), Category.class);
+        return mongoTemplate.find(new Query(where("category").is(category)), Product.class);
+    }
+
     @SuppressWarnings("unchecked")
     private ArrayList getPaging(Class domainClass, Pageable pageable, Query query){
         List domains;
@@ -43,6 +53,10 @@ public class SaleRepository {
 
     private Query queryById(String id){
         return new Query(where("id").is(id));
+    }
+
+    private Query queryByName(String name){
+        return new Query(where("name").is(name));
     }
 
 }
