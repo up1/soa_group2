@@ -71,7 +71,7 @@ class AddProduct extends React.Component{
     }
 
     /*
-        <label for="file-input"> กรุณาเลือกรูปภาพสินค้า </label>
+        <label  htmlFor="file-input"> กรุณาเลือกรูปภาพสินค้า </label>
 
     */
 
@@ -94,19 +94,19 @@ class AddProduct extends React.Component{
                             <input type="file" onChange={ this.handleImageChange} id="file-input"/>
                         </div>
                         <div className="form-group">
-                            <label for="name"> <h3> ชื่อสินค้า </h3> </label>
+                            <label  htmlFor="name"> <h3> ชื่อสินค้า </h3> </label>
                             <input name="name" id="name" onChange={this.handleChange} required type="text" value={this.state.name} className="form-control"/>
                         </div>
                         <div className="form-group">
-                            <label for="detail"> <h3>รายละเอียดสินค้า</h3> </label>
+                            <label  htmlFor="detail"> <h3>รายละเอียดสินค้า</h3> </label>
                             <input name="detail" id="detail" onChange={this.handleChange} required type="text" value={this.state.detail} className="form-control"/>
                         </div>
                         <div className="form-group">
-                            <label for="price"> <h3>ราคา (บาท)</h3></label>
+                            <label  htmlFor="price"> <h3>ราคา (บาท)</h3></label>
                             <input name="price" id="price" onChange={this.handleChange} required type="number" value={this.state.price} className="form-control" min="1" max="1000000"/>
                         </div>
                             <div className="form-group">
-                                <label for="category"> <h3>ประเภทของสินค้า</h3> </label>
+                                <label  htmlFor="category"> <h3>ประเภทของสินค้า</h3> </label>
                                 <select name="category" id="category" onChange={this.handleChange} value={this.state.category} className="form-control">
                                 <option value="เสื้อผ้า">เสื้อผ้า</option>
                                 <option value="รองเท้า">รองเท้า</option>
@@ -186,7 +186,7 @@ class AddProduct extends React.Component{
                             </select>
                             </div>
                             <div className="form-group">
-                                <label for="amount"> <h3>จำนวนของสินค้า (ชิ้น)</h3> </label>
+                                <label  htmlFor="amount"> <h3>จำนวนของสินค้า (ชิ้น)</h3> </label>
                                 <input name="amount" id="amount" onChange={this.handleChange} required type="number" value={this.state.amount} className="form-control" min="1" max="100"/>
                             </div>
                         <button onClick={this.handleSubmit} className="btn btn-primary btn-lg pull-right" type="button">Submit</button>
