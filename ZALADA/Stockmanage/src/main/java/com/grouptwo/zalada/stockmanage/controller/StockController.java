@@ -45,7 +45,7 @@ public class StockController {
         } catch (RepositoryException | RequestException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(product.getId(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
