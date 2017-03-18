@@ -17,6 +17,7 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,32 +31,14 @@ public class StockRepository {
 
     public void updateProduct(String id, Product updateProduct) {
         Long timestamp = getTimeStamp();
-        Update update = new Update();
-        try {
-            for (PropertyDescriptor pd : Introspector.getBeanInfo(Product.class).getPropertyDescriptors()) {
-                if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updateProduct) != null && !pd.getName().equals("id")) {
-                    update.set(pd.getName(), pd.getReadMethod().invoke(updateProduct).toString());
-                }
-            }
-        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        Update update = updateWithReflect(Product.class, updateProduct);
 
         update.set("editDate", timestamp);
         mongoTemplete.updateFirst(queryById(id), update, Product.class);
     }
 
     public void updateCategory(String name, Category updateCategory) {
-        Update update = new Update();
-        try {
-            for (PropertyDescriptor pd : Introspector.getBeanInfo(Category.class).getPropertyDescriptors()) {
-                if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updateCategory) != null && !pd.getName().equals("id")) {
-                    update.set(pd.getName(), pd.getReadMethod().invoke(updateCategory).toString());
-                }
-            }
-        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        Update update = updateWithReflect(Category.class, updateCategory);
         mongoTemplete.updateFirst(queryByName(name), update, Category.class);
     }
 
@@ -139,5 +122,23 @@ public class StockRepository {
 
     private Long getTimeStamp(){
         return System.currentTimeMillis() / 1000L;
+    }
+
+    private Update updateWithReflect(Class domain, Object updateObject){
+        Update update = new Update();
+        Object updateObjectCasted = domain.cast(updateObject);
+        try {
+            for (PropertyDescriptor pd : Introspector.getBeanInfo(domain).getPropertyDescriptors()) {
+                String attributeName = pd.getName();
+                Method getter = pd.getReadMethod();
+                Object attributeObject = getter.invoke(updateObjectCasted);
+                if (!"class".equals(attributeName) && attributeObject != null && !attributeName.equals("id")) {
+                    update.set(attributeName, pd.getPropertyType().cast(attributeObject));
+                }
+            }
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return update;
     }
 }

@@ -11,6 +11,7 @@ public class Category {
     @Id
     private String id;
     private String name;
+
     private ArrayList<String> childs;
     private ArrayList<String> parents;
 
@@ -52,11 +53,11 @@ public class Category {
 
     @Override
     public String toString(){
-        return "Category{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", parents=" + parents +
-                ", childs=" + childs +
+        return "{" +
+                "\"id\":\"" + id + "\"" +
+                ", \"name\":\"" + name + "\"" +
+                ", \"parents\":" + parents +
+                ", \"childs\":" + childs +
                 '}';
     }
 
