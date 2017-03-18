@@ -24,7 +24,7 @@ class ListProduct extends React.Component {
                         <li key={product.id} className="media">
                             <div className="media-left">
                                 <a href="#">
-                                    <img src="http://odino.org/images/monolith.png" alt="monolith" className="media-object img-rounded" width="144px;" height="144px;" />
+                                    <img src={"http://localhost:9001/product/image/"+product.id} alt="monolith" className="media-object img-rounded" width="144px;" height="144px;" />
                                 </a>
                             </div>
                             <div className="media-body">

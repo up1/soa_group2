@@ -17,6 +17,7 @@ class AddProduct extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.uploadImage = this.uploadImage.bind(this);
         const sender = axios.create({
          baseURL: 'localhost:9001'
         
@@ -34,18 +35,40 @@ class AddProduct extends React.Component{
             detail : this.state.detail,
             price : this.state.price,
             amount : this.state.amount,
-            category : category
+            category : category,
         }
         console.log(data);
         axios.post("http://localhost:9001/product", data).then(
             (response) => {
-                console.log("success");
-                console.log(response)
+                console.log("success")
+                console.log(response.data)
+                const productId = response.data
+                this.uploadImage( productId)
             }
         )
         .catch(
             (error) => { console.log(error)}
         );
+
+        
+    }
+
+    uploadImage(productId){
+        const instance = axios.create();
+        let data = new FormData();
+        data.append('file', this.state.imagefile)
+        data.append('productId', productId)
+        instance.post("http://localhost:9001/product/image", data)
+        .then(
+            (response) => {
+                console.log(response)
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error)
+            }
+        )
     }
 
     handleChange(event){
