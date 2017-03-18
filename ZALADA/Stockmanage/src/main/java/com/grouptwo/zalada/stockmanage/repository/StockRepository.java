@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class StockRepository {
 
     public void updateProduct(String id, Product updateProduct) {
         Long timestamp = getTimeStamp();
+        updateProduct.setCategory(findCategoryHierachy(updateProduct.getCategory().getName()));
         Update update = updateWithReflect(Product.class, updateProduct);
 
         update.set("editDate", timestamp);
@@ -72,14 +74,12 @@ public class StockRepository {
         if(product.getCategory() == null){
             throw new RequestException("Category Not Provide");
         }
-        Category category = mongoTemplete.findOne(queryByName(product.getCategory().getName()), Category.class);
+        Category category = findCategoryHierachy(product.getCategory().getName());
         if(category == null){
             throw new RepositoryException("Category Not Match");
         }
-
-        String id = category.getId();
+        product.setCategory(category);
         product.setSaleDate(getTimeStamp());
-        product.getCategory().setId(id);
         mongoTemplete.insert(product);
     }
 
@@ -140,5 +140,10 @@ public class StockRepository {
             e.printStackTrace();
         }
         return update;
+    }
+
+    private Category findCategoryHierachy(String categoryName){
+        Category category = mongoTemplete.findOne(queryByName(categoryName), Category.class);
+        return category;
     }
 }

@@ -75,7 +75,10 @@ public class StockController {
     }
 
     @RequestMapping(value = "/category", method = RequestMethod.POST)
-    public void insertCategory(@RequestBody Category category) { stockRepository.insertCategory(category); }
+    public ResponseEntity<String> insertCategory(@RequestBody Category category) {
+        stockRepository.insertCategory(category);
+        return new ResponseEntity<>(category.getId(), HttpStatus.CREATED);
+    }
 
     @RequestMapping(value = "/category", method =  RequestMethod.GET)
     public ArrayList findCategoryByPage(@RequestParam(required = false, name = "page")Integer page,
