@@ -2,17 +2,19 @@ import React from 'react';
 import axios from 'axios';
 
 class ListProduct extends React.Component {
-
+    
     constructor() {
 
         super();
         this.state = {
             page: 0,
-            products: []
+            products: [],
+            pager: []
         }
         this.deleteProduct = this.deleteProduct.bind(this);
         this.updateData = this.updateData.bind(this);
-        this.updateData();
+        this.countDataItem = this.countDataItem.bind(this);
+        this.countDataItem();
     }
 
     updateData() {
@@ -24,7 +26,7 @@ class ListProduct extends React.Component {
                         <li key={product.id} className="media">
                             <div className="media-left">
                                 <a href="#">
-                                    <img src={"http://localhost:9001/product/image/"+product.id} alt="monolith" className="media-object img-rounded" width="144px;" height="144px;" />
+                                    <img src={"https://localhost:9001/product/image/"+product.id} alt="monolith" className="media-object img-rounded" width="144px;" height="144px;" />
                                 </a>
                             </div>
                             <div className="media-body">
@@ -46,6 +48,26 @@ class ListProduct extends React.Component {
             )
     }
 
+    countDataItem(){
+        let pagerList = [];
+        axios.get("http://localhost:9001/product")
+            .then(
+            (response) => {
+                const length = response.data.length;
+                for (let i=1; i <= Math.ceil(length/10); i++) {
+                    pagerList.push(<li key={i}><a href="#" onClick={(n) => { this.selectItemPage(i-1) }}>{i}</a></li>)
+                }
+                this.setState({
+                    pager: pagerList
+                })
+                this.updateData();
+            }
+            )
+            .catch(
+            (error) => { console.log(error) }
+            )
+    }
+
     deleteProduct(e, index) {
         const products = this.state.products;
         console.log(products[index]);
@@ -58,6 +80,12 @@ class ListProduct extends React.Component {
             .catch(
             (error) => { console.log(error) }
             )
+    }
+
+    selectItemPage(pageNumber) {
+        this.state.page = pageNumber;
+        this.updateData();
+        return false;
     }
 
     render() {
@@ -75,11 +103,7 @@ class ListProduct extends React.Component {
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
-                            <li className="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
+                            {this.state.pager}
                             <li>
                                 <a href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>

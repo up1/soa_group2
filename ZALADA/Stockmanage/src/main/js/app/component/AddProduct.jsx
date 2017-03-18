@@ -108,7 +108,7 @@ class AddProduct extends React.Component{
         }
         return (
                 <div className="container">
-                    <h1> ลงขายสินค้า </h1> <hr/>
+                    <h1> ลงขายสินค้า </h1>
                     <div className="preview">
                         {previewImage} <br/>
                     </div>
