@@ -7,6 +7,7 @@ import com.grouptwo.zalada.billing.repository.BillingRepository;
 import com.grouptwo.zalada.billing.repository.SaleRepository;
 import com.grouptwo.zalada.billing.utils.EmailValidator;
 import com.grouptwo.zalada.billing.utils.PaySlipPdfManager;
+import com.itextpdf.text.DocumentException;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -87,7 +88,7 @@ public class BillingController {
 
     @RequestMapping(value = "/payslip/{poNumber}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getPaySlip(@PathVariable String poNumber) {
-        ByteArrayOutputStream paySlipFile;
+        ByteArrayOutputStream paySlipFile = null;
 
         PurchaseOrder purchaseOrder = billingRepository.getPurchaseOrder(poNumber);
         if (purchaseOrder == null) {
@@ -96,13 +97,10 @@ public class BillingController {
 
         try {
             PaySlipPdfManager pdfManager = new PaySlipPdfManager(payForm);
-            pdfManager.loadFile();
-            pdfManager.loadForm();
             pdfManager.fillForm(purchaseOrder);
-            paySlipFile = pdfManager.getFile();
-            pdfManager.close();
-        } catch (IOException e) {
-            return new ResponseEntity<>(e.getMessage().getBytes(), HttpStatus.BAD_GATEWAY);
+            paySlipFile = pdfManager.getOutput();
+        } catch (IOException | DocumentException e) {
+            return new ResponseEntity<>(e.getMessage().getBytes(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         HttpHeaders headers = new HttpHeaders();
@@ -143,7 +141,7 @@ public class BillingController {
         return billingRepository.findAllByPayStatus(pageable, PurchaseOrder.STATUS_CODE_OUT_OF_TIME);
     }
 
-    @RequestMapping(value = "/payslip/paid/{poNumber}", method = RequestMethod.GET)
+    @RequestMapping(value = "/payslip/paid/{poNumber}", method = RequestMethod.PATCH)
     public ResponseEntity<String> PaidPaySlip(@PathVariable String poNumber) {
         try {
             billingRepository.paidPaySlip(poNumber);
