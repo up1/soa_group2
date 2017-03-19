@@ -40,7 +40,7 @@ public class PaySlipPdfManager extends PdfManager
             code128.setCode(poNumber.trim());
             code128.setCodeType(Barcode128.CODE128);
             Image code128Image = code128.createImageWithBarcode(getStamper().getOverContent(1), null, null);
-            code128Image.setAbsolutePosition(300, 550);
+            code128Image.setAbsolutePosition(150, 450);
             code128Image.scalePercent(125);
 
             getStamper().getOverContent(1).addImage(code128Image);
