@@ -32,7 +32,9 @@ public class StockRepository {
 
     public void updateProduct(String id, Product updateProduct) {
         Long timestamp = getTimeStamp();
-        updateProduct.setCategory(findCategoryHierachy(updateProduct.getCategory().getName()));
+        if(updateProduct.getCategory() != null)
+            updateProduct.setCategory(findCategoryHierachy(updateProduct.getCategory().getName()));
+
         Update update = updateWithReflect(Product.class, updateProduct);
 
         update.set("editDate", timestamp);

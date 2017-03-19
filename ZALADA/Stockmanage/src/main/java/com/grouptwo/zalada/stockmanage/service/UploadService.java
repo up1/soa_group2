@@ -50,7 +50,7 @@ public class UploadService {
 
             //Rename file to productId + uploaded file's extension
             Path newPath = uploadPath.resolveSibling(productId + "." + fileExtension);
-            Files.move(uploadPath, newPath);
+            Files.move(uploadPath, newPath, REPLACE_EXISTING);
 
             //update product information
             Product product = new Product();
