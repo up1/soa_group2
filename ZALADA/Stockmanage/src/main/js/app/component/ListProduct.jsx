@@ -15,6 +15,8 @@ class ListProduct extends React.Component {
         this.updateData = this.updateData.bind(this);
         this.countDataItem = this.countDataItem.bind(this);
         this.countDataItem();
+        this.goToAddProductPage = this.goToAddProductPage.bind(this);
+        this.updateData()
     }
 
     updateData() {
@@ -26,14 +28,14 @@ class ListProduct extends React.Component {
                         <li key={product.id} className="media">
                             <div className="media-left">
                                 <a href="#">
-                                    <img src={"https://localhost:9001/product/image/"+product.id} alt="monolith" className="media-object img-rounded" width="144px;" height="144px;" />
+                                    <img src={"http://localhost:9001/product/image/"+product.id} alt="monolith" className="media-object img-rounded" width="144px;" height="144px;" />
                                 </a>
                             </div>
                             <div className="media-body">
                                 <h4 className="media-heading"> {product.name} </h4>
                                 <p className="product-detail"> {product.detail} </p>
                                 <p> <strong> ราคา </strong> {product.price} บาท <strong>| จำนวน </strong> <span className="badge">{product.amount}</span></p>
-                                <button className="btn btn-primary" type="button"><span className="glyphicon glyphicon-pencil"></span> แก้ไขข้อมูล</button>
+                                <button className="btn btn-primary" type="button" onClick={(e) => {this.goToEditProductPage(e, product.id) } } ><span className="glyphicon glyphicon-pencil"></span> แก้ไขข้อมูล</button>
                                 <button className="btn btn-danger btn-delete" type="button" data={index} onClick={(e) => { this.deleteProduct(e, index) }}><span className="glyphicon glyphicon-remove"></span> ลบสินค้า</button>
                             </div> <hr />
                         </li>
@@ -68,6 +70,16 @@ class ListProduct extends React.Component {
             )
     }
 
+    goToAddProductPage(event){
+        event.preventDefault();
+        this.context.router.transitionTo(`AddProduct`)
+    }
+
+    goToEditProductPage(event, id){
+        event.preventDefault();
+        this.context.router.transitionTo(`/Update/${id}`)
+    }
+
     deleteProduct(e, index) {
         const products = this.state.products;
         console.log(products[index]);
@@ -91,7 +103,7 @@ class ListProduct extends React.Component {
     render() {
         return (
             <div className="container">
-                <h1>รายการสินค้า<a href="#" className="btn btn-lg btn-success pull-right"><span className="glyphicon glyphicon-plus-sign"></span>  เพิ่มสินค้า</a></h1><br/>
+                <h1>รายการสินค้า<a onClick={this.goToAddProductPage} href="#" className="btn btn-lg btn-success pull-right"><span className="glyphicon glyphicon-plus-sign"></span>  เพิ่มสินค้า</a></h1><br/>
                 <ul className="media-list">
                     {this.state.products}
                 </ul>
@@ -115,6 +127,10 @@ class ListProduct extends React.Component {
             </div>
         )
     }
+}
+
+ListProduct.contextTypes = {
+    router : React.PropTypes.object
 }
 
 export default ListProduct;
