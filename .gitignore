@@ -77,3 +77,8 @@ buildNumber.properties
 # End of https://www.gitignore.io/api/intellij,java,maven
 
 ZALADA/Stockmanage/upload-dir/
+.vscode/
+ZALADA/Stockmanage/node
+ZALADA/Stockmanage/node_modules
+ZALADA/Stockmanage/public/js/product.js
+ZALADA/Stockmanage/public/js/product.jsx
