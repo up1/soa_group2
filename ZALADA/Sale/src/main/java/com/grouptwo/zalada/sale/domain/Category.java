@@ -1,4 +1,4 @@
-package com.grouptwo.zalada.stockmanage.domain;
+package com.grouptwo.zalada.sale.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,8 +11,8 @@ public class Category {
     @Id
     private String id;
     private String name;
-    private ArrayList<String> children;
     private ArrayList<String> parents;
+    private ArrayList<String> children;
 
     public static final String COLLECTION_NAME = "category";
 
