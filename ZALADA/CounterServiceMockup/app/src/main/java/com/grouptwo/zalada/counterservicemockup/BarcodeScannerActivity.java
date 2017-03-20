@@ -1,6 +1,11 @@
 package com.grouptwo.zalada.counterservicemockup;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,16 +24,29 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
 public class BarcodeScannerActivity extends AppCompatActivity implements SurfaceHolder.Callback, Detector.Processor<Barcode> {
 
     private SurfaceView cameraView;
     private CameraSource cameraSource;
+    private Repository repository;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode_scanner);
 
         init();
+    }
+
+    protected void onStart() {
+        super.onStart();
     }
 
     private void init() {
@@ -39,7 +57,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Surface
                 .build();
 
         cameraSource = new CameraSource
-                .Builder(this, barcodeDetector)
+                .Builder(this, barcodeDetector).setAutoFocusEnabled(true)
                 .build();
 
         cameraView.getHolder().addCallback(this);
@@ -76,18 +94,12 @@ public class BarcodeScannerActivity extends AppCompatActivity implements Surface
     @Override
     public void receiveDetections(Detector.Detections detections) {
         final SparseArray<Barcode> barcode = detections.getDetectedItems();
-
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-
-            @Override
-            public void run() {
-                if (barcode.size() != 0) {
-                    Toast.makeText(getApplicationContext(), barcode.valueAt(0).displayValue, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
+        if (barcode.size() != 0) {
+            String poNumber = barcode.valueAt(0).displayValue;
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("poNumber", poNumber);
+            setResult(Activity.RESULT_OK,returnIntent);
+            finish();
+        }
     }
 }
