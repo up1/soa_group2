@@ -107,7 +107,6 @@ class UpdateProduct extends React.Component{
                 newState['price'] = response.data.price,
                 newState['amount'] = response.data.amount,
                 newState['category'] = response.data.category.name
-                console.log(newState);
                 this.setState(newState);
             }
         )
