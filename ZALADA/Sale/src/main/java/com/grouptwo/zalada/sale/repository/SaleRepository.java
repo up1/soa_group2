@@ -25,11 +25,11 @@ public class SaleRepository {
     }
 
     public ArrayList findAllProduct(Pageable pageable){
-        return getPaging(Product.class, pageable, new Query());
+        return getPaging(Product.class, pageable, queryByAmount());
     }
 
     public  List<Product> findAllProduct(){
-        return mongoTemplate.findAll(Product.class);
+        return mongoTemplate.find(queryByAmount(), Product.class);
     }
 
     public ArrayList findAllProductByCategory(Pageable pageable, String categoryName){
@@ -57,6 +57,10 @@ public class SaleRepository {
 
     private Query queryByName(String name){
         return new Query(where("name").is(name));
+    }
+
+    private Query queryByAmount(){
+        return new Query(where("amount").gt(0));
     }
 
 }
