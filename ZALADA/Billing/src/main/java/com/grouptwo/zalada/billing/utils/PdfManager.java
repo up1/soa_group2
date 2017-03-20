@@ -1,93 +1,105 @@
 package com.grouptwo.zalada.billing.utils;
 
-import com.grouptwo.zalada.billing.domain.PurchaseOrder;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
-import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
-import org.apache.pdfbox.pdmodel.interactive.form.PDField;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.AcroFields;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.util.Set;
 
 public class PdfManager {
 
 
     private Resource pdfFile;
-    private PDDocument pdfDocument;
-
-    private PDAcroForm getAcroForm() {
-        return acroForm;
-    }
-
-    private PDAcroForm acroForm;
+    private PdfReader reader;
+    private PdfStamper stamper;
+    private ByteArrayOutputStream output;
 
     public PdfManager(Resource pdfFile) throws IOException {
+
         String fileName = pdfFile.getFilename();
         int i = pdfFile.getFilename().lastIndexOf('.');
-        if (i > 0 && fileName.substring(i+1).equals("pdf")) {
+        if (i > 0 && fileName.substring(i + 1).equals("pdf")) {
             setPdfFile(pdfFile);
-        }else {
+        } else {
             throw new IOException("File Type Not Allow");
         }
-
-    }
-
-    public void getFieldsName(){
-        PDAcroForm acroForm = getAcroForm();
-        for(PDField field :acroForm.getFields()){
-            System.out.println(field.getPartialName());
-        }
-    }
-
-    public void loadForm(){
-        PDDocumentCatalog docCatalog = getPdfDocument().getDocumentCatalog();
-        setAcroForm(docCatalog.getAcroForm());
-    }
-
-    public void loadFile() throws IOException {
-        setPdfDocument(PDDocument.load(pdfFile.getInputStream()));
-    }
-
-    public void close() throws IOException {
-        pdfDocument.close();
-    }
-
-    public ByteArrayOutputStream getFile() throws IOException {
-        ByteArrayOutputStream  file = new ByteArrayOutputStream();
-        pdfDocument.save(file);
-        return file;
-    }
-
-    public void fillForm(String fieldName, String value) throws IOException {
-        PDField field = getAcroForm().getField( fieldName );
-        if( field != null ) {
-            field.setValue(value);
-        }
-        else {
-            System.err.println( "No field found with name:" + fieldName );
-        }
-    }
-
-    public Resource getPdfFile() {
-        return pdfFile;
     }
 
     private void setPdfFile(Resource pdfFile) {
         this.pdfFile = pdfFile;
     }
 
-    private PDDocument getPdfDocument() {
-        return pdfDocument;
+    public Resource getPdfFile() {
+        return pdfFile;
     }
 
-    private void setPdfDocument(PDDocument pdfDocument) {
-        this.pdfDocument = pdfDocument;
+    private void loadFile() throws IOException {
+        setReader(new PdfReader(getPdfFile().getInputStream()));
     }
 
-    private void setAcroForm(PDAcroForm acroForm) {
-        this.acroForm = acroForm;
+    protected void init() throws IOException, DocumentException {
+        loadFile();
+
+        setOutput(new ByteArrayOutputStream());
+
+        loadStamper(getOutput());
     }
+
+    public Set<String> getFieldsName() throws IOException, DocumentException {
+        AcroFields fields = getReader().getAcroFields();
+        return fields.getFields().keySet();
+    }
+
+    private void closeFile() {
+        reader.close();
+    }
+
+    private void setReader(PdfReader reader) {
+        this.reader = reader;
+    }
+
+    protected PdfReader getReader() {
+        return reader;
+    }
+
+    protected void fillForm(String key, String value) throws IOException, DocumentException {
+        AcroFields form = stamper.getAcroFields();
+        form.setField(key, value);
+    }
+
+    private void loadStamper(ByteArrayOutputStream byteArrayOutputStream) throws IOException, DocumentException {
+        PdfStamper stamper = new PdfStamper(getReader(), byteArrayOutputStream);
+        setStamper(stamper);
+    }
+
+    private void setStamper(PdfStamper stamper) {
+        this.stamper = stamper;
+    }
+
+    protected PdfStamper getStamper() {
+        return stamper;
+    }
+
+    private void closeStamper() throws IOException, DocumentException {
+        getStamper().close();
+    }
+
+    protected void close() throws IOException, DocumentException {
+        closeStamper();
+        closeFile();
+    }
+
+    public void setOutput(ByteArrayOutputStream output) {
+        this.output = output;
+    }
+
+    public ByteArrayOutputStream getOutput() {
+        return output;
+    }
+
+
 }

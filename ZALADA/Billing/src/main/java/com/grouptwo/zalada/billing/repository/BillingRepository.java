@@ -35,7 +35,7 @@ public class BillingRepository {
     public void insertPurchaseOrder(PurchaseOrder purchaseOrder) {
         Long timestamp = getTimeStamp();
         purchaseOrder.setBuyDate(timestamp);
-        purchaseOrder.setPayScheduled(timestamp + 86400);
+        purchaseOrder.setPayScheduled(timestamp + 86400 * 7);
         purchaseOrder.setPayStatus(PurchaseOrder.STATUS_CODE_NOT_PAY);
         mongoTemplate.save(purchaseOrder);
     }
