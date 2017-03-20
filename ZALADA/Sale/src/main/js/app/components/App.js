@@ -2,7 +2,7 @@ const React = require('react');
 import UpperHeaderSection from './UpperHeaderSection.jsx';
 import SlideShow from './SlideShow.jsx';
 import ProductReview from './ProductReview.jsx';
-
+import FooterSection from './FooterSection.jsx';
 import {sliderTimer} from '../slidertimer.js';
 
 class App extends React.Component {
@@ -13,6 +13,7 @@ class App extends React.Component {
         <UpperHeaderSection />
         <SlideShow />
         <ProductReview />
+        <FooterSection/>
       </div>
     )
   }
