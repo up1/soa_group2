@@ -12,7 +12,7 @@ public class Category {
     private String id;
     private String name;
 
-    private ArrayList<String> childs;
+    private ArrayList<String> children;
     private ArrayList<String> parents;
 
     public static final String COLLECTION_NAME = "category";
@@ -35,12 +35,12 @@ public class Category {
         this.name = name;
     }
 
-    public ArrayList<String> getChilds() {
-        return childs;
+    public ArrayList<String> getchildren() {
+        return children;
     }
 
-    public void setChilds(ArrayList<String> childs) {
-        this.childs = childs;
+    public void setchildren(ArrayList<String> children) {
+        this.children = children;
     }
 
     public ArrayList<String> getParents() {
@@ -57,7 +57,7 @@ public class Category {
                 "\"id\":\"" + id + "\"" +
                 ", \"name\":\"" + name + "\"" +
                 ", \"parents\":" + parents +
-                ", \"childs\":" + childs +
+                ", \"children\":" + children +
                 '}';
     }
 
