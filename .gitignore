@@ -2,3 +2,7 @@
 ZALADA/Sale/\.idea/
 
 ZALADA/Sale/target/
+
+ZALADA/Stockmanage/\.idea/
+
+*.class
