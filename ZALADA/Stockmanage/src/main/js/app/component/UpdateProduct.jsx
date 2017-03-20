@@ -47,8 +47,7 @@ class UpdateProduct extends React.Component{
         .catch(
             (error) => { console.log(error)}
         );
-
-        
+        this.context.router.transitionTo(``)
     }
 
     uploadImage(productId){
@@ -125,7 +124,7 @@ class UpdateProduct extends React.Component{
         }
         return (
                 <div className="container">
-                    <h1> ลงขายสินค้า </h1> <hr/>
+                    <h1> แก้ไขข้อมูลสินค้า </h1> <hr/>
                     <div className="preview">
                         {previewImage} <br/>
                     </div>
@@ -234,6 +233,10 @@ class UpdateProduct extends React.Component{
                 </div>
         )
     }
+}
+
+UpdateProduct.contextTypes = {
+    router: React.PropTypes.object
 }
 
 export default UpdateProduct;

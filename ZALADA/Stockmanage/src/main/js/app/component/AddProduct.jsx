@@ -69,10 +69,15 @@ class AddProduct extends React.Component {
             .post("http://localhost:9001/product/image", data)
             .then((response) => {
                 console.log(response)
+                
             })
             .catch((error) => {
                 console.log(error)
             })
+        this
+            .context
+            .router
+            .transitionTo(``)
     }
 
     handleChange(event) {
@@ -279,6 +284,11 @@ class AddProduct extends React.Component {
             </div>
         )
     }
+}
+
+
+AddProduct.contextTypes = {
+    router: React.PropTypes.object
 }
 
 export default AddProduct;

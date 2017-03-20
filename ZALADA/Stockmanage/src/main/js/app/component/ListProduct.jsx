@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Product from './Product.jsx';
+import ReactTooltip from 'react-tooltip'
+import NotificationSystem from 'react-notification-system';
 
 class ListProduct extends React.Component {
 
@@ -26,6 +28,16 @@ class ListProduct extends React.Component {
             .bind(this);
         this.countDataItem();
         this.updateData()
+    }
+
+    componentDidMount() {
+        this._notificationSystem = this.refs.notificationSystem;
+    }
+
+    notifySuccessAddProduct() {
+        this
+            ._notificationSystem
+            .addNotification({message: 'Notification message', level: 'success'})
     }
 
     updateImage(productId) {
@@ -116,6 +128,7 @@ class ListProduct extends React.Component {
     render() {
         return (
             <div className="container">
+                <NotificationSystem ref="notificationSystem"/>
                 <h1>รายการสินค้า<a
                     onClick={this.goToAddProductPage}
                     href="#"
