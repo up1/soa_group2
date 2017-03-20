@@ -3,6 +3,8 @@ package com.grouptwo.zalada.stockmanage.repository;
 import com.google.common.collect.Lists;
 import com.grouptwo.zalada.stockmanage.domain.Category;
 import com.grouptwo.zalada.stockmanage.domain.Product;
+import com.grouptwo.zalada.stockmanage.exception.RepositoryException;
+import com.grouptwo.zalada.stockmanage.exception.RequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -14,12 +16,13 @@ import org.springframework.stereotype.Repository;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
-import org.springframework.web.client.RestTemplate;
 
 @Repository
 public class StockRepository {
@@ -29,32 +32,17 @@ public class StockRepository {
 
     public void updateProduct(String id, Product updateProduct) {
         Long timestamp = getTimeStamp();
-        Update update = new Update();
-        try {
-            for (PropertyDescriptor pd : Introspector.getBeanInfo(Product.class).getPropertyDescriptors()) {
-                if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updateProduct) != null && !pd.getName().equals("id")) {
-                    update.set(pd.getName(), pd.getReadMethod().invoke(updateProduct).toString());
-                }
-            }
-        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        if(updateProduct.getCategory() != null)
+            updateProduct.setCategory(findCategoryHierachy(updateProduct.getCategory().getName()));
+
+        Update update = updateWithReflect(Product.class, updateProduct);
 
         update.set("editDate", timestamp);
         mongoTemplete.updateFirst(queryById(id), update, Product.class);
     }
 
     public void updateCategory(String name, Category updateCategory) {
-        Update update = new Update();
-        try {
-            for (PropertyDescriptor pd : Introspector.getBeanInfo(Category.class).getPropertyDescriptors()) {
-                if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updateCategory) != null && !pd.getName().equals("id")) {
-                    update.set(pd.getName(), pd.getReadMethod().invoke(updateCategory).toString());
-                }
-            }
-        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        Update update = updateWithReflect(Category.class, updateCategory);
         mongoTemplete.updateFirst(queryByName(name), update, Category.class);
     }
 
@@ -84,13 +72,17 @@ public class StockRepository {
         return mongoTemplete.find(new Query(where("category").is(category)), Product.class);
     }
 
-    public void insertProduct(Product product){
-        String id = (mongoTemplete.findOne(queryByName(product.getCategory().getName()), Category.class)).getId();
-        if( id != null ){
-            product.setSaleDate(getTimeStamp());
-            product.getCategory().setId(id);
-            mongoTemplete.insert(product);
+    public void insertProduct(Product product) throws RepositoryException, RequestException {
+        if(product.getCategory() == null){
+            throw new RequestException("Category Not Provide");
         }
+        Category category = findCategoryHierachy(product.getCategory().getName());
+        if(category == null){
+            throw new RepositoryException("Category Not Match");
+        }
+        product.setCategory(category);
+        product.setSaleDate(getTimeStamp());
+        mongoTemplete.insert(product);
     }
 
     public void insertCategory(Category category){
@@ -132,5 +124,28 @@ public class StockRepository {
 
     private Long getTimeStamp(){
         return System.currentTimeMillis() / 1000L;
+    }
+
+    private Update updateWithReflect(Class domain, Object updateObject){
+        Update update = new Update();
+        Object updateObjectCasted = domain.cast(updateObject);
+        try {
+            for (PropertyDescriptor pd : Introspector.getBeanInfo(domain).getPropertyDescriptors()) {
+                String attributeName = pd.getName();
+                Method getter = pd.getReadMethod();
+                Object attributeObject = getter.invoke(updateObjectCasted);
+                if (!"class".equals(attributeName) && attributeObject != null && !attributeName.equals("id")) {
+                    update.set(attributeName, pd.getPropertyType().cast(attributeObject));
+                }
+            }
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return update;
+    }
+
+    private Category findCategoryHierachy(String categoryName){
+        Category category = mongoTemplete.findOne(queryByName(categoryName), Category.class);
+        return category;
     }
 }

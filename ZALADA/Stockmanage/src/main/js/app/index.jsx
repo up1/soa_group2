@@ -1,17 +1,21 @@
 import React from 'react';
 import {render} from 'react-dom';
+import {BrowserRouter, Match, Miss} from 'react-router';
 
 import AddProduct from './component/AddProduct.jsx';
+import ListProduct from './component/ListProduct.jsx';
+import UpdateProduct from './component/UpdateProduct.jsx';
 
-class App extends React.Component {
-
-  render () {
-    return (<div>
-          <p> Hello React!</p>
-          <AddProduct/>
-        </div>
-    )
-  }
+const Root = () => {
+  return (
+    <BrowserRouter>
+      <div>
+        <Match exactly pattern="/" component={ListProduct} />
+        <Match pattern="/AddProduct" component={AddProduct} />
+        <Match pattern="/Update/:id" component={UpdateProduct} />
+      </div>
+    </BrowserRouter>
+  )
 }
 
-render(<App/>, document.getElementById('app'));
+render(<Root/>, document.querySelector('#app'));

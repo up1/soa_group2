@@ -1,13 +1,15 @@
 package com.grouptwo.zalada.stockmanage.controller;
 
-import com.google.common.annotations.GwtCompatible;
 import com.grouptwo.zalada.stockmanage.domain.Category;
 import com.grouptwo.zalada.stockmanage.domain.Product;
+import com.grouptwo.zalada.stockmanage.exception.RepositoryException;
+import com.grouptwo.zalada.stockmanage.exception.RequestException;
 import com.grouptwo.zalada.stockmanage.repository.StockRepository;
-import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -37,8 +39,13 @@ public class StockController {
     }
 
     @RequestMapping(value = "/product", method = RequestMethod.POST)
-    public void insertProduct(@RequestBody Product product) {
-        stockRepository.insertProduct(product);
+    public ResponseEntity<String> insertProduct(@RequestBody Product product) {
+        try {
+            stockRepository.insertProduct(product);
+        } catch (RepositoryException | RequestException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(product.getId(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
@@ -68,7 +75,10 @@ public class StockController {
     }
 
     @RequestMapping(value = "/category", method = RequestMethod.POST)
-    public void insertCategory(@RequestBody Category category) { stockRepository.insertCategory(category); }
+    public ResponseEntity<String> insertCategory(@RequestBody Category category) {
+        stockRepository.insertCategory(category);
+        return new ResponseEntity<>(category.getId(), HttpStatus.CREATED);
+    }
 
     @RequestMapping(value = "/category", method =  RequestMethod.GET)
     public ArrayList findCategoryByPage(@RequestParam(required = false, name = "page")Integer page,
