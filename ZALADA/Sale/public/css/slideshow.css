@@ -1,0 +1,55 @@
+
+#slider
+{
+	margin-top: 100px;
+	background-image:url('http://1d5unn3435vt5h99p1qrei61.wpengine.netdna-cdn.com/wp-content/uploads/2015/03/loptimum-tuxedo11.jpg');
+	background-size: cover;
+	height: 500px;
+	-webkit-transition: background 1s ;
+}
+
+#slider:after
+{
+	position: absolute;
+    content: '';
+    top: 100;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    z-index:1;
+	background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2));
+}
+
+.icon
+{
+	font-size: 50px;
+	color: #fff;
+	position: relative;
+	z-index: 3;
+}
+
+#left
+{
+	float: left;
+	margin: 320px 30px;
+}
+
+#right
+{
+	float: right;
+	margin: 17px 30px;
+}
+
+h2,#sliderPara
+{
+	color: #fff;
+	text-align: center;
+	z-index: 3;
+	position: relative;
+}
+
+h2
+{
+	font-size: 52px;
+	padding-top:230px;
+}

@@ -69,11 +69,14 @@ pom.xml.next
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
-.mvn/timing.properties
+.mvn/timing.properties 	
+
 
 # Exclude maven wrapper
 !/.mvn/wrapper/maven-wrapper.jar
 
 # End of https://www.gitignore.io/api/intellij,java,maven
 
-ZALADA/Stockmanage/upload-dir/
+ZALADA/Sale/upload-dir/
+ZALADA/Sale/node/
+ZALADA/Sale/node_modules/
