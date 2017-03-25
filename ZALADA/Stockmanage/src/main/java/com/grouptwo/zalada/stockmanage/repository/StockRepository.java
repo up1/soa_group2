@@ -33,7 +33,7 @@ public class StockRepository {
     public void updateProduct(String id, Product updateProduct) {
         Long timestamp = getTimeStamp();
         if(updateProduct.getCategory() != null)
-            updateProduct.setCategory(findCategoryHierachy(updateProduct.getCategory().getName()));
+            updateProduct.setCategory(findCategoryByName(updateProduct.getCategory().getName()));
 
         Update update = updateWithReflect(Product.class, updateProduct);
 
@@ -63,20 +63,20 @@ public class StockRepository {
     }
 
     public ArrayList findAllProductByCategory(Pageable pageable, String categoryName){
-        Category category = mongoTemplete.findOne(queryByName(categoryName), Category.class);
-        return getPaging(Product.class, pageable, new Query(where("category").is(category)));
+        List<String> categoryList = createCategoryList(categoryName);
+        return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList)));
     }
 
     public  List<Product> findAllProductByCategory(String categoryName){
-        Category category = mongoTemplete.findOne(queryByName(categoryName), Category.class);
-        return mongoTemplete.find(new Query(where("category").is(category)), Product.class);
+        List<String> categoryList = createCategoryList(categoryName);
+        return mongoTemplete.find(new Query(where("category.name").in(categoryList)), Product.class);
     }
 
     public void insertProduct(Product product) throws RepositoryException, RequestException {
         if(product.getCategory() == null){
             throw new RequestException("Category Not Provide");
         }
-        Category category = findCategoryHierachy(product.getCategory().getName());
+        Category category = findCategoryByName(product.getCategory().getName());
         if(category == null){
             throw new RepositoryException("Category Not Match");
         }
@@ -144,8 +144,16 @@ public class StockRepository {
         return update;
     }
 
-    private Category findCategoryHierachy(String categoryName){
+    private List<String> createCategoryList(String categoryName){
         Category category = mongoTemplete.findOne(queryByName(categoryName), Category.class);
-        return category;
+        List<String> categoryList = new ArrayList<>();
+        categoryList.add(categoryName);
+        for (String eachParent : category.getParents()){
+            categoryList.add(eachParent);
+        }
+        for (String eachChild : category.getChildren()){
+            categoryList.add(eachChild);
+        }
+        return categoryList;
     }
 }
