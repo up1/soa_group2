@@ -148,12 +148,10 @@ public class StockRepository {
         Category category = mongoTemplete.findOne(queryByName(categoryName), Category.class);
         List<String> categoryList = new ArrayList<>();
         categoryList.add(categoryName);
-        for (String eachParent : category.getParents()){
-            categoryList.add(eachParent);
-        }
         for (String eachChild : category.getChildren()){
             categoryList.add(eachChild);
         }
+        System.out.println(categoryList);
         return categoryList;
     }
 }
