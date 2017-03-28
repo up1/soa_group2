@@ -32,6 +32,7 @@ class AddProduct extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.props.noti();
         const category = {
             name: "Electronic Accessory"
         }
@@ -55,7 +56,6 @@ class AddProduct extends React.Component {
             .catch((error) => {
                 console.log(error)
             });
-
     }
 
 
@@ -69,6 +69,7 @@ class AddProduct extends React.Component {
             .post("http://localhost:9001/product/image", data)
             .then((response) => {
                 console.log(response)
+               
                 
             })
             .catch((error) => {

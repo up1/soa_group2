@@ -3,6 +3,7 @@ import axios from 'axios';
 import Product from './Product.jsx';
 import ReactTooltip from 'react-tooltip'
 import NotificationSystem from 'react-notification-system';
+import {Link} from 'react-router-dom';
 
 class ListProduct extends React.Component {
 
@@ -32,12 +33,6 @@ class ListProduct extends React.Component {
 
     componentDidMount() {
         this._notificationSystem = this.refs.notificationSystem;
-    }
-
-    notifySuccessAddProduct() {
-        this
-            ._notificationSystem
-            .addNotification({message: 'Notification message', level: 'success'})
     }
 
     updateImage(productId) {
@@ -129,13 +124,14 @@ class ListProduct extends React.Component {
         return (
             <div className="container">
                 <NotificationSystem ref="notificationSystem"/>
-                <h1>รายการสินค้า<a
-                    onClick={this.goToAddProductPage}
-                    href="#"
-                    className="btn btn-lg btn-success pull-right">
-                        <span className="glyphicon glyphicon-plus-sign"></span>
-                        เพิ่มสินค้า</a>
-                </h1><br/>
+                
+                    <h1>รายการสินค้า
+                            <span className="glyphicon glyphicon-plus-sign"></span>
+                            <Link to="/add" className="btn btn-lg btn-success pull-right" >
+                            เพิ่มสินค้า
+                            </Link>
+                    </h1>
+                <br/>
                 <ul className="media-list">
                     {this.state.products}
                 </ul>
