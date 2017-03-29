@@ -35,11 +35,11 @@ public class Category {
         this.name = name;
     }
 
-    public ArrayList<String> getchildren() {
+    public ArrayList<String> getChildren() {
         return children;
     }
 
-    public void setchildren(ArrayList<String> children) {
+    public void setChildren(ArrayList<String> children) {
         this.children = children;
     }
 
