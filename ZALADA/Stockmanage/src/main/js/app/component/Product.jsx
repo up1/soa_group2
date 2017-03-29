@@ -1,16 +1,8 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 
 class Product extends React.Component {
-
-
-    goToEditProductPage(event, id) {
-        event.preventDefault();
-        this
-            .context
-            .router
-            .transitionTo(`/Update/${id}`)
-    }
 
     render() {
         return (
@@ -42,14 +34,11 @@ class Product extends React.Component {
                         </strong>
                         <span className="badge">{this.props.amount}</span>
                     </p>
-                    <button
+                    <Link to={`update/${this.props.id}`}
                         className="btn btn-primary"
-                        type="button"
-                        onClick={(e) => {
-                            this.goToEditProductPage(e, this.props.id);
-                    }}>
+                        >
                         <span className="glyphicon glyphicon-pencil"></span>
-                        แก้ไขข้อมูล</button>
+                        แก้ไขข้อมูล</Link>
                     <button
                         className="btn btn-danger btn-delete"
                         type="button"

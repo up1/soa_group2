@@ -19,7 +19,7 @@ class App extends React.Component {
     notifySuccessAddProduct() {
         this
             .notificationSystem
-            .addNotification({message: 'Notification message', level: 'success'})
+            .addNotification({message: 'Add Product Success', level: 'success'})
     }
 
     render() {
@@ -33,8 +33,8 @@ class App extends React.Component {
                 <BrowserRouter>
                     <Switch>
                         <Route exact path="/" component={ListProduct}/>
-                        <Route path="/add" component={AddProductwithNoti} noti={this.notifySuccessAddProduct} />
-                        <Route path="/update" component={UpdateProduct} />
+                        <Route path="/add" component={AddProductwithNoti}/>
+                        <Route path="/update/:id" component={UpdateProduct} />
                     </Switch>
                 </BrowserRouter>
             </div>

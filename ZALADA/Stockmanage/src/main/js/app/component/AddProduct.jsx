@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 class AddProduct extends React.Component {
@@ -31,7 +32,6 @@ class AddProduct extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
         this.props.noti();
         const category = {
             name: "Electronic Accessory"
@@ -75,10 +75,6 @@ class AddProduct extends React.Component {
             .catch((error) => {
                 console.log(error)
             })
-        this
-            .context
-            .router
-            .transitionTo(``)
     }
 
     handleChange(event) {
@@ -277,10 +273,11 @@ class AddProduct extends React.Component {
                             min="1"
                             max="100"/>
                     </div>
-                    <button
+                    <Link to="/"
                         onClick={this.handleSubmit}
                         className="btn btn-primary btn-lg pull-right"
-                        type="button">Submit</button>
+                        > Submit
+                    </Link>
                 </form>
             </div>
         )

@@ -1,20 +1,20 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import axios from 'axios';
 
 class UpdateProduct extends React.Component{
     
     constructor(props){
-        super(props);
-
+        super(props)
         this.handleChange = this.handleChange.bind(this);
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.uploadImage = this.uploadImage.bind(this);
         this.loadProductData = this.loadProductData.bind(this);
-        this.loadProductData(this.props.params.id);
+        this.loadProductData(props.match.params.id);
         this.state = {
             imagefile: '',
-            imagePreviewUrl : `http://localhost:9001/product/image/${this.props.params.id}`,
+            imagePreviewUrl : `http://localhost:9001/product/image/${props.match.params.id}`,
             name : '',
             detail : '',
             price : '',
@@ -24,7 +24,6 @@ class UpdateProduct extends React.Component{
     }
 
     handleSubmit(event){
-        event.preventDefault();
         const category = {
             name : "Electronic Accessory"
         }
@@ -37,17 +36,16 @@ class UpdateProduct extends React.Component{
             category : category,
         }
         //console.log(data);
-        axios.put(`http://localhost:9001/product/${this.props.params.id}`, data).then(
+        axios.put(`http://localhost:9001/product/${this.props.match.params.id}`, data).then(
             (response) => {
                 if(this.state.imagefile){
-                    this.uploadImage(this.props.params.id);
+                    this.uploadImage(this.props.match.params.id);
                 }
             }
         )
         .catch(
             (error) => { console.log(error)}
         );
-        this.context.router.transitionTo(``)
     }
 
     uploadImage(productId){
@@ -228,7 +226,7 @@ class UpdateProduct extends React.Component{
                                 <label  htmlFor="amount"> <h3>จำนวนของสินค้า (ชิ้น)</h3> </label>
                                 <input name="amount" id="amount" onChange={this.handleChange} required type="number" value={this.state.amount} className="form-control" min="1" max="100"/>
                             </div>
-                        <button onClick={this.handleSubmit} className="btn btn-primary btn-lg pull-right" type="button">Submit</button>
+                        <Link to="/" onClick={this.handleSubmit} className="btn btn-primary btn-lg pull-right" type="button">Submit</Link>
                     </form>
                 </div>
         )

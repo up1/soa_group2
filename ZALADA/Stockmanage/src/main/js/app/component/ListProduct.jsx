@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Product from './Product.jsx';
 import ReactTooltip from 'react-tooltip'
-import NotificationSystem from 'react-notification-system';
 import {Link} from 'react-router-dom';
 
 class ListProduct extends React.Component {
@@ -24,16 +23,10 @@ class ListProduct extends React.Component {
         this.countDataItem = this
             .countDataItem
             .bind(this);
-        this.goToAddProductPage = this
-            .goToAddProductPage
-            .bind(this);
         this.countDataItem();
         this.updateData()
     }
 
-    componentDidMount() {
-        this._notificationSystem = this.refs.notificationSystem;
-    }
 
     updateImage(productId) {
         axios
@@ -44,14 +37,6 @@ class ListProduct extends React.Component {
             .catch((error) => {
                 console.log(error)
             })
-    }
-
-    goToAddProductPage(event) {
-        event.preventDefault();
-        this
-            .context
-            .router
-            .transitionTo(`AddProduct`)
     }
 
     updateData() {
@@ -123,14 +108,12 @@ class ListProduct extends React.Component {
     render() {
         return (
             <div className="container">
-                <NotificationSystem ref="notificationSystem"/>
-                
-                    <h1>รายการสินค้า
-                            <span className="glyphicon glyphicon-plus-sign"></span>
-                            <Link to="/add" className="btn btn-lg btn-success pull-right" >
-                            เพิ่มสินค้า
-                            </Link>
-                    </h1>
+                <h1>รายการสินค้า
+                    <span className="glyphicon glyphicon-plus-sign"></span>
+                    <Link to="/add" className="btn btn-lg btn-success pull-right">
+                        เพิ่มสินค้า
+                    </Link>
+                </h1>
                 <br/>
                 <ul className="media-list">
                     {this.state.products}
@@ -155,10 +138,6 @@ class ListProduct extends React.Component {
             </div>
         )
     }
-}
-
-ListProduct.contextTypes = {
-    router: React.PropTypes.object
 }
 
 export default ListProduct;
