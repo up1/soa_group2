@@ -84,4 +84,26 @@ public class SaleController {
                            @RequestBody Cart updateCart){
         saleRepository.updateCart(cartId, updateCart);
     }
+
+    @RequestMapping(value = "/buyhistory", method = RequestMethod.POST)
+    public ResponseEntity<String> insertPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder){
+        return saleRepository.insertPurchaseOrder(purchaseOrder);
+    }
+
+    @RequestMapping(value = "/buyhistory/{memberId}", method = RequestMethod.GET)
+    public ArrayList findPurchaseOrderList(@PathVariable String memberId,
+                                           @RequestParam(required = false, name = "page")Integer page,
+                                           @RequestParam(required = false, defaultValue = "10", name = "size") Integer size){
+        if(page == null){
+            return saleRepository.findPurchaseOrderList(memberId);
+        }
+        Pageable pageable = new PageRequest(page, size);
+        return saleRepository.findPurchaseOrderList(pageable, memberId);
+    }
+
+    @RequestMapping(value = "/buyhistory/{memberId}/{poNumber}", method = RequestMethod.GET)
+    public PurchaseOrder findPurchaseOrder(@PathVariable String memberId,
+                                           @PathVariable String poNumber){
+        return saleRepository.findPurchaseOrder(memberId, poNumber);
+    }
 }

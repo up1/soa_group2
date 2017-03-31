@@ -12,6 +12,18 @@ public class Cart {
         products = new ArrayList<>();
     }
 
+    public Cart(Integer type){
+        cartType = type;
+        products = new ArrayList<>();
+    }
+
+    public Cart(Integer type, String owner, Long createTime){
+        cartType = type;
+        ownerName = owner;
+        createDate = createTime;
+        products = new ArrayList<>();
+    }
+
     @Id
     private String id;
     private Integer cartType;
