@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 public class StockRepository {
 
     @Autowired
-    private MongoTemplate mongoTemplete;
+    private MongoTemplate mongoTemplate;
 
     public void updateProduct(String id, Product updateProduct) {
         Long timestamp = getTimeStamp();
@@ -38,20 +37,20 @@ public class StockRepository {
         Update update = updateWithReflect(Product.class, updateProduct);
 
         update.set("editDate", timestamp);
-        mongoTemplete.updateFirst(queryById(id), update, Product.class);
+        mongoTemplate.updateFirst(queryById(id), update, Product.class);
     }
 
     public void updateCategory(String name, Category updateCategory) {
         Update update = updateWithReflect(Category.class, updateCategory);
-        mongoTemplete.updateFirst(queryByName(name), update, Category.class);
+        mongoTemplate.updateFirst(queryByName(name), update, Category.class);
     }
 
     public Product findProductById(String id) {
-        return mongoTemplete.findOne(queryById(id), Product.class);
+        return mongoTemplate.findOne(queryById(id), Product.class);
     }
 
     public Category findCategoryByName(String name) {
-        return mongoTemplete.findOne(queryByName(name), Category.class);
+        return mongoTemplate.findOne(queryByName(name), Category.class);
     }
 
     public ArrayList findAllProduct(Pageable pageable){
@@ -59,7 +58,7 @@ public class StockRepository {
     }
 
     public  List<Product> findAllProduct(){
-        return mongoTemplete.findAll(Product.class);
+        return mongoTemplate.findAll(Product.class);
     }
 
     public ArrayList findAllProductByCategory(Pageable pageable, String categoryName){
@@ -69,7 +68,7 @@ public class StockRepository {
 
     public  List<Product> findAllProductByCategory(String categoryName){
         List<String> categoryList = createCategoryList(categoryName);
-        return mongoTemplete.find(new Query(where("category.name").in(categoryList)), Product.class);
+        return mongoTemplate.find(new Query(where("category.name").in(categoryList)), Product.class);
     }
 
     public void insertProduct(Product product) throws RepositoryException, RequestException {
@@ -82,19 +81,19 @@ public class StockRepository {
         }
         product.setCategory(category);
         product.setSaleDate(getTimeStamp());
-        mongoTemplete.insert(product);
+        mongoTemplate.insert(product);
     }
 
     public void insertCategory(Category category){
-        mongoTemplete.insert(category);
+        mongoTemplate.insert(category);
     }
 
     public void deleteProduct(String id) {
-        mongoTemplete.remove(queryById(id), Product.class);
+        mongoTemplate.remove(queryById(id), Product.class);
     }
 
     public void deleteCategory(String name) {
-        mongoTemplete.remove(queryByName(name), Category.class);
+        mongoTemplate.remove(queryByName(name), Category.class);
     }
 
     public ArrayList findAllCategory(Pageable pageable) {
@@ -102,15 +101,15 @@ public class StockRepository {
     }
 
     public List<Category> findAllCategory(){
-        return mongoTemplete.findAll(Category.class);
+        return mongoTemplate.findAll(Category.class);
     }
 
     @SuppressWarnings("unchecked")
     private ArrayList getPaging(Class domainClass, Pageable pageable, Query query){
         List domains;
         query.with(pageable);
-        domains = mongoTemplete.find(query, domainClass);
-        long total = mongoTemplete.count(query, domainClass);
+        domains = mongoTemplate.find(query, domainClass);
+        long total = mongoTemplate.count(query, domainClass);
         return Lists.newArrayList((new PageImpl(domains, pageable, total)));
     }
 
@@ -145,7 +144,7 @@ public class StockRepository {
     }
 
     private List<String> createCategoryList(String categoryName){
-        Category category = mongoTemplete.findOne(queryByName(categoryName), Category.class);
+        Category category = mongoTemplate.findOne(queryByName(categoryName), Category.class);
         List<String> categoryList = new ArrayList<>();
         categoryList.add(categoryName);
         for (String eachChild : category.getChildren()){
