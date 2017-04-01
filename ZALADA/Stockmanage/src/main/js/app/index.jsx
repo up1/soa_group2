@@ -1,7 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {BrowserRouter, Match, Miss} from 'react-router';
+import {BrowserRouter, Match, Miss, Link, Router, Route} from 'react-router';
 
+import App from './component/App.jsx';
 import AddProduct from './component/AddProduct.jsx';
 import ListProduct from './component/ListProduct.jsx';
 import UpdateProduct from './component/UpdateProduct.jsx';
@@ -12,10 +13,10 @@ const Root = () => {
       <div>
         <Match exactly pattern="/" component={ListProduct} />
         <Match pattern="/AddProduct" component={AddProduct} />
-        <Match pattern="/Update/:id" component={UpdateProduct} />
+        <Match pattern="/Update/:id" component={UpdateProduct} />        
       </div>
     </BrowserRouter>
   )
 }
 
-render(<Root/>, document.querySelector('#app'));
+render(<App/>, document.querySelector('#app'));
