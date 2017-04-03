@@ -10,7 +10,7 @@ class MainPage extends React.Component {
   render() {
     return (
       <div className="container-pager" onLoad={sliderTimer}>
-        <UpperHeaderSection />
+        <UpperHeaderSection user={this.props.user}/>
         <SlideShow />
         <ProductReview />
         <FooterSection/>

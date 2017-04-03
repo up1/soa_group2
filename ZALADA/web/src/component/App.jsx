@@ -15,7 +15,18 @@ class App extends React.Component {
     
     constructor(){
         super();
+        this.state = {
+            username : null
+        }
+
         this.notifySuccessAddProduct = this.notifySuccessAddProduct.bind(this);
+        this.updateUser = this.updateUser.bind(this)
+    }
+
+    updateUser(username){
+        this.setState({
+            username : username
+        })
     }
 
     componentDidMount() {
@@ -32,18 +43,26 @@ class App extends React.Component {
         const AddProductwithNoti = () => {
             return (<AddProduct noti={this.notifySuccessAddProduct}/>)
         }
-
+        const WrapSignIn = () => {
+            return (<LoginPage updateUser={this.updateUser}/>)
+        }
+        const WrapSignUp = () => {
+            return (<SignUpPage updateUser={this.updateUser}/>)
+        }
+        const WrapMainPage = () => {
+            return (<MainPage user={this.state.username}/>)
+        }
         return (
             <div>
                 <NotificationSystem ref="notificationSystem"/>
                 <ReactTooltip />
                 <BrowserRouter>
                     <Switch>
-                        <Route exact path="/" component={MainPage}/>
+                        <Route exact path="/" component={WrapMainPage}/>
                         <Route path="/add" component={AddProductwithNoti}/>
                         <Route path="/update/:id" component={UpdateProduct} />
-                        <Route path="/login" component={LoginPage}/>
-                        <Route path="/signup" component={SignUpPage}/>
+                        <Route path="/login" component={WrapSignIn}/>
+                        <Route path="/signup" component={WrapSignUp}/>
                         <Route path="/stock" component={ListProduct}/>
                         <Route path="/cart" component={CartPage}/>
                     </Switch>

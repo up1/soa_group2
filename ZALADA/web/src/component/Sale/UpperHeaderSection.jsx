@@ -7,6 +7,19 @@ class UpperHeaderSection extends React.Component {
 
   render() {
     const text = "Cart("+5+")";
+
+    
+
+    let rightNavUser = this.props.user ? <li className="dropdown">
+        <a className="dropdown-toggle" data-toggle="dropdown" href="#">บัญชีผู้ใช้คุณ {this.props.user}
+        <span className="caret"></span></a>
+        <ul className="dropdown-menu">
+          <li><a href="#">แก้ไขข้อมูล</a></li>
+          <li><a href="#">ตะกร้าสินค้า</a></li>
+          <li><a href="#">ออกจากระบบ</a></li>
+        </ul>
+      </li>: <li><Link to="/signup">มี account แล้วหรือยัง?</Link></li>
+    let rightNavOptional = this.props.user ? '': <li><Link to="/login">เข้าสู่ระบบ</Link></li>
     return (
       <nav className="navbar navbar-default navbar-fixed-top" role="navigation">
         <div className="container-fluid">
@@ -21,7 +34,6 @@ class UpperHeaderSection extends React.Component {
             <Link to="/" className="navbar-brand">ZALADA</Link>
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
             <SearchForm />
 
             <ul className="nav navbar-nav navbar-right">
@@ -31,8 +43,8 @@ class UpperHeaderSection extends React.Component {
                     width="22px" height="22px" data-tip={text} />
                 </Link>
               </li>
-              <li><Link to="/signup">มี account แล้วหรือยัง?</Link></li>
-              <li><Link to="/login">เข้าสู่ระบบ</Link></li>
+              {rightNavUser}
+              {rightNavOptional}
             </ul>
           </div>
         </div>

@@ -1,10 +1,58 @@
 import React from 'react'
 import UpperHeaderSection from './Sale/UpperHeaderSection.jsx'
 import FooterSection from './Sale/FooterSection.jsx'
+import axios from 'axios'
 import './css/signupPage.css'
 
 
 class SignUpPage extends React.Component {
+
+    constructor(){
+        super()
+
+        this.state = {
+            username : '',
+            password : '',
+            password_re : '',
+            email : '',
+            email_re :''
+        }
+
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleChange(event){    
+        let newState = {};
+        newState[event.target.name] = event.target.value;
+        this.setState(newState);
+    }
+
+    handleSubmit(){
+        
+        const data = {
+            username : this.state.username,
+            password : this.state.password,
+            email : this.state.email
+        }
+
+        axios.post('http://localhost:9004/member/signup', data)
+        .then(
+            (response) => {
+                this.props.updateUser(this.state.username)
+                this.context.router.history.push('/')
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error)
+            }
+        )
+
+        console.log(data)
+
+    }
+
     render() {
         return (
             <div className="signup_page">
@@ -17,27 +65,27 @@ class SignUpPage extends React.Component {
 
                                 <div className="form-group col-lg-12">
                                     <label>ชื่อผู้ใช้</label>
-                                    <input type="" name="" className="form-control" id="" value="" />
+                                    <input type="text" name="username" className="form-control" onChange={this.handleChange}/>
                                 </div>
 
                                 <div className="form-group col-lg-6">
                                     <label>รหัสผ่าน</label>
-                                    <input type="password" name="" className="form-control" id="" value="" />
+                                    <input type="password" name="password" className="form-control" onChange={this.handleChange} />
                                 </div>
 
                                 <div className="form-group col-lg-6">
                                     <label>ยืนยันรหัสผ่าน</label>
-                                    <input type="password" name="" className="form-control" id="" value="" />
+                                    <input type="password" name="password_re" className="form-control" onChange={this.handleChange} />
                                 </div>
 
                                 <div className="form-group col-lg-6">
                                     <label>Email Address</label>
-                                    <input type="" name="" className="form-control" id="" value="" />
+                                    <input type="text" name="email" className="form-control" onChange={this.handleChange} />
                                 </div>
 
                                 <div className="form-group col-lg-6">
                                     <label>ยืนยัน Email Address</label>
-                                    <input type="" name="" className="form-control" id="" value="" />
+                                    <input type="text" name="email_re" className="form-control" onChange={this.handleChange} />
                                 </div>
 
                             </div>
@@ -55,7 +103,7 @@ class SignUpPage extends React.Component {
                                 <p>
                                     Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)</p>
 
-                                <button type="submit" className="btn btn-primary">สมัครสมาชิก</button>
+                                <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>สมัครสมาชิก</button>
                             </div>
                         </div>
                     </section>
@@ -64,6 +112,11 @@ class SignUpPage extends React.Component {
             </div>
         )
     }
+}
+
+
+SignUpPage.contextTypes = {
+  router: React.PropTypes.object
 }
 
 export default SignUpPage;
