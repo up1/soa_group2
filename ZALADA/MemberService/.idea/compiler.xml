@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MemberService" />
+        <module name="zalada-service-member" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="MemberService" target="1.5" />
+      <module name="zalada-service-member" target="1.8" />
+      <module name="zalada-service-sale" target="1.8" />
+      <module name="zalada-service-stockmanage" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
