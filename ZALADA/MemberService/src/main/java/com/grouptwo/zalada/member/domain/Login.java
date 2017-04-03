@@ -10,6 +10,11 @@ public class Login {
 
     public static final String COLLECTION_NAME = "login";
 
+    public Login(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
+
     public String getUsername() {
         return username;
     }
