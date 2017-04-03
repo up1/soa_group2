@@ -8,17 +8,17 @@ class UpperHeaderSection extends React.Component {
   render() {
     const text = "Cart("+5+")";
 
-    
-
     let rightNavUser = this.props.user ? <li className="dropdown">
         <a className="dropdown-toggle" data-toggle="dropdown" href="#">บัญชีผู้ใช้คุณ {this.props.user}
         <span className="caret"></span></a>
         <ul className="dropdown-menu">
           <li><a href="#">แก้ไขข้อมูล</a></li>
           <li><a href="#">ตะกร้าสินค้า</a></li>
+          <li><Link to="/stock">คลังสินค้า</Link></li>
           <li><a href="#">ออกจากระบบ</a></li>
         </ul>
       </li>: <li><Link to="/signup">มี account แล้วหรือยัง?</Link></li>
+
     let rightNavOptional = this.props.user ? '': <li><Link to="/login">เข้าสู่ระบบ</Link></li>
     return (
       <nav className="navbar navbar-default navbar-fixed-top" role="navigation">
