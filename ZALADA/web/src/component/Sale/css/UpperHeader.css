@@ -1,11 +1,19 @@
 body{
     /*background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');*/
-  background-color: #ddd;
+    margin-bottom: 0px;
+  
 }
 
 .glyphicon-search{
     height: 19px;
 }
+
+.navbar{
+    padding: 0px !important ;
+    margin: 0px !important;
+}
+
+
 
 #login-dp{
     min-width: 250px;
@@ -56,4 +64,16 @@ body{
         background-color: inherit;
         border-top:0 none;
     }
+}
+
+#slider {
+    margin: 0px !important;
+}
+
+#slider:after{
+    height: 0px !important;
+}
+
+.container{
+    margin-top: -75px;
 }

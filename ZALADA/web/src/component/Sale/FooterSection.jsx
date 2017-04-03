@@ -28,9 +28,6 @@ class FooterSection extends React.Component {
                             <h4 className="footertext">Designers</h4>
                             <p className="footertext">การออกแบบเป็นชีวิตจิตใจของพวกเขา.</p><br />
                         </div>
-                        <div className="row-Contact">
-                            <center><a href="#">Contact Stuff Here</a> <p className="footertext">Copyright 2017</p></center>
-                        </div>
                     </div>
                 </div>
                 </center>

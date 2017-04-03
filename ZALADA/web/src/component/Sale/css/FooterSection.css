@@ -1,14 +1,17 @@
 
 #footer-section {
+  margin-top: 60px;
   width: 100%;
   height: 100%;
+  bottom: 0px;
+  
   background-color: black;
 }
 
 .container-Footer {
   width: auto;
   max-width: 680px;
-  padding: 0 15px;
+  padding: 0px 15px;
 }
 .container-Footer .text-muted {
   margin: 20px 0;

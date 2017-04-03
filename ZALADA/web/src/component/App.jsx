@@ -6,6 +6,7 @@ import AddProduct from './Stock/AddProduct.jsx';
 import LoginForm from './Sale/LoginForm.jsx';
 import NotificationSystem from 'react-notification-system';
 import MainPage from './Sale/MainPage.jsx';
+import CartPage from './Sale/Cart/Cart.jsx';
 import LoginPage from './LoginPage.jsx';
 
 class App extends React.Component {
@@ -40,6 +41,7 @@ class App extends React.Component {
                         <Route path="/update/:id" component={UpdateProduct} />
                         <Route path="/login" component={LoginPage}/>
                         <Route path="/stock" component={ListProduct}/>
+                        <Route path="/cart" component={CartPage}/>
                     </Switch>
                 </BrowserRouter>
             </div>
