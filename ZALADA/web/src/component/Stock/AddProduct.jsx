@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
+import {browserHistory} from 'react-router';
 import axios from 'axios';
 import './css/add-product-style.css';
 
@@ -66,9 +67,9 @@ class AddProduct extends React.Component {
         instance
             .post("http://localhost:9001/product/image", data)
             .then((response) => {
-                console.log(response)
-               
-                
+                console.log("test")
+                this.context.router.history.push('/stock')
+
             })
             .catch((error) => {
                 console.log(error)
@@ -204,16 +205,19 @@ class AddProduct extends React.Component {
                             min="1"
                             max="100"/>
                     </div>
-                    <Link to="/"
+                    <a href="#"
                         onClick={this.handleSubmit}
                         className="btn btn-primary btn-lg pull-right"
                         > Submit
-                    </Link>
+                    </a>
                 </form>
             </div>
         )
     }
 }
 
+AddProduct.contextTypes = {
+  router: React.PropTypes.object
+}
 
 export default AddProduct;
