@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import './css/add-product-style.css';
 
 class AddProduct extends React.Component {
 

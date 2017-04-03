@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Product from './Product.jsx';
 import {Link} from 'react-router-dom';
+import './css/show-own-product-style.css';
 
 class ListProduct extends React.Component {
 
@@ -23,7 +24,6 @@ class ListProduct extends React.Component {
             .countDataItem
             .bind(this);
         this.countDataItem();
-        this.updateData()
     }
 
 
