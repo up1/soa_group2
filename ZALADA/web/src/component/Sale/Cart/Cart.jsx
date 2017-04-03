@@ -1,14 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
+import Navbar from '../UpperHeaderSection.jsx'
+import Footer from '../FooterSection.jsx'
+import '../css/cart.css'
 
 class Cart extends React.Component {
 
     render() {
         return (
-            <div className="">
-                <div className="container">
+            <div className="my-cart">
+                <Navbar/>
+                <div className="container" id="cart-container">
                     <div className="row">
                      <div className="col-sm-12 col-md-10 col-md-offset-1">
+                    <h1> ตระกร้าสินค้า </h1>
                       <table className="table table-hover">
                        <thead>
                     <tr>
@@ -111,6 +116,7 @@ class Cart extends React.Component {
                     </div>
                         </div>
                     </div>
+                    <Footer/>
                 </div>
         )
     }

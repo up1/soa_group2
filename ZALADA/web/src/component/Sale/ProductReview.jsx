@@ -4,7 +4,7 @@ import './css/productReview.css';
 class ProductReview extends React.Component {
     render() {
         return (
-            <div className="container">
+            <div className="container" id="pd-review-container">
                 <div className="row">
                     <div className="row" id="header-row-list">
                         <div className="col-md-9">
