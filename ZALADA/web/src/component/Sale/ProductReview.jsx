@@ -1,7 +1,40 @@
 import React from 'react';
 import './css/productReview.css';
+import axios from 'axios';
+import ProductItemPreview from './ProductItemPreview.jsx' // each product item component
 
 class ProductReview extends React.Component {
+
+    constructor(){
+        super();
+        this.state = {
+            cartItemCount : 0,
+            products: []
+        }
+        this.loadAllProduct = this.loadAllProduct.bind(this);
+        this.loadAllProduct();   
+    }
+
+    loadAllProduct(){
+        axios
+            .get("http://localhost:9003/sale")
+            .then((response) => {
+                const productList = response
+                    .data
+                    .map((product, index) => <ProductItemPreview
+                        key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        price={product.price}
+                        amount={product.amount}
+                        index={index}/>)
+                this.setState({products: productList})
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     render() {
         return (
             <div className="container" id="pd-review-container">
@@ -23,246 +56,7 @@ class ProductReview extends React.Component {
                         <div className="carousel-inner">
                             <div className="item active">
                                 <div className="row">
-                                    <div className="col-sm-3">
-                                        <div className="col-item">
-                                            <div className="photo">
-                                                <img src="https://www.unloathe.com/product_photos/3337227540886.jpg" className="img-responsive" alt="a" />
-                                            </div>
-                                            <div className="info">
-                                                <div className="row">
-                                                    <div className="price col-md-6">
-                                                        <h5>
-                                                            Sample Product</h5>
-                                                        <h5 className="price-text-color">
-                                                            $199.99</h5>
-                                                    </div>
-                                                    <div className="rating hidden-sm col-md-6">
-                                                        <i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <div className="separator clear-left">
-                                                    <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
-                                                    <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
-                                                </div>
-                                                <div className="clearfix">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-3">
-                                        <div className="col-item">
-                                            <div className="photo">
-                                                <img src="https://sc01.alicdn.com/kf/HTB133JzKFXXXXXdXpXXq6xXFXXXp/fancy-gift-items.jpg_350x350.jpg" className="img-responsive" alt="a" />
-                                            </div>
-                                            <div className="info">
-                                                <div className="row">
-                                                    <div className="price col-md-6">
-                                                        <h5>
-                                                            Product Example</h5>
-                                                        <h5 className="price-text-color">
-                                                            $249.99</h5>
-                                                    </div>
-                                                    <div className="rating hidden-sm col-md-6">
-                                                    </div>
-                                                </div>
-                                                <div className="separator clear-left">
-                                                    <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
-                                                    <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
-                                                </div>
-                                                <div className="clearfix">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-3">
-                                        <div className="col-item">
-                                            <div className="photo">
-                                                <img src="http://www.reliance.com.tw/comm/upfile/p_130306_09572.jpg" className="img-responsive" alt="a" />
-                                            </div>
-                                            <div className="info">
-                                                <div className="row">
-                                                    <div className="price col-md-6">
-                                                        <h5>
-                                                            Next Sample Product</h5>
-                                                        <h5 className="price-text-color">
-                                                            $149.99</h5>
-                                                    </div>
-                                                    <div className="rating hidden-sm col-md-6">
-                                                        <i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <div className="separator clear-left">
-                                                    <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
-                                                    <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
-                                                </div>
-                                                <div className="clearfix">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-3">
-                                        <div className="col-item">
-                                            <div className="photo">
-                                                <img src="https://guide.alibaba.com/image/i1/nikon-nikon-binoculars-read-wild-sx-cf-7x50-hd-high-power-fog-shockproof-waterproof/TB1Ni56GXXXXXXraXXXXXXXXXXX_!!2-item_pic.png" 
-                                                className="img-responsive" alt="a" />
-                                            </div>
-                                            <div className="info">
-                                                <div className="row">
-                                                    <div className="price col-md-6">
-                                                        <h5>
-                                                            Sample Product</h5>
-                                                        <h5 className="price-text-color">
-                                                            $199.99</h5>
-                                                    </div>
-                                                    <div className="rating hidden-sm col-md-6">
-                                                        <i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <div className="separator clear-left">
-                                                    <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
-                                                    <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
-                                                </div>
-                                                <div className="clearfix">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="item">
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <div className="col-item">
-                                            <div className="photo">
-                                                <img src="http://took-dfurniture.com/images/office/2.jpg" className="img-responsive" alt="a" />
-                                            </div>
-                                            <div className="info">
-                                                <div className="row">
-                                                    <div className="price col-md-6">
-                                                        <h5>
-                                                            Product with Variants</h5>
-                                                        <h5 className="price-text-color">
-                                                            $199.99</h5>
-                                                    </div>
-                                                    <div className="rating hidden-sm col-md-6">
-                                                        <i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <div className="separator clear-left">
-                                                    <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
-                                                    <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
-                                                </div>
-                                                <div className="clearfix">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-3">
-                                        <div className="col-item">
-                                            <div className="photo">
-                                                <img src="https://sc01.alicdn.com/kf/HTB1DapVJFXXXXcgXpXXq6xXFXXXZ/Supports-custom-and-wholesale-cheap-fashion-crocodile.jpg_350x350.jpg" 
-                                                className="img-responsive" alt="a" />
-                                            </div>
-                                            <div className="info">
-                                                <div className="row">
-                                                    <div className="price col-md-6">
-                                                        <h5>
-                                                            Grouped Product</h5>
-                                                        <h5 className="price-text-color">
-                                                            $249.99</h5>
-                                                    </div>
-                                                    <div className="rating hidden-sm col-md-6">
-                                                    </div>
-                                                </div>
-                                                <div className="separator clear-left">
-                                                    <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
-                                                    <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
-                                                </div>
-                                                <div className="clearfix">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-3">
-                                        <div className="col-item">
-                                            <div className="photo">
-                                                <img src="https://images.milled.com/2015-01-11/ufaifyp6RLMRHUHg/M7i8WNIvbBdW.jpg" className="img-responsive" alt="a" />
-                                            </div>
-                                            <div className="info">
-                                                <div className="row">
-                                                    <div className="price col-md-6">
-                                                        <h5>
-                                                            Product with Variants</h5>
-                                                        <h5 className="price-text-color">
-                                                            $149.99</h5>
-                                                    </div>
-                                                    <div className="rating hidden-sm col-md-6">
-                                                        <i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <div className="separator clear-left">
-                                                    <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
-                                                    <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
-                                                </div>
-                                                <div className="clearfix">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-3">
-                                        <div className="col-item">
-                                            <div className="photo">
-                                                <img src="http://d13z1xw8270sfc.cloudfront.net/resize/201023/1439340223698__572.jpg/260/350/0/" className="img-responsive" alt="a" />
-                                            </div>
-                                            <div className="info">
-                                                <div className="row">
-                                                    <div className="price col-md-6">
-                                                        <h5>
-                                                            Product with Variants</h5>
-                                                        <h5 className="price-text-color">
-                                                            $199.99</h5>
-                                                    </div>
-                                                    <div className="rating hidden-sm col-md-6">
-                                                        <i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                                                        </i><i className="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <div className="separator clear-left">
-                                                    <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
-                                                    <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
-                                                </div>
-                                                <div className="clearfix">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {this.state.products}
                                 </div>
                             </div>
                         </div>
@@ -307,9 +101,9 @@ class ProductReview extends React.Component {
                                                 </div>
                                                 <div className="separator clear-left">
                                                     <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
+                                                        <i className="fa fa-shopping-cart"></i><a href="#" className="hidden-sm">Add to cart</a></p>
                                                     <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
+                                                        <i className="fa fa-list"></i><a href="#" className="hidden-sm">More details</a></p>
                                                 </div>
                                                 <div className="clearfix">
                                                 </div>
@@ -334,9 +128,9 @@ class ProductReview extends React.Component {
                                                 </div>
                                                 <div className="separator clear-left">
                                                     <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
+                                                        <i className="fa fa-shopping-cart"></i><a href="#" className="hidden-sm">Add to cart</a></p>
                                                     <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
+                                                        <i className="fa fa-list"></i><a href="#" className="hidden-sm">More details</a></p>
                                                 </div>
                                                 <div className="clearfix">
                                                 </div>
@@ -364,9 +158,9 @@ class ProductReview extends React.Component {
                                                 </div>
                                                 <div className="separator clear-left">
                                                     <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
+                                                        <i className="fa fa-shopping-cart"></i><a href="#" className="hidden-sm">Add to cart</a></p>
                                                     <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
+                                                        <i className="fa fa-list"></i><a href="#" className="hidden-sm">More details</a></p>
                                                 </div>
                                                 <div className="clearfix">
                                                 </div>
@@ -398,9 +192,9 @@ class ProductReview extends React.Component {
                                                 </div>
                                                 <div className="separator clear-left">
                                                     <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
+                                                        <i className="fa fa-shopping-cart"></i><a href="#" className="hidden-sm">Add to cart</a></p>
                                                     <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
+                                                        <i className="fa fa-list"></i><a href="#" className="hidden-sm">More details</a></p>
                                                 </div>
                                                 <div className="clearfix">
                                                 </div>
@@ -425,9 +219,9 @@ class ProductReview extends React.Component {
                                                 </div>
                                                 <div className="separator clear-left">
                                                     <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
+                                                        <i className="fa fa-shopping-cart"></i><a href="#" className="hidden-sm">Add to cart</a></p>
                                                     <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
+                                                        <i className="fa fa-list"></i><a href="#" className="hidden-sm">More details</a></p>
                                                 </div>
                                                 <div className="clearfix">
                                                 </div>
@@ -455,9 +249,9 @@ class ProductReview extends React.Component {
                                                 </div>
                                                 <div className="separator clear-left">
                                                     <p className="btn-add">
-                                                        <i className="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">Add to cart</a></p>
+                                                        <i className="fa fa-shopping-cart"></i><a href="#" className="hidden-sm">Add to cart</a></p>
                                                     <p className="btn-details">
-                                                        <i className="fa fa-list"></i><a href="http://www.jquery2dotnet.com" className="hidden-sm">More details</a></p>
+                                                        <i className="fa fa-list"></i><a href="#" className="hidden-sm">More details</a></p>
                                                 </div>
                                                 <div className="clearfix">
                                                 </div>

@@ -6,7 +6,7 @@ import './css/UpperHeader.css';
 class UpperHeaderSection extends React.Component {
 
   render() {
-    const text = "Cart("+5+")";
+    const text = "Cart("+0+")";
 
     let rightNavUser = this.props.user ? <li className="dropdown">
         <a className="dropdown-toggle" data-toggle="dropdown" href="#">บัญชีผู้ใช้คุณ {this.props.user}
