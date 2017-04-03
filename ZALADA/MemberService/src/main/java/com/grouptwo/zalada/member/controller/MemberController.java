@@ -1,5 +1,6 @@
 package com.grouptwo.zalada.member.controller;
 
+import com.grouptwo.zalada.member.domain.Login;
 import com.grouptwo.zalada.member.domain.User;
 import com.grouptwo.zalada.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,14 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/member/signup", method = RequestMethod.POST)
-    public String memberSignup(){
-        return null;
+    public ResponseEntity<String> memberSignup(@RequestBody Login login){
+        return memberRepository.memberSignup(login);
     }
 
     @RequestMapping(value = "/member/signin", method = RequestMethod.GET)
-    public String memberSignin(){
-        return null;
+    public String memberSignin(@RequestParam String username,
+                               @RequestParam String password){
+        return memberRepository.memberSignin(username, password);
     }
 
     @RequestMapping(value = "/member/profile", method = RequestMethod.GET)
@@ -54,10 +56,5 @@ public class MemberController {
     @RequestMapping(value = "/member/profile", method = RequestMethod.PUT)
     public void updateProfile(){
     }
-
-    @RequestMapping(value = "/member/logout", method = RequestMethod.POST)
-    public void memberLogout(){
-    }
-
 
 }
