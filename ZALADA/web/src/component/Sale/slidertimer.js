@@ -20,7 +20,7 @@ function slider() {
 
     var slider = document.getElementById('slider');
     slider.style.backgroundImage = "url(\'" + imgadr[cnt] + "\')";
-    document.getElementById('sliderHeader').innerHTML = headArray[cnt];  //or append?
+    document.getElementById('sliderHeader').innerHTML = headArray[cnt];  
     document.getElementById('sliderPara').innerHTML = paraArray[cnt];
   }
 

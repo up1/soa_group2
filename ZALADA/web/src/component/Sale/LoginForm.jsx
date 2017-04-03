@@ -12,15 +12,10 @@ class LoginForm extends React.Component {
                 <div className="form-group">
                     <label className="sr-only" htmlFor="exampleInputPassword2">Password</label>
                     <input type="password" className="form-control" id="exampleInputPassword2" placeholder="Password" />
-                    <div className="help-block text-right"><a href="">Forget the password ?</a></div>
+                    <div className="help-block text-right"><a href="">ลืม password ?</a></div>
                 </div>
                 <div className="form-group">
-                    <button type="submit" className="btn btn-primary btn-block">Sign in</button>
-                </div>
-                <div className="checkbox">
-                    <label>
-                        <input type="checkbox" /> keep me logged-in
-					</label>
+                    <button type="submit" className="btn btn-primary btn-block">เข้าสู่ระบบ</button>
                 </div>
             </form>
         )

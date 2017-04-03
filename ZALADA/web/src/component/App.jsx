@@ -6,6 +6,7 @@ import AddProduct from './Stock/AddProduct.jsx';
 import LoginForm from './Sale/LoginForm.jsx';
 import NotificationSystem from 'react-notification-system';
 import MainPage from './Sale/MainPage.jsx';
+import LoginPage from './LoginPage.jsx';
 
 class App extends React.Component {
     
@@ -37,7 +38,7 @@ class App extends React.Component {
                         <Route exact path="/" component={MainPage}/>
                         <Route path="/add" component={AddProductwithNoti}/>
                         <Route path="/update/:id" component={UpdateProduct} />
-                        <Route path="/login" component={LoginForm}/>
+                        <Route path="/login" component={LoginPage}/>
                         <Route path="/stock" component={ListProduct}/>
                     </Switch>
                 </BrowserRouter>
