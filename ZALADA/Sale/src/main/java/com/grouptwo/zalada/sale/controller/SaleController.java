@@ -106,4 +106,9 @@ public class SaleController {
                                            @PathVariable String poNumber){
         return saleRepository.findPurchaseOrder(memberId, poNumber);
     }
+
+    @RequestMapping(value = "/salehistory", method = RequestMethod.POST)
+    public ResponseEntity<ArrayList> queryPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder){
+        return saleRepository.queryPurchaseOrder(purchaseOrder);
+    }
 }

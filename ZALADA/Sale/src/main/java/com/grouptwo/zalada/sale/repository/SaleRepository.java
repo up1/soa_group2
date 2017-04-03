@@ -145,4 +145,24 @@ public class SaleRepository {
         return update;
     }
 
+    public ResponseEntity<ArrayList> queryPurchaseOrder(PurchaseOrder purchaseOrder) {
+        ArrayList<Product> product = purchaseOrder.getBuyProducts();
+        ArrayList<String> history = new ArrayList<>();
+
+        for (Product p : product) {
+            SaleHistory saleHistory = new SaleHistory();
+            saleHistory.setProduct_id(p.getId());
+            saleHistory.setOwner(p.getOwner());
+            saleHistory.setBuyer(purchaseOrder.getBuyer());
+            saleHistory.setPonumber(purchaseOrder.getId());
+            saleHistory.setDate(getTimeStamp());
+            saleHistory.setAmount(p.getAmount());
+
+            mongoTemplate.insert(saleHistory);
+            history.add(saleHistory.getId());
+        }
+
+        return new ResponseEntity<>(history, HttpStatus.CREATED);
+    }
+
 }
