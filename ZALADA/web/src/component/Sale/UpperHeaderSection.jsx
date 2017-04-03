@@ -24,7 +24,7 @@ class UpperHeaderSection extends React.Component {
             <SearchForm />
 
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="#">มี account แล้วหรือยัง?</a></li>
+              <li><Link to="/signup">มี account แล้วหรือยัง?</Link></li>
               <li><Link to="/login">เข้าสู่ระบบ</Link></li>
             </ul>
           </div>

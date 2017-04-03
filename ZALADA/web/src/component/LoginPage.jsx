@@ -1,6 +1,6 @@
 import React from 'react';  
 import UpperHeaderSection from './Sale/UpperHeaderSection.jsx'
-import FooterSection from './Sale/FooterSection.jsx';
+import FooterSection from './Sale/FooterSection.jsx'
 import './css/loginPage.css'
 import logo from './img/logoZALADA.png'
 
@@ -16,8 +16,8 @@ class LoginPage extends React.Component {
                             <h1 className="logo-caption">เข้าสู่ระบบ</h1>
                         </div>
                         <div className="controls">
-                            <input type="text" name="username" placeholder="Username" className="form-control" />
-                            <input type="password" name="username" placeholder="Password" className="form-control" />
+                            <input type="text" name="username" placeholder="Username" className="form-control username"  />
+                            <input type="password" name="username" placeholder="Password" className="form-control password"  />
                             <button type="button" className="btn btn-default btn-block btn-custom" id="btn-ok">เข้าสู่ระบบ</button>
                         </div>
                     </div>

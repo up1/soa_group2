@@ -8,7 +8,7 @@ class FooterSection extends React.Component {
                 <center>
                 <div className="container-Footer">
                     <div className="row">
-                        <h3 className="footertext">About Us:</h3>
+                        <h3 className="footertext">เกี่ยวกับ</h3>
                         <br />
                         <div className="col-md-4">
                             <img src="http://oi60.tinypic.com/w8lycl.jpg" className="img-circle" alt="the-brains" />
