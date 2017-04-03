@@ -1,9 +1,6 @@
 package com.grouptwo.zalada.sale.controller;
 
-import com.grouptwo.zalada.sale.domain.Cart;
-import com.grouptwo.zalada.sale.domain.Category;
-import com.grouptwo.zalada.sale.domain.Product;
-import com.grouptwo.zalada.sale.domain.PurchaseOrder;
+import com.grouptwo.zalada.sale.domain.*;
 import com.grouptwo.zalada.sale.repository.SaleRepository;
 import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -110,5 +108,27 @@ public class SaleController {
     @RequestMapping(value = "/salehistory", method = RequestMethod.POST)
     public ResponseEntity<ArrayList> queryPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder){
         return saleRepository.queryPurchaseOrder(purchaseOrder);
+    }
+
+    @RequestMapping(value = "/salehistory/member/{owner}", method = RequestMethod.GET)
+    public ArrayList findSaleHistoryListByOwner(@PathVariable String owner,
+                                                         @RequestParam(required = false, name = "page")Integer page,
+                                                         @RequestParam(required = false, defaultValue = "10", name = "size") Integer size){
+        if(page == null){
+            return (ArrayList) saleRepository.findSaleHistoryListByOwner(owner);
+        }
+        Pageable pageable = new PageRequest(page, size);
+        return saleRepository.findSaleHistoryListByOwner(pageable, owner);
+    }
+
+    @RequestMapping(value = "/salehistory/product/{productId}", method = RequestMethod.GET)
+    public ArrayList findSaleHistoryListByProduct(@PathVariable String productId,
+                                         @RequestParam(required = false, name = "page")Integer page,
+                                         @RequestParam(required = false, defaultValue = "10", name = "size") Integer size){
+        if(page == null){
+            return (ArrayList) saleRepository.findSaleHistoryListByProduct(productId);
+        }
+        Pageable pageable = new PageRequest(page, size);
+        return saleRepository.findSaleHistoryListByProduct(pageable, productId);
     }
 }

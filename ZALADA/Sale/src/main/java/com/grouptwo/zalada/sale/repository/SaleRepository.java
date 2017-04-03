@@ -127,6 +127,14 @@ public class SaleRepository {
         return new Query(where("amount").gt(0));
     }
 
+    private Query queryByOwner(String owner) {
+        return new Query(where("owner").is(owner));
+    }
+
+    private Query queryByProductId(String productId) {
+        return new Query(where("product_id").is(productId));
+    }
+
     private Update updateWithReflect(Class domain, Object updateObject){
         Update update = new Update();
         Object updateObjectCasted = domain.cast(updateObject);
@@ -163,6 +171,22 @@ public class SaleRepository {
         }
 
         return new ResponseEntity<>(history, HttpStatus.CREATED);
+    }
+
+    public List<SaleHistory> findSaleHistoryListByOwner(String owner){
+        return mongoTemplate.find(queryByOwner(owner), SaleHistory.class);
+    }
+
+    public ArrayList findSaleHistoryListByOwner(Pageable pageable, String owner){
+        return getPaging(SaleHistory.class, pageable, queryByOwner(owner));
+    }
+
+    public List<SaleHistory> findSaleHistoryListByProduct(String productId){
+        return mongoTemplate.find(queryByProductId(productId), SaleHistory.class);
+    }
+
+    public ArrayList findSaleHistoryListByProduct(Pageable pageable, String productId){
+        return getPaging(SaleHistory.class, pageable, queryByProductId(productId));
     }
 
 }
