@@ -9,6 +9,7 @@ import MainPage from './Sale/MainPage.jsx';
 import CartPage from './Sale/Cart/Cart.jsx';
 import LoginPage from './LoginPage.jsx';
 import SignUpPage from './SignUpPage.jsx';
+import ReactTooltip from 'react-tooltip'
 
 class App extends React.Component {
     
@@ -35,6 +36,7 @@ class App extends React.Component {
         return (
             <div>
                 <NotificationSystem ref="notificationSystem"/>
+                <ReactTooltip />
                 <BrowserRouter>
                     <Switch>
                         <Route exact path="/" component={MainPage}/>
