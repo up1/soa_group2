@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/category/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/product/image").permitAll()
                 .anyRequest().authenticated();
         JwtFilter.registerFilter(http);
