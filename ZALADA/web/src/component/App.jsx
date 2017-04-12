@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import ListProduct from './Stock/ListProduct.jsx';
 import UpdateProduct from './Stock/UpdateProduct.jsx';
 import AddProduct from './Stock/AddProduct.jsx';
-import LoginForm from './Sale/LoginForm.jsx';
 import NotificationSystem from 'react-notification-system';
 import MainPage from './Sale/MainPage.jsx';
 import CartPage from './Sale/Cart/Cart.jsx';
 import LoginPage from './LoginPage.jsx';
 import SignUpPage from './SignUpPage.jsx';
 import ReactTooltip from 'react-tooltip'
+import CartItem from './Sale/Cart/CartItem.jsx';
 
 class App extends React.Component {
     
@@ -17,10 +17,28 @@ class App extends React.Component {
         super();
         this.state = {
             username : null,
-            cart : {}
+            cart : { 1: {
+             id : 1,
+             name :"Test",
+             detail:"test",
+             price: 500, 
+             amount:1,
+             owner:"Me"
+        }}
         }
         this.notifySuccessAddProduct = this.notifySuccessAddProduct.bind(this);
         this.updateUser = this.updateUser.bind(this)
+        const mockCartItem = {
+             id : 1,
+             name :"Test",
+             detail:"test",
+             price: 500, 
+             amount:1,
+             owner:"Me"
+        }
+        this.updateCartItem = this.updateCartItem.bind(this)
+        this.addToCart = this.addToCart.bind(this)
+        this.removeFromCart = this.removeFromCart.bind(this)
     }
 
     addToCart(cartItem){
@@ -74,6 +92,7 @@ class App extends React.Component {
             return (<CartPage removeFromCart={this.removeFromCart} {...prop} 
             updateCartItem={this.updateCartItem} cart={this.state.cart}/>)
         }
+        
         return (
             <div>
                 <NotificationSystem ref="notificationSystem"/>
@@ -86,7 +105,7 @@ class App extends React.Component {
                         <Route path="/login" render={WrapSignIn}/>
                         <Route path="/signup" render={WrapSignUp}/>
                         <Route path="/stock" component={ListProduct}/>
-                        <Route path="/cart" render={MycartPage}/>
+                        <Route path="/cart" component={MycartPage}/>
                     </Switch>
                 </BrowserRouter>
             </div>

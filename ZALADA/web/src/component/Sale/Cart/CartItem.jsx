@@ -2,21 +2,28 @@ import React from 'react';
 
 class CartItem extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props){
+        super(props);
         this.state = {
-            name,
-            detail,
-            price,
-            amount,
-            owner,
+            amount : props.item.amount
         }
+        this.updateAmount = this.updateAmount.bind(this)
+    }
+
+    updateAmount(e){
+        const updatedItem = this.props.item;
+        updatedItem['amount'] = e.target.value
+        this.setState({
+            amount : e.target.value
+        })
+        this.props.setCartTotalPrice()
     }
 
     render() {
-        return (
-            <tr>
-                <td className="col-sm-8 col-md-6">
+        let amount = this.props.item.amount
+        return(
+        <tr>
+            <td className="col-sm-8 col-md-6">
                     <div className="media">
                         <a className="thumbnail pull-left" href="#">
                             <img
@@ -29,11 +36,11 @@ class CartItem extends React.Component {
                         </a>
                         <div className="media-body">
                             <h4 className="media-heading">
-                                <a href="#">{this.state.name}</a>
+                                <a href="#">{this.props.item.name}</a>
                             </h4>
                             <h5 className="media-heading">
                                 by
-                                <a href="#">{this.state.owner}</a>
+                                <a href="#">{this.props.owner}</a>
                             </h5>
                             <span>Status:
                             </span>
@@ -48,13 +55,14 @@ class CartItem extends React.Component {
                     style={{
                     textAlign: 'center'
                 }}>
-                    <input type="email" className="form-control" id="exampleInputEmail1"/>
+                    <input className="form-control" value={amount}
+                    onChange={this.updateAmount}/>
                 </td>
                 <td className="col-sm-1 col-md-1 text-center">
-                    <strong>{this.state.price}</strong>
+                    <strong>{this.props.item.price}</strong>
                 </td>
                 <td className="col-sm-1 col-md-1 text-center">
-                    <strong>{this.state.price * this.state.amount}</strong>
+                    <strong>{this.props.item.price * this.props.item.amount}</strong>
                 </td>
                 <td className="col-sm-1 col-md-1">
                     <button type="button" className="btn btn-danger">
@@ -62,7 +70,9 @@ class CartItem extends React.Component {
                         Remove
                     </button>
                 </td>
-            </tr>
-        )
+        </tr>
+        )    
     }
 }
+
+export default CartItem;
