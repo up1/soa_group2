@@ -11,7 +11,7 @@ public class SignIn {
     private String password;
     private ArrayList<String> role;
 
-    public Login(String username, String password){
+    public SignIn(String username, String password){
         this.username = username;
         this.password = password;
     }
