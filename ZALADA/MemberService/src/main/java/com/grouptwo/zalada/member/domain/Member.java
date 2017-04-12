@@ -16,17 +16,6 @@ public class Member {
     public Member() {
     }
 
-    public User(String username) {
-        this.username = username;
-    }
-
-    public User(Signup signup){
-        this.username = signup.getUsername();
-        this.email = signup.getEmail();
-        this.gender = signup.getGender();
-        this.birthDate = signup.getBirthDate();
-    }
-
     public String getUsername() {
         return username;
     }

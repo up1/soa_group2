@@ -41,17 +41,17 @@ public class MemberController {
     public String findProfile() {
         Authenticated auth = (Authenticated) SecurityContextHolder.getContext().getAuthentication();
 
-
-//        // Get user by username
         String username = auth.getName();
         return "OK " + username;
     }
 
     @RequestMapping(value = "/member/profile", method = RequestMethod.PUT)
     public void updateProfile() {
+
     }
 
     @RequestMapping(value = "/member/logout", method = RequestMethod.POST)
     public void memberLogout() {
+
     }
 }

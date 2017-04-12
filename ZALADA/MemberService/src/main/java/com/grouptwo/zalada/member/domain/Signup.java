@@ -2,49 +2,27 @@ package com.grouptwo.zalada.member.domain;
 
 public class Signup {
 
-    private String email;
-    private String username;
-    private String password;
-    private String gender;
-    private String birthDate;
+    private Member member;
+    private SignIn signIn;
 
-    public String getEmail() {
-        return email;
+    public Signup(Member member, SignIn signIn) {
+        this.member = member;
+        this.signIn = signIn;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public Member getMember() {
+        return member;
     }
 
-    public String getUsername() {
-        return username;
+    public void setMember(Member member) {
+        this.member = member;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public SignIn getSignIn() {
+        return signIn;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setSignIn(SignIn signIn) {
+        this.signIn = signIn;
     }
 }
