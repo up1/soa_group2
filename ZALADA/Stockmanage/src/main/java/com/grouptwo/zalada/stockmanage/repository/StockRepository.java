@@ -29,7 +29,13 @@ public class StockRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public void updateProduct(String id, Product updateProduct) {
+    public void updateProduct(String owner, String id, Product updateProduct) {
+
+        boolean isProductExits = mongoTemplate.exists(new Query(where("id").is(id).andOperator(where("owner").is(owner))), Product.class);
+        if (isProductExits){
+            throw new RuntimeException("Product Not Exits");
+        }
+
         Long timestamp = getTimeStamp();
         if(updateProduct.getCategory() != null)
             updateProduct.setCategory(findCategoryByName(updateProduct.getCategory().getName()));
@@ -45,33 +51,34 @@ public class StockRepository {
         mongoTemplate.updateFirst(queryByName(name), update, Category.class);
     }
 
-    public Product findProductById(String id) {
-        return mongoTemplate.findOne(queryById(id), Product.class);
+    public Product findProductById(String owner, String id) {
+        Query query = new Query(where("id").is(id).andOperator(where("owner").is(owner)));
+        return mongoTemplate.findOne(query, Product.class);
     }
 
     public Category findCategoryByName(String name) {
         return mongoTemplate.findOne(queryByName(name), Category.class);
     }
 
-    public ArrayList findAllProduct(Pageable pageable){
-        return getPaging(Product.class, pageable, new Query());
+    public ArrayList findAllProduct(String owner, Pageable pageable){
+        return getPaging(Product.class, pageable, queryByOwner(owner));
     }
 
-    public  List<Product> findAllProduct(){
-        return mongoTemplate.findAll(Product.class);
+    public  List<Product> findAllProduct(String owner){
+        return mongoTemplate.find(queryByOwner(owner), Product.class);
     }
 
-    public ArrayList findAllProductByCategory(Pageable pageable, String categoryName){
+    public ArrayList findAllProductByCategory(String owner, Pageable pageable, String categoryName){
         List<String> categoryList = createCategoryList(categoryName);
-        return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList)));
+        return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList).andOperator(where("owner").is(owner))));
     }
 
-    public  List<Product> findAllProductByCategory(String categoryName){
+    public  List<Product> findAllProductByCategory(String owner, String categoryName){
         List<String> categoryList = createCategoryList(categoryName);
-        return mongoTemplate.find(new Query(where("category.name").in(categoryList)), Product.class);
+        return mongoTemplate.find(new Query(where("category.name").in(categoryList).andOperator(where("owner").is(owner))), Product.class);
     }
 
-    public void insertProduct(Product product) throws RepositoryException, RequestException {
+    public void insertProduct(String owner, Product product) throws RepositoryException, RequestException {
         if(product.getCategory() == null){
             throw new RequestException("Category Not Provide");
         }
@@ -79,6 +86,7 @@ public class StockRepository {
         if(category == null){
             throw new RepositoryException("Category Not Match");
         }
+        product.setOwner(owner);
         product.setCategory(category);
         product.setSaleDate(getTimeStamp());
         mongoTemplate.insert(product);
@@ -88,12 +96,13 @@ public class StockRepository {
         mongoTemplate.insert(category);
     }
 
-    public void deleteProduct(String id) {
-        mongoTemplate.remove(queryById(id), Product.class);
-    }
-
-    public void deleteCategory(String name) {
-        mongoTemplate.remove(queryByName(name), Category.class);
+    public void deleteProduct(String owner, String id) {
+        boolean isProductExits = mongoTemplate.exists(new Query(where("id").is(id).andOperator(where("owner").is(owner))), Product.class);
+        if(isProductExits) {
+            mongoTemplate.remove(queryById(id), Product.class);
+        }else{
+            throw new RuntimeException("Product Not Exits");
+        }
     }
 
     public ArrayList findAllCategory(Pageable pageable) {
@@ -153,5 +162,13 @@ public class StockRepository {
         }
         System.out.println(categoryList);
         return categoryList;
+    }
+
+    public Query queryByOwner(String owner){
+        return new Query(where("owner").is(owner));
+    }
+
+    public void deleteCategory(String name) {
+        mongoTemplate.remove(queryByName(name), Category.class);
     }
 }

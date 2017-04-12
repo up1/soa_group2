@@ -11,6 +11,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,6 +38,7 @@ public class UploadService {
 
     public void uploadImage(MultipartFile file, String productId) throws UploadException {
         try {
+            String owner = getUsername();
             if (file.isEmpty()) {
                 throw new UploadException("Failed to store empty file " + file.getOriginalFilename());
             }
@@ -56,17 +58,22 @@ public class UploadService {
             Product product = new Product();
             String imagePath = newPath.toString();
             product.setImagePath(imagePath);
-            stockRepository.updateProduct(productId, product);
+            stockRepository.updateProduct(owner, productId, product);
         } catch (IOException e) {
             throw new UploadException("Failed to store file " + file.getOriginalFilename(), e);
         }
     }
 
+    private String getUsername() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
     public Resource loadImage(String productId) throws UploadException, RepositoryException, RequestException {
         try {
-            Product product = stockRepository.findProductById(productId);
+            String owner = getUsername();
+            Product product = stockRepository.findProductById(owner, productId);
             if(product == null){
-                throw new RepositoryException("Product Not Found");
+                throw new RepositoryException("Product Not Exits");
             }
 
             String imagePath = product.getImagePath();
