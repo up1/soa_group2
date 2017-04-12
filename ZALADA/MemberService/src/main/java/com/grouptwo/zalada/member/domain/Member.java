@@ -2,8 +2,8 @@ package com.grouptwo.zalada.member.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "user")
-public class User {
+@Document(collection = "memeber")
+public class Member {
 
     private String username;
     private String name;
@@ -13,9 +13,7 @@ public class User {
     private String email;
     private String tel;
 
-    public static final String COLLECTION_NAME = "user";
-
-    public User() {
+    public Member() {
     }
 
     public User(String username) {
@@ -87,14 +85,14 @@ public class User {
 
     @Override
     public String toString() {
-        return "{" +
-                "\"username\":\"" + username + "\"" +
-                ", \"name\":\"" + name + "\"" +
-                ", \"gender\":\"" + gender + "\"" +
-                ", \"birthDate\":\"" + birthDate + "\"" +
-                ", \"address\":\"" + address + "\"" +
-                ", \"email\":\"" + email + "\"" +
-                ", \"tel\":\"" + tel + "\"" +
+        return "Member{" +
+                "username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", tel='" + tel + '\'' +
                 '}';
     }
 }
