@@ -16,11 +16,29 @@ class App extends React.Component {
     constructor(){
         super();
         this.state = {
-            username : null
+            username : null,
+            cart : {}
         }
-
         this.notifySuccessAddProduct = this.notifySuccessAddProduct.bind(this);
         this.updateUser = this.updateUser.bind(this)
+    }
+
+    addToCart(cartItem){
+        const current_cart = {...this.state.cart}
+        current_cart[cartItem.id] = cartItem;
+        this.setState({current_cart})
+    }
+
+    removeFromCart(itemId){
+        const current_cart = {...this.state.cart}
+        current_cart[itemId] = null;
+        this.setState({current_cart})
+    }
+
+    updateCartItem(itemId, cartItem){
+        const current_cart = {...this.state.cart}
+        current_cart[itemId] = cartItem;
+        this.setState({current_cart})
     }
 
     updateUser(username){
@@ -40,17 +58,21 @@ class App extends React.Component {
     }
 
     render() {
-        const AddProductwithNoti = () => {
-            return (<AddProduct noti={this.notifySuccessAddProduct}/>)
+        const AddProductwithNoti = (prop) => {
+            return (<AddProduct noti={this.notifySuccessAddProduct} {...prop}/>)
         }
-        const WrapSignIn = () => {
-            return (<LoginPage updateUser={this.updateUser}/>)
+        const WrapSignIn = (prop) => {
+            return (<LoginPage updateUser={this.updateUser} {...prop}/>)
         }
-        const WrapSignUp = () => {
+        const WrapSignUp = (prop) => {
             return (<SignUpPage updateUser={this.updateUser}/>)
         }
-        const WrapMainPage = () => {
+        const WrapMainPage = (prop) => {
             return (<MainPage user={this.state.username}/>)
+        }
+        const MycartPage = (prop) => {
+            return (<CartPage removeFromCart={this.removeFromCart} {...prop} 
+            updateCartItem={this.updateCartItem} cart={this.state.cart}/>)
         }
         return (
             <div>
@@ -58,13 +80,13 @@ class App extends React.Component {
                 <ReactTooltip />
                 <BrowserRouter>
                     <Switch>
-                        <Route exact path="/" component={WrapMainPage}/>
-                        <Route path="/add" component={AddProductwithNoti}/>
-                        <Route path="/update/:id" component={UpdateProduct} />
-                        <Route path="/login" component={WrapSignIn}/>
-                        <Route path="/signup" component={WrapSignUp}/>
+                        <Route exact path="/" render={WrapMainPage}/>
+                        <Route path="/add" render={AddProductwithNoti}/>
+                        <Route path="/update/:id" render={UpdateProduct} />
+                        <Route path="/login" render={WrapSignIn}/>
+                        <Route path="/signup" render={WrapSignUp}/>
                         <Route path="/stock" component={ListProduct}/>
-                        <Route path="/cart" component={CartPage}/>
+                        <Route path="/cart" render={MycartPage}/>
                     </Switch>
                 </BrowserRouter>
             </div>
