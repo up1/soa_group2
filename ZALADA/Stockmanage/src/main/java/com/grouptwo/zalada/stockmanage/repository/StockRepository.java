@@ -110,7 +110,8 @@ public class StockRepository {
         query.with(pageable);
         domains = mongoTemplate.find(query, domainClass);
         long total = mongoTemplate.count(query, domainClass);
-        return Lists.newArrayList((new PageImpl(domains, pageable, total)));
+
+        return Lists.newArrayList(new PageImpl(domains, pageable, total));
     }
 
     private Query queryById(String id){
