@@ -16,6 +16,8 @@ public class SignIn {
         this.password = password;
     }
 
+    public SignIn(){}
+
     public String getUsername() {
         return username;
     }
