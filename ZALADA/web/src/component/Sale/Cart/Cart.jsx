@@ -23,7 +23,7 @@ class Cart extends React.Component {
         }
         return total
     }
-
+    
     setCartTotalPrice() {
         this.setState({total: this.getTotalPrice()})
     }

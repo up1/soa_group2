@@ -29,6 +29,7 @@ class CartItem extends React.Component {
                             <img
                                 className="media-object"
                                 src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png"
+                                alt="productname"
                                 style={{
                                 width: '72px',
                                 height: '72px'
