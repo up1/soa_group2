@@ -24,10 +24,6 @@ class LoginPage extends React.Component {
     }
 
     handleSubmit(){
-        const data = {
-            username : this.state.username,
-            password : this.state.password
-        }
         axios.get(`http://localhost:9004/member/signin?username=${this.state.username}&password=${this.state.password}`)
         .then(
             (response) => {
@@ -49,7 +45,7 @@ class LoginPage extends React.Component {
                 <div className="container-login">
                     <div id="login-box">
                         <div className="logo">
-                            <img src={logo} className="img img-responsive center-block" />
+                            <img src={logo} className="img img-responsive center-block" alt="logo" />
                             <h1 className="logo-caption">เข้าสู่ระบบ</h1>
                         </div>
                         <div className="controls">
