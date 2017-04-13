@@ -1,0 +1,20 @@
+services:
+  MongoDB:
+        image: sameersbn/mongodb:latest
+        container_name: mongo-zalada-stock
+        ports:
+          - "27018:27017"
+        volumes:
+          - /srv/docker/mongodb:/var/lib/mongodb
+        restart: always
+
+  stock:
+        build: build/docker
+        depends_on:
+          - mongo-zalada-stock
+        container_name: service-stock
+        restart: always
+        ports:
+          - 9001:9001
+        links:
+          - mongo-zalada-stock
