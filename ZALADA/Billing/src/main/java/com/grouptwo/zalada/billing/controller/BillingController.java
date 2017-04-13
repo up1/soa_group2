@@ -62,11 +62,10 @@ public class BillingController {
     public ResponseEntity<String> createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
         if (emailValidator.validate(purchaseOrder.getEmail())) {
             billingRepository.insertPurchaseOrder(purchaseOrder);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("invalidate email", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("invalid email format", HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @RequestMapping(value = "/purchaseorder/{id}", method = RequestMethod.GET)
