@@ -35,6 +35,7 @@ class UpperHeaderSection extends React.Component {
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <SearchForm />
+            <Link to="/category"><span className="navbar-brand"> ประเภทสินค้า </span></Link>
 
             <ul className="nav navbar-nav navbar-right">
               <li>

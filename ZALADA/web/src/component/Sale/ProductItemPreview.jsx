@@ -11,14 +11,13 @@ class ProductItemPreview extends React.Component {
                 </div>
                 <div className="info">
                     <div className="row">
-                        <div className="price col-md-6">
+                        <div className="price col-md-12">
                             <h5>{this.props.name}</h5>
                             <h5 className="price-text-color">ราคา {this.props.price} ฿</h5>
                         </div>
-                        <div className="rating hidden-sm col-md-6">
+                        <div className="rating hidden-sm col-md-12 pull-left">
                             <i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                            </i><i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star">
-                            </i><i className="fa fa-star"></i>
+                            </i><i className="price-text-color fa fa-star"></i><i className="price-text-color fa fa-star"></i>
                         </div>
                     </div>
                     <div className="separator clear-left">

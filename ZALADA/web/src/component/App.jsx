@@ -10,6 +10,7 @@ import CartPage from './Sale/Cart/Cart.jsx';
 import LoginPage from './LoginPage.jsx';
 import SignUpPage from './SignUpPage.jsx';
 import ReactTooltip from 'react-tooltip'
+import CategoryPage from './Sale/Category/CategoryPage.jsx';
 
 class App extends React.Component {
     
@@ -87,6 +88,7 @@ class App extends React.Component {
                         <Route path="/signup" render={WrapSignUp}/>
                         <Route path="/stock" component={ListProduct}/>
                         <Route path="/cart" render={MycartPage}/>
+                        <Route path="/category" component={CategoryPage}/>
                     </Switch>
                 </BrowserRouter>
             </div>
