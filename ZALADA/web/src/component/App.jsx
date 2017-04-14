@@ -8,14 +8,10 @@ import MainPage from './Sale/MainPage.jsx';
 import CartPage from './Sale/Cart/Cart.jsx';
 import LoginPage from './LoginPage.jsx';
 import SignUpPage from './SignUpPage.jsx';
-<<<<<<< HEAD
-import ReactTooltip from 'react-tooltip'
 import CategoryPage from './Sale/Category/CategoryPage.jsx';
-=======
 import cookie from 'react-cookie'
 import ReactTooltip from 'react-tooltip';
 import axios from 'axios'
->>>>>>> zalada-service-web
 
 class App extends React.Component {
 
@@ -170,12 +166,9 @@ class App extends React.Component {
                         <Route path="/login" render={WrapSignIn}/>
                         <Route path="/signup" render={WrapSignUp}/>
                         <Route path="/stock" component={ListProduct}/>
-<<<<<<< HEAD
                         <Route path="/cart" render={MycartPage}/>
                         <Route path="/category" component={CategoryPage}/>
-=======
                         <Route path="/cart" component={MycartPage}/>
->>>>>>> zalada-service-web
                     </Switch>
                 </BrowserRouter>
             </div>
