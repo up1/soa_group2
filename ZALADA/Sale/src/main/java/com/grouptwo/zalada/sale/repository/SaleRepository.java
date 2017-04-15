@@ -50,16 +50,16 @@ public class SaleRepository {
         return mongoTemplate.find(queryByCategory(categoryName), Product.class);
     }
 
-    public ResponseEntity<String> insertCart(Integer userType){
+    public String insertCart(Integer userType){
         Cart userCart = new Cart(userType, ANONYMOUS_OWNER, getTimeStamp());
         mongoTemplate.insert(userCart);
-        return new ResponseEntity<>(userCart.getId(), HttpStatus.CREATED);
+        return userCart.getId();
     }
 
-    public ResponseEntity<String> insertCart(Integer userType, String ownerName){
+    public String insertCart(Integer userType, String ownerName){
         Cart userCart = new Cart(userType, ownerName, getTimeStamp());
         mongoTemplate.insert(userCart);
-        return new ResponseEntity<>(userCart.getId(), HttpStatus.CREATED);
+        return userCart.getId();
     }
 
     public Cart findCartById(String cartId){

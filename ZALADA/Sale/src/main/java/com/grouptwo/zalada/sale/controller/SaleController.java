@@ -1,8 +1,9 @@
 package com.grouptwo.zalada.sale.controller;
 
-import com.grouptwo.zalada.sale.domain.*;
+import com.grouptwo.zalada.sale.domain.Cart;
+import com.grouptwo.zalada.sale.domain.Product;
+import com.grouptwo.zalada.sale.domain.PurchaseOrder;
 import com.grouptwo.zalada.sale.repository.SaleRepository;
-import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -58,9 +58,9 @@ public class SaleController {
     public ResponseEntity<String> insertCart(@RequestParam(name = "userType") Integer userType,
                                              @RequestParam(required = false, name = "userName") String userName){
         if(userName == null && userType == 0){
-            return saleRepository.insertCart(userType);
+            return new ResponseEntity<>(saleRepository.insertCart(userType), HttpStatus.CREATED);
         }else if(userType == 1){
-            return saleRepository.insertCart(userType, userName);
+            return new ResponseEntity<>(saleRepository.insertCart(userType, userName), HttpStatus.CREATED);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
