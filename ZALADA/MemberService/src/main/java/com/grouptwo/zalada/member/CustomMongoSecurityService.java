@@ -33,7 +33,6 @@ public class CustomMongoSecurityService implements UserDetailsService {
                 throw new UsernameNotFoundException("User not found : " + username);
             }
 
-
             boolean enabled = true;
             boolean accountNonExpired = true;
             boolean credentialsNonExpired = true;

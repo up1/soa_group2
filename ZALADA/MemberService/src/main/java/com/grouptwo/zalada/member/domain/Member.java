@@ -2,7 +2,7 @@ package com.grouptwo.zalada.member.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "memeber")
+@Document(collection = "member")
 public class Member {
 
     private String username;

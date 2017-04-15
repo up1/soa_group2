@@ -2,6 +2,7 @@ package com.grouptwo.zalada.member.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.grouptwo.zalada.member.domain.Authenticated;
+import com.grouptwo.zalada.member.domain.SignUp;
 import com.grouptwo.zalada.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,8 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/member/signup", method = RequestMethod.POST)
-    public String memberSignup() {
-        return null;
+    public ResponseEntity<String> memberSignup(@RequestBody SignUp signUp){
+        return memberRepository.memberSignup(signUp);
     }
 
     @RequestMapping(value = "/member/signin", method = RequestMethod.POST)

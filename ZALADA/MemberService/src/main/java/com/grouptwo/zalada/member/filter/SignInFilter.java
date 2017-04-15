@@ -35,7 +35,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
         super(new AntPathRequestMatcher(url, "POST"));
         setAuthenticationManager(authenticationManager);
 
-        this.repository = repository;;
+        this.repository = repository;
     }
 
 

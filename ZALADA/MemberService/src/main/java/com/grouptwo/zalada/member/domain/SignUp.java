@@ -1,16 +1,16 @@
 package com.grouptwo.zalada.member.domain;
 
-public class SingUp {
+public class SignUp {
 
     private Member member;
     private SignIn signIn;
 
-    public SingUp(Member member, SignIn signIn) {
+    public SignUp(Member member, SignIn signIn) {
         this.member = member;
         this.signIn = signIn;
     }
 
-    public SingUp(){}
+    public SignUp(){}
 
     public Member getMember() {
         return member;
