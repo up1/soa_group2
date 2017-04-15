@@ -1,29 +1,40 @@
 import React from 'react';
+import axios from 'axios';
 
 class CartItem extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            amount : props.item.amount
+            amount: props.item.amount
         }
-        this.updateAmount = this.updateAmount.bind(this)
+        this.updateAmount = this
+            .updateAmount
+            .bind(this)
     }
 
-    updateAmount(e){
+    updateAmount(e) {
         const updatedItem = this.props.item;
-        updatedItem['amount'] = e.target.value
-        this.setState({
-            amount : e.target.value
-        })
-        this.props.setCartTotalPrice()
+        axios
+            .patch(`http://localhost:9003/cart/${this.props.cartId}/${updatedItem.id}&amount=${e.target.value}`)
+            .then((response) => {
+                const updatedItem = this.props.item;
+                updatedItem['amount'] = e.target.value
+                this.setState({amount: e.target.value})
+                this
+                    .props
+                    .setCartTotalPrice()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     render() {
         let amount = this.props.item.amount
-        return(
-        <tr>
-            <td className="col-sm-8 col-md-6">
+        return (
+            <tr>
+                <td className="col-sm-8 col-md-6">
                     <div className="media">
                         <a className="thumbnail pull-left" href="#">
                             <img
@@ -56,8 +67,7 @@ class CartItem extends React.Component {
                     style={{
                     textAlign: 'center'
                 }}>
-                    <input className="form-control" value={amount}
-                    onChange={this.updateAmount}/>
+                    <input className="form-control" value={amount} onChange={this.updateAmount}/>
                 </td>
                 <td className="col-sm-1 col-md-1 text-center">
                     <strong>{this.props.item.price}</strong>
@@ -71,8 +81,8 @@ class CartItem extends React.Component {
                         Remove
                     </button>
                 </td>
-        </tr>
-        )    
+            </tr>
+        )
     }
 }
 

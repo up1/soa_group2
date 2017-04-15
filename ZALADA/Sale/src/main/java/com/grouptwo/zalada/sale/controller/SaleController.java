@@ -14,6 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -83,5 +86,12 @@ public class SaleController {
     public void updateCart(@PathVariable String cartId,
                            @RequestBody Cart updateCart){
         saleRepository.updateCart(cartId, updateCart);
+    }
+
+    @RequestMapping(value = "/cart/{cartId}/{productId}", method = RequestMethod.PATCH)
+    public void updateAmount(@PathVariable String cartId,
+                             @PathVariable String productId,
+                             @RequestBody int amount){
+        saleRepository.updateAmount(cartId, productId, amount);
     }
 }

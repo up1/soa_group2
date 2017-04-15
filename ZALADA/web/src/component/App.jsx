@@ -34,25 +34,14 @@ class App extends React.Component {
         }
         this.state = {
             username: null,
-            cart: {
-                1: {
-                    id: 1,
-                    name: "Test",
-                    detail: "test",
-                    price: 500,
-                    amount: 1,
-                    owner: "Me"
-                }
-            }
+            cart: {},
+            cartId: null
         }
         this.notifySuccessAddProduct = this
             .notifySuccessAddProduct
             .bind(this);
         this.updateUser = this
             .updateUser
-            .bind(this)
-        this.updateCartItem = this
-            .updateCartItem
             .bind(this)
         this.addToCart = this
             .addToCart
@@ -71,6 +60,7 @@ class App extends React.Component {
             .then((response) => {
                 const generatedCartId = response.data
                 cookie.save("cartid", generatedCartId)
+                this.setState({cartId: generatedCartId})
             })
             .catch((error) => {
                 console.log(error)
@@ -88,6 +78,7 @@ class App extends React.Component {
                     newCart[storedCartItems[i].id] = storedCartItems[i]
                 }
                 this.setState({cart: newCart})
+                this.setState({cartId: response.data.id})
             })
             .catch((error) => {
                 console.log(error)
@@ -95,11 +86,18 @@ class App extends React.Component {
     }
 
     addToCart(cartItem) {
-        const current_cart = {
-            ...this.state.cart
-        }
-        current_cart[cartItem.id] = cartItem;
-        this.setState({current_cart})
+        axios
+            .post(`http://localhost:9003/cart/${this.state.cartId}?productId=${cartItem.id}&amount=1`)
+            .then((response) => {
+                const current_cart = {
+                    ...this.state.cart
+                }
+                current_cart[cartItem.id] = cartItem;
+                this.setState({current_cart})
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     removeFromCart(itemId) {
@@ -107,14 +105,6 @@ class App extends React.Component {
             ...this.state.cart
         }
         current_cart[itemId] = null;
-        this.setState({current_cart})
-    }
-
-    updateCartItem(itemId, cartItem) {
-        const current_cart = {
-            ...this.state.cart
-        }
-        current_cart[itemId] = cartItem;
         this.setState({current_cart})
     }
 
@@ -149,7 +139,7 @@ class App extends React.Component {
             return (<CartPage
                 removeFromCart={this.removeFromCart}
                 {...prop}
-                updateCartItem={this.updateCartItem}
+                cartId={this.state.cartId}
                 cart={this.state.cart}/>)
         }
 

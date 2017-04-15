@@ -8,35 +8,46 @@ class Cart extends React.Component {
 
     constructor(props) {
         super(props)
-        this.getTotalPrice = this.getTotalPrice.bind(this)
+        this.getTotalPrice = this
+            .getTotalPrice
+            .bind(this)
         this.state = {
             total: this.getTotalPrice()
         }
-        this.setCartTotalPrice = this.setCartTotalPrice.bind(this)
+        this.setCartTotalPrice = this
+            .setCartTotalPrice
+            .bind(this)
     }
-    
-    getTotalPrice(){
+
+    getTotalPrice() {
         const cartItems = Object.keys(this.props.cart)
         let total = 0
-        for(let i = 0; i < cartItems.length; i++){
+        for (let i = 0; i < cartItems.length; i++) {
             total += this.props.cart[cartItems[i]].amount * this.props.cart[cartItems[i]].price
         }
         return total
     }
-    
+
     setCartTotalPrice() {
-        this.setState({total: this.getTotalPrice()})
+        this.setState({
+            total: this.getTotalPrice()
+        })
     }
 
     render() {
-    
+
         const cartItems = Object
             .keys(this.props.cart)
             .map((itemId) => {
-                return (<CartItem key={itemId} index={itemId} item={this.props.cart[itemId]} 
-                setCartTotalPrice={this.setCartTotalPrice}/>)
+                return (<CartItem
+                    key={itemId}
+                    index={itemId}
+                    item={this.props.cart[itemId]}
+                    setCartTotalPrice={this.setCartTotalPrice}
+                    cartId={this.props.cartId}/>)
+
             })
-        return ( 
+        return (
             <div className="my-cart">
                 <Navbar/>
                 <div className="container" id="cart-container">

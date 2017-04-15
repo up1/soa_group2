@@ -86,6 +86,19 @@ public class SaleRepository {
         mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
     }
 
+    public ResponseEntity<String> updateAmount(String cartId, String productId, int amount){
+        Cart cart = findCartById(cartId);
+        ArrayList<Product> cartItems = cart.getProducts();
+        for(Product product: cartItems){
+            if(product.getId().equals(productId)) {
+                product.setAmount(amount);
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>("productId not found", HttpStatus.NO_CONTENT);
+    }
+
+
     @SuppressWarnings("unchecked")
     private ArrayList getPaging(Class domainClass, Pageable pageable, Query query){
         List domains;
