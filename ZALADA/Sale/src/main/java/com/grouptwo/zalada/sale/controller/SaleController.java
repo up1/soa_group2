@@ -39,8 +39,11 @@ public class SaleController {
     }
 
     @RequestMapping(value = "/sale/{id}", method = RequestMethod.GET)
-    public Product findProduct(@PathVariable String id) {
-        return saleRepository.findProductById(id);
+    public ResponseEntity findProduct(@PathVariable String id) {
+        Product product = saleRepository.findProductById(id);
+        if(product == null)
+            return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/sale/category/{categoryName}", method = RequestMethod.GET)
