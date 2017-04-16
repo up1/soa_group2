@@ -22,6 +22,7 @@ class ProductReview extends React.Component {
                 const productList = response
                     .data
                     .map((product, index) => <ProductItemPreview
+                        width={3}
                         key={product.id}
                         id={product.id}
                         name={product.name}

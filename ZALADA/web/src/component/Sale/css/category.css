@@ -29,8 +29,8 @@
 
 .sub-category-list>li>a:hover {
     color: #F48E4E;
+    text-shadow: 0px 1px 1px #F48E4E;
 }
-
 
 .category-name:first-child {
     padding-bottom: 5px;
@@ -79,4 +79,3 @@
     -webkit-border-radius: 2px 2px 2px 2px;
     border-bottom: 3px solid #F24D4D;
 }
-

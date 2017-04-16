@@ -1,11 +1,10 @@
 import React from 'react'
 
 class ProductItemPreview extends React.Component {
-
     
 	render() {
 		return (
-            <div className="col-sm-3 product-item-preview">
+            <div className={`col-sm-${this.props.width} product-item-preview`}>
                 <div className="col-item">
                 <div className="photo">
                     <img src={`http://localhost:9001/product/image/${this.props.id}`} className="img-responsive" alt={`${this.props.name}`} />
