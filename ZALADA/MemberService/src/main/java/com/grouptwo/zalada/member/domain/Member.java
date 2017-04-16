@@ -12,6 +12,7 @@ public class Member {
     private String address;
     private String email;
     private String tel;
+    private String cartId;
 
     public Member() {
     }
@@ -72,6 +73,14 @@ public class Member {
         this.tel = tel;
     }
 
+    public String getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
@@ -82,6 +91,7 @@ public class Member {
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", tel='" + tel + '\'' +
+                ", cartId='" + cartId + '\'' +
                 '}';
     }
 }

@@ -3,18 +3,17 @@ package com.grouptwo.zalada.member.repository;
 import com.grouptwo.zalada.member.domain.Member;
 import com.grouptwo.zalada.member.domain.SignIn;
 import com.grouptwo.zalada.member.domain.SignUp;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.client.RestTemplate;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -25,8 +24,12 @@ public class MemberRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     public Member findByUsername(String username){
-        return mongoTemplate.findById(username, Member.class);
+        Query query = new Query(where("username").is(username));
+        return mongoTemplate.findOne(query, Member.class);
     }
 
     public SignIn getAuth(String username) {
@@ -48,6 +51,14 @@ public class MemberRepository {
             mockRole.add("user");
             signUp.getSignIn().setRole(mockRole);
         }
+        String url = "http://127.0.0.1:9003/cart?usertype=1&username=" + signUp.getMember().getUsername();
+        ResponseEntity<String> response = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                new HttpEntity(null),
+                String.class);
+
+        signUp.getMember().setCartId(response.getBody());
 
         mongoTemplate.insert(signUp.getSignIn());
         mongoTemplate.insert(signUp.getMember());

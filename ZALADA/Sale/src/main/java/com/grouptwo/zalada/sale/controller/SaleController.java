@@ -58,12 +58,12 @@ public class SaleController {
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
-    public ResponseEntity<String> insertCart(@RequestParam(name = "userType") Integer userType,
-                                             @RequestParam(required = false, name = "userName") String userName){
-        if(userName == null && userType == 0){
+    public ResponseEntity insertCart(@RequestParam(name = "usertype") Integer userType,
+                                     @RequestParam(required = false, name = "username") String username){
+        if(username == null && userType == 0){
             return new ResponseEntity<>(saleRepository.insertCart(userType), HttpStatus.CREATED);
         }else if(userType == 1){
-            return new ResponseEntity<>(saleRepository.insertCart(userType, userName), HttpStatus.CREATED);
+            return new ResponseEntity<>(saleRepository.insertCart(userType, username), HttpStatus.CREATED);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
