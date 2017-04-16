@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../UpperHeaderSection.jsx'
 import Footer from '../FooterSection.jsx'
 import FontAwesome from 'react-fontawesome'
+import { Link } from 'react-router-dom';
 import '../css/category.css'
 
 class CategoryPage extends React.Component {
@@ -132,7 +133,7 @@ class CategoryPage extends React.Component {
                             <li>แบตเตอรี่สำรอง</li>
                             <li>เคสและซองมือถือ</li>
                             <li>แบตเตอรี่ และอุปกรณ์ชาร์จไฟ</li>
-                            <li>อุปกรณ์เสริมอื่นๆ</li>
+                            <li><Link to="/category/Mobile Case">อุปกรณ์เสริมอื่นๆ</Link></li>
                         </ul>
                         <h4 className="category-name"><FontAwesome name="camera-retro" /> | กล้อง</h4>
                         <ul className="sub-category-list">
@@ -141,7 +142,7 @@ class CategoryPage extends React.Component {
                             <li>กล้อง DSLR</li>
                             <li>กล้องมิลเลอร์เลส</li>
                             <li>โดรน</li>
-                            <li>อุปกรณ์เสริม</li>
+                           <li> อุปกรณ์เสริม</li>
                         </ul>
                         <h4 className="category-name"><FontAwesome name="desktop" /> | คอมพิวเตอร์ & แล็ปท็อป</h4>
                         <ul className="sub-category-list">

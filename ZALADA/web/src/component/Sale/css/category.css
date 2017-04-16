@@ -23,6 +23,15 @@
     color: #677782;
 }
 
+.sub-category-list>li>a {
+    color: black;
+}
+
+.sub-category-list>li>a:hover {
+    color: #F48E4E;
+}
+
+
 .category-name:first-child {
     padding-bottom: 5px;
     border-radius: 2px 2px 2px 2px;
