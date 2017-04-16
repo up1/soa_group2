@@ -18,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.beans.IntrospectionException;
@@ -45,39 +46,63 @@ public class BillingController {
     @RequestMapping(value = "/purchaseorder", method = RequestMethod.GET)
     public ArrayList findAllPurchaseOrder(@RequestParam(required = false, name = "page") Integer page,
                                           @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
+
+        String buyer = getUsername();
+
         if (page == null) {
-            return billingRepository.findAllPurchaseOrder();
+            return billingRepository.findAllPurchaseOrder(buyer);
         }
         Pageable pageable = new PageRequest(page, size);
-        return billingRepository.findAllPurchaseOrder(pageable);
+        return billingRepository.findAllPurchaseOrder(buyer, pageable);
+    }
+
+    private String getUsername(){
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
     @RequestMapping(value = "/purchaseorder/{id}/cancel", method = RequestMethod.PATCH)
     public ResponseEntity<Object> cancelPurchaseOrder(@PathVariable String id) {
-        billingRepository.cancelPurchaseOrder(id);
+
+        String buyer = getUsername();
+
+        try {
+            billingRepository.cancelPurchaseOrder(buyer, id);
+        }catch (UpdateException e) {
+            return new ResponseEntity<>("e", HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>("purchase cancel success", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/purchaseorder", method = RequestMethod.POST)
     public ResponseEntity<String> createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
+
+        String buyer = getUsername();
+
+        purchaseOrder.setBuyer(buyer);
+
         if (emailValidator.validate(purchaseOrder.getEmail())) {
             billingRepository.insertPurchaseOrder(purchaseOrder);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("invalidate email", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("invalid email format", HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @RequestMapping(value = "/purchaseorder/{id}", method = RequestMethod.GET)
     public PurchaseOrder findPurchaseOrder(@PathVariable String id) {
-        return billingRepository.findById(id);
+
+        String buyer = getUsername();
+
+        return billingRepository.findById(buyer, id);
     }
 
     @RequestMapping(value = "/purchaseorder/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updatePurchaseOrder(@PathVariable String id, @RequestBody PurchaseOrder purchaseOrder) {
         try {
-            billingRepository.updatePurchaseOrder(id, purchaseOrder);
+
+            String buyer = getUsername();
+
+            billingRepository.updatePurchaseOrder(buyer, id, purchaseOrder);
             return new ResponseEntity<>("Purchase Order is Updated", HttpStatus.OK);
         } catch (InvocationTargetException | IllegalAccessException | IntrospectionException e) {
             return new ResponseEntity<>("Error Message : " + e.getMessage() +
@@ -88,9 +113,11 @@ public class BillingController {
 
     @RequestMapping(value = "/payslip/{poNumber}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getPaySlip(@PathVariable String poNumber) {
-        ByteArrayOutputStream paySlipFile = null;
+        ByteArrayOutputStream paySlipFile;
 
-        PurchaseOrder purchaseOrder = billingRepository.getPurchaseOrder(poNumber);
+        String buyer = getUsername();
+
+        PurchaseOrder purchaseOrder = billingRepository.getPurchaseOrder(buyer, poNumber);
         if (purchaseOrder == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -114,31 +141,40 @@ public class BillingController {
     @RequestMapping(value = "/payslip/unpaid", method = RequestMethod.GET)
     public ArrayList getUnPaidPaySlip(@RequestParam(required = false, name = "page") Integer page,
                                       @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
+
+        String buyer = getUsername();
+
         if (page == null) {
-            return billingRepository.findAllByPayStatus(PurchaseOrder.STATUS_CODE_NOT_PAY);
+            return billingRepository.findAllByPayStatus(buyer, PurchaseOrder.STATUS_CODE_NOT_PAY);
         }
         Pageable pageable = new PageRequest(page, size);
-        return billingRepository.findAllByPayStatus(pageable, PurchaseOrder.STATUS_CODE_NOT_PAY);
+        return billingRepository.findAllByPayStatus(buyer, pageable, PurchaseOrder.STATUS_CODE_NOT_PAY);
     }
 
     @RequestMapping(value = "/payslip/paid", method = RequestMethod.GET)
     public ArrayList getPaidPaySlip(@RequestParam(required = false, name = "page") Integer page,
                                     @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
+
+        String buyer = getUsername();
+
         if (page == null) {
-            return billingRepository.findAllByPayStatus(PurchaseOrder.STATUS_CODE_PAY);
+            return billingRepository.findAllByPayStatus(buyer, PurchaseOrder.STATUS_CODE_PAY);
         }
         Pageable pageable = new PageRequest(page, size);
-        return billingRepository.findAllByPayStatus(pageable, PurchaseOrder.STATUS_CODE_PAY);
+        return billingRepository.findAllByPayStatus(buyer, pageable, PurchaseOrder.STATUS_CODE_PAY);
     }
 
     @RequestMapping(value = "/payslip/outoftime", method = RequestMethod.GET)
     public ArrayList getOutOfDatePaySlip(@RequestParam(required = false, name = "page") Integer page,
                                          @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
+
+        String buyer = getUsername();
+
         if (page == null) {
-            return billingRepository.findAllByPayStatus(PurchaseOrder.STATUS_CODE_OUT_OF_TIME);
+            return billingRepository.findAllByPayStatus(buyer, PurchaseOrder.STATUS_CODE_OUT_OF_TIME);
         }
         Pageable pageable = new PageRequest(page, size);
-        return billingRepository.findAllByPayStatus(pageable, PurchaseOrder.STATUS_CODE_OUT_OF_TIME);
+        return billingRepository.findAllByPayStatus(buyer, pageable, PurchaseOrder.STATUS_CODE_OUT_OF_TIME);
     }
 
     @RequestMapping(value = "/payslip/paid/{poNumber}", method = RequestMethod.PATCH)
