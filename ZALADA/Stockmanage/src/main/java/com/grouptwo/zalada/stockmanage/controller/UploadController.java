@@ -36,9 +36,9 @@ public class UploadController {
         }
     }
 
-    @RequestMapping(value = "/product/image/{productId}", method = RequestMethod.GET)
-    public ResponseEntity downloadImage(@PathVariable String productId) {
-        Resource file = null;
+    @RequestMapping(value = "/product/image/", method = RequestMethod.GET)
+    public ResponseEntity downloadImage(@RequestParam String productId) {
+        Resource file;
         try {
             file = uploadService.loadImage(productId);
             return ResponseEntity
