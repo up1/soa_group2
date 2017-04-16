@@ -70,7 +70,8 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
                 .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
 
-        request.setAttribute("accessToken", JWT);
+        request.setAttribute("access_token", JWT);
+        request.setAttribute("username", username);
 
         chain.doFilter(request, response);
     }
