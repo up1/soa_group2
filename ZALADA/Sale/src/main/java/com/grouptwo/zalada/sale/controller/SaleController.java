@@ -94,4 +94,10 @@ public class SaleController {
                              @RequestParam(name = "amount") Integer amount){
         saleRepository.updateAmount(cartId, productId, amount);
     }
+
+    @RequestMapping(value = "/cart/{cartId}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> removeFromCart(@PathVariable String cartId,
+                        @RequestParam(name = "productId") String productId) {
+        return saleRepository.removeFromCart(cartId, productId);
+    }
 }

@@ -36,6 +36,7 @@ class CartItem extends React.Component {
             const updatedItem = this.props.item;
             updatedItem['amount'] = e.target.value
             this.setState({amount : amount})
+            this.props.setCartTotalPrice()
         }
         
     }
@@ -86,7 +87,9 @@ class CartItem extends React.Component {
                     <strong>{this.props.item.price * this.props.item.amount}</strong>
                 </td>
                 <td className="col-sm-1 col-md-1">
-                    <button type="button" className="btn btn-danger">
+                    <button type="button" className="btn btn-danger" onClick={() => {
+                        this.props.removeFromCart(this.props.index)
+                        }}>
                         <span className="glyphicon glyphicon-remove"></span>
                         Remove
                     </button>

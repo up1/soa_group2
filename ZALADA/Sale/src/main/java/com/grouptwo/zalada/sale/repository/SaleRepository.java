@@ -81,6 +81,8 @@ public class SaleRepository {
         mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
     }
 
+
+
     public void updateCart(String cartId, Cart updateCart){
         Update update = updateWithReflect(Cart.class, updateCart);
         mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
@@ -92,10 +94,26 @@ public class SaleRepository {
         for(Product product: cartItems){
             if(product.getId().equals(productId)) {
                 product.setAmount(amount);
+                Update update = new Update().set("products", cartItems);
+                mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }
         return new ResponseEntity<>("productId not found", HttpStatus.NO_CONTENT);
+    }
+
+    public ResponseEntity<String> removeFromCart(String cartId, String productId){
+        Cart cart = findCartById(cartId);
+        ArrayList<Product> cartItems = cart.getProducts();
+        for(Product product: cartItems){
+            if(product.getId().equals(productId)) {
+                cartItems.remove(product);
+                Update update = new Update().set("products", cartItems);
+                mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>("product not found", HttpStatus.NO_CONTENT);
     }
 
 

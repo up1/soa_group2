@@ -91,6 +91,7 @@ class App extends React.Component {
         axios
             .post(`http://localhost:9003/cart/${this.state.cartId}?productId=${cartItem.id}&amount=1`)
             .then((response) => {
+                console.log("hii")
                 const current_cart = {
                     ...this.state.cart
                 }
@@ -103,11 +104,20 @@ class App extends React.Component {
     }
 
     removeFromCart(itemId) {
-        const current_cart = {
-            ...this.state.cart
-        }
-        current_cart[itemId] = null;
-        this.setState({current_cart})
+        axios
+            .delete(`http://localhost:9003/cart/${this.state.cartId}?productId=${itemId}`)
+            .then((response) => {
+                const current_cart = {
+                    ...this.state.cart
+                }
+                console.log(current_cart)
+                delete current_cart[itemId]
+                this.setState({cart : current_cart})
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
     }
 
     updateUser(username) {

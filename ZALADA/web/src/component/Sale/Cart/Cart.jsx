@@ -18,6 +18,15 @@ class Cart extends React.Component {
             .setCartTotalPrice
             .bind(this)
     }
+    
+    componentWillReceiveProps(nextProps){
+        const cartItems = Object.keys(nextProps.cart)
+        let total = 0
+        for (let i = 0; i < cartItems.length; i++) {
+            total += this.props.cart[cartItems[i]].amount * this.props.cart[cartItems[i]].price
+        }
+        this.setState({total})
+    }
 
     getTotalPrice() {
         const cartItems = Object.keys(this.props.cart)
@@ -44,7 +53,8 @@ class Cart extends React.Component {
                     index={itemId}
                     item={this.props.cart[itemId]}
                     setCartTotalPrice={this.setCartTotalPrice}
-                    cartId={this.props.cartId}/>)
+                    cartId={this.props.cartId}
+                    removeFromCart={this.props.removeFromCart} />)
 
             })
         return (
