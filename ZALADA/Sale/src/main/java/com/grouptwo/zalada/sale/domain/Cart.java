@@ -8,6 +8,13 @@ import java.util.ArrayList;
 @Document(collection = "cart")
 public class Cart {
 
+    @Id
+    private String id;
+    private Integer cartType;
+    private String ownerName;
+    private ArrayList<Product> products;
+    private Long createDate;
+
     public Cart(){
         products = new ArrayList<>();
     }
@@ -23,13 +30,6 @@ public class Cart {
         createDate = createTime;
         products = new ArrayList<>();
     }
-
-    @Id
-    private String id;
-    private Integer cartType;
-    private String ownerName;
-    private ArrayList<Product> products;
-    private Long createDate;
 
     public String getId() {
         return id;

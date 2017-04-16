@@ -4,6 +4,7 @@ import com.grouptwo.zalada.sale.filter.JwtFilter;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/sale", "/sale/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/cart").permitAll()
                 .anyRequest().authenticated();
         JwtFilter.registerFilter(http);
     }
