@@ -9,7 +9,7 @@ import CartPage from './Sale/Cart/Cart.jsx';
 import LoginPage from './LoginPage.jsx';
 import SignUpPage from './SignUpPage.jsx';
 import CategoryPage from './Sale/Category/CategoryPage.jsx';
-import  SelectedCategory from './Sale/Category/SelectedCategory.jsx'
+import SelectedCategory from './Sale/Category/SelectedCategory.jsx'
 import cookie from 'react-cookie'
 import ReactTooltip from 'react-tooltip';
 import axios from 'axios'
@@ -158,9 +158,9 @@ class App extends React.Component {
                         <Route path="/signup" render={WrapSignUp}/>
                         <Route path="/stock" component={ListProduct}/>
                         <Route path="/cart" render={MycartPage}/>
-                        <Route path="/category" component={CategoryPage}/>
+                        <Route exact path="/category" component={CategoryPage}/>
                         <Route path="/cart" component={MycartPage}/>
-                        <Route path="/category/:categoryName" render={SelectedCategory}/>
+                        <Route path="/category/:categoryName" component={SelectedCategory}/>
                     </Switch>
                 </BrowserRouter>
             </div>
