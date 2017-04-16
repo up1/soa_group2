@@ -21,6 +21,15 @@ public class PurchaseOrder {
     private Integer payStatus;
     private String tel;
     private String email;
+    private String billingName;
+
+    public String getBillingName() {
+        return billingName;
+    }
+
+    public void setBillingName(String billingName) {
+        this.billingName = billingName;
+    }
 
     public static final int STATUS_CODE_NOT_PAY = 0;
     public static final int STATUS_CODE_PAY = 1;
