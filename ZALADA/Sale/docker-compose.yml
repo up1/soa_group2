@@ -1,0 +1,20 @@
+services:
+  MongoDB:
+        image: tatum/mongodb:latest
+        container_name: mongodb-zalada-sale
+        ports:
+          - "27020:27017"
+        volumes:
+          - /srv/docker/mongodb:/var/lib/mongodb
+        restart: always
+
+  sale:
+        build: build/docker
+        depends_on:
+          - mongodb-zalada-sale
+        container_name: service-sale
+        restart: always
+        ports:
+          - 9003:9003
+        links:
+          - mongodb-zalada-sale
