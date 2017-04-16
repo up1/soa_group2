@@ -57,7 +57,7 @@ class App extends React.Component {
 
     createCart(userType, username) {
         axios
-            .post(`http://localhost:9003/cart?userType=${userType}&userName=${username}`)
+            .post(`http://localhost:9003/cart?userType=${userType}`)
             .then((response) => {
                 const generatedCartId = response.data
                 cookie.save("cartid", generatedCartId)
@@ -75,7 +75,7 @@ class App extends React.Component {
                 console.log(response.data)
                 const storedCartItems = response.data.products
                 const newCart = {}
-                for (let i = 0; i < storedCartItems; i++) {
+                for (let i = 0; i < storedCartItems.length; i++) {
                     newCart[storedCartItems[i].id] = storedCartItems[i]
                 }
                 this.setState({cart: newCart})
@@ -94,7 +94,7 @@ class App extends React.Component {
                     ...this.state.cart
                 }
                 current_cart[cartItem.id] = cartItem;
-                this.setState({current_cart})
+                this.setState({cart: current_cart})
             })
             .catch((error) => {
                 console.log(error)
@@ -131,10 +131,10 @@ class App extends React.Component {
             return (<LoginPage updateUser={this.updateUser} {...prop}/>)
         }
         const WrapSignUp = (prop) => {
-            return (<SignUpPage updateUser={this.updateUser}/>)
+            return (<SignUpPage updateUser={this.updateUser} AddProd/>)
         }
         const WrapMainPage = (prop) => {
-            return (<MainPage user={this.state.username}/>)
+            return (<MainPage user={this.state.username} {...prop} addProduct={this.addToCart}/>)
         }
         const MycartPage = (prop) => {
             return (<CartPage

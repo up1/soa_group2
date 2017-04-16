@@ -27,7 +27,9 @@ class ProductReview extends React.Component {
                         name={product.name}
                         price={product.price}
                         amount={product.amount}
-                        index={index}/>)
+                        index={index}
+                        addProduct={this.props.addProduct}/>)
+
                 this.setState({products: productList})
             })
             .catch((error) => {

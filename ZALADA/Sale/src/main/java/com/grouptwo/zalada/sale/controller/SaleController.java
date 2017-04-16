@@ -91,7 +91,7 @@ public class SaleController {
     @RequestMapping(value = "/cart/{cartId}/{productId}", method = RequestMethod.PATCH)
     public void updateAmount(@PathVariable String cartId,
                              @PathVariable String productId,
-                             @RequestBody int amount){
+                             @RequestParam(name = "amount") Integer amount){
         saleRepository.updateAmount(cartId, productId, amount);
     }
 }

@@ -15,12 +15,15 @@ class CartItem extends React.Component {
 
     updateAmount(e) {
         const updatedItem = this.props.item;
-        axios
-            .patch(`http://localhost:9003/cart/${this.props.cartId}/${updatedItem.id}&amount=${e.target.value}`)
+        const amount = parseInt(e.target.value, 10)
+        console.log("amount = " + amount)
+        if(Number.isInteger(amount)){
+            axios
+            .patch(`http://localhost:9003/cart/${this.props.cartId}/${updatedItem.id}?amount=${amount}`)
             .then((response) => {
                 const updatedItem = this.props.item;
-                updatedItem['amount'] = e.target.value
-                this.setState({amount: e.target.value})
+                updatedItem['amount'] = amount
+                this.setState({amount: amount})
                 this
                     .props
                     .setCartTotalPrice()
@@ -28,6 +31,13 @@ class CartItem extends React.Component {
             .catch((error) => {
                 console.log(error)
             })
+        }
+        else if(e.target.value === ""){
+            const updatedItem = this.props.item;
+            updatedItem['amount'] = e.target.value
+            this.setState({amount : amount})
+        }
+        
     }
 
     render() {

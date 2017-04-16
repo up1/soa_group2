@@ -2,6 +2,7 @@ import React from 'react'
 
 class ProductItemPreview extends React.Component {
 
+    
 	render() {
 		return (
             <div className="col-sm-3 product-item-preview">
@@ -21,7 +22,14 @@ class ProductItemPreview extends React.Component {
                         </div>
                     </div>
                     <div className="separator clear-left">
-                        <p className="btn-add"><i className="fa fa-shopping-cart"></i><a href="#" className="hidden-sm">Add to cart</a></p>
+                        <p className="btn-add" onClick={ () => {this.props.addProduct({
+                            id : this.props.id,
+                            amount : 1,
+                            name : this.props.name,
+                            price : this.props.price,
+                            
+                            
+                            }) } }><i className="fa fa-shopping-cart"></i><a href="#" className="hidden-sm">Add to cart</a></p>
                          <p className="btn-details"><i className="fa fa-list"></i><a href="#" className="hidden-sm">More details</a></p>
                     </div>
                     <div className="clearfix"></div>
