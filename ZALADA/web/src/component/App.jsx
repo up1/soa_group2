@@ -174,6 +174,12 @@ class App extends React.Component {
                 cart={this.state.cart}/>)
         }
 
+        const WrapCategoryPage = (prop) => {
+            return (
+                <SelectedCategory addProduct={this.addToCart} {...prop} />
+            )
+        }
+
         const SubmitCartForm = (prop) => {
             return (<ConfirmForm cart={this.state.cart} {...prop}
             clearCart={this.clearCart}/>)
@@ -193,7 +199,7 @@ class App extends React.Component {
                         <Route path="/stock" component={ListProduct}/>
                         <Route path="/cart" render={MycartPage}/>
                         <Route exact path="/category" component={CategoryPage}/>
-                        <Route path="/category/:categoryName" component={SelectedCategory}/>
+                        <Route path="/category/:categoryName" render={WrapCategoryPage}/>
                         <Route path="/submit" render={SubmitCartForm}/>
                         <Route path="/purchaseorder/:purchaseOrderId" component={PurchaseOrder}/>
                     </Switch>

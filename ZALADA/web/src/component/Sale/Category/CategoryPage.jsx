@@ -129,7 +129,7 @@ class CategoryPage extends React.Component {
                         <h4 className="category-name"><FontAwesome name="mobile" /> | โทรศัพท์มือถือ & แท็บเล็ต</h4>
                         <ul className="sub-category-list">
                             <li><Link to="/category/Mobiles">โทรศัพท์มือถือ</Link></li>
-                            <li><Link to="/category/Tablets">แท็บเล็ต</Link></li>
+                            <li><Link to="/category/Tablet">แท็บเล็ต</Link></li>
                             <li><Link to="/category/Power Banks">แบตเตอรี่สำรอง</Link></li>
                             <li><Link to="/category/Phone Cases">เคสและซองมือถือ</Link></li>
                             <li><Link to="/category/Batteries and Chargers">แบตเตอรี่ และอุปกรณ์ชาร์จไฟ</Link></li>

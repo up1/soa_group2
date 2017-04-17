@@ -179,7 +179,7 @@ class AddProduct extends React.Component {
                             value={this.state.category}
                             className="form-control">
                             <option disabled></option>
-                                <option value="Mobile Phone and Tablet">"Mobile Phone and Tablet</option>
+                                <option value="Mobile Phone and Tablet">Mobile Phone and Tablet</option>
                                 <option value="Mobile Phone">Mobile Phone</option>
                                 <option value="Tablet">Tablet</option>
                                 <option value="Mobile Accessory">Mobile Accessory</option>

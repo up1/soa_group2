@@ -34,8 +34,10 @@ class ProductDetail extends React.Component {
         const slider = document.querySelector("#slider");
         const footer = document.querySelector("#footer-section");
         container.className += " blur";
-        slider.className += "blur";
-        footer.className += "blur";
+        if (slider !== null && footer !== null) {
+            slider.className += "blur";
+            footer.className += "blur";
+        }
 
     }
     handleClose = () => {
@@ -43,8 +45,10 @@ class ProductDetail extends React.Component {
         const slider = document.querySelector("#slider")
         const footer = document.querySelector("#footer-section")
         container.classList.remove("blur")
-        slider.classList.remove("blur")
-        footer.classList.remove("blur")
+        if (slider !== null && footer !== null) {
+            slider.classList.remove("blur")
+            footer.classList.remove("blur")
+        }
         this.setState({ isShowingModal: false })
     }
 
