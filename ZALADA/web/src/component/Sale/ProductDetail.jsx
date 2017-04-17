@@ -14,8 +14,6 @@ class ProductDetail extends React.Component {
         }
     }
 
-
-
     state = {
         isShowingModal: false
     }
@@ -79,7 +77,19 @@ class ProductDetail extends React.Component {
                             />
                         </div><hr />
                         <button type="button" className="btn btn-default pull-left" onClick={this.handleClose}><FontAwesome name="window-close" /> Close</button>
-                        <button type="button" className="btn btn-primary pull-right"><FontAwesome name="cart-arrow-down" /> เพิ่มลงตระกร้า</button>
+                        <button type="button" className="btn btn-primary pull-right" onClick={() => {
+                            this.props.addProduct({
+                                id: this.props.productData.id,
+                                amount: this.state.amountValue,
+                                name: this.props.productData.name,
+                                price: this.props.productData.price,
+                                detail: this.props.productData.detail,
+                                editDate: this.props.productData.editDate,
+                                saleDate: this.props.productData.saleDate,
+                                owner: this.props.productData.owner
+                            })
+                            this.handleClose()
+                        }}><FontAwesome name="cart-arrow-down" /> เพิ่มลงตระกร้า</button>
                     </ModalDialog>
                 </ModalContainer>
             }
