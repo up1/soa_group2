@@ -51,7 +51,7 @@ public class MemberRepository {
             mockRole.add("user");
             signUp.getSignIn().setRole(mockRole);
         }
-        String url = "http://127.0.0.1:9003/cart?usertype=1&username=" + signUp.getMember().getUsername();
+        String url = "http://139.59.102.212:9003/cart?usertype=1&username=" + signUp.getMember().getUsername();
         ResponseEntity<String> response = restTemplate.exchange(
                 url,
                 HttpMethod.POST,
