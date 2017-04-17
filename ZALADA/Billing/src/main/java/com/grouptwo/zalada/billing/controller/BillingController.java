@@ -26,6 +26,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class BillingController {
 
     @Autowired
@@ -62,7 +63,7 @@ public class BillingController {
     public ResponseEntity<String> createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
         if (emailValidator.validate(purchaseOrder.getEmail())) {
             billingRepository.insertPurchaseOrder(purchaseOrder);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>("invalidate email", HttpStatus.BAD_REQUEST);
         }

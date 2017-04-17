@@ -3,6 +3,7 @@ import Navbar from '../UpperHeaderSection.jsx'
 import Footer from '../FooterSection.jsx'
 import '../css/cart.css'
 import CartItem from './CartItem.jsx'
+import { Link } from 'react-router-dom'
 
 class Cart extends React.Component {
 
@@ -102,10 +103,11 @@ class Cart extends React.Component {
                                             </button>
                                         </td>
                                         <td>
-                                            <button type="button" className="btn btn-success">
+                                           <Link to="submit"> <button type="button" className="btn btn-success">
                                                 Checkout
                                                 <span className="glyphicon glyphicon-play"></span>
                                             </button>
+                                            </Link>
                                         </td>
                                     </tr>
                                 </tbody>

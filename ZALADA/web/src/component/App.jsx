@@ -10,6 +10,8 @@ import LoginPage from './LoginPage.jsx';
 import SignUpPage from './SignUpPage.jsx';
 import CategoryPage from './Sale/Category/CategoryPage.jsx';
 import SelectedCategory from './Sale/Category/SelectedCategory.jsx'
+import PurchaseOrder from '././Sale/PurchaseOrder.jsx'
+import ConfirmForm from './Sale/ConfirmForm.jsx'
 import cookie from 'react-cookie'
 import ReactTooltip from 'react-tooltip';
 import axios from 'axios'
@@ -35,7 +37,7 @@ class App extends React.Component {
             }
         }
         this.state = {
-            username: null,
+            username: user,
             cart: {},
             cartId: null
         }
@@ -91,7 +93,6 @@ class App extends React.Component {
         axios
             .post(`http://localhost:9003/cart/${this.state.cartId}?productId=${cartItem.id}&amount=1`)
             .then((response) => {
-                console.log("hii")
                 const current_cart = {
                     ...this.state.cart
                 }
@@ -155,6 +156,13 @@ class App extends React.Component {
                 cart={this.state.cart}/>)
         }
 
+        const SubmitCartForm = (prop) => {
+            return (
+                <ConfirmForm cart={this.state.cart} {...prop}
+            />
+            )
+        }
+
         return (
             <div>
                 <NotificationSystem ref="notificationSystem"/>
@@ -169,8 +177,9 @@ class App extends React.Component {
                         <Route path="/stock" component={ListProduct}/>
                         <Route path="/cart" render={MycartPage}/>
                         <Route exact path="/category" component={CategoryPage}/>
-                        <Route path="/cart" component={MycartPage}/>
                         <Route path="/category/:categoryName" component={SelectedCategory}/>
+                        <Route path="/submit" render={SubmitCartForm}/>
+                        <Route path="/purchaseorder/:purchaseOrderId" component={PurchaseOrder}/>
                     </Switch>
                 </BrowserRouter>
             </div>

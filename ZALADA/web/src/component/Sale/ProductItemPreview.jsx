@@ -27,8 +27,10 @@ class ProductItemPreview extends React.Component {
                             amount : 1,
                             name : this.props.name,
                             price : this.props.price,
-                            
-                            
+                            detail : this.props.detail,
+                            editDate : this.props.editDate,
+                            saleDate : this.props.saleDate,
+                            owner : this.props.owner
                             }) } }><i className="fa fa-shopping-cart"></i><a href="#" className="hidden-sm">Add to cart</a></p>
                          <p className="btn-details"><i className="fa fa-list"></i><a href="#" className="hidden-sm">More details</a></p>
                     </div>
