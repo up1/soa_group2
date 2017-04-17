@@ -91,7 +91,7 @@ class App extends React.Component {
 
     addToCart(cartItem) {
         axios
-            .post(`http://localhost:9003/cart/${this.state.cartId}?productId=${cartItem.id}&amount=1`)
+            .post(`http://localhost:9003/cart/${this.state.cartId}?productId=${cartItem.id}&amount=${cartItem.amount}`)
             .then((response) => {
                 const current_cart = {
                     ...this.state.cart

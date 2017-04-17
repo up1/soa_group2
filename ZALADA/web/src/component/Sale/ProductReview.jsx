@@ -30,6 +30,8 @@ class ProductReview extends React.Component {
                         amount={product.amount}
                         detail={product.detail}
                         category={product.category.name}
+                        editDate={product.editDate}
+                        saleDate={product.editDate}
                         index={index}
                         addProduct={this.props.addProduct}/>)
 
