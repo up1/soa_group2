@@ -22,7 +22,7 @@ public class PaySlipPdfManager extends PdfManager
         init();
 
         fillForm("poNumber", purchaseOrder.getId());
-        fillForm("buyer", purchaseOrder.getBuyer());
+        fillForm("buyer", purchaseOrder.getBillingName());
         fillForm("buyDate", getDate(purchaseOrder.getBuyDate()));
         fillForm("payScheduled", getDate(purchaseOrder.getPayScheduled()));
         fillForm("tel", purchaseOrder.getTel());
