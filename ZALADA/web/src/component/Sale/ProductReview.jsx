@@ -31,7 +31,6 @@ class ProductReview extends React.Component {
                         detail={product.detail}
                         category={product.category.name}
                         index={index}
-                        {...product}
                         addProduct={this.props.addProduct}/>)
 
                 this.setState({products: productList})
