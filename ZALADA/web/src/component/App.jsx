@@ -56,6 +56,9 @@ class App extends React.Component {
         this.getCartInfo = this
             .getCartInfo
             .bind(this)
+        this.clearCart = this
+            .clearCart
+            .bind(this)
     }
 
     createCart(userType, username) {
@@ -113,7 +116,22 @@ class App extends React.Component {
                 }
                 console.log(current_cart)
                 delete current_cart[itemId]
-                this.setState({cart : current_cart})
+                this.setState({cart: current_cart})
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    }
+
+    clearCart() {
+        const cartData = {
+            products: []
+        }
+        axios
+            .put(`http://localhost:9003/cart/${this.state.cartId}`, cartData)
+            .then((response) => {
+                this.setState({cart: []})
             })
             .catch((error) => {
                 console.log(error)
@@ -157,10 +175,8 @@ class App extends React.Component {
         }
 
         const SubmitCartForm = (prop) => {
-            return (
-                <ConfirmForm cart={this.state.cart} {...prop}
-            />
-            )
+            return (<ConfirmForm cart={this.state.cart} {...prop}
+            clearCart={this.clearCart}/>)
         }
 
         return (

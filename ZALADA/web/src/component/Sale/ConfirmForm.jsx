@@ -53,6 +53,7 @@ class ConfirmForm extends React.Component {
             .then((response) => {
                 const purchaseorderId = response.data
                 this.props.history.push(`/purchaseorder/${purchaseorderId}`)
+                this.props.clearCart()
             })
             .catch((error) => (console.log(error)))
     }
