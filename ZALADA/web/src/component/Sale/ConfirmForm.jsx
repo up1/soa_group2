@@ -2,6 +2,7 @@ import React from 'react'
 import FooterSection from './FooterSection.jsx'
 import UpperHeaderSection from './UpperHeaderSection.jsx'
 import axios from 'axios'
+import './css/confirm.css'
 
 class ConfirmForm extends React.Component {
 
@@ -37,7 +38,7 @@ class ConfirmForm extends React.Component {
         let totalPrice = 0;
         for (let product in cart) {
             buyProducts.push(cart[product])
-            totalPrice += cart[product].amount*cart[product].price;
+            totalPrice += cart[product].amount * cart[product].price;
         }
         const data = {
             buyer: this.state.name,
@@ -57,18 +58,16 @@ class ConfirmForm extends React.Component {
             })
             .catch((error) => (console.log(error)))
     }
-    
+
     render() {
         return (
             <div>
-                <UpperHeaderSection/>
-
-                <div className="container-fluid">
-                    <div className="container-fluid" id="container-Sign">
+                <UpperHeaderSection />
+                    <div className="container" id="confirm-page">
                         <section className="container-signup">
+                            <h1> ยืนยันการสั่งซื้อ </h1>
                             <div className="container-page" id="form-signup">
-                                <div className="col-md-8">
-                                    <h3 className="dark-grey">ยืนยันการสั่งซื้อ</h3>
+                                <div className="col-md-12">
 
                                     <div className="form-group col-lg-12">
                                         <label>ชื่อ นามสกุล</label>
@@ -76,12 +75,12 @@ class ConfirmForm extends React.Component {
                                             type="text"
                                             name="name"
                                             className="form-control"
-                                            onChange={this.handleChange}/>
+                                            onChange={this.handleChange} />
                                     </div>
 
                                     <div className="form-group col-lg-12">
                                         <label>โทรศัพท์</label>
-                                        <input name="tel" className="form-control" onChange={this.handleChange}/>
+                                        <input name="tel" className="form-control" onChange={this.handleChange} />
                                     </div>
                                     <div className="form-group col-lg-12">
                                         <label>อีเมล</label>
@@ -89,12 +88,12 @@ class ConfirmForm extends React.Component {
                                             type="email"
                                             name="email"
                                             className="form-control"
-                                            onChange={this.handleChange}/>
+                                            onChange={this.handleChange} />
                                     </div>
 
                                     <div className="form-group col-lg-12">
                                         <label>ที่อยู่</label>
-                                        <textarea name="address" className="form-control" onChange={this.handleChange}/>
+                                        <textarea name="address" className="form-control" onChange={this.handleChange} />
                                     </div>
 
                                     <div className="form-group col-lg-12">
@@ -103,7 +102,7 @@ class ConfirmForm extends React.Component {
                                             type="text"
                                             name="post_code"
                                             className="form-control"
-                                            onChange={this.handleChange}/>
+                                            onChange={this.handleChange} />
                                     </div>
 
                                     <div className="form-group col-lg-12">
@@ -112,7 +111,7 @@ class ConfirmForm extends React.Component {
                                             type="text"
                                             name="state"
                                             className="form-control"
-                                            onChange={this.handleChange}/>
+                                            onChange={this.handleChange} />
                                     </div>
 
                                     <div className="form-group col-lg-12">
@@ -271,18 +270,17 @@ class ConfirmForm extends React.Component {
 
                                     </div>
                                     <div className="form-group col-lg-12">
-                                        <button type="submit" className="btn btn-primary" onClick={this.submitChange}>ยืนยันการสั่งซื้อ</button>
+                                        <button type="submit" className="btn btn-primary pull-right" onClick={this.submitChange}>ยืนยันการสั่งซื้อ</button>
                                     </div>
 
                                 </div>
 
-                                <div className="col-md-4"></div>
+                                <div className="col-md-0"></div>
                             </div>
                         </section>
                     </div>
 
-                </div>
-                <FooterSection/>
+                <FooterSection />
             </div>
 
         )
