@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
@@ -28,8 +29,12 @@ public class BillingRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public PurchaseOrder findById(String id) {
-        return mongoTemplate.findOne(getQueryId(id), PurchaseOrder.class, PurchaseOrder.COLLECTION_NAME);
+    public PurchaseOrder findById(String buyer, String id) {
+        return mongoTemplate.findOne(queryByIdAndBuyer(id, buyer), PurchaseOrder.class, PurchaseOrder.COLLECTION_NAME);
+    }
+
+    private Query queryByIdAndBuyer(String id, String buyer){
+        return new Query(whereIdIs(id).andOperator(whereBuyerIs(buyer)));
     }
 
     public void insertPurchaseOrder(PurchaseOrder purchaseOrder) {
@@ -40,16 +45,16 @@ public class BillingRepository {
         mongoTemplate.save(purchaseOrder);
     }
 
-    public void cancelPurchaseOrder(String id) {
-        Query query = getQueryId(id);
+    public void cancelPurchaseOrder(String buyer, String id) {
+        Query query = queryByIdAndBuyer(id, buyer);
 
         Update update = new Update();
         update.set("payStatus", PurchaseOrder.STATUS_CODE_CANCEL);
         mongoTemplate.updateFirst(query, update, PurchaseOrder.class);
     }
 
-    public PurchaseOrder getPurchaseOrder(String poNumber) {
-        Query query = getQueryId(poNumber);
+    public PurchaseOrder getPurchaseOrder(String buyer, String poNumber) {
+        Query query = queryByIdAndBuyer(poNumber, buyer);
         return mongoTemplate.findOne(query, PurchaseOrder.class);
     }
 
@@ -58,16 +63,21 @@ public class BillingRepository {
         return System.currentTimeMillis() / 1000L;
     }
 
-    private Query getQueryId(String id) {
+    private Query queryBuyId(String id) {
         return new Query(where("id").is(id));
     }
 
-    public ArrayList<PurchaseOrder> findAllPurchaseOrder() {
-        return Lists.newArrayList(mongoTemplate.findAll(PurchaseOrder.class));
+    public ArrayList<PurchaseOrder> findAllPurchaseOrder(String buyer) {
+
+        return Lists.newArrayList(mongoTemplate.find(queryByBuyer(buyer), PurchaseOrder.class));
     }
 
-    public ArrayList findAllPurchaseOrder(Pageable pageable) {
-        return getPaging(Product.class, pageable, new Query());
+    private Query queryByBuyer(String buyer){
+        return new Query(where("buyer").is(buyer));
+    }
+
+    public ArrayList findAllPurchaseOrder(String buyer, Pageable pageable) {
+        return getPaging(Product.class, pageable, queryByBuyer(buyer));
     }
 
 
@@ -80,31 +90,47 @@ public class BillingRepository {
         return Lists.newArrayList((new PageImpl(domains, pageable, total)));
     }
 
-    public void updatePurchaseOrder(String poNumber, PurchaseOrder updatePurchaseOrder) throws InvocationTargetException, IllegalAccessException, IntrospectionException {
+    public void updatePurchaseOrder(String buyer, String poNumber, PurchaseOrder updatePurchaseOrder) throws InvocationTargetException, IllegalAccessException, IntrospectionException {
         Update update = new Update();
         for (PropertyDescriptor pd : Introspector.getBeanInfo(PurchaseOrder.class).getPropertyDescriptors()) {
             if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updatePurchaseOrder) != null && !pd.getName().equals("id")) {
                 update.set(pd.getName(), pd.getReadMethod().invoke(updatePurchaseOrder).toString());
             }
         }
-        mongoTemplate.updateFirst(getQueryId(poNumber), update, PurchaseOrder.class);
+        mongoTemplate.updateFirst(queryByIdAndBuyer(poNumber, buyer), update, PurchaseOrder.class);
     }
 
-    public ArrayList findAllByPayStatus(Pageable pageable, Integer payStatus) {
-        Query query = new Query(where("payStatus").is(payStatus));
+    public ArrayList findAllByPayStatus(String buyer, Pageable pageable, Integer payStatus) {
+        Query query = queryByPayStatusAndBuyer(payStatus, buyer);
 
         return getPaging(PurchaseOrder.class, pageable, query);
     }
 
-    public ArrayList findAllByPayStatus(Integer payStatus) {
-        Query query = new Query(where("payStatus").is(payStatus));
+    private Query queryByPayStatusAndBuyer(Integer payStatus, String buyer){
+        return new Query(wherePayStatusIs(payStatus).andOperator(whereBuyerIs(buyer)));
+    }
+
+    public ArrayList findAllByPayStatus(String buyer, Integer payStatus) {
+        Query query = queryByPayStatusAndBuyer(payStatus, buyer);
 
         return Lists.newArrayList(mongoTemplate.find(query, PurchaseOrder.class));
     }
 
+    private Criteria wherePayStatusIs(Integer payStatus){
+        return where("payStatus").is(payStatus);
+    }
+
+    private Criteria whereBuyerIs(String buyer){
+        return where("buyer").is(buyer);
+    }
+
+    private Criteria whereIdIs(String id){
+        return where("id").is(id);
+    }
+
 
     public void paidPaySlip(String poNumber) {
-        Query query = getQueryId(poNumber);
+        Query query = queryBuyId(poNumber);
         query.fields().include("payStatus");
         Update update = new Update();
         PurchaseOrder purchaseOrder = mongoTemplate.findOne(query, PurchaseOrder.class);
@@ -119,7 +145,7 @@ public class BillingRepository {
             throw new UpdateException("Purchase Order with id: " + poNumber + " is Out Of Pay Scheduled Date");
 
         update.set("patStatus", PurchaseOrder.STATUS_CODE_PAY);
-        mongoTemplate.updateFirst(getQueryId(poNumber), update, PurchaseOrder.class);
+        mongoTemplate.updateFirst(queryBuyId(poNumber), update, PurchaseOrder.class);
 
     }
 }

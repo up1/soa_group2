@@ -1,0 +1,20 @@
+services:
+  MongoDB:
+        image: tutum/mongodb:latest
+        container_name: mongodb-zalada-member
+        ports:
+          - "27017:27017"
+        volumes:
+          - /srv/docker/mongodb:/var/lib/mongodb
+        restart: always
+
+  member:
+        build: build/docker
+        depends_on:
+          - mongodb-zalada-member
+        container_name: service-member
+        restart: always
+        ports:
+          - 9004:9004
+        links:
+          - mongodb-zalada-member
