@@ -31,7 +31,7 @@ class UpperHeaderSection extends React.Component {
               <span className="icon-bar"></span>
 
             </button>
-            <Link to="/" className="navbar-brand">ZALADA</Link>
+            <Link to="/" className="navbar-brand" id="brand-image-link"><img alt="Brand" id="brand-image" src="https://raw.githubusercontent.com/up1/soa_group2/master/Image/logoZALADA.png"/></Link>
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <SearchForm />
