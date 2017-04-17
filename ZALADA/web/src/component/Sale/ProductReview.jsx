@@ -24,6 +24,13 @@ class ProductReview extends React.Component {
                     .map((product, index) => <ProductItemPreview
                         width={3}
                         key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        price={product.price}
+                        amount={product.amount}
+                        detail={product.detail}
+                        category={product.category.name}
+                        index={index}
                         {...product}
                         addProduct={this.props.addProduct}/>)
 

@@ -1,8 +1,10 @@
 import React from 'react'
+import ProductDetail from './ProductDetail.jsx'
 
 class ProductItemPreview extends React.Component {
     
 	render() {
+        const dialog = <ProductDetail productData={this.props} />
 		return (
             <div className={`col-sm-${this.props.width} product-item-preview`}>
                 <div className="col-item">
@@ -31,7 +33,7 @@ class ProductItemPreview extends React.Component {
                             saleDate : this.props.saleDate,
                             owner : this.props.owner
                             }) } }><i className="fa fa-shopping-cart"></i><a href="#" className="hidden-sm">Add to cart</a></p>
-                         <p className="btn-details"><i className="fa fa-list"></i><a href="#" className="hidden-sm">More details</a></p>
+                         <p className="btn-details"><i className="fa fa-list"></i><br/><button type="button" className="btn btn-link">{dialog}</button></p>
                     </div>
                     <div className="clearfix"></div>
                     </div>

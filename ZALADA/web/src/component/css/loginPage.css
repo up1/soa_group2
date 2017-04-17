@@ -1,49 +1,70 @@
+body .login-page {
+	background-image: url("http://static8.depositphotos.com/1008054/983/v/950/depositphotos_9831805-stock-illustration-web-computer-icons-design-elements.jpg");
+	background-repeat: repeat-xy;
+	background-size: 40%;
+	background-position-x: 400px;
+	width: 100%;
+	position: absolute;
+	z-index: -1;
+}
 
 #login-box {
 	margin: auto;
 	margin-top: 200px;
 	margin-bottom: 180px;
 	width: 350px;
-	border: 1px solid black;
+	border-radius: 0px 25px 0px 25px;
+	-moz-border-radius: 0px 25px 0px 25px;
+	-webkit-border-radius: 0px 25px 0px 25px;
+	border: 3px solid #363833;
 	background: white;
 	min-height: 250px;
 	padding: 20px;
+	-webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.5);
 }
+
 #login-box .logo .logo-caption {
 	color: black;
 	text-align: center;
 	margin-bottom: 0px;
 }
+
 #login-box .logo {
 	color: #ff5252;
 }
+
 #login-box .controls {
 	padding-top: 30px;
 }
+
 #login-box .controls input {
-	border-radius: 0px;
-	border: 0px;
-	color: black;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border: 2px solid #292929;
+	margin-bottom: 5px;
 }
+
 #login-box .controls input:focus {
 	box-shadow: none;
 }
-#login-box .controls input:first-child {
-	border-top-left-radius: 2px;
-	border-top-right-radius: 2px;
-}
-#login-box .controls input:last-child {
-	border-bottom-left-radius: 2px;
-	border-bottom-right-radius: 2px;
-}
+
+/*
+#login-box .controls input:first-child {}
+
+#login-box .controls input:last-child {}*/
+
 #login-box button.btn-custom {
 	border-radius: 2px;
 	margin-top: 8px;
 	background: #4DF2A6;
 	border-color: rgba(48, 46, 45, 1);
-	color:white;
+	color: white;
 }
-#login-box button.btn-custom:hover{
+
+#login-box button.btn-custom:hover {
 	-webkit-transition: all 500ms ease;
 	-moz-transition: all 500ms ease;
 	-ms-transition: all 500ms ease;
@@ -52,15 +73,16 @@
 	background: #4CA0EF;
 	border-color: #000000;
 }
-.img{
+
+.img {
 	background: white;
 }
 
-.form-control.username, .form-control.password{
+.form-control.username,
+.form-control.password {
 	font-size: 20px;
 }
 
-#btn-ok{
+#btn-ok {
 	font-size: 20px;
 }
-

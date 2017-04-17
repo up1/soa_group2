@@ -81,6 +81,7 @@
 }
 .col-item .btn-add
 {
+    padding-right: 5px;
     width: 50%;
     float: left;
 }
