@@ -14,7 +14,7 @@ class SlideShow extends React.Component {
     ];
     return (
       <Slider images={images} isInfinite delay={3500} autoplay={true} dots={true} pauseOnHover={false}>
-        {images.map((image, key) => <div key={key} className="container-slide"><img alt="slide-imgs" src={image} class="img-responsive"/></div>)}
+        {images.map((image, key) => <div key={key} className="container-slide"><img alt="slide-imgs" src={image} class="img-responsive" id="imgsSlide"/></div>)}
       </Slider>
     );
     /*return (

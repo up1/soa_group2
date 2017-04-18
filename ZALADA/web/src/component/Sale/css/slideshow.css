@@ -2,11 +2,18 @@
 .container-slide {
   margin: 0 auto;
   height: 650px;
+  position:relative;
   width: 100%;
   color: #333;
   background: rgba(0, 0, 0, 0.6);
 }
 
+#imgsSlide{
+	width: 1920px;
+	height: 100%;
+	position:absolute;
+	margin:auto;
+}
 
 #slider {
 	margin-top: 100px;
