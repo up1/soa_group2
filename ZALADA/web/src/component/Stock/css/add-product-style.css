@@ -1,6 +1,6 @@
 /* color-scheme : https://coolors.co/2f4454-f48e4e-4df2a8-f24d94-4ca0ef */
 
 body {
-	font-family: 'Pridi', serif;
+	font-family: 'Pridi', serif !important;
 	margin-bottom: 25px; /* remove it when add footer */
 }
