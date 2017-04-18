@@ -1,7 +1,7 @@
 package com.grouptwo.zalada.billing.filter;
 
 
-import com.grouptwo.zalada.billing.JwtBuilder;
+import com.grouptwo.zalada.billing.utils.JwtBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
