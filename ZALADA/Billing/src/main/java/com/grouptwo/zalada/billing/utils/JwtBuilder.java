@@ -1,4 +1,4 @@
-package com.grouptwo.zalada.billing;
+package com.grouptwo.zalada.billing.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

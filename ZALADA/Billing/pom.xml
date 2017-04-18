@@ -15,7 +15,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
+        <version>1.4.1.RELEASE</version>
     </parent>
 
     <properties>
@@ -26,6 +26,11 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>com.moelholm</groupId>
+            <artifactId>prometheus-spring-boot-starter</artifactId>
+            <version>1.0.1</version>
+        </dependency>
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>

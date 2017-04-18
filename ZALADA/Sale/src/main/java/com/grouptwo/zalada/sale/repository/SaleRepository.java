@@ -57,9 +57,13 @@ public class SaleRepository {
     }
 
     public String insertCart(Integer userType, String ownerName){
-        Cart userCart = new Cart(userType, ownerName, getTimeStamp());
-        mongoTemplate.insert(userCart);
-        return userCart.getId();
+        Cart existCart = mongoTemplate.findOne(queryByOwnerName(ownerName), Cart.class);
+        if(existCart == null){
+            Cart userCart = new Cart(userType, ownerName, getTimeStamp());
+            mongoTemplate.insert(userCart);
+            return userCart.getId();
+        }
+        return existCart.getId();
     }
 
     public Cart findCartById(String cartId){
@@ -111,10 +115,6 @@ public class SaleRepository {
         return new Query(where("id").is(id));
     }
 
-    private Query queryByName(String name){
-        return new Query(where("name").is(name));
-    }
-
     private Query queryByCategory(String categoryName) {
         return new Query(where("category.name").is(categoryName));
     }
@@ -129,6 +129,11 @@ public class SaleRepository {
 
     private Query queryByOwner(String owner) {
         return new Query(where("owner").is(owner));
+    }
+
+    //Inconsistency naming
+    private Query queryByOwnerName(String ownerName){
+        return new Query(where("ownerName").is(ownerName));
     }
 
     private Query queryByProductId(String productId) {
