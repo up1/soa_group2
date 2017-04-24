@@ -87,7 +87,7 @@ public class SaleController {
     }
 
     @RequestMapping(value = "/buyhistory", method = RequestMethod.POST)
-    public ResponseEntity<String> insertPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder){
+    public String insertPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder){
         return saleRepository.insertPurchaseOrder(purchaseOrder);
     }
 

@@ -3,14 +3,18 @@ package com.grouptwo.zalada.sale.repository;
 import com.google.common.collect.Lists;
 import com.grouptwo.zalada.sale.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.client.RestTemplate;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -84,22 +88,21 @@ public class SaleRepository {
         mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
     }
 
-    public ResponseEntity<String> insertPurchaseOrder(PurchaseOrder purchaseOrder){
+    public String insertPurchaseOrder(PurchaseOrder purchaseOrder){
         mongoTemplate.insert(purchaseOrder);
-        return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.CREATED);
+        return purchaseOrder.getId();
     }
 
-    //Further review needed - query by "username"
-    public ArrayList findPurchaseOrderList(Pageable pageable, String memberId){
-        return getPaging(PurchaseOrder.class, pageable, queryById(memberId));
+    public ArrayList findPurchaseOrderList(Pageable pageable, String memberName){
+        return getPaging(PurchaseOrder.class, pageable, queryByBuyer(memberName));
     }
 
-    public ArrayList findPurchaseOrderList(String memberId){
-        return null;
+    public ArrayList findPurchaseOrderList(String memberName){
+        return (ArrayList) mongoTemplate.find(queryByBuyer(memberName), PurchaseOrder.class);
     }
 
-    public PurchaseOrder findPurchaseOrder(String memberId, String poNumber){
-        return null;
+    public PurchaseOrder findPurchaseOrder(String memberName, String poNumber){
+        return mongoTemplate.findOne(queryById(poNumber).addCriteria(where("buyer").is(memberName)), PurchaseOrder.class);
     }
 
     @SuppressWarnings("unchecked")
@@ -134,6 +137,11 @@ public class SaleRepository {
     //Inconsistency naming
     private Query queryByOwnerName(String ownerName){
         return new Query(where("ownerName").is(ownerName));
+    }
+
+    //Inconsistency naming
+    private Query queryByBuyer(String buyerName){
+        return new Query(where("buyer").is(buyerName));
     }
 
     private Query queryByProductId(String productId) {
