@@ -191,6 +191,7 @@ public class BillingController {
             billingRepository.paidPaySlip(poNumber);
             return new ResponseEntity<>("Thank you for shopping", HttpStatus.OK);
         } catch (QueryException | UpdateException e) {
+            logger.log(Level.WARNING, e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
