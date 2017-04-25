@@ -8,6 +8,7 @@ import com.grouptwo.zalada.billing.repository.SaleRepository;
 import com.grouptwo.zalada.billing.utils.EmailValidator;
 import com.grouptwo.zalada.billing.utils.PaySlipPdfManager;
 import com.itextpdf.text.DocumentException;
+import org.apache.juli.logging.Log;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,10 +26,12 @@ import java.beans.IntrospectionException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 @RestController
 public class BillingController {
 
+    private final Logger logger;
     @Autowired
     private
     BillingRepository billingRepository;
@@ -42,6 +45,10 @@ public class BillingController {
 
     @Value("classpath:zalada-pay-form.pdf")
     private Resource payForm;
+
+    public BillingController(){
+        logger = Logger.getLogger(BillingController.class.getName());
+    }
 
     @RequestMapping(value = "/purchaseorder", method = RequestMethod.GET)
     public ArrayList findAllPurchaseOrder(@RequestParam(required = false, name = "page") Integer page,
@@ -105,6 +112,7 @@ public class BillingController {
             billingRepository.updatePurchaseOrder(buyer, id, purchaseOrder);
             return new ResponseEntity<>("Purchase Order is Updated", HttpStatus.OK);
         } catch (InvocationTargetException | IllegalAccessException | IntrospectionException e) {
+
             return new ResponseEntity<>("Error Message : " + e.getMessage() +
                     "\n Case : " + e.getCause().toString(),
                     HttpStatus.INTERNAL_SERVER_ERROR);
