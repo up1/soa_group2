@@ -13,7 +13,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @SpringBootApplication
@@ -71,22 +70,22 @@ public class StockManageMain {
         accChildren.add("Battery and Charging Accessory");
         accChildren.add("Mobile Case");
         mobileAccCategory.setChildren(accChildren);
-        stockRepository.insertCategory(mobileAccCategory);
+        stockRepository.insertCategory( mobileAccCategory);
 
         parent.add("Mobile Accessory");
         Category backupBatteryCategory  = new Category();
         backupBatteryCategory.setName("Backup Battery");
         backupBatteryCategory.setParents(parent);
-        stockRepository.insertCategory(backupBatteryCategory);
+        stockRepository.insertCategory( backupBatteryCategory);
 
         Category batteryCategory = new Category();
         batteryCategory.setName("Battery and Charging Accessory");
         batteryCategory.setParents(parent);
-        stockRepository.insertCategory(batteryCategory);
+        stockRepository.insertCategory( batteryCategory);
 
         Category caseCategory = new Category();
         caseCategory.setName("Mobile Case");
         caseCategory.setParents(parent);
-        stockRepository.insertCategory(caseCategory);
+        stockRepository.insertCategory( caseCategory);
     }
 }

@@ -1,9 +1,9 @@
-package com.grouptwo.zalada.member.domain;
+package com.grouptwo.zalada.sale.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "user")
-public class User {
+@Document(collection = "member")
+public class Member {
 
     private String username;
     private String name;
@@ -12,21 +12,9 @@ public class User {
     private String address;
     private String email;
     private String tel;
+    private String cartId;
 
-    public static final String COLLECTION_NAME = "user";
-
-    public User() {
-    }
-
-    public User(String username) {
-        this.username = username;
-    }
-
-    public User(Signup signup){
-        this.username = signup.getUsername();
-        this.email = signup.getEmail();
-        this.gender = signup.getGender();
-        this.birthDate = signup.getBirthDate();
+    public Member() {
     }
 
     public String getUsername() {
@@ -85,16 +73,25 @@ public class User {
         this.tel = tel;
     }
 
+    public String getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
+    }
+
     @Override
     public String toString() {
-        return "{" +
-                "\"username\":\"" + username + "\"" +
-                ", \"name\":\"" + name + "\"" +
-                ", \"gender\":\"" + gender + "\"" +
-                ", \"birthDate\":\"" + birthDate + "\"" +
-                ", \"address\":\"" + address + "\"" +
-                ", \"email\":\"" + email + "\"" +
-                ", \"tel\":\"" + tel + "\"" +
+        return "Member{" +
+                "username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", tel='" + tel + '\'' +
+                ", cartId='" + cartId + '\'' +
                 '}';
     }
 }

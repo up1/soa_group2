@@ -2,18 +2,21 @@ package com.grouptwo.zalada.member.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "login")
-public class Login {
+import java.util.ArrayList;
+
+@Document(collection = "signin")
+public class SignIn {
 
     private String username;
     private String password;
+    private ArrayList<String> role;
 
-    public static final String COLLECTION_NAME = "login";
-
-    public Login(String username, String password){
+    public SignIn(String username, String password){
         this.username = username;
         this.password = password;
     }
+
+    public SignIn(){}
 
     public String getUsername() {
         return username;
@@ -29,5 +32,13 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public ArrayList<String> getRole() {
+        return role;
+    }
+
+    public void setRole(ArrayList<String> role) {
+        this.role = role;
     }
 }

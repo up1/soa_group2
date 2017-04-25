@@ -3,14 +3,18 @@ package com.grouptwo.zalada.sale.repository;
 import com.google.common.collect.Lists;
 import com.grouptwo.zalada.sale.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.client.RestTemplate;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -24,6 +28,8 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @Repository
 public class SaleRepository {
+
+    private static String ANONYMOUS_OWNER = "anonymous";
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -41,31 +47,27 @@ public class SaleRepository {
     }
 
     public ArrayList findAllProductByCategory(Pageable pageable, String categoryName){
-        Category category = mongoTemplate.findOne(queryByName(categoryName), Category.class);
-        return getPaging(Product.class, pageable, new Query(where("category").is(category)));
+        return getPaging(Product.class, pageable, queryByCategory(categoryName));
     }
 
     public  List<Product> findAllProductByCategory(String categoryName){
-        Category category = mongoTemplate.findOne(queryByName(categoryName), Category.class);
-        return mongoTemplate.find(new Query(where("category").is(category)), Product.class);
+        return mongoTemplate.find(queryByCategory(categoryName), Product.class);
     }
 
-    public ResponseEntity<String> insertCart(Integer userType){
-        Cart anonCart = new Cart();
-        anonCart.setCartType(userType);
-        anonCart.setCreateDate(getTimeStamp());
-        anonCart.setOwnerName("anonymous");
-        mongoTemplate.insert(anonCart);
-        return new ResponseEntity<>(anonCart.getId(), HttpStatus.CREATED);
-    }
-
-    public ResponseEntity<String> insertCart(Integer userType, String ownerName){
-        Cart userCart = new Cart();
-        userCart.setCartType(userType);
-        userCart.setOwnerName(ownerName);
-        userCart.setCreateDate(getTimeStamp());
+    public String insertCart(Integer userType){
+        Cart userCart = new Cart(userType, ANONYMOUS_OWNER, getTimeStamp());
         mongoTemplate.insert(userCart);
-        return new ResponseEntity<>(userCart.getId(), HttpStatus.CREATED);
+        return userCart.getId();
+    }
+
+    public String insertCart(Integer userType, String ownerName){
+        Cart existCart = mongoTemplate.findOne(queryByOwnerName(ownerName), Cart.class);
+        if(existCart == null){
+            Cart userCart = new Cart(userType, ownerName, getTimeStamp());
+            mongoTemplate.insert(userCart);
+            return userCart.getId();
+        }
+        return existCart.getId();
     }
 
     public Cart findCartById(String cartId){
@@ -86,6 +88,23 @@ public class SaleRepository {
     public void updateCart(String cartId, Cart updateCart){
         Update update = updateWithReflect(Cart.class, updateCart);
         mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
+    }
+
+    public String insertPurchaseOrder(PurchaseOrder purchaseOrder){
+        mongoTemplate.insert(purchaseOrder);
+        return purchaseOrder.getId();
+    }
+
+    public ArrayList findPurchaseOrderList(Pageable pageable, String memberName){
+        return getPaging(PurchaseOrder.class, pageable, queryByBuyer(memberName));
+    }
+
+    public ArrayList findPurchaseOrderList(String memberName){
+        return (ArrayList) mongoTemplate.find(queryByBuyer(memberName), PurchaseOrder.class);
+    }
+
+    public PurchaseOrder findPurchaseOrder(String memberName, String poNumber){
+        return mongoTemplate.findOne(queryById(poNumber).addCriteria(where("buyer").is(memberName)), PurchaseOrder.class);
     }
 
     public ResponseEntity<String> updateAmount(String cartId, String productId, int amount){
@@ -130,12 +149,34 @@ public class SaleRepository {
         return new Query(where("id").is(id));
     }
 
-    private Query queryByName(String name){
-        return new Query(where("name").is(name));
+    private Query queryByCategory(String categoryName) {
+        return new Query(where("category.name").is(categoryName));
     }
 
     private Long getTimeStamp(){
         return System.currentTimeMillis() / 1000L;
+    }
+
+    private Query queryByAmount(){
+        return new Query(where("amount").gt(0));
+    }
+
+    private Query queryByOwner(String owner) {
+        return new Query(where("owner").is(owner));
+    }
+
+    //Inconsistency naming
+    private Query queryByOwnerName(String ownerName){
+        return new Query(where("ownerName").is(ownerName));
+    }
+
+    //Inconsistency naming
+    private Query queryByBuyer(String buyerName){
+        return new Query(where("buyer").is(buyerName));
+    }
+
+    private Query queryByProductId(String productId) {
+        return new Query(where("product_id").is(productId));
     }
 
     private Update updateWithReflect(Class domain, Object updateObject){
@@ -156,8 +197,40 @@ public class SaleRepository {
         return update;
     }
 
-    private Query queryByAmount(){
-        return new Query(where("amount").gt(0));
+    public ResponseEntity<ArrayList> queryPurchaseOrder(PurchaseOrder purchaseOrder) {
+        ArrayList<Product> product = purchaseOrder.getBuyProducts();
+        ArrayList<String> history = new ArrayList<>();
+
+        for (Product p : product) {
+            SaleHistory saleHistory = new SaleHistory();
+            saleHistory.setProduct_id(p.getId());
+            saleHistory.setOwner(p.getOwner());
+            saleHistory.setBuyer(purchaseOrder.getBuyer());
+            saleHistory.setPonumber(purchaseOrder.getId());
+            saleHistory.setDate(getTimeStamp());
+            saleHistory.setAmount(p.getAmount());
+
+            mongoTemplate.insert(saleHistory);
+            history.add(saleHistory.getId());
+        }
+
+        return new ResponseEntity<>(history, HttpStatus.CREATED);
+    }
+
+    public List<SaleHistory> findSaleHistoryListByOwner(String owner){
+        return mongoTemplate.find(queryByOwner(owner), SaleHistory.class);
+    }
+
+    public ArrayList findSaleHistoryListByOwner(Pageable pageable, String owner){
+        return getPaging(SaleHistory.class, pageable, queryByOwner(owner));
+    }
+
+    public List<SaleHistory> findSaleHistoryListByProduct(String productId){
+        return mongoTemplate.find(queryByProductId(productId), SaleHistory.class);
+    }
+
+    public ArrayList findSaleHistoryListByProduct(Pageable pageable, String productId){
+        return getPaging(SaleHistory.class, pageable, queryByProductId(productId));
     }
 
 }
