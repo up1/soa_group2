@@ -8,6 +8,7 @@ import com.grouptwo.zalada.billing.repository.SaleRepository;
 import com.grouptwo.zalada.billing.utils.EmailValidator;
 import com.grouptwo.zalada.billing.utils.PaySlipPdfManager;
 import com.itextpdf.text.DocumentException;
+import org.apache.juli.logging.Log;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,23 +26,28 @@ import java.beans.IntrospectionException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 public class BillingController {
 
+    private final Logger logger;
     @Autowired
-    private
-    BillingRepository billingRepository;
+    private BillingRepository billingRepository;
 
     @Autowired
     SaleRepository saleRepository;
 
     @Autowired
-    private
-    EmailValidator emailValidator;
+    private EmailValidator emailValidator;
 
     @Value("classpath:zalada-pay-form.pdf")
     private Resource payForm;
+
+    public BillingController(){
+        logger = Logger.getLogger(BillingController.class.getName());
+    }
 
     @RequestMapping(value = "/purchaseorder", method = RequestMethod.GET)
     public ArrayList findAllPurchaseOrder(@RequestParam(required = false, name = "page") Integer page,
@@ -105,6 +111,7 @@ public class BillingController {
             billingRepository.updatePurchaseOrder(buyer, id, purchaseOrder);
             return new ResponseEntity<>("Purchase Order is Updated", HttpStatus.OK);
         } catch (InvocationTargetException | IllegalAccessException | IntrospectionException e) {
+            logger.log(Level.WARNING, e.getMessage());
             return new ResponseEntity<>("Error Message : " + e.getMessage() +
                     "\n Case : " + e.getCause().toString(),
                     HttpStatus.INTERNAL_SERVER_ERROR);
@@ -127,6 +134,7 @@ public class BillingController {
             pdfManager.fillForm(purchaseOrder);
             paySlipFile = pdfManager.getOutput();
         } catch (IOException | DocumentException e) {
+            logger.log(Level.WARNING, e.getMessage());
             return new ResponseEntity<>(e.getMessage().getBytes(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -178,11 +186,12 @@ public class BillingController {
     }
 
     @RequestMapping(value = "/payslip/paid/{poNumber}", method = RequestMethod.PATCH)
-    public ResponseEntity<String> PaidPaySlip(@PathVariable String poNumber) {
+    public ResponseEntity<String> paidPaySlip(@PathVariable String poNumber) {
         try {
             billingRepository.paidPaySlip(poNumber);
             return new ResponseEntity<>("Thank you for shopping", HttpStatus.OK);
         } catch (QueryException | UpdateException e) {
+            logger.log(Level.WARNING, e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
