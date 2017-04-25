@@ -49,11 +49,6 @@ public class PdfManager {
         loadStamper(getOutput());
     }
 
-    public Set<String> getFieldsName() throws IOException, DocumentException {
-        AcroFields fields = getReader().getAcroFields();
-        return fields.getFields().keySet();
-    }
-
     private void closeFile() {
         reader.close();
     }
