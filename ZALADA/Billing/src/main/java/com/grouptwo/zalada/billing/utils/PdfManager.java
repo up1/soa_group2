@@ -8,7 +8,6 @@ import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
-import java.util.Set;
 
 public class PdfManager {
 
@@ -43,9 +42,7 @@ public class PdfManager {
 
     void init() throws IOException, DocumentException {
         loadFile();
-
         setOutput(new ByteArrayOutputStream());
-
         loadStamper(getOutput());
     }
 
