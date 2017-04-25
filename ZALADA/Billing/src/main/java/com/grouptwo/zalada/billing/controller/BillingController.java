@@ -26,6 +26,7 @@ import java.beans.IntrospectionException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @RestController
@@ -135,6 +136,7 @@ public class BillingController {
             pdfManager.fillForm(purchaseOrder);
             paySlipFile = pdfManager.getOutput();
         } catch (IOException | DocumentException e) {
+            logger.log(Level.WARNING, e.getMessage());
             return new ResponseEntity<>(e.getMessage().getBytes(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
