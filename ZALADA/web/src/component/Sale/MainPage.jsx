@@ -15,7 +15,7 @@ class MainPage extends React.Component {
         <ProductReview addProduct={this.props.addProduct} />
         <FooterSection />
       </div>
-    )
+    );
   }
 }
 
