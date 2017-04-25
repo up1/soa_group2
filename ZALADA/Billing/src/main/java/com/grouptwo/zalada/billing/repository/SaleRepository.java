@@ -11,8 +11,7 @@ import org.springframework.web.client.RestTemplate;
 public class SaleRepository {
 
     @Autowired
-    private
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
     public String isCartExits(String cartId){
         HttpHeaders header = restTemplate.headForHeaders("localhost:9003/cart/" + cartId);

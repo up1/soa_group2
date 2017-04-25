@@ -34,15 +34,13 @@ public class BillingController {
 
     private final Logger logger;
     @Autowired
-    private
-    BillingRepository billingRepository;
+    private BillingRepository billingRepository;
 
     @Autowired
     SaleRepository saleRepository;
 
     @Autowired
-    private
-    EmailValidator emailValidator;
+    private EmailValidator emailValidator;
 
     @Value("classpath:zalada-pay-form.pdf")
     private Resource payForm;
