@@ -186,7 +186,7 @@ public class BillingController {
     }
 
     @RequestMapping(value = "/payslip/paid/{poNumber}", method = RequestMethod.PATCH)
-    public ResponseEntity<String> PaidPaySlip(@PathVariable String poNumber) {
+    public ResponseEntity<String> paidPaySlip(@PathVariable String poNumber) {
         try {
             billingRepository.paidPaySlip(poNumber);
             return new ResponseEntity<>("Thank you for shopping", HttpStatus.OK);
