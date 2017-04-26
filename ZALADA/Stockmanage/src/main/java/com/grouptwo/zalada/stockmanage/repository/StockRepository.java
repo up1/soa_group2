@@ -33,11 +33,11 @@ public class StockRepository {
     private MongoTemplate mongoTemplate;
     private Log log = LogFactory.getLog(StockRepository.class.getName());
 
-    public void updateProduct(String owner, String id, Product updateProduct) {
+    public void updateProduct(String owner, String id, Product updateProduct) throws ProductNotFoundException {
 
         boolean isProductExits = mongoTemplate.exists(new Query(where("id").is(id).andOperator(whereByOwner(owner))), Product.class);
         if (isProductExits){
-            throw new RuntimeException("Product Not Exits");
+            throw new ProductNotFoundException();
         }
 
         Long timestamp = getTimeStamp();
