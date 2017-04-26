@@ -168,7 +168,7 @@ public class SaleRepository {
 
         for (Product p : product) {
             SaleHistory saleHistory = new SaleHistory();
-            saleHistory.setProduct_id(p.getId());
+            saleHistory.setProductId(p.getId());
             saleHistory.setOwner(p.getOwner());
             saleHistory.setBuyer(purchaseOrder.getBuyer());
             saleHistory.setPoNumber(purchaseOrder.getId());

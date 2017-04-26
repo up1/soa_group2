@@ -23,11 +23,11 @@ public class SaleHistory {
         this.id = id;
     }
 
-    public String getProduct_id() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProduct_id(String productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
