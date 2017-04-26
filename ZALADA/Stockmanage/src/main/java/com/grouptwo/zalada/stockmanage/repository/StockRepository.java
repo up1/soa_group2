@@ -164,7 +164,6 @@ public class StockRepository {
         for (String eachChild : category.getChildren()){
             categoryList.add(eachChild);
         }
-        System.out.println(categoryList);
         return categoryList;
     }
 
