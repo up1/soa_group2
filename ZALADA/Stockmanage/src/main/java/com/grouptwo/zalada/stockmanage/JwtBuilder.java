@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class JwtBuilder {
 
-    public static String secretKey = "pOnAm2017";
+    @Value("${secretKey}")
+    private static String secretKey;
     private JwtBuilder(){}
 
     public static Authentication build(HttpServletRequest request) {
