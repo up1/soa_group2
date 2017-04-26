@@ -19,7 +19,6 @@ public class Product {
     private String imagePath;
 
 
-    public Product(){}
 
     public String getId() {
         return id;
