@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "cart")
 public class Cart {
@@ -12,7 +13,7 @@ public class Cart {
     private String id;
     private Integer cartType;
     private String ownerName;
-    private ArrayList<Product> products;
+    private List<Product> products;
     private Long createDate;
 
     public Cart(){
@@ -55,11 +56,11 @@ public class Cart {
         this.ownerName = ownerName;
     }
 
-    public ArrayList<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

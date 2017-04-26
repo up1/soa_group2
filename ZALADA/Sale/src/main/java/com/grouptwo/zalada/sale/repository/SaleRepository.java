@@ -3,18 +3,14 @@ package com.grouptwo.zalada.sale.repository;
 import com.google.common.collect.Lists;
 import com.grouptwo.zalada.sale.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.client.RestTemplate;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -23,13 +19,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @Repository
 public class SaleRepository {
 
-    private static String ANONYMOUS_OWNER = "anonymous";
+    private static final String ANONYMOUSOWNER = "anonymous";
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -38,7 +36,7 @@ public class SaleRepository {
         return mongoTemplate.findOne(queryById(id), Product.class);
     }
 
-    public ArrayList findAllProduct(Pageable pageable){
+    public List findAllProduct(Pageable pageable){
         return getPaging(Product.class, pageable, queryByAmount());
     }
 
@@ -46,7 +44,7 @@ public class SaleRepository {
         return mongoTemplate.find(queryByAmount(), Product.class);
     }
 
-    public ArrayList findAllProductByCategory(Pageable pageable, String categoryName){
+    public List findAllProductByCategory(Pageable pageable, String categoryName){
         return getPaging(Product.class, pageable, queryByCategory(categoryName));
     }
 
@@ -55,7 +53,7 @@ public class SaleRepository {
     }
 
     public String insertCart(Integer userType){
-        Cart userCart = new Cart(userType, ANONYMOUS_OWNER, getTimeStamp());
+        Cart userCart = new Cart(userType, ANONYMOUSOWNER, getTimeStamp());
         mongoTemplate.insert(userCart);
         return userCart.getId();
     }
@@ -79,13 +77,11 @@ public class SaleRepository {
         Product buyingProduct = mongoTemplate.findOne(queryById(productId), Product.class);
         buyingProduct.setAmount(amount);
         updateCart.addProduct(buyingProduct);
-        Update update = updateWithReflect(Cart.class, updateCart);
-        mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
+        mongoTemplate.updateFirst(queryById(cartId), updateWithReflect(Cart.class, updateCart), Cart.class);
     }
 
     public void updateCart(String cartId, Cart updateCart){
-        Update update = updateWithReflect(Cart.class, updateCart);
-        mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
+        mongoTemplate.updateFirst(queryById(cartId), updateWithReflect(Cart.class, updateCart), Cart.class);
     }
 
     public String insertPurchaseOrder(PurchaseOrder purchaseOrder){
@@ -93,12 +89,12 @@ public class SaleRepository {
         return purchaseOrder.getId();
     }
 
-    public ArrayList findPurchaseOrderList(Pageable pageable, String memberName){
+    public List findPurchaseOrderList(Pageable pageable, String memberName){
         return getPaging(PurchaseOrder.class, pageable, queryByBuyer(memberName));
     }
 
-    public ArrayList findPurchaseOrderList(String memberName){
-        return (ArrayList) mongoTemplate.find(queryByBuyer(memberName), PurchaseOrder.class);
+    public List findPurchaseOrderList(String memberName){
+        return mongoTemplate.find(queryByBuyer(memberName), PurchaseOrder.class);
     }
 
     public PurchaseOrder findPurchaseOrder(String memberName, String poNumber){
@@ -111,7 +107,7 @@ public class SaleRepository {
         query.with(pageable);
         domains = mongoTemplate.find(query, domainClass);
         long total = mongoTemplate.count(query, domainClass);
-        return Lists.newArrayList((new PageImpl(domains, pageable, total)));
+        return Lists.newArrayList(new PageImpl(domains, pageable, total));
     }
 
     private Query queryById(String id){
@@ -156,26 +152,26 @@ public class SaleRepository {
                 String attributeName = pd.getName();
                 Method getter = pd.getReadMethod();
                 Object attributeObject = getter.invoke(updateObjectCasted);
-                if (!"class".equals(attributeName) && attributeObject != null && !attributeName.equals("id")) {
+                if (!"class".equals(attributeName) && attributeObject != null && !"id".equals(attributeName)) {
                     update.set(attributeName, pd.getPropertyType().cast(attributeObject));
                 }
             }
         } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            Logger.getAnonymousLogger().log(Level.SEVERE, "an exception was thrown", e);
         }
         return update;
     }
 
-    public ResponseEntity<ArrayList> queryPurchaseOrder(PurchaseOrder purchaseOrder) {
-        ArrayList<Product> product = purchaseOrder.getBuyProducts();
+    public ResponseEntity<List> queryPurchaseOrder(PurchaseOrder purchaseOrder) {
+        List<Product> product = purchaseOrder.getBuyProducts();
         ArrayList<String> history = new ArrayList<>();
 
         for (Product p : product) {
             SaleHistory saleHistory = new SaleHistory();
-            saleHistory.setProduct_id(p.getId());
+            saleHistory.setProductId(p.getId());
             saleHistory.setOwner(p.getOwner());
             saleHistory.setBuyer(purchaseOrder.getBuyer());
-            saleHistory.setPonumber(purchaseOrder.getId());
+            saleHistory.setPoNumber(purchaseOrder.getId());
             saleHistory.setDate(getTimeStamp());
             saleHistory.setAmount(p.getAmount());
 
@@ -190,7 +186,7 @@ public class SaleRepository {
         return mongoTemplate.find(queryByOwner(owner), SaleHistory.class);
     }
 
-    public ArrayList findSaleHistoryListByOwner(Pageable pageable, String owner){
+    public List findSaleHistoryListByOwner(Pageable pageable, String owner){
         return getPaging(SaleHistory.class, pageable, queryByOwner(owner));
     }
 
@@ -198,7 +194,7 @@ public class SaleRepository {
         return mongoTemplate.find(queryByProductId(productId), SaleHistory.class);
     }
 
-    public ArrayList findSaleHistoryListByProduct(Pageable pageable, String productId){
+    public List findSaleHistoryListByProduct(Pageable pageable, String productId){
         return getPaging(SaleHistory.class, pageable, queryByProductId(productId));
     }
 

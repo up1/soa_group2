@@ -8,11 +8,11 @@ public class SaleHistory {
 
     @Id
     private String id;
-    private String product_id;
+    private String productId;
     private String owner;
-    private String ponumber;
-    private String Buyer;
-    private Long Date;
+    private String poNumber;
+    private String buyer;
+    private Long date;
     private int amount;
 
     public String getId() {
@@ -23,12 +23,12 @@ public class SaleHistory {
         this.id = id;
     }
 
-    public String getProduct_id() {
-        return product_id;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getOwner() {
@@ -40,27 +40,27 @@ public class SaleHistory {
     }
 
     public String getPonumber() {
-        return ponumber;
+        return poNumber;
     }
 
-    public void setPonumber(String ponumber) {
-        this.ponumber = ponumber;
+    public void setPoNumber(String poNumber) {
+        this.poNumber = poNumber;
     }
 
     public String getBuyer() {
-        return Buyer;
+        return buyer;
     }
 
     public void setBuyer(String buyer) {
-        Buyer = buyer;
+        this.buyer = buyer;
     }
 
     public Long getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(Long date) {
-        Date = date;
+        this.date = date;
     }
 
     public int getAmount() {

@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "purchaseorder")
 public class PurchaseOrder {
@@ -16,7 +17,7 @@ public class PurchaseOrder {
     private Long buyDate;
     private Long paidDate;
     private Long payScheduled;
-    private ArrayList<Product> buyProducts;
+    private List<Product> buyProducts;
     private String deliveryAddress;
     private Integer payStatus;
     private String tel;
@@ -27,7 +28,9 @@ public class PurchaseOrder {
     public static final int STATUS_CODE_CANCEL = -1;
     public static final int STATUS_CODE_OUT_OF_TIME = -2;
 
-    public PurchaseOrder(){}
+    public PurchaseOrder(){
+        //spring needs a constructor
+    }
 
     public PurchaseOrder(Cart cart){
         this.buyProducts = new ArrayList<>(cart.getProducts());
@@ -81,11 +84,11 @@ public class PurchaseOrder {
         this.payScheduled = payScheduled;
     }
 
-    public ArrayList<Product> getBuyProducts() {
+    public List<Product> getBuyProducts() {
         return buyProducts;
     }
 
-    public void setBuyProducts(ArrayList<Product> buyProducts) {
+    public void setBuyProducts(List<Product> buyProducts) {
         this.buyProducts = buyProducts;
     }
 

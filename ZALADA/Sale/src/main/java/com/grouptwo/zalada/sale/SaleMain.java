@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAutoConfiguration
 public class SaleMain {
 
+    private SaleMain(){}
+
     public static void main(String... args){
         SpringApplication.run(SaleMain.class, args);
     }

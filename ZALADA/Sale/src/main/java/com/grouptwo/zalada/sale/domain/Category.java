@@ -2,8 +2,7 @@ package com.grouptwo.zalada.sale.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "category")
 public class Category {
@@ -11,12 +10,14 @@ public class Category {
     @Id
     private String id;
     private String name;
-    private ArrayList<String> parents;
-    private ArrayList<String> children;
+    private List<String> parents;
+    private List<String> children;
 
     public static final String COLLECTION_NAME = "category";
 
-    public Category(){}
+    public Category(){
+        //Constructor needed for spring
+    }
 
     public String getId() {
         return id;
@@ -34,19 +35,19 @@ public class Category {
         this.name = name;
     }
 
-    public ArrayList<String> getchildren() {
+    public List<String> getchildren() {
         return children;
     }
 
-    public void setchildren(ArrayList<String> children) {
+    public void setchildren(List<String> children) {
         this.children = children;
     }
 
-    public ArrayList<String> getParents() {
+    public List<String> getParents() {
         return parents;
     }
 
-    public void setParents(ArrayList<String> parents) {
+    public void setParents(List<String> parents) {
         this.parents = parents;
     }
 
