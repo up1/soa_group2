@@ -101,8 +101,8 @@ public class UploadService {
         try {
             Files.createDirectory(rootLocation);
         } catch (IOException e) {
-            throw new UploadException("Could not initialize storage", e);
             log.error(e);
+            throw new UploadException("Could not initialize storage");
         }
     }
 
