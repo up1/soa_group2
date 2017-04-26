@@ -59,6 +59,7 @@ public class UploadService {
             stockRepository.updateProduct(owner, productId, product);
         } catch (IOException e) {
             throw new UploadException("Failed to store file " + file.getOriginalFilename(), e);
+            log.error(e);
         }
     }
 
@@ -87,6 +88,7 @@ public class UploadService {
                 throw new RepositoryException("Could not read file: " + fileName);
             }
         } catch (MalformedURLException e) {
+            log.error(e);
             throw new RepositoryException("Could not read image of Product: " + productId);
         }
     }
@@ -100,6 +102,7 @@ public class UploadService {
             Files.createDirectory(rootLocation);
         } catch (IOException e) {
             throw new UploadException("Could not initialize storage", e);
+            log.error(e);
         }
     }
 
