@@ -34,7 +34,7 @@ public class SaleRepository {
         return mongoTemplate.findOne(queryById(id), Product.class);
     }
 
-    public ArrayList findAllProduct(Pageable pageable){
+    public List findAllProduct(Pageable pageable){
         return getPaging(Product.class, pageable, queryByAmount());
     }
 
@@ -42,7 +42,7 @@ public class SaleRepository {
         return mongoTemplate.find(queryByAmount(), Product.class);
     }
 
-    public ArrayList findAllProductByCategory(Pageable pageable, String categoryName){
+    public List findAllProductByCategory(Pageable pageable, String categoryName){
         return getPaging(Product.class, pageable, queryByCategory(categoryName));
     }
 
@@ -89,12 +89,12 @@ public class SaleRepository {
         return purchaseOrder.getId();
     }
 
-    public ArrayList findPurchaseOrderList(Pageable pageable, String memberName){
+    public List findPurchaseOrderList(Pageable pageable, String memberName){
         return getPaging(PurchaseOrder.class, pageable, queryByBuyer(memberName));
     }
 
-    public ArrayList findPurchaseOrderList(String memberName){
-        return (ArrayList) mongoTemplate.find(queryByBuyer(memberName), PurchaseOrder.class);
+    public List findPurchaseOrderList(String memberName){
+        return mongoTemplate.find(queryByBuyer(memberName), PurchaseOrder.class);
     }
 
     public PurchaseOrder findPurchaseOrder(String memberName, String poNumber){
