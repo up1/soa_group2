@@ -3,7 +3,6 @@ package com.grouptwo.zalada.stockmanage.controller;
 import com.grouptwo.zalada.stockmanage.domain.Category;
 import com.grouptwo.zalada.stockmanage.domain.Product;
 import com.grouptwo.zalada.stockmanage.exception.RepositoryException;
-import com.grouptwo.zalada.stockmanage.exception.RequestException;
 import com.grouptwo.zalada.stockmanage.repository.StockRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -55,7 +54,8 @@ public class StockController {
         String owner = getUsername();
         try {
             stockRepository.insertProduct(owner, product);
-        } catch (RepositoryException | RequestException e) {
+        } catch (RepositoryException e) {
+            log.error(e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(product.getId(), HttpStatus.OK);
@@ -73,8 +73,9 @@ public class StockController {
         String owner = getUsername();
         try {
             stockRepository.updateProduct(owner, id, upDateProduct);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            log.error(e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
@@ -84,8 +85,9 @@ public class StockController {
         String owner = getUsername();
         try {
             stockRepository.deleteProduct(owner, id);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            log.error(e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
