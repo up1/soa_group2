@@ -3,7 +3,7 @@ package com.grouptwo.zalada.stockmanage.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "category")
 public class Category {
@@ -12,11 +12,10 @@ public class Category {
     private String id;
     private String name;
 
-    private ArrayList<String> children;
-    private ArrayList<String> parents;
+    private List<String> children;
+    private List<String> parents;
 
 
-    public Category(){}
 
     public String getId() {
         return id;
@@ -34,19 +33,19 @@ public class Category {
         this.name = name;
     }
 
-    public ArrayList<String> getChildren() {
+    public List<String> getChildren() {
         return children;
     }
 
-    public void setChildren(ArrayList<String> children) {
+    public void setChildren(List<String> children) {
         this.children = children;
     }
 
-    public ArrayList<String> getParents() {
+    public List<String> getParents() {
         return parents;
     }
 
-    public void setParents(ArrayList<String> parents) {
+    public void setParents(List<String> parents) {
         this.parents = parents;
     }
 
