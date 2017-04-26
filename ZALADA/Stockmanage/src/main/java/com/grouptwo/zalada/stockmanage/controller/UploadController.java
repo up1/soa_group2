@@ -35,6 +35,7 @@ public class UploadController {
             uploadService.uploadImage(file, productId);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (UploadException e) {
+            log.error(e);
             return new ResponseEntity<>(e.getMessage() + "\n" + e.getCause(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -48,9 +49,8 @@ public class UploadController {
                     .ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                     .body(file);
-        } catch (UploadException e) {
-            return new ResponseEntity<>(e.getMessage() + "\n" + e.getCause(), HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (RepositoryException | RequestException e) {
+        } catch (RepositoryException e) {
+            log.error(e);
             return new ResponseEntity<>(e.getMessage() + "\n" + e.getCause(), HttpStatus.BAD_REQUEST);
         }
     }
