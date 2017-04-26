@@ -30,7 +30,7 @@ public class StockManageMain {
 
     @Bean
     CommandLineRunner init(UploadService uploadService, StockRepository stockRepository) {
-        return (args) -> {
+        return args -> {
             if(CLEAR){
                 uploadService.deleteAll();
                 uploadService.init();
