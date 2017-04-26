@@ -167,8 +167,11 @@ public class StockRepository {
         return categoryList;
     }
 
-    public Query queryByOwner(String owner){
-        return new Query(where("owner").is(owner));
+    private Query queryByOwner(String owner){
+        return new Query(whereByOwner(owner));
+    }
+    private Criteria whereByOwner(String owner){
+        return where("owner").is(owner);
     }
 
     public void deleteCategory(String name) {
