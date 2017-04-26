@@ -3,7 +3,6 @@ package com.grouptwo.zalada.stockmanage.service;
 import com.grouptwo.zalada.stockmanage.config.UploadProperties;
 import com.grouptwo.zalada.stockmanage.domain.Product;
 import com.grouptwo.zalada.stockmanage.exception.RepositoryException;
-import com.grouptwo.zalada.stockmanage.exception.RequestException;
 import com.grouptwo.zalada.stockmanage.exception.UploadException;
 import com.grouptwo.zalada.stockmanage.repository.StockRepository;
 import org.apache.commons.io.FileUtils;
