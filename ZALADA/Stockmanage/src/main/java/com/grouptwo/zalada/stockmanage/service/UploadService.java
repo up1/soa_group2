@@ -8,6 +8,8 @@ import com.grouptwo.zalada.stockmanage.exception.UploadException;
 import com.grouptwo.zalada.stockmanage.repository.StockRepository;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -29,6 +31,7 @@ public class UploadService {
 
     private final Path rootLocation;
     private final StockRepository stockRepository;
+    private Log log = LogFactory.getLog(UploadService.class.getName());
 
     @Autowired
     public UploadService(UploadProperties properties, StockRepository stockRepository) {
