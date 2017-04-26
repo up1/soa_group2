@@ -10,7 +10,7 @@ import java.util.Collections;
 public class Authenticated implements Authentication {
 
     private String username;
-    private boolean user_authenticated = true;
+    private boolean userAuthenticated = true;
 
     public Authenticated(String username) {
         this.username = username;
@@ -18,7 +18,7 @@ public class Authenticated implements Authentication {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
@@ -38,12 +38,12 @@ public class Authenticated implements Authentication {
 
     @Override
     public boolean isAuthenticated() {
-        return user_authenticated;
+        return userAuthenticated;
     }
 
     @Override
     public void setAuthenticated(boolean b) throws IllegalArgumentException {
-        this.user_authenticated = b;
+        this.userAuthenticated = b;
     }
 
     @Override
