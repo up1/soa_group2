@@ -24,6 +24,7 @@ public class StockManageMain {
     public static void main(String ... args){
         SpringApplication.run(StockManageMain.class, args);
     }
+    private static final boolean CLEAR = true;
 
     @Autowired
     private MongoTemplate mongoTemplate;
