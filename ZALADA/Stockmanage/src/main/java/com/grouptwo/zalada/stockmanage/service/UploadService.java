@@ -57,9 +57,9 @@ public class UploadService {
             String imagePath = newPath.toString();
             product.setImagePath(imagePath);
             stockRepository.updateProduct(owner, productId, product);
-        } catch (IOException e) {
-            throw new UploadException("Failed to store file " + file.getOriginalFilename(), e);
+        } catch (Exception e) {
             log.error(e);
+            throw new UploadException("Failed to store file " + file.getOriginalFilename());
         }
     }
 
