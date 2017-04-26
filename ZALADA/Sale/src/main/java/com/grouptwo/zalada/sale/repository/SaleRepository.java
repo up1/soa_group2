@@ -25,7 +25,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 @Repository
 public class SaleRepository {
 
-    private static String ANONYMOUSOWNER = "anonymous";
+    private static final String ANONYMOUSOWNER = "anonymous";
 
     @Autowired
     private MongoTemplate mongoTemplate;
