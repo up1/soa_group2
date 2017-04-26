@@ -15,7 +15,9 @@ public class Category {
 
     public static final String COLLECTION_NAME = "category";
 
-    public Category(){}
+    public Category(){
+        //Constructor needed for spring
+    }
 
     public String getId() {
         return id;
