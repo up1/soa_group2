@@ -63,7 +63,7 @@ class App extends React.Component {
 
     createCart(userType, username) {
         axios
-            .post(`http://localhost:9003/cart?userType=${userType}`)
+            .post(`http://localhost:9003/cart?usertype=${userType}`)
             .then((response) => {
                 const generatedCartId = response.data
                 cookie.save("cartid", generatedCartId)
