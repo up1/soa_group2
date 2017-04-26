@@ -152,7 +152,7 @@ public class SaleRepository {
                 String attributeName = pd.getName();
                 Method getter = pd.getReadMethod();
                 Object attributeObject = getter.invoke(updateObjectCasted);
-                if (!"class".equals(attributeName) && attributeObject != null && !attributeName.equals("id")) {
+                if (!"class".equals(attributeName) && attributeObject != null && !"id".equals(attributeName)) {
                     update.set(attributeName, pd.getPropertyType().cast(attributeObject));
                 }
             }
@@ -163,7 +163,7 @@ public class SaleRepository {
     }
 
     public ResponseEntity<List> queryPurchaseOrder(PurchaseOrder purchaseOrder) {
-        ArrayList<Product> product = purchaseOrder.getBuyProducts();
+        List<Product> product = purchaseOrder.getBuyProducts();
         ArrayList<String> history = new ArrayList<>();
 
         for (Product p : product) {
