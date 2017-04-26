@@ -147,7 +147,7 @@ public class StockRepository {
                 String attributeName = pd.getName();
                 Method getter = pd.getReadMethod();
                 Object attributeObject = getter.invoke(updateObjectCasted);
-                if (!"class".equals(attributeName) && attributeObject != null && !attributeName.equals("id")) {
+                if (!"class".equals(attributeName) && !"id".equals(attributeName) && attributeObject != null) {
                     update.set(attributeName, pd.getPropertyType().cast(attributeObject));
                 }
             }
