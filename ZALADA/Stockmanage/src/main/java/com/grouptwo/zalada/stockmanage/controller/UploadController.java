@@ -5,6 +5,8 @@ import com.grouptwo.zalada.stockmanage.exception.RepositoryException;
 import com.grouptwo.zalada.stockmanage.exception.RequestException;
 import com.grouptwo.zalada.stockmanage.exception.UploadException;
 import com.grouptwo.zalada.stockmanage.service.UploadService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadController {
 
     private final UploadService uploadService;
+    private Log log = LogFactory.getLog(UploadController.class.getName());
 
     @Autowired
     public UploadController(UploadService uploadService) {
