@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 
 public class JwtBuilder {
 
+    public static final String SECRETKEY = "pOnAm2017";
+    public static final Long EXPIRATIONTIME = 600000L;
+
     private JwtBuilder(){
         //not called
     }
-
-    public static String secretKey = "pOnAm2017";
-    public static Long expirationTime = 600000L;
 
     public static Authentication build(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
 
         if(token != null) {
             Jws<Claims> claims = Jwts.parser()
-                    .setSigningKey(secretKey)
+                    .setSigningKey(SECRETKEY)
                     .parseClaimsJws(token.replace("Bearer" + " ", ""));
 
             Claims body = claims.getBody();
@@ -33,7 +33,6 @@ public class JwtBuilder {
                 return new Authenticated(username);
             }
         }
-
         return null;
     }
 
