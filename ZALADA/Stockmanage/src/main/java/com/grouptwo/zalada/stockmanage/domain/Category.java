@@ -15,7 +15,6 @@ public class Category {
     private ArrayList<String> children;
     private ArrayList<String> parents;
 
-    public static final String COLLECTION_NAME = "category";
 
     public Category(){}
 
