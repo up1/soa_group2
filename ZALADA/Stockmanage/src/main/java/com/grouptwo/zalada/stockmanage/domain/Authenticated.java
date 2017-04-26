@@ -4,12 +4,13 @@ package com.grouptwo.zalada.stockmanage.domain;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Authenticated implements Authentication {
 
     private String username;
-    private boolean authenticated = true;
+    private boolean isAuthenticated = true;
 
     public Authenticated(String username) {
         this.username = username;
@@ -17,7 +18,7 @@ public class Authenticated implements Authentication {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -37,12 +38,12 @@ public class Authenticated implements Authentication {
 
     @Override
     public boolean isAuthenticated() {
-        return authenticated;
+        return isAuthenticated;
     }
 
     @Override
-    public void setAuthenticated(boolean b) throws IllegalArgumentException {
-        this.authenticated = b;
+    public void setAuthenticated(boolean b){
+        this.isAuthenticated = b;
     }
 
     @Override

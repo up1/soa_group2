@@ -1,7 +1,7 @@
 package com.grouptwo.zalada.billing.filter;
 
 
-import com.grouptwo.zalada.billing.JwtBuilder;
+import com.grouptwo.zalada.billing.utils.JwtBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,8 +19,8 @@ public class JwtFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
-        Authentication authentication = JwtBuilder.build((HttpServletRequest) servletRequest);
+        JwtBuilder jwtBuilder = new JwtBuilder();
+        Authentication authentication = jwtBuilder.build((HttpServletRequest) servletRequest);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(servletRequest, servletResponse);
