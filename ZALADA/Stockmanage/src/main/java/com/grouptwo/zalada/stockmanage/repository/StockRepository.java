@@ -82,9 +82,9 @@ public class StockRepository {
         return mongoTemplate.find(new Query(where("category.name").in(categoryList).andOperator(whereByOwner(owner))), Product.class);
     }
 
-    public void insertProduct(String owner, Product product) throws RepositoryException, RequestException {
+    public void insertProduct(String owner, Product product) throws RepositoryException{
         if(product.getCategory() == null){
-            throw new RequestException("Category Not Provide");
+            throw new RepositoryException("Category Not Provide");
         }
         Category category = findCategoryByName(product.getCategory().getName());
         if(category == null){
