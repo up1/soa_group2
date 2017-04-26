@@ -64,7 +64,7 @@ public class StockRepository {
         return mongoTemplate.findOne(queryByName(name), Category.class);
     }
 
-    public ArrayList findAllProduct(String owner, Pageable pageable){
+    public List findAllProduct(String owner, Pageable pageable){
         return getPaging(Product.class, pageable, queryByOwner(owner));
     }
 
@@ -72,7 +72,7 @@ public class StockRepository {
         return mongoTemplate.find(queryByOwner(owner), Product.class);
     }
 
-    public ArrayList findAllProductByCategory(String owner, Pageable pageable, String categoryName){
+    public List findAllProductByCategory(String owner, Pageable pageable, String categoryName){
         List<String> categoryList = createCategoryList(categoryName);
         return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList).andOperator(where("owner").is(owner))));
     }
@@ -109,7 +109,7 @@ public class StockRepository {
         }
     }
 
-    public ArrayList findAllCategory(Pageable pageable) {
+    public List findAllCategory(Pageable pageable) {
         return getPaging(Category.class, pageable, new Query());
     }
 
@@ -118,7 +118,7 @@ public class StockRepository {
     }
 
     @SuppressWarnings("unchecked")
-    private ArrayList getPaging(Class domainClass, Pageable pageable, Query query){
+    private List getPaging(Class domainClass, Pageable pageable, Query query){
         List domains;
         query.with(pageable);
         domains = mongoTemplate.find(query, domainClass);

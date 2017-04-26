@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -31,12 +31,12 @@ public class StockController {
     }
 
     @RequestMapping(value = "/product", method = RequestMethod.GET)
-    public ArrayList findProductByPage(@RequestParam(required = false, name = "page") Integer page,
-                                       @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
+    public List findProductByPage(@RequestParam(required = false, name = "page") Integer page,
+                                  @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
 
         String owner = getUsername();
         if (page == null) {
-            return (ArrayList) stockRepository.findAllProduct(owner);
+            return stockRepository.findAllProduct(owner);
         }
         Pageable pageable = new PageRequest(page, size);
         return stockRepository.findAllProduct(owner, pageable);
@@ -87,13 +87,13 @@ public class StockController {
     }
 
     @RequestMapping(value = "product/category/{categoryName}", method = RequestMethod.GET)
-    public ArrayList findProductByCategory(@RequestParam(required = false, name = "page") Integer page,
-                                           @RequestParam(required = false, defaultValue = "10", name = "size") Integer size,
-                                           @PathVariable String categoryName) {
+    public List findProductByCategory(@RequestParam(required = false, name = "page") Integer page,
+                                      @RequestParam(required = false, defaultValue = "10", name = "size") Integer size,
+                                      @PathVariable String categoryName) {
         String owner = getUsername();
 
         if (page == null) {
-            return (ArrayList) stockRepository.findAllProductByCategory(owner, categoryName);
+            return stockRepository.findAllProductByCategory(owner, categoryName);
         }
         Pageable pageable = new PageRequest(page, size);
         return stockRepository.findAllProductByCategory(owner, pageable, categoryName);
@@ -106,10 +106,10 @@ public class StockController {
     }
 
     @RequestMapping(value = "/category", method = RequestMethod.GET)
-    public ArrayList findCategoryByPage(@RequestParam(required = false, name = "page") Integer page,
-                                        @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
+    public List findCategoryByPage(@RequestParam(required = false, name = "page") Integer page,
+                                   @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
         if (page == null) {
-            return (ArrayList) stockRepository.findAllCategory();
+            return stockRepository.findAllCategory();
         }
         Pageable pageable = new PageRequest(page, size);
         return stockRepository.findAllCategory(pageable);
