@@ -25,7 +25,7 @@ public class SaleController {
     }
 
     public SaleController() {
-
+        //Constructor needed for spring
     }
 
     @RequestMapping(value = "/sale", method = RequestMethod.GET)
