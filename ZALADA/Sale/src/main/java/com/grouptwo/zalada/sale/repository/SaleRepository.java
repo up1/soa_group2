@@ -186,7 +186,7 @@ public class SaleRepository {
         return mongoTemplate.find(queryByOwner(owner), SaleHistory.class);
     }
 
-    public ArrayList findSaleHistoryListByOwner(Pageable pageable, String owner){
+    public List findSaleHistoryListByOwner(Pageable pageable, String owner){
         return getPaging(SaleHistory.class, pageable, queryByOwner(owner));
     }
 
@@ -194,7 +194,7 @@ public class SaleRepository {
         return mongoTemplate.find(queryByProductId(productId), SaleHistory.class);
     }
 
-    public ArrayList findSaleHistoryListByProduct(Pageable pageable, String productId){
+    public List findSaleHistoryListByProduct(Pageable pageable, String productId){
         return getPaging(SaleHistory.class, pageable, queryByProductId(productId));
     }
 
