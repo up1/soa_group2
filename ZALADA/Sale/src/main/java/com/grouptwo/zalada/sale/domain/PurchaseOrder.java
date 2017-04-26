@@ -27,7 +27,9 @@ public class PurchaseOrder {
     public static final int STATUS_CODE_CANCEL = -1;
     public static final int STATUS_CODE_OUT_OF_TIME = -2;
 
-    public PurchaseOrder(){}
+    public PurchaseOrder(){
+        //spring needs a constructor
+    }
 
     public PurchaseOrder(Cart cart){
         this.buyProducts = new ArrayList<>(cart.getProducts());
