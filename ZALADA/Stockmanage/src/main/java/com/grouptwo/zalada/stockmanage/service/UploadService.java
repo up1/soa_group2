@@ -66,17 +66,17 @@ public class UploadService {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
-    public Resource loadImage(String productId) throws UploadException, RepositoryException, RequestException {
+    public Resource loadImage(String productId) throws RepositoryException{
         try {
             String owner = getUsername();
             Product product = stockRepository.findProductById(owner, productId);
             if(product == null){
-                throw new RepositoryException("Product Not Exits");
+                throw new RepositoryException("Product Not Found");
             }
 
             String imagePath = product.getImagePath();
             if(imagePath == null){
-                throw new RequestException("This Product Is Not Has Image");
+                throw new RepositoryException("This Product Is Not Has Image");
             }
             String fileName = FileUtils.getFile(imagePath).getName();
             Path file = rootLocation.resolve(fileName);
@@ -84,11 +84,10 @@ public class UploadService {
             if (resource.exists() || resource.isReadable()) {
                 return resource;
             } else {
-                throw new UploadException("Could not read file: " + fileName);
-
+                throw new RepositoryException("Could not read file: " + fileName);
             }
         } catch (MalformedURLException e) {
-            throw new UploadException("Could not read image of Product: " + productId, e);
+            throw new RepositoryException("Could not read image of Product: " + productId);
         }
     }
 
