@@ -152,7 +152,7 @@ public class StockRepository {
                 }
             }
         } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return update;
     }
