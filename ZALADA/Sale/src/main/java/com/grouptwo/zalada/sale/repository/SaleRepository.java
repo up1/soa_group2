@@ -19,6 +19,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
@@ -75,13 +77,11 @@ public class SaleRepository {
         Product buyingProduct = mongoTemplate.findOne(queryById(productId), Product.class);
         buyingProduct.setAmount(amount);
         updateCart.addProduct(buyingProduct);
-        Update update = updateWithReflect(Cart.class, updateCart);
-        mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
+        mongoTemplate.updateFirst(queryById(cartId), updateWithReflect(Cart.class, updateCart), Cart.class);
     }
 
     public void updateCart(String cartId, Cart updateCart){
-        Update update = updateWithReflect(Cart.class, updateCart);
-        mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
+        mongoTemplate.updateFirst(queryById(cartId), updateWithReflect(Cart.class, updateCart), Cart.class);
     }
 
     public String insertPurchaseOrder(PurchaseOrder purchaseOrder){
@@ -157,7 +157,7 @@ public class SaleRepository {
                 }
             }
         } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            Logger.getAnonymousLogger().log(Level.SEVERE, "an exception was thrown", e);
         }
         return update;
     }
