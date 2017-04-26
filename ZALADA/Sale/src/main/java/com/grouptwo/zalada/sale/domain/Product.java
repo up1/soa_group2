@@ -19,7 +19,9 @@ public class Product {
 
     public static final String COLLECTION_NAME = "product";
 
-    public Product(){}
+    public Product(){
+        //Constructor needed for spring
+    }
 
     public String getId() {
         return id;
