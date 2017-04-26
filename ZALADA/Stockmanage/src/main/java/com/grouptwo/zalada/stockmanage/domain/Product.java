@@ -18,9 +18,7 @@ public class Product {
     private Category category;
     private String imagePath;
 
-    public static final String COLLECTION_NAME = "product";
 
-    public Product(){}
 
     public String getId() {
         return id;
