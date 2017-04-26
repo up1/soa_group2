@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 public class JwtBuilder {
 
     public static String secretKey = "pOnAm2017";
-    public static Long expirationTime = 600000L;
     private JwtBuilder(){}
 
     public static Authentication build(HttpServletRequest request) {
