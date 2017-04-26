@@ -27,7 +27,7 @@ public class StockController {
     }
 
     public StockController() {
-
+        // For Spring Boot
     }
 
     @RequestMapping(value = "/product", method = RequestMethod.GET)
