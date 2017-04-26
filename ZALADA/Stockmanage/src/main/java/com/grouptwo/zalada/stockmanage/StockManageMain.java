@@ -20,14 +20,14 @@ import java.util.ArrayList;
 @EnableConfigurationProperties(UploadProperties.class)
 public class StockManageMain {
 
-    private static boolean CLEAR = true;
-    public static void main(String ... args){
-        SpringApplication.run(StockManageMain.class, args);
-    }
     private static final boolean CLEAR = true;
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    public static void main(String ... args){
+        SpringApplication.run(StockManageMain.class, args);
+    }
 
     @Bean
     CommandLineRunner init(UploadService uploadService, StockRepository stockRepository) {
