@@ -4,14 +4,18 @@ import com.grouptwo.zalada.stockmanage.domain.Authenticated;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class JwtBuilder {
 
-    public static String secretKey = "pOnAm2017";
-    public static Long expirationTime = 600000L;
+
+    @Value("${secretKey}")
+    private static String secretKey;
+
+    private JwtBuilder(){}
 
     public static Authentication build(HttpServletRequest request) {
         String token = request.getHeader("Authorization");

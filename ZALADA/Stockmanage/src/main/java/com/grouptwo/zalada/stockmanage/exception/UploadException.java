@@ -8,7 +8,4 @@ public class UploadException extends Exception {
         super(exception);
     }
 
-    public UploadException(String exception, Throwable cause){
-        super(exception, cause);
-    }
 }

@@ -3,12 +3,15 @@ package com.grouptwo.zalada.stockmanage.repository;
 import com.google.common.collect.Lists;
 import com.grouptwo.zalada.stockmanage.domain.Category;
 import com.grouptwo.zalada.stockmanage.domain.Product;
+import com.grouptwo.zalada.stockmanage.exception.ProductNotFoundException;
 import com.grouptwo.zalada.stockmanage.exception.RepositoryException;
-import com.grouptwo.zalada.stockmanage.exception.RequestException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
@@ -28,12 +31,13 @@ public class StockRepository {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+    private Log log = LogFactory.getLog(StockRepository.class.getName());
 
-    public void updateProduct(String owner, String id, Product updateProduct) {
+    public void updateProduct(String owner, String id, Product updateProduct) throws ProductNotFoundException {
 
-        boolean isProductExits = mongoTemplate.exists(new Query(where("id").is(id).andOperator(where("owner").is(owner))), Product.class);
+        boolean isProductExits = mongoTemplate.exists(new Query(where("id").is(id).andOperator(whereByOwner(owner))), Product.class);
         if (isProductExits){
-            throw new RuntimeException("Product Not Exits");
+            throw new ProductNotFoundException();
         }
 
         Long timestamp = getTimeStamp();
@@ -52,7 +56,7 @@ public class StockRepository {
     }
 
     public Product findProductById(String owner, String id) {
-        Query query = new Query(where("id").is(id).andOperator(where("owner").is(owner)));
+        Query query = new Query(where("id").is(id).andOperator(whereByOwner(owner)));
         return mongoTemplate.findOne(query, Product.class);
     }
 
@@ -60,7 +64,7 @@ public class StockRepository {
         return mongoTemplate.findOne(queryByName(name), Category.class);
     }
 
-    public ArrayList findAllProduct(String owner, Pageable pageable){
+    public List findAllProduct(String owner, Pageable pageable){
         return getPaging(Product.class, pageable, queryByOwner(owner));
     }
 
@@ -68,19 +72,19 @@ public class StockRepository {
         return mongoTemplate.find(queryByOwner(owner), Product.class);
     }
 
-    public ArrayList findAllProductByCategory(String owner, Pageable pageable, String categoryName){
+    public List findAllProductByCategory(String owner, Pageable pageable, String categoryName){
         List<String> categoryList = createCategoryList(categoryName);
-        return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList).andOperator(where("owner").is(owner))));
+        return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList).andOperator(whereByOwner((owner)))));
     }
 
     public  List<Product> findAllProductByCategory(String owner, String categoryName){
         List<String> categoryList = createCategoryList(categoryName);
-        return mongoTemplate.find(new Query(where("category.name").in(categoryList).andOperator(where("owner").is(owner))), Product.class);
+        return mongoTemplate.find(new Query(where("category.name").in(categoryList).andOperator(whereByOwner(owner))), Product.class);
     }
 
-    public void insertProduct(String owner, Product product) throws RepositoryException, RequestException {
+    public void insertProduct(String owner, Product product) throws RepositoryException{
         if(product.getCategory() == null){
-            throw new RequestException("Category Not Provide");
+            throw new RepositoryException("Category Not Provide");
         }
         Category category = findCategoryByName(product.getCategory().getName());
         if(category == null){
@@ -96,16 +100,16 @@ public class StockRepository {
         mongoTemplate.insert(category);
     }
 
-    public void deleteProduct(String owner, String id) {
+    public void deleteProduct(String owner, String id) throws ProductNotFoundException {
         boolean isProductExits = mongoTemplate.exists(new Query(where("id").is(id).andOperator(where("owner").is(owner))), Product.class);
         if(isProductExits) {
             mongoTemplate.remove(queryById(id), Product.class);
         }else{
-            throw new RuntimeException("Product Not Exits");
+            throw new ProductNotFoundException();
         }
     }
 
-    public ArrayList findAllCategory(Pageable pageable) {
+    public List findAllCategory(Pageable pageable) {
         return getPaging(Category.class, pageable, new Query());
     }
 
@@ -114,7 +118,7 @@ public class StockRepository {
     }
 
     @SuppressWarnings("unchecked")
-    private ArrayList getPaging(Class domainClass, Pageable pageable, Query query){
+    private List getPaging(Class domainClass, Pageable pageable, Query query){
         List domains;
         query.with(pageable);
         domains = mongoTemplate.find(query, domainClass);
@@ -143,12 +147,12 @@ public class StockRepository {
                 String attributeName = pd.getName();
                 Method getter = pd.getReadMethod();
                 Object attributeObject = getter.invoke(updateObjectCasted);
-                if (!"class".equals(attributeName) && attributeObject != null && !attributeName.equals("id")) {
+                if (!"class".equals(attributeName) && !"id".equals(attributeName) && attributeObject != null) {
                     update.set(attributeName, pd.getPropertyType().cast(attributeObject));
                 }
             }
         } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return update;
     }
@@ -160,12 +164,14 @@ public class StockRepository {
         for (String eachChild : category.getChildren()){
             categoryList.add(eachChild);
         }
-        System.out.println(categoryList);
         return categoryList;
     }
 
-    public Query queryByOwner(String owner){
-        return new Query(where("owner").is(owner));
+    private Query queryByOwner(String owner){
+        return new Query(whereByOwner(owner));
+    }
+    private Criteria whereByOwner(String owner){
+        return where("owner").is(owner);
     }
 
     public void deleteCategory(String name) {

@@ -20,17 +20,18 @@ import java.util.ArrayList;
 @EnableConfigurationProperties(UploadProperties.class)
 public class StockManageMain {
 
-    private static boolean CLEAR = true;
-    public static void main(String ... args){
-        SpringApplication.run(StockManageMain.class, args);
-    }
+    private static final boolean CLEAR = true;
 
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    public static void main(String ... args){
+        SpringApplication.run(StockManageMain.class, args);
+    }
+
     @Bean
     CommandLineRunner init(UploadService uploadService, StockRepository stockRepository) {
-        return (args) -> {
+        return args -> {
             if(CLEAR){
                 uploadService.deleteAll();
                 uploadService.init();
@@ -41,12 +42,15 @@ public class StockManageMain {
     }
 
     private void initData(StockRepository stockRepository){
+
+        String mobileAccessory = "Mobile Accessory";
+
         Category mobileParentCategory = new Category();
         mobileParentCategory.setName("Mobile Phone and Tablet");
         ArrayList<String> mobileChildren = new ArrayList<>();
         mobileChildren.add("Mobile Phone");
         mobileChildren.add("Tablet");
-        mobileChildren.add("Mobile Accessory");
+        mobileChildren.add(mobileAccessory);
         mobileParentCategory.setChildren(mobileChildren);
         stockRepository.insertCategory(mobileParentCategory);
 
@@ -63,7 +67,7 @@ public class StockManageMain {
         stockRepository.insertCategory(tabletCategory);
 
         Category mobileAccCategory = new Category();
-        mobileAccCategory.setName("Mobile Accessory");
+        mobileAccCategory.setName(mobileAccessory);
         mobileAccCategory.setParents(parent);
         ArrayList<String> accChildren = new ArrayList<>();
         accChildren.add("Backup Battery");
@@ -72,7 +76,7 @@ public class StockManageMain {
         mobileAccCategory.setChildren(accChildren);
         stockRepository.insertCategory( mobileAccCategory);
 
-        parent.add("Mobile Accessory");
+        parent.add(mobileAccessory);
         Category backupBatteryCategory  = new Category();
         backupBatteryCategory.setName("Backup Battery");
         backupBatteryCategory.setParents(parent);
