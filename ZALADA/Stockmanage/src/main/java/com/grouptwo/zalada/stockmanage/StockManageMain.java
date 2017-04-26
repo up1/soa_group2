@@ -41,12 +41,15 @@ public class StockManageMain {
     }
 
     private void initData(StockRepository stockRepository){
+
+        String mobileAccessory = "Mobile Accessory";
+
         Category mobileParentCategory = new Category();
         mobileParentCategory.setName("Mobile Phone and Tablet");
         ArrayList<String> mobileChildren = new ArrayList<>();
         mobileChildren.add("Mobile Phone");
         mobileChildren.add("Tablet");
-        mobileChildren.add("Mobile Accessory");
+        mobileChildren.add(mobileAccessory);
         mobileParentCategory.setChildren(mobileChildren);
         stockRepository.insertCategory(mobileParentCategory);
 
@@ -63,7 +66,7 @@ public class StockManageMain {
         stockRepository.insertCategory(tabletCategory);
 
         Category mobileAccCategory = new Category();
-        mobileAccCategory.setName("Mobile Accessory");
+        mobileAccCategory.setName(mobileAccessory);
         mobileAccCategory.setParents(parent);
         ArrayList<String> accChildren = new ArrayList<>();
         accChildren.add("Backup Battery");
@@ -72,7 +75,7 @@ public class StockManageMain {
         mobileAccCategory.setChildren(accChildren);
         stockRepository.insertCategory( mobileAccCategory);
 
-        parent.add("Mobile Accessory");
+        parent.add(mobileAccessory);
         Category backupBatteryCategory  = new Category();
         backupBatteryCategory.setName("Backup Battery");
         backupBatteryCategory.setParents(parent);
