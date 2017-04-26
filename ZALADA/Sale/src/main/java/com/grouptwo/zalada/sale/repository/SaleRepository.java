@@ -25,7 +25,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 @Repository
 public class SaleRepository {
 
-    private static String ANONYMOUS_OWNER = "anonymous";
+    private static String ANONYMOUSOWNER = "anonymous";
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -51,7 +51,7 @@ public class SaleRepository {
     }
 
     public String insertCart(Integer userType){
-        Cart userCart = new Cart(userType, ANONYMOUS_OWNER, getTimeStamp());
+        Cart userCart = new Cart(userType, ANONYMOUSOWNER, getTimeStamp());
         mongoTemplate.insert(userCart);
         return userCart.getId();
     }
