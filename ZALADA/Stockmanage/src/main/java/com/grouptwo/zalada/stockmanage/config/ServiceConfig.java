@@ -23,11 +23,6 @@ public class ServiceConfig extends AbstractMongoConfiguration {
     private String mongoDB;
 
     @Override
-    public MongoMappingContext mongoMappingContext()
-            throws ClassNotFoundException {
-        return super.mongoMappingContext();
-    }
-    @Override
     @Bean
     public Mongo mongo() throws Exception {
         return new MongoClient(mongoHost + ":" + mongoPort);
