@@ -3,18 +3,14 @@ package com.grouptwo.zalada.sale.repository;
 import com.google.common.collect.Lists;
 import com.grouptwo.zalada.sale.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.client.RestTemplate;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
