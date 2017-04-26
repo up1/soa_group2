@@ -5,6 +5,8 @@ import com.grouptwo.zalada.stockmanage.domain.Product;
 import com.grouptwo.zalada.stockmanage.exception.RepositoryException;
 import com.grouptwo.zalada.stockmanage.exception.RequestException;
 import com.grouptwo.zalada.stockmanage.repository.StockRepository;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +23,8 @@ public class StockController {
 
     @Autowired
     private StockRepository stockRepository;
+
+    private Log log = LogFactory.getLog(StockController.class.getName());
 
     public StockController(StockRepository stockRepository) {
         this.stockRepository = stockRepository;
