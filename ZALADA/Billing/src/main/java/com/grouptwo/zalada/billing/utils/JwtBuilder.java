@@ -3,6 +3,7 @@ package com.grouptwo.zalada.billing.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import com.grouptwo.zalada.billing.domain.Authenticated;
 
@@ -10,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 
 public class JwtBuilder {
 
-    public static String secretKey = "pOnAm2017";
-    public static Long expirationTime = 600000L;
+    @Value("${secretKey}")
+    private String secretKey;
 
-    public static Authentication build(HttpServletRequest request) {
+    public Authentication build(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
 
         if(token != null) {

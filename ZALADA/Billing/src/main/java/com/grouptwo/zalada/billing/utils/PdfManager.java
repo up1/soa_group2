@@ -8,7 +8,6 @@ import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
-import java.util.Set;
 
 public class PdfManager {
 
@@ -18,7 +17,7 @@ public class PdfManager {
     private PdfStamper stamper;
     private ByteArrayOutputStream output;
 
-    public PdfManager(Resource pdfFile) throws IOException {
+    PdfManager(Resource pdfFile) throws IOException {
 
         String fileName = pdfFile.getFilename();
         int i = pdfFile.getFilename().lastIndexOf('.');
@@ -33,7 +32,7 @@ public class PdfManager {
         this.pdfFile = pdfFile;
     }
 
-    public Resource getPdfFile() {
+    private Resource getPdfFile() {
         return pdfFile;
     }
 
@@ -41,17 +40,10 @@ public class PdfManager {
         setReader(new PdfReader(getPdfFile().getInputStream()));
     }
 
-    protected void init() throws IOException, DocumentException {
+    void init() throws IOException, DocumentException {
         loadFile();
-
         setOutput(new ByteArrayOutputStream());
-
         loadStamper(getOutput());
-    }
-
-    public Set<String> getFieldsName() throws IOException, DocumentException {
-        AcroFields fields = getReader().getAcroFields();
-        return fields.getFields().keySet();
     }
 
     private void closeFile() {
@@ -62,11 +54,11 @@ public class PdfManager {
         this.reader = reader;
     }
 
-    protected PdfReader getReader() {
+    private PdfReader getReader() {
         return reader;
     }
 
-    protected void fillForm(String key, String value) throws IOException, DocumentException {
+    void fillForm(String key, String value) throws IOException, DocumentException {
         AcroFields form = stamper.getAcroFields();
         form.setField(key, value);
     }
@@ -80,7 +72,7 @@ public class PdfManager {
         this.stamper = stamper;
     }
 
-    protected PdfStamper getStamper() {
+    PdfStamper getStamper() {
         return stamper;
     }
 
@@ -88,12 +80,12 @@ public class PdfManager {
         getStamper().close();
     }
 
-    protected void close() throws IOException, DocumentException {
+    void close() throws IOException, DocumentException {
         closeStamper();
         closeFile();
     }
 
-    public void setOutput(ByteArrayOutputStream output) {
+    private void setOutput(ByteArrayOutputStream output) {
         this.output = output;
     }
 
