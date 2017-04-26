@@ -35,7 +35,7 @@ public class StockRepository {
 
     public void updateProduct(String owner, String id, Product updateProduct) {
 
-        boolean isProductExits = mongoTemplate.exists(new Query(where("id").is(id).andOperator(where("owner").is(owner))), Product.class);
+        boolean isProductExits = mongoTemplate.exists(new Query(where("id").is(id).andOperator(whereByOwner(owner))), Product.class);
         if (isProductExits){
             throw new RuntimeException("Product Not Exits");
         }
@@ -56,7 +56,7 @@ public class StockRepository {
     }
 
     public Product findProductById(String owner, String id) {
-        Query query = new Query(where("id").is(id).andOperator(where("owner").is(owner)));
+        Query query = new Query(where("id").is(id).andOperator(whereByOwner(owner)));
         return mongoTemplate.findOne(query, Product.class);
     }
 
@@ -74,12 +74,12 @@ public class StockRepository {
 
     public List findAllProductByCategory(String owner, Pageable pageable, String categoryName){
         List<String> categoryList = createCategoryList(categoryName);
-        return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList).andOperator(where("owner").is(owner))));
+        return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList).andOperator(whereByOwner((owner)))));
     }
 
     public  List<Product> findAllProductByCategory(String owner, String categoryName){
         List<String> categoryList = createCategoryList(categoryName);
-        return mongoTemplate.find(new Query(where("category.name").in(categoryList).andOperator(where("owner").is(owner))), Product.class);
+        return mongoTemplate.find(new Query(where("category.name").in(categoryList).andOperator(whereByOwner(owner))), Product.class);
     }
 
     public void insertProduct(String owner, Product product) throws RepositoryException, RequestException {
