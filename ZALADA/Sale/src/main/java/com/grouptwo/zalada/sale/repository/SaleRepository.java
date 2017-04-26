@@ -171,7 +171,7 @@ public class SaleRepository {
             saleHistory.setProduct_id(p.getId());
             saleHistory.setOwner(p.getOwner());
             saleHistory.setBuyer(purchaseOrder.getBuyer());
-            saleHistory.setPonumber(purchaseOrder.getId());
+            saleHistory.setPoNumber(purchaseOrder.getId());
             saleHistory.setDate(getTimeStamp());
             saleHistory.setAmount(p.getAmount());
 
