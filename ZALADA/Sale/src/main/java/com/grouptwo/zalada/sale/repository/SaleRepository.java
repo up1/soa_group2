@@ -162,7 +162,7 @@ public class SaleRepository {
         return update;
     }
 
-    public ResponseEntity<List> queryPurchaseOrder(PurchaseOrder purchaseOrder) {
+    public ResponseEntity<ArrayList> queryPurchaseOrder(PurchaseOrder purchaseOrder) {
         List<Product> product = purchaseOrder.getBuyProducts();
         ArrayList<String> history = new ArrayList<>();
 

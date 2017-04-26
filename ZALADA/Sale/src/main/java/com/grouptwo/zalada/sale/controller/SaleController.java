@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,13 +30,13 @@ public class SaleController {
     }
 
     @RequestMapping(value = "/sale", method = RequestMethod.GET)
-    public List findProductByPage(@RequestParam(required = false, name = "page")Integer page,
+    public ArrayList findProductByPage(@RequestParam(required = false, name = "page")Integer page,
                                   @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
         if(page == null){
-            return saleRepository.findAllProduct();
+            return (ArrayList) saleRepository.findAllProduct();
         }
         Pageable pageable = new PageRequest(page, size);
-        return saleRepository.findAllProduct(pageable);
+        return (ArrayList) saleRepository.findAllProduct(pageable);
     }
 
     @RequestMapping(value = "/sale/{id}", method = RequestMethod.GET)
@@ -47,14 +48,14 @@ public class SaleController {
     }
 
     @RequestMapping(value = "/sale/category/{categoryName}", method = RequestMethod.GET)
-    public List findProductByCategory(@RequestParam(required = false, name = "page") Integer page,
+    public ArrayList findProductByCategory(@RequestParam(required = false, name = "page") Integer page,
                                            @RequestParam(required = false, defaultValue = "10", name = "size") Integer size,
                                            @PathVariable String categoryName) {
         if(page == null){
-            return saleRepository.findAllProductByCategory(categoryName);
+            return (ArrayList) saleRepository.findAllProductByCategory(categoryName);
         }
         Pageable pageable = new PageRequest(page, size);
-        return saleRepository.findAllProductByCategory(pageable, categoryName);
+        return (ArrayList) saleRepository.findAllProductByCategory(pageable, categoryName);
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
@@ -92,14 +93,14 @@ public class SaleController {
     }
 
     @RequestMapping(value = "/buyhistory/{memberId}", method = RequestMethod.GET)
-    public List findPurchaseOrderList(@PathVariable String memberId,
+    public ArrayList findPurchaseOrderList(@PathVariable String memberId,
                                            @RequestParam(required = false, name = "page")Integer page,
                                            @RequestParam(required = false, defaultValue = "10", name = "size") Integer size){
         if(page == null){
-            return saleRepository.findPurchaseOrderList(memberId);
+            return (ArrayList) saleRepository.findPurchaseOrderList(memberId);
         }
         Pageable pageable = new PageRequest(page, size);
-        return saleRepository.findPurchaseOrderList(pageable, memberId);
+        return (ArrayList) saleRepository.findPurchaseOrderList(pageable, memberId);
     }
 
     @RequestMapping(value = "/buyhistory/{memberId}/{poNumber}", method = RequestMethod.GET)
@@ -109,29 +110,29 @@ public class SaleController {
     }
 
     @RequestMapping(value = "/salehistory", method = RequestMethod.POST)
-    public ResponseEntity<List> queryPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder){
+    public ResponseEntity<ArrayList> queryPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder){
         return saleRepository.queryPurchaseOrder(purchaseOrder);
     }
 
     @RequestMapping(value = "/salehistory/member/{owner}", method = RequestMethod.GET)
-    public List findSaleHistoryListByOwner(@PathVariable String owner,
+    public ArrayList findSaleHistoryListByOwner(@PathVariable String owner,
                                                          @RequestParam(required = false, name = "page")Integer page,
                                                          @RequestParam(required = false, defaultValue = "10", name = "size") Integer size){
         if(page == null){
-            return saleRepository.findSaleHistoryListByOwner(owner);
+            return (ArrayList) saleRepository.findSaleHistoryListByOwner(owner);
         }
         Pageable pageable = new PageRequest(page, size);
-        return saleRepository.findSaleHistoryListByOwner(pageable, owner);
+        return (ArrayList) saleRepository.findSaleHistoryListByOwner(pageable, owner);
     }
 
     @RequestMapping(value = "/salehistory/product/{productId}", method = RequestMethod.GET)
-    public List findSaleHistoryListByProduct(@PathVariable String productId,
+    public ArrayList findSaleHistoryListByProduct(@PathVariable String productId,
                                          @RequestParam(required = false, name = "page")Integer page,
                                          @RequestParam(required = false, defaultValue = "10", name = "size") Integer size){
         if(page == null){
-            return saleRepository.findSaleHistoryListByProduct(productId);
+            return (ArrayList) saleRepository.findSaleHistoryListByProduct(productId);
         }
         Pageable pageable = new PageRequest(page, size);
-        return saleRepository.findSaleHistoryListByProduct(pageable, productId);
+        return (ArrayList) saleRepository.findSaleHistoryListByProduct(pageable, productId);
     }
 }
