@@ -5,6 +5,8 @@ import com.grouptwo.zalada.stockmanage.domain.Category;
 import com.grouptwo.zalada.stockmanage.domain.Product;
 import com.grouptwo.zalada.stockmanage.exception.RepositoryException;
 import com.grouptwo.zalada.stockmanage.exception.RequestException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +30,7 @@ public class StockRepository {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+    private Log log = LogFactory.getLog(StockRepository.class.getName());
 
     public void updateProduct(String owner, String id, Product updateProduct) {
 
