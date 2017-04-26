@@ -45,18 +45,14 @@ public class UploadService {
                 throw new UploadException("Failed to store empty file " + file.getOriginalFilename());
             }
 
-            //Upload a file
             Path uploadPath = this.rootLocation.resolve(file.getOriginalFilename());
             Files.copy(file.getInputStream(), uploadPath, REPLACE_EXISTING);
 
-            //Get uploaded file's extension
             String fileExtension = FilenameUtils.getExtension(uploadPath.getFileName().toString());
 
-            //Rename file to productId + uploaded file's extension
             Path newPath = uploadPath.resolveSibling(productId + "." + fileExtension);
             Files.move(uploadPath, newPath, REPLACE_EXISTING);
 
-            //update product information
             Product product = new Product();
             String imagePath = newPath.toString();
             product.setImagePath(imagePath);
