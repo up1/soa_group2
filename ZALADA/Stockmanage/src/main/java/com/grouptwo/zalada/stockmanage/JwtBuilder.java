@@ -4,14 +4,17 @@ import com.grouptwo.zalada.stockmanage.domain.Authenticated;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class JwtBuilder {
 
+
     @Value("${secretKey}")
     private static String secretKey;
+
     private JwtBuilder(){}
 
     public static Authentication build(HttpServletRequest request) {
