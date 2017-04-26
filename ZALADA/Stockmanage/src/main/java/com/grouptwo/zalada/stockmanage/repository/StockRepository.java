@@ -100,12 +100,12 @@ public class StockRepository {
         mongoTemplate.insert(category);
     }
 
-    public void deleteProduct(String owner, String id) {
+    public void deleteProduct(String owner, String id) throws ProductNotFoundException {
         boolean isProductExits = mongoTemplate.exists(new Query(where("id").is(id).andOperator(where("owner").is(owner))), Product.class);
         if(isProductExits) {
             mongoTemplate.remove(queryById(id), Product.class);
         }else{
-            throw new RuntimeException("Product Not Exits");
+            throw new ProductNotFoundException();
         }
     }
 
