@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 
 public class JwtBuilder {
 
+    private JwtBuilder(){
+        //not called
+    }
+
     public static String secretKey = "pOnAm2017";
     public static Long expirationTime = 600000L;
 
