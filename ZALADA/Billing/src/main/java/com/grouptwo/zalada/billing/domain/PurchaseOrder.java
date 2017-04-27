@@ -28,6 +28,13 @@ public class PurchaseOrder {
     public static final int STATUS_CODE_CANCEL = -1;
     public static final int STATUS_CODE_OUT_OF_TIME = -2;
 
+    public PurchaseOrder(){
+        //String-Boot need this Constructor
+    }
+    public PurchaseOrder(Cart cart){
+        this.buyProducts = new ArrayList<>(cart.getProducts());
+    }
+
     public String getBillingName() {
         return billingName;
     }
@@ -36,17 +43,8 @@ public class PurchaseOrder {
         this.billingName = billingName;
     }
 
-
-
-
     public String getId() {
         return id;
-    }
-
-    public PurchaseOrder(){}
-
-    public PurchaseOrder(Cart cart){
-        this.buyProducts = new ArrayList<>(cart.getProducts());
     }
 
     public void setId(String id) {
