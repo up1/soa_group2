@@ -2,7 +2,6 @@ package com.grouptwo.zalada.billing.repository;
 
 import com.grouptwo.zalada.billing.domain.Product;
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
-import com.grouptwo.zalada.billing.exception.QueryException;
 import com.grouptwo.zalada.billing.exception.UpdateException;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,12 +90,17 @@ public class BillingRepository {
         return Lists.newArrayList(new PageImpl(domains, pageable, total));
     }
 
-    public void updatePurchaseOrder(String buyer, String poNumber, PurchaseOrder updatePurchaseOrder) throws InvocationTargetException, IllegalAccessException, IntrospectionException {
+    public void updatePurchaseOrder(String buyer, String poNumber, PurchaseOrder updatePurchaseOrder) throws UpdateException {
         Update update = new Update();
-        for (PropertyDescriptor pd : Introspector.getBeanInfo(PurchaseOrder.class).getPropertyDescriptors()) {
-            if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updatePurchaseOrder) != null && !"id".equals(pd.getName())) {
-                update.set(pd.getName(), pd.getReadMethod().invoke(updatePurchaseOrder).toString());
+        try {
+            for (PropertyDescriptor pd : Introspector.getBeanInfo(PurchaseOrder.class).getPropertyDescriptors()) {
+                if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updatePurchaseOrder) != null && !"id".equals(pd.getName())) {
+                    update.set(pd.getName(), pd.getReadMethod().invoke(updatePurchaseOrder).toString());
+                }
             }
+        } catch( IllegalAccessException | IntrospectionException | InvocationTargetException e){
+            log.error(e);
+            throw new UpdateException(e.getMessage());
         }
         mongoTemplate.updateFirst(queryByIdAndBuyer(poNumber, buyer), update, PurchaseOrder.class);
     }
@@ -130,14 +134,14 @@ public class BillingRepository {
     }
 
 
-    public void paidPaySlip(String poNumber) {
+    public void paidPaySlip(String poNumber) throws UpdateException {
         Query query = queryBuyId(poNumber);
         query.fields().include(PAYSTATUS);
         Update update = new Update();
         PurchaseOrder purchaseOrder = mongoTemplate.findOne(query, PurchaseOrder.class);
 
         if (purchaseOrder == null)
-            throw new QueryException("Query Purchase Order with id: " + poNumber + " Not Found");
+            throw new UpdateException("Query Purchase Order with id: " + poNumber + " Not Found");
 
         Integer payStatus = purchaseOrder.getPayStatus();
         if (payStatus == -1)
