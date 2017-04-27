@@ -7,47 +7,51 @@ import './css/signupPage.css'
 
 class SignUpPage extends React.Component {
 
-    constructor(){
+    constructor() {
         super()
 
         this.state = {
-            username : '',
-            password : '',
-            password_re : '',
-            email : '',
-            email_re :''
+            username: '',
+            password: '',
+            password_re: '',
+            email: '',
+            email_re: ''
         }
 
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleChange(event){    
+    handleChange(event) {
         let newState = {};
         newState[event.target.name] = event.target.value;
         this.setState(newState);
     }
 
-    handleSubmit(){
-        
+    handleSubmit() {
+
         const data = {
-            username : this.state.username,
-            password : this.state.password,
-            email : this.state.email
+            signIn: {
+                username: this.state.username,
+                password: this.state.password
+            },
+            member: {
+                email: this.state.email
+            }
         }
 
         axios.post('http://localhost:9004/member/signup', data)
-        .then(
+            .then(
             (response) => {
                 this.props.updateUser(this.state.username)
                 this.context.router.history.push('/')
             }
-        )
-        .catch(
+            )
+            .catch(
             (error) => {
                 console.log(error)
             }
-        )
+            )
 
         console.log(data)
 
@@ -56,7 +60,7 @@ class SignUpPage extends React.Component {
     render() {
         return (
             <div className="signup_page">
-                <UpperHeaderSection/>
+                <UpperHeaderSection />
                 <div className="container-fluid" id="container-Sign">
                     <section className="container-signup">
                         <div className="container-page" id="form-signup">
@@ -65,7 +69,7 @@ class SignUpPage extends React.Component {
 
                                 <div className="form-group col-lg-12">
                                     <label>ชื่อผู้ใช้</label>
-                                    <input type="text" name="username" className="form-control" onChange={this.handleChange}/>
+                                    <input type="text" name="username" className="form-control" onChange={this.handleChange} />
                                 </div>
 
                                 <div className="form-group col-lg-6">
@@ -108,7 +112,7 @@ class SignUpPage extends React.Component {
                         </div>
                     </section>
                 </div>
-                <FooterSection/>
+                <FooterSection />
             </div>
         )
     }
@@ -116,7 +120,7 @@ class SignUpPage extends React.Component {
 
 
 SignUpPage.contextTypes = {
-  router: React.PropTypes.object
+    router: React.PropTypes.object
 }
 
 export default SignUpPage;
