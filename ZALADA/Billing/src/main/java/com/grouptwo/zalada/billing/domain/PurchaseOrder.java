@@ -23,6 +23,11 @@ public class PurchaseOrder {
     private String email;
     private String billingName;
 
+    public static final int STATUS_CODE_NOT_PAY = 0;
+    public static final int STATUS_CODE_PAY = 1;
+    public static final int STATUS_CODE_CANCEL = -1;
+    public static final int STATUS_CODE_OUT_OF_TIME = -2;
+
     public String getBillingName() {
         return billingName;
     }
@@ -31,10 +36,7 @@ public class PurchaseOrder {
         this.billingName = billingName;
     }
 
-    public static final int STATUS_CODE_NOT_PAY = 0;
-    public static final int STATUS_CODE_PAY = 1;
-    public static final int STATUS_CODE_CANCEL = -1;
-    public static final int STATUS_CODE_OUT_OF_TIME = -2;
+
 
 
     public String getId() {
