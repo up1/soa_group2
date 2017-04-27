@@ -26,13 +26,10 @@ import java.beans.IntrospectionException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @RestController
 public class BillingController {
 
-    private final Logger logger;
     @Autowired
     private BillingRepository billingRepository;
 
@@ -46,7 +43,7 @@ public class BillingController {
     private Resource payForm;
 
     public BillingController(){
-        logger = Logger.getLogger(BillingController.class.getName());
+
     }
 
     @RequestMapping(value = "/purchaseorder", method = RequestMethod.GET)
@@ -111,7 +108,6 @@ public class BillingController {
             billingRepository.updatePurchaseOrder(buyer, id, purchaseOrder);
             return new ResponseEntity<>("Purchase Order is Updated", HttpStatus.OK);
         } catch (InvocationTargetException | IllegalAccessException | IntrospectionException e) {
-            logger.log(Level.WARNING, e.getMessage());
             return new ResponseEntity<>("Error Message : " + e.getMessage() +
                     "\n Case : " + e.getCause().toString(),
                     HttpStatus.INTERNAL_SERVER_ERROR);
@@ -134,7 +130,6 @@ public class BillingController {
             pdfManager.fillForm(purchaseOrder);
             paySlipFile = pdfManager.getOutput();
         } catch (IOException | DocumentException e) {
-            logger.log(Level.WARNING, e.getMessage());
             return new ResponseEntity<>(e.getMessage().getBytes(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -191,7 +186,6 @@ public class BillingController {
             billingRepository.paidPaySlip(poNumber);
             return new ResponseEntity<>("Thank you for shopping", HttpStatus.OK);
         } catch (QueryException | UpdateException e) {
-            logger.log(Level.WARNING, e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
