@@ -21,21 +21,6 @@ class App extends React.Component {
   constructor() {
     super();
     const user = cookie.load('user');
-    if (user) {
-      const userCartId = cookie.load('cartid');
-      if (userCartId) {
-        this.getCartInfo(userCartId);
-      } else {
-        this.createCart(1, user);
-      }
-    } else {
-      const cartId = cookie.load('cartid');
-      if (cartId) {
-        this.getCartInfo(cartId);
-      } else {
-        this.createCart(0, null);
-      }
-    }
     this.state = {
       username: user,
       cart: {},
@@ -62,10 +47,25 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
+    if (this.state.username) {
+      const userCartId = cookie.load('cartid');
+      if (userCartId) {
+        this.getCartInfo(userCartId);
+      } else {
+        this.createCart(1, this.state.username);
+      }
+    } else {
+      const cartId = cookie.load('cartid');
+      if (cartId) {
+        this.getCartInfo(cartId);
+      } else {
+        this.createCart(0, null);
+      }
+    }
   }
 
   getCartInfo(cartId) {
+    console.log(`http://localhost:9003/cart/${cartId}`);
     axios
       .get(`http://localhost:9003/cart/${cartId}`)
       .then((response) => {
@@ -85,11 +85,14 @@ class App extends React.Component {
 
   createCart(userType, username) {
     let endpoint;
-    if (userType !== 0) {
+    console.log("testsss" + userType);
+    if (userType !== '0') {
       endpoint = `http://localhost:9003/cart?usertype=${userType}`;
-    } else if (userType === 1) {
+      
+    } else if (userType === '1') {
       endpoint = `http://localhost:9003/cart?usertype=${userType}&username=${username}`;
     }
+    console.log(endpoint);
     axios
           .post(endpoint)
           .then((response) => {
@@ -148,6 +151,7 @@ class App extends React.Component {
   }
 
   updateUser(username) {
+    cookie.save('user', username);
     this.setState({ username });
   }
 
