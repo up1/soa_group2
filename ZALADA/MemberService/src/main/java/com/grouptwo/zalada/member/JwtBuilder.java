@@ -10,15 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 
 public class JwtBuilder {
 
-    public static String secretKey = "pOnAm2017";
-    public static Long expirationTime = 600000L;
 
-    public static Authentication build(HttpServletRequest request) {
+
+    private static final String SECRET_KEY = "pOnAm2017";
+    private static final Long EXPIRATION_TIME = 600000L;
+    public static Authentication parse(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
 
         if(token != null) {
             Jws<Claims> claims = Jwts.parser()
-                    .setSigningKey(secretKey)
+                    .setSigningKey(SECRET_KEY)
                     .parseClaimsJws(token.replace("Bearer" + " ", ""));
 
             Claims body = claims.getBody();
