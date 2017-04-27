@@ -3,7 +3,7 @@ package com.grouptwo.zalada.billing.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "purchaseorder")
 public class PurchaseOrder {
@@ -16,7 +16,7 @@ public class PurchaseOrder {
     private Long buyDate;
     private Long paidDate;
     private Long payScheduled;
-    private ArrayList<Product> buyProducts;
+    private List<Product> buyProducts;
     private String deliveryAddress;
     private Integer payStatus;
     private String tel;
@@ -32,7 +32,7 @@ public class PurchaseOrder {
         //String-Boot need this Constructor
     }
     public PurchaseOrder(Cart cart){
-        this.buyProducts = new ArrayList<>(cart.getProducts());
+        this.buyProducts = cart.getProducts();
     }
 
     public String getBillingName() {
@@ -83,11 +83,11 @@ public class PurchaseOrder {
         this.paidDate = paidDate;
     }
 
-    public ArrayList<Product> getBuyProducts() {
+    public List<Product> getBuyProducts() {
         return buyProducts;
     }
 
-    public void setBuyProducts(ArrayList<Product> buyProducts) {
+    public void setBuyProducts(List<Product> buyProducts) {
         this.buyProducts = buyProducts;
     }
 
