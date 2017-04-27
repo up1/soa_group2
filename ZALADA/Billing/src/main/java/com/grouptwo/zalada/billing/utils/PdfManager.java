@@ -64,8 +64,8 @@ public class PdfManager {
     }
 
     private void loadStamper(ByteArrayOutputStream byteArrayOutputStream) throws IOException, DocumentException {
-        PdfStamper stamper = new PdfStamper(getReader(), byteArrayOutputStream);
-        setStamper(stamper);
+        PdfStamper stamperPdf = new PdfStamper(getReader(), byteArrayOutputStream);
+        setStamper(stamperPdf);
     }
 
     private void setStamper(PdfStamper stamper) {
