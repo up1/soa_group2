@@ -8,7 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAutoConfiguration
 public class SaleMain {
 
-    private SaleMain(){}
+    public SaleMain(){
+        //Needs a constructor
+    }
 
     public static void main(String... args){
         SpringApplication.run(SaleMain.class, args);
