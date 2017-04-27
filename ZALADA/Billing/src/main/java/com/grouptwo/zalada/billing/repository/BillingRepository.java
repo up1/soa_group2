@@ -93,7 +93,7 @@ public class BillingRepository {
     public void updatePurchaseOrder(String buyer, String poNumber, PurchaseOrder updatePurchaseOrder) throws InvocationTargetException, IllegalAccessException, IntrospectionException {
         Update update = new Update();
         for (PropertyDescriptor pd : Introspector.getBeanInfo(PurchaseOrder.class).getPropertyDescriptors()) {
-            if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updatePurchaseOrder) != null && !pd.getName().equals("id")) {
+            if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updatePurchaseOrder) != null && !"id".equals(pd.getName())) {
                 update.set(pd.getName(), pd.getReadMethod().invoke(updatePurchaseOrder).toString());
             }
         }
