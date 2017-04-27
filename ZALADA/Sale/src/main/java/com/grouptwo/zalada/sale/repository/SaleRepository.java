@@ -105,7 +105,7 @@ public class SaleRepository {
 
     public ResponseEntity<String> updateAmount(String cartId, String productId, int amount){
         Cart cart = findCartById(cartId);
-        ArrayList<Product> cartItems = cart.getProducts();
+        List<Product> cartItems = cart.getProducts();
         for(Product product: cartItems){
             if(product.getId().equals(productId)) {
                 product.setAmount(amount);
