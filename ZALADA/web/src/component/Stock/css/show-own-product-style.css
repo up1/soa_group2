@@ -1,0 +1,18 @@
+/* color-scheme : https://coolors.co/2f4454-f48e4e-4df2a8-f24d94-4ca0ef */
+.btn-delete{
+    margin-left: 10px;
+}
+
+.container{
+    max-width: 60%;
+}
+
+h1{
+    padding-bottom: 10px;
+    border-bottom: 5px solid #f48e4e;
+    margin-bottom: 20px;
+}
+
+.pagination{
+    margin: 0px;
+}

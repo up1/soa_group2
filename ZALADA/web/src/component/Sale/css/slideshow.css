@@ -1,0 +1,71 @@
+
+.container-slide {
+  margin: 0 auto;
+  height: 650px;
+  position:relative;
+  width: 100%;
+  color: #333;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+#imgsSlide{
+	width: 1920px;
+	height: 100%;
+	position:absolute;
+	margin:auto;
+}
+
+#slider {
+	margin-top: 100px;
+	background-image:url('http://1d5unn3435vt5h99p1qrei61.wpengine.netdna-cdn.com/wp-content/uploads/2015/03/loptimum-tuxedo11.jpg');
+	background-size: cover;
+	height: 500px;
+	-webkit-transition: background 0.75s ;
+}
+
+#slider:after {
+	position: absolute;
+    content: '';
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    z-index:1;
+	background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2));
+}
+
+.icon {
+	display: none;
+	font-size: 50px;
+	color: #fff;
+	position: relative;
+	z-index: 3;
+}
+
+#left {
+	float: left;
+	margin: 320px 30px;
+}
+
+#right {
+	float: right;
+	margin: 17px 30px;
+}
+
+h2,#sliderPara {
+	text-shadow: 2px 0px 3px #000000;
+	color: #fff;
+	text-align: center;
+	z-index: 3;
+	position: relative;
+}
+
+h2 {
+	font-size: 52px;
+	padding-top:230px;
+}
+
+/*#app > div > div.container-pager > div.slick-initialized.slick-slider > div > div > div.slick-slide > img {
+	max-height: 555px;
+    height: 100%;
+}*/

@@ -80,6 +80,8 @@ public class SaleRepository {
         mongoTemplate.updateFirst(queryById(cartId), updateWithReflect(Cart.class, updateCart), Cart.class);
     }
 
+
+
     public void updateCart(String cartId, Cart updateCart){
         mongoTemplate.updateFirst(queryById(cartId), updateWithReflect(Cart.class, updateCart), Cart.class);
     }
@@ -100,6 +102,35 @@ public class SaleRepository {
     public PurchaseOrder findPurchaseOrder(String memberName, String poNumber){
         return mongoTemplate.findOne(queryById(poNumber).addCriteria(where("buyer").is(memberName)), PurchaseOrder.class);
     }
+
+    public ResponseEntity<String> updateAmount(String cartId, String productId, int amount){
+        Cart cart = findCartById(cartId);
+        ArrayList<Product> cartItems = cart.getProducts();
+        for(Product product: cartItems){
+            if(product.getId().equals(productId)) {
+                product.setAmount(amount);
+                Update update = new Update().set("products", cartItems);
+                mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>("productId not found", HttpStatus.NO_CONTENT);
+    }
+
+    public ResponseEntity<String> removeFromCart(String cartId, String productId){
+        Cart cart = findCartById(cartId);
+        ArrayList<Product> cartItems = cart.getProducts();
+        for(Product product: cartItems){
+            if(product.getId().equals(productId)) {
+                cartItems.remove(product);
+                Update update = new Update().set("products", cartItems);
+                mongoTemplate.updateFirst(queryById(cartId), update, Cart.class);
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>("product not found", HttpStatus.NO_CONTENT);
+    }
+
 
     @SuppressWarnings("unchecked")
     private ArrayList getPaging(Class domainClass, Pageable pageable, Query query){

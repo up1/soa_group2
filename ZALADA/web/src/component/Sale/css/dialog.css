@@ -1,0 +1,13 @@
+.narcissus_17w311v {
+    margin-top: 50px;
+    max-width: 525px !important;
+}
+
+body>div:nth-child(3)>div>div:nth-child(1) {
+    background: none !important;
+}
+
+.blur {
+    -webkit-filter: blur(6px);
+    filter: blur(6px);
+}
