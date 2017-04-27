@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
@@ -21,12 +20,7 @@ public class ServiceConfig extends AbstractMongoConfiguration {
 
     @Value("${spring.data.mongodb.database}")
     private String mongoDB;
-
-    @Override
-    public MongoMappingContext mongoMappingContext()
-            throws ClassNotFoundException {
-        return super.mongoMappingContext();
-    }
+    
     @Override
     @Bean
     public Mongo mongo() throws Exception {
