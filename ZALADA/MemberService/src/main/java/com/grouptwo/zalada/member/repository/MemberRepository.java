@@ -37,7 +37,7 @@ public class MemberRepository {
         return mongoTemplate.findOne(query, SignIn.class);
     }
 
-    public Query queryByUsername(String username){
+    private Query queryByUsername(String username){
         return new Query(where("username").is(username));
     }
 

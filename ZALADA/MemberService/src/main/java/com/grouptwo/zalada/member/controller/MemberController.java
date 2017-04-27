@@ -50,13 +50,13 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/member/profile", method = RequestMethod.GET)
-    public ResponseEntity<String> findProfile() {
+    public ResponseEntity<Member> findProfile() {
         Authenticated auth = (Authenticated) SecurityContextHolder.getContext().getAuthentication();
         Member member = memberRepository.findByUsername(auth.getName());
         if(member == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(member.toString(), HttpStatus.OK);
+        return new ResponseEntity<>(member, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/member/profile", method = RequestMethod.PUT)
