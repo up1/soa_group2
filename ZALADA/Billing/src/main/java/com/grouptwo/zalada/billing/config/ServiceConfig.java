@@ -20,7 +20,7 @@ public class ServiceConfig extends AbstractMongoConfiguration {
 
     @Value("${spring.data.mongodb.database}")
     private String mongoDB;
-    
+
     @Override
     @Bean
     public Mongo mongo() throws Exception {
@@ -32,6 +32,7 @@ public class ServiceConfig extends AbstractMongoConfiguration {
     }
 
     @Bean
+    @Override
     public MongoTemplate mongoTemplate() throws Exception {
         return new MongoTemplate(mongo(), mongoDB);
     }
