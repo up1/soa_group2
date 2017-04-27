@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 public class JwtBuilder {
 
     @Value("${secretKey}")
-    private String secretKey;
+    private static String secretKey;
 
-    public Authentication build(HttpServletRequest request) {
+    private JwtBuilder(){}
+
+    public static Authentication build(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
 
         if(token != null) {

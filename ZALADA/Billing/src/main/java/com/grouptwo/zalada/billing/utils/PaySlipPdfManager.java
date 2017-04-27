@@ -4,6 +4,8 @@ import com.grouptwo.zalada.billing.domain.PurchaseOrder;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.Barcode128;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
@@ -11,11 +13,12 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class PaySlipPdfManager extends PdfManager
+public class PaySlipPdfManager extends PdfManager {
+    private Log log;
 
-{
     public PaySlipPdfManager(Resource pdfFile) throws IOException {
         super(pdfFile);
+        log = LogFactory.getLog(PaySlipPdfManager.class.getName());
     }
 
     public void fillForm(PurchaseOrder purchaseOrder) throws IOException, DocumentException {
@@ -44,9 +47,8 @@ public class PaySlipPdfManager extends PdfManager
             code128Image.scalePercent(125);
 
             getStamper().getOverContent(1).addImage(code128Image);
-
         } catch (Exception ex) {
-            ex.printStackTrace();
+            log.error(ex);
         }
     }
 

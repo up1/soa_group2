@@ -1,14 +1,14 @@
 package com.grouptwo.zalada.billing.controller;
 
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
-import com.grouptwo.zalada.billing.exception.QueryException;
 import com.grouptwo.zalada.billing.exception.UpdateException;
 import com.grouptwo.zalada.billing.repository.BillingRepository;
 import com.grouptwo.zalada.billing.repository.SaleRepository;
 import com.grouptwo.zalada.billing.utils.EmailValidator;
 import com.grouptwo.zalada.billing.utils.PaySlipPdfManager;
 import com.itextpdf.text.DocumentException;
-import org.apache.juli.logging.Log;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,17 +22,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.beans.IntrospectionException;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 
 @RestController
 public class BillingController {
 
-    private final Logger logger;
     @Autowired
     private BillingRepository billingRepository;
 
@@ -44,13 +39,14 @@ public class BillingController {
 
     @Value("classpath:zalada-pay-form.pdf")
     private Resource payForm;
+    private Log log;
 
     public BillingController(){
-        logger = Logger.getLogger(BillingController.class.getName());
+        log = LogFactory.getLog(BillingController.class.getName());
     }
 
     @RequestMapping(value = "/purchaseorder", method = RequestMethod.GET)
-    public ArrayList findAllPurchaseOrder(@RequestParam(required = false, name = "page") Integer page,
+    public List findAllPurchaseOrder(@RequestParam(required = false, name = "page") Integer page,
                                           @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
 
         String buyer = getUsername();
@@ -71,11 +67,7 @@ public class BillingController {
 
         String buyer = getUsername();
 
-        try {
-            billingRepository.cancelPurchaseOrder(buyer, id);
-        }catch (UpdateException e) {
-            return new ResponseEntity<>("e", HttpStatus.BAD_REQUEST);
-        }
+        billingRepository.cancelPurchaseOrder(buyer, id);
         return new ResponseEntity<>("purchase cancel success", HttpStatus.OK);
     }
 
@@ -110,8 +102,8 @@ public class BillingController {
 
             billingRepository.updatePurchaseOrder(buyer, id, purchaseOrder);
             return new ResponseEntity<>("Purchase Order is Updated", HttpStatus.OK);
-        } catch (InvocationTargetException | IllegalAccessException | IntrospectionException e) {
-            logger.log(Level.WARNING, e.getMessage());
+        } catch (UpdateException e) {
+            log.error(e);
             return new ResponseEntity<>("Error Message : " + e.getMessage() +
                     "\n Case : " + e.getCause().toString(),
                     HttpStatus.INTERNAL_SERVER_ERROR);
@@ -134,7 +126,7 @@ public class BillingController {
             pdfManager.fillForm(purchaseOrder);
             paySlipFile = pdfManager.getOutput();
         } catch (IOException | DocumentException e) {
-            logger.log(Level.WARNING, e.getMessage());
+            log.error(e);
             return new ResponseEntity<>(e.getMessage().getBytes(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -147,7 +139,7 @@ public class BillingController {
     }
 
     @RequestMapping(value = "/payslip/unpaid", method = RequestMethod.GET)
-    public ArrayList getUnPaidPaySlip(@RequestParam(required = false, name = "page") Integer page,
+    public List getUnPaidPaySlip(@RequestParam(required = false, name = "page") Integer page,
                                       @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
 
         String buyer = getUsername();
@@ -160,7 +152,7 @@ public class BillingController {
     }
 
     @RequestMapping(value = "/payslip/paid", method = RequestMethod.GET)
-    public ArrayList getPaidPaySlip(@RequestParam(required = false, name = "page") Integer page,
+    public List getPaidPaySlip(@RequestParam(required = false, name = "page") Integer page,
                                     @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
 
         String buyer = getUsername();
@@ -173,9 +165,8 @@ public class BillingController {
     }
 
     @RequestMapping(value = "/payslip/outoftime", method = RequestMethod.GET)
-    public ArrayList getOutOfDatePaySlip(@RequestParam(required = false, name = "page") Integer page,
-                                         @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
-
+    public List getOutOfDatePaySlip(@RequestParam(required = false, name = "page") Integer page,
+                                    @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
         String buyer = getUsername();
 
         if (page == null) {
@@ -190,8 +181,8 @@ public class BillingController {
         try {
             billingRepository.paidPaySlip(poNumber);
             return new ResponseEntity<>("Thank you for shopping", HttpStatus.OK);
-        } catch (QueryException | UpdateException e) {
-            logger.log(Level.WARNING, e.getMessage());
+        } catch (UpdateException e) {
+            log.error(e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }

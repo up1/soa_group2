@@ -21,7 +21,7 @@ public class PdfManager {
 
         String fileName = pdfFile.getFilename();
         int i = pdfFile.getFilename().lastIndexOf('.');
-        if (i > 0 && fileName.substring(i + 1).equals("pdf")) {
+        if (i > 0 && "pdf".equals(fileName.substring(i + 1))) {
             setPdfFile(pdfFile);
         } else {
             throw new IOException("File Type Not Allow");
@@ -64,8 +64,8 @@ public class PdfManager {
     }
 
     private void loadStamper(ByteArrayOutputStream byteArrayOutputStream) throws IOException, DocumentException {
-        PdfStamper stamper = new PdfStamper(getReader(), byteArrayOutputStream);
-        setStamper(stamper);
+        PdfStamper stamperPdf = new PdfStamper(getReader(), byteArrayOutputStream);
+        setStamper(stamperPdf);
     }
 
     private void setStamper(PdfStamper stamper) {
