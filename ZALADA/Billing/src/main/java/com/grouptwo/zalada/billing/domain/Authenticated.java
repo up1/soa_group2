@@ -9,7 +9,7 @@ import java.util.Collection;
 public class Authenticated implements Authentication {
 
     private String username;
-    private boolean authenticated = true;
+    private boolean isAuthenticated = true;
 
     public Authenticated(String username) {
         this.username = username;
@@ -37,12 +37,12 @@ public class Authenticated implements Authentication {
 
     @Override
     public boolean isAuthenticated() {
-        return authenticated;
+        return isAuthenticated;
     }
 
     @Override
     public void setAuthenticated(boolean b) throws IllegalArgumentException {
-        this.authenticated = b;
+        this.isAuthenticated = b;
     }
 
     @Override
