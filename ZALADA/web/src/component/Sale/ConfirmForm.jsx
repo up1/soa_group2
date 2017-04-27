@@ -67,7 +67,7 @@ class ConfirmForm extends React.Component {
   render() {
     return (
       <div>
-        <UpperHeaderSection/>
+        <UpperHeaderSection />
         <div className="container" id="confirm-page">
           <section className="container-signup">
             <h1>
@@ -82,12 +82,13 @@ class ConfirmForm extends React.Component {
                     type="text"
                     name="name"
                     className="form-control"
-                    onChange={this.handleChange}/>
+                    onChange={this.handleChange}
+                  />
                 </div>
 
                 <div className="form-group col-lg-12">
                   <label>โทรศัพท์</label>
-                  <input name="tel" className="form-control" onChange={this.handleChange}/>
+                  <input name="tel" className="form-control" onChange={this.handleChange} />
                 </div>
                 <div className="form-group col-lg-12">
                   <label>อีเมล</label>
@@ -95,12 +96,12 @@ class ConfirmForm extends React.Component {
                     type="email"
                     name="email"
                     className="form-control"
-                    onChange={this.handleChange}/>
+                    onChange={this.handleChange} />
                 </div>
 
                 <div className="form-group col-lg-12">
                   <label>ที่อยู่</label>
-                  <textarea name="address" className="form-control" onChange={this.handleChange}/>
+                  <textarea name="address" className="form-control" onChange={this.handleChange} />
                 </div>
 
                 <div className="form-group col-lg-12">
@@ -109,7 +110,7 @@ class ConfirmForm extends React.Component {
                     type="text"
                     name="post_code"
                     className="form-control"
-                    onChange={this.handleChange}/>
+                    onChange={this.handleChange} />
 
                 </div>
 
@@ -119,7 +120,7 @@ class ConfirmForm extends React.Component {
                     type="text"
                     name="state"
                     className="form-control"
-                    onChange={this.handleChange}/>
+                    onChange={this.handleChange} />
                 </div>
 
                 <div className="form-group col-lg-12">
@@ -291,7 +292,7 @@ class ConfirmForm extends React.Component {
           </section>
         </div>
 
-        <FooterSection />
+        <FooterSection  />
       </div>
 
     );

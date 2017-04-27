@@ -17,9 +17,13 @@ function MainPage(props) {
   );
 }
 
+MainPage.defaultProps = {
+  user: '',
+};
+
 MainPage.propTypes = {
   addProduct: PropTypes.func.isRequired,
-  user: PropTypes.string.isRequired,
+  user: PropTypes.string,
 };
 
 export default MainPage;
