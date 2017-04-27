@@ -3,6 +3,8 @@ package com.grouptwo.zalada.billing.repository;
 import com.grouptwo.zalada.billing.domain.Product;
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
 import com.grouptwo.zalada.billing.exception.UpdateException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
@@ -26,10 +28,13 @@ public class BillingRepository {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    private Log log;
     
     private static final String PAYSTATUS = "payStatus";
 
     public PurchaseOrder findById(String buyer, String id) {
+        log = LogFactory.getLog(BillingRepository.class.getName());
         return mongoTemplate.findOne(queryByIdAndBuyer(id, buyer), PurchaseOrder.class, PurchaseOrder.COLLECTION_NAME);
     }
 
