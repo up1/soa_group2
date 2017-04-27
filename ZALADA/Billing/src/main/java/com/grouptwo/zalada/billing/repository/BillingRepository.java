@@ -18,7 +18,6 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -67,7 +66,7 @@ public class BillingRepository {
         return new Query(where("id").is(id));
     }
 
-    public ArrayList<PurchaseOrder> findAllPurchaseOrder(String buyer) {
+    public List<PurchaseOrder> findAllPurchaseOrder(String buyer) {
 
         return Lists.newArrayList(mongoTemplate.find(queryByBuyer(buyer), PurchaseOrder.class));
     }
@@ -76,18 +75,18 @@ public class BillingRepository {
         return new Query(where("buyer").is(buyer));
     }
 
-    public ArrayList findAllPurchaseOrder(String buyer, Pageable pageable) {
+    public List findAllPurchaseOrder(String buyer, Pageable pageable) {
         return getPaging(Product.class, pageable, queryByBuyer(buyer));
     }
 
 
     @SuppressWarnings("unchecked")
-    private ArrayList getPaging(Class domainClass, Pageable pageable, Query query) {
+    private List getPaging(Class domainClass, Pageable pageable, Query query) {
         List domains;
         query.with(pageable);
         domains = mongoTemplate.find(query, domainClass);
         long total = mongoTemplate.count(query, domainClass);
-        return Lists.newArrayList((new PageImpl(domains, pageable, total)));
+        return Lists.newArrayList(new PageImpl(domains, pageable, total));
     }
 
     public void updatePurchaseOrder(String buyer, String poNumber, PurchaseOrder updatePurchaseOrder) throws InvocationTargetException, IllegalAccessException, IntrospectionException {
@@ -100,7 +99,7 @@ public class BillingRepository {
         mongoTemplate.updateFirst(queryByIdAndBuyer(poNumber, buyer), update, PurchaseOrder.class);
     }
 
-    public ArrayList findAllByPayStatus(String buyer, Pageable pageable, Integer payStatus) {
+    public List findAllByPayStatus(String buyer, Pageable pageable, Integer payStatus) {
         Query query = queryByPayStatusAndBuyer(payStatus, buyer);
 
         return getPaging(PurchaseOrder.class, pageable, query);
@@ -110,7 +109,7 @@ public class BillingRepository {
         return new Query(wherePayStatusIs(payStatus).andOperator(whereBuyerIs(buyer)));
     }
 
-    public ArrayList findAllByPayStatus(String buyer, Integer payStatus) {
+    public List findAllByPayStatus(String buyer, Integer payStatus) {
         Query query = queryByPayStatusAndBuyer(payStatus, buyer);
 
         return Lists.newArrayList(mongoTemplate.find(query, PurchaseOrder.class));
