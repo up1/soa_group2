@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import java.beans.IntrospectionException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class BillingController {
@@ -49,7 +49,7 @@ public class BillingController {
     }
 
     @RequestMapping(value = "/purchaseorder", method = RequestMethod.GET)
-    public ArrayList findAllPurchaseOrder(@RequestParam(required = false, name = "page") Integer page,
+    public List findAllPurchaseOrder(@RequestParam(required = false, name = "page") Integer page,
                                           @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
 
         String buyer = getUsername();
@@ -147,7 +147,7 @@ public class BillingController {
     }
 
     @RequestMapping(value = "/payslip/unpaid", method = RequestMethod.GET)
-    public ArrayList getUnPaidPaySlip(@RequestParam(required = false, name = "page") Integer page,
+    public List getUnPaidPaySlip(@RequestParam(required = false, name = "page") Integer page,
                                       @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
 
         String buyer = getUsername();
@@ -160,7 +160,7 @@ public class BillingController {
     }
 
     @RequestMapping(value = "/payslip/paid", method = RequestMethod.GET)
-    public ArrayList getPaidPaySlip(@RequestParam(required = false, name = "page") Integer page,
+    public List getPaidPaySlip(@RequestParam(required = false, name = "page") Integer page,
                                     @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
 
         String buyer = getUsername();
@@ -173,9 +173,8 @@ public class BillingController {
     }
 
     @RequestMapping(value = "/payslip/outoftime", method = RequestMethod.GET)
-    public ArrayList getOutOfDatePaySlip(@RequestParam(required = false, name = "page") Integer page,
-                                         @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
-
+    public List getOutOfDatePaySlip(@RequestParam(required = false, name = "page") Integer page,
+                                    @RequestParam(required = false, defaultValue = "10", name = "size") Integer size) {
         String buyer = getUsername();
 
         if (page == null) {
