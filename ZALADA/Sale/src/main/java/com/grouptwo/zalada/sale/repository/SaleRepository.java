@@ -119,7 +119,7 @@ public class SaleRepository {
 
     public ResponseEntity<String> removeFromCart(String cartId, String productId){
         Cart cart = findCartById(cartId);
-        ArrayList<Product> cartItems = cart.getProducts();
+        List<Product> cartItems = cart.getProducts();
         for(Product product: cartItems){
             if(product.getId().equals(productId)) {
                 cartItems.remove(product);
