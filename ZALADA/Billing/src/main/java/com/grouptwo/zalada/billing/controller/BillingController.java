@@ -3,7 +3,6 @@ package com.grouptwo.zalada.billing.controller;
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
 import com.grouptwo.zalada.billing.exception.UpdateException;
 import com.grouptwo.zalada.billing.repository.BillingRepository;
-import com.grouptwo.zalada.billing.repository.SaleRepository;
 import com.grouptwo.zalada.billing.utils.EmailValidator;
 import com.grouptwo.zalada.billing.utils.PaySlipPdfManager;
 import com.itextpdf.text.DocumentException;
@@ -30,9 +29,6 @@ public class BillingController {
 
     @Autowired
     private BillingRepository billingRepository;
-
-    @Autowired
-    SaleRepository saleRepository;
 
     @Autowired
     private EmailValidator emailValidator;
