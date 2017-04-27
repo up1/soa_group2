@@ -19,9 +19,7 @@ public class JwtFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        JwtBuilder jwtBuilder = new JwtBuilder();
-        Authentication authentication = jwtBuilder.build((HttpServletRequest) servletRequest);
-
+        Authentication authentication = JwtBuilder.build((HttpServletRequest) servletRequest);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(servletRequest, servletResponse);
     }

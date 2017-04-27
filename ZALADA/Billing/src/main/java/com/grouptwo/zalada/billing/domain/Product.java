@@ -12,7 +12,9 @@ public class Product {
     private Long editDate;
     private Category category;
 
-    public Product(){}
+    public Product(){
+        //String-Boot need this Constructor
+    }
 
     public String getId() {
         return id;

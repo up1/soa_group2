@@ -2,8 +2,9 @@ package com.grouptwo.zalada.billing.repository;
 
 import com.grouptwo.zalada.billing.domain.Product;
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
-import com.grouptwo.zalada.billing.exception.QueryException;
 import com.grouptwo.zalada.billing.exception.UpdateException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
@@ -18,7 +19,6 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -29,7 +29,12 @@ public class BillingRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    private Log log;
+    
+    private static final String PAYSTATUS = "payStatus";
+
     public PurchaseOrder findById(String buyer, String id) {
+        log = LogFactory.getLog(BillingRepository.class.getName());
         return mongoTemplate.findOne(queryByIdAndBuyer(id, buyer), PurchaseOrder.class, PurchaseOrder.COLLECTION_NAME);
     }
 
@@ -49,7 +54,7 @@ public class BillingRepository {
         Query query = queryByIdAndBuyer(id, buyer);
 
         Update update = new Update();
-        update.set("payStatus", PurchaseOrder.STATUS_CODE_CANCEL);
+        update.set(PAYSTATUS, PurchaseOrder.STATUS_CODE_CANCEL);
         mongoTemplate.updateFirst(query, update, PurchaseOrder.class);
     }
 
@@ -67,7 +72,7 @@ public class BillingRepository {
         return new Query(where("id").is(id));
     }
 
-    public ArrayList<PurchaseOrder> findAllPurchaseOrder(String buyer) {
+    public List<PurchaseOrder> findAllPurchaseOrder(String buyer) {
 
         return Lists.newArrayList(mongoTemplate.find(queryByBuyer(buyer), PurchaseOrder.class));
     }
@@ -76,31 +81,36 @@ public class BillingRepository {
         return new Query(where("buyer").is(buyer));
     }
 
-    public ArrayList findAllPurchaseOrder(String buyer, Pageable pageable) {
+    public List findAllPurchaseOrder(String buyer, Pageable pageable) {
         return getPaging(Product.class, pageable, queryByBuyer(buyer));
     }
 
 
     @SuppressWarnings("unchecked")
-    private ArrayList getPaging(Class domainClass, Pageable pageable, Query query) {
+    private List getPaging(Class domainClass, Pageable pageable, Query query) {
         List domains;
         query.with(pageable);
         domains = mongoTemplate.find(query, domainClass);
         long total = mongoTemplate.count(query, domainClass);
-        return Lists.newArrayList((new PageImpl(domains, pageable, total)));
+        return Lists.newArrayList(new PageImpl(domains, pageable, total));
     }
 
-    public void updatePurchaseOrder(String buyer, String poNumber, PurchaseOrder updatePurchaseOrder) throws InvocationTargetException, IllegalAccessException, IntrospectionException {
+    public void updatePurchaseOrder(String buyer, String poNumber, PurchaseOrder updatePurchaseOrder) throws UpdateException {
         Update update = new Update();
-        for (PropertyDescriptor pd : Introspector.getBeanInfo(PurchaseOrder.class).getPropertyDescriptors()) {
-            if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updatePurchaseOrder) != null && !pd.getName().equals("id")) {
-                update.set(pd.getName(), pd.getReadMethod().invoke(updatePurchaseOrder).toString());
+        try {
+            for (PropertyDescriptor pd : Introspector.getBeanInfo(PurchaseOrder.class).getPropertyDescriptors()) {
+                if (pd.getReadMethod() != null && !"class".equals(pd.getName()) && pd.getReadMethod().invoke(updatePurchaseOrder) != null && !"id".equals(pd.getName())) {
+                    update.set(pd.getName(), pd.getReadMethod().invoke(updatePurchaseOrder).toString());
+                }
             }
+        } catch( IllegalAccessException | IntrospectionException | InvocationTargetException e){
+            log.error(e);
+            throw new UpdateException(e.getMessage());
         }
         mongoTemplate.updateFirst(queryByIdAndBuyer(poNumber, buyer), update, PurchaseOrder.class);
     }
 
-    public ArrayList findAllByPayStatus(String buyer, Pageable pageable, Integer payStatus) {
+    public List findAllByPayStatus(String buyer, Pageable pageable, Integer payStatus) {
         Query query = queryByPayStatusAndBuyer(payStatus, buyer);
 
         return getPaging(PurchaseOrder.class, pageable, query);
@@ -110,14 +120,14 @@ public class BillingRepository {
         return new Query(wherePayStatusIs(payStatus).andOperator(whereBuyerIs(buyer)));
     }
 
-    public ArrayList findAllByPayStatus(String buyer, Integer payStatus) {
+    public List findAllByPayStatus(String buyer, Integer payStatus) {
         Query query = queryByPayStatusAndBuyer(payStatus, buyer);
 
         return Lists.newArrayList(mongoTemplate.find(query, PurchaseOrder.class));
     }
 
     private Criteria wherePayStatusIs(Integer payStatus){
-        return where("payStatus").is(payStatus);
+        return where(PAYSTATUS).is(payStatus);
     }
 
     private Criteria whereBuyerIs(String buyer){
@@ -129,14 +139,14 @@ public class BillingRepository {
     }
 
 
-    public void paidPaySlip(String poNumber) {
+    public void paidPaySlip(String poNumber) throws UpdateException {
         Query query = queryBuyId(poNumber);
-        query.fields().include("payStatus");
+        query.fields().include(PAYSTATUS);
         Update update = new Update();
         PurchaseOrder purchaseOrder = mongoTemplate.findOne(query, PurchaseOrder.class);
 
         if (purchaseOrder == null)
-            throw new QueryException("Query Purchase Order with id: " + poNumber + " Not Found");
+            throw new UpdateException("Query Purchase Order with id: " + poNumber + " Not Found");
 
         Integer payStatus = purchaseOrder.getPayStatus();
         if (payStatus == -1)

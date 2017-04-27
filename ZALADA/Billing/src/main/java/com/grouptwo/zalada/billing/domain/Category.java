@@ -1,13 +1,13 @@
 package com.grouptwo.zalada.billing.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Category {
 
     private String id;
     private String name;
-    private ArrayList<String> parents;
-    private ArrayList<String> childs;
+    private List<String> parents;
+    private List<String> childs;
 
     public String getId() {
         return id;
@@ -25,19 +25,19 @@ public class Category {
         this.name = name;
     }
 
-    public ArrayList<String> getParents() {
+    public List<String> getParents() {
         return parents;
     }
 
-    public void setParents(ArrayList<String> parents) {
+    public void setParents(List<String> parents) {
         this.parents = parents;
     }
 
-    public ArrayList<String> getChilds() {
+    public List<String> getChilds() {
         return childs;
     }
 
-    public void setChilds(ArrayList<String> childs) {
+    public void setChilds(List<String> childs) {
         this.childs = childs;
     }
 

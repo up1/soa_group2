@@ -3,7 +3,7 @@ package com.grouptwo.zalada.billing.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "purchaseorder")
 public class PurchaseOrder {
@@ -16,12 +16,24 @@ public class PurchaseOrder {
     private Long buyDate;
     private Long paidDate;
     private Long payScheduled;
-    private ArrayList<Product> buyProducts;
+    private List<Product> buyProducts;
     private String deliveryAddress;
     private Integer payStatus;
     private String tel;
     private String email;
     private String billingName;
+
+    public static final int STATUS_CODE_NOT_PAY = 0;
+    public static final int STATUS_CODE_PAY = 1;
+    public static final int STATUS_CODE_CANCEL = -1;
+    public static final int STATUS_CODE_OUT_OF_TIME = -2;
+
+    public PurchaseOrder(){
+        //String-Boot need this Constructor
+    }
+    public PurchaseOrder(Cart cart){
+        this.buyProducts = cart.getProducts();
+    }
 
     public String getBillingName() {
         return billingName;
@@ -31,20 +43,8 @@ public class PurchaseOrder {
         this.billingName = billingName;
     }
 
-    public static final int STATUS_CODE_NOT_PAY = 0;
-    public static final int STATUS_CODE_PAY = 1;
-    public static final int STATUS_CODE_CANCEL = -1;
-    public static final int STATUS_CODE_OUT_OF_TIME = -2;
-
-
     public String getId() {
         return id;
-    }
-
-    public PurchaseOrder(){}
-
-    public PurchaseOrder(Cart cart){
-        this.buyProducts = new ArrayList<>(cart.getProducts());
     }
 
     public void setId(String id) {
@@ -83,11 +83,11 @@ public class PurchaseOrder {
         this.paidDate = paidDate;
     }
 
-    public ArrayList<Product> getBuyProducts() {
+    public List<Product> getBuyProducts() {
         return buyProducts;
     }
 
-    public void setBuyProducts(ArrayList<Product> buyProducts) {
+    public void setBuyProducts(List<Product> buyProducts) {
         this.buyProducts = buyProducts;
     }
 
