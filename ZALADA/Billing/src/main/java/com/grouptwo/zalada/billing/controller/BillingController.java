@@ -1,7 +1,6 @@
 package com.grouptwo.zalada.billing.controller;
 
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
-import com.grouptwo.zalada.billing.exception.QueryException;
 import com.grouptwo.zalada.billing.exception.UpdateException;
 import com.grouptwo.zalada.billing.repository.BillingRepository;
 import com.grouptwo.zalada.billing.repository.SaleRepository;
@@ -23,9 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.beans.IntrospectionException;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @RestController
@@ -70,12 +67,7 @@ public class BillingController {
 
         String buyer = getUsername();
 
-        try {
-            billingRepository.cancelPurchaseOrder(buyer, id);
-        }catch (UpdateException e) {
-            log.error(e);
-            return new ResponseEntity<>("e", HttpStatus.BAD_REQUEST);
-        }
+        billingRepository.cancelPurchaseOrder(buyer, id);
         return new ResponseEntity<>("purchase cancel success", HttpStatus.OK);
     }
 
@@ -110,7 +102,7 @@ public class BillingController {
 
             billingRepository.updatePurchaseOrder(buyer, id, purchaseOrder);
             return new ResponseEntity<>("Purchase Order is Updated", HttpStatus.OK);
-        } catch (InvocationTargetException | IllegalAccessException | IntrospectionException e) {
+        } catch (UpdateException e) {
             log.error(e);
             return new ResponseEntity<>("Error Message : " + e.getMessage() +
                     "\n Case : " + e.getCause().toString(),
@@ -189,7 +181,7 @@ public class BillingController {
         try {
             billingRepository.paidPaySlip(poNumber);
             return new ResponseEntity<>("Thank you for shopping", HttpStatus.OK);
-        } catch (QueryException | UpdateException e) {
+        } catch (UpdateException e) {
             log.error(e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
