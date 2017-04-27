@@ -42,7 +42,7 @@ public class Authenticated implements Authentication {
     }
 
     @Override
-    public void setAuthenticated(boolean b) throws IllegalArgumentException {
+    public void setAuthenticated(boolean b){
         this.isAuthenticated = b;
     }
 
