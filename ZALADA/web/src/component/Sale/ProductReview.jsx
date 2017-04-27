@@ -141,11 +141,11 @@ class ProductReview extends React.Component {
                         <div className="separator clear-left">
                           <p className="btn-add">
                             <i className="fa fa-shopping-cart" />
-                            <button className="hidden-sm">Add to cart</button>
+                            <a className="hidden-sm">Add to cart</a>
                           </p>
                           <p className="btn-details">
                             <i className="fa fa-list" />
-                            <button className="hidden-sm">More details</button>
+                            <a className="hidden-sm">More details</a>
                           </p>
                         </div>
                         <div className="clearfix" />
@@ -174,11 +174,11 @@ class ProductReview extends React.Component {
                         <div className="separator clear-left">
                           <p className="btn-add">
                             <i className="fa fa-shopping-cart" />
-                            <button href="#" className="hidden-sm">Add to cart</button>
+                            <a href="#" className="hidden-sm">Add to cart</a>
                           </p>
                           <p className="btn-details">
                             <i className="fa fa-list" />
-                            <button href="#" className="hidden-sm">More details</button>
+                            <a href="#" className="hidden-sm">More details</a>
                           </p>
                         </div>
                         <div className="clearfix" />
@@ -213,11 +213,11 @@ class ProductReview extends React.Component {
                         <div className="separator clear-left">
                           <p className="btn-add">
                             <i className="fa fa-shopping-cart" />
-                            <button href="#" className="hidden-sm">Add to cart</button>
+                            <a href="#" className="hidden-sm">Add to cart</a>
                           </p>
                           <p className="btn-details">
                             <i className="fa fa-list" />
-                            <button href="#" className="hidden-sm">More details</button>
+                            <a href="#" className="hidden-sm">More details</a>
                           </p>
                         </div>
                         <div className="clearfix" />
@@ -256,11 +256,11 @@ class ProductReview extends React.Component {
                         <div className="separator clear-left">
                           <p className="btn-add">
                             <i className="fa fa-shopping-cart" />
-                            <button href="#" className="hidden-sm">Add to cart</button>
+                            <a href="#" className="hidden-sm">Add to cart</a>
                           </p>
                           <p className="btn-details">
                             <i className="fa fa-list" />
-                            <button href="#" className="hidden-sm">More details</button>
+                            <a href="#" className="hidden-sm">More details</a>
                           </p>
                         </div>
                         <div className="clearfix" />
@@ -289,11 +289,11 @@ class ProductReview extends React.Component {
                         <div className="separator clear-left">
                           <p className="btn-add">
                             <i className="fa fa-shopping-cart" />
-                            <button href="#" className="hidden-sm">Add to cart</button>
+                            <a href="#" className="hidden-sm">Add to cart</a>
                           </p>
                           <p className="btn-details">
                             <i className="fa fa-list" />
-                            <button href="#" className="hidden-sm">More details</button>
+                            <a href="#" className="hidden-sm">More details</a>
                           </p>
                         </div>
                         <div className="clearfix" />
@@ -306,7 +306,7 @@ class ProductReview extends React.Component {
                         <img
                           src="http://www.notebooksrus.net.au/wordpress/wp-content/uploads/2014/09/hp-450-g2-j8k44pa.jpg"
                           className="img-responsive"
-                          alt="a"  
+                          alt="a"
                         />
                       </div>
                       <div className="info">
