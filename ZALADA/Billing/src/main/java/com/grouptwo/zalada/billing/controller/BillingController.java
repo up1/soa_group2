@@ -8,7 +8,8 @@ import com.grouptwo.zalada.billing.repository.SaleRepository;
 import com.grouptwo.zalada.billing.utils.EmailValidator;
 import com.grouptwo.zalada.billing.utils.PaySlipPdfManager;
 import com.itextpdf.text.DocumentException;
-import org.apache.juli.logging.Log;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,9 +42,10 @@ public class BillingController {
 
     @Value("classpath:zalada-pay-form.pdf")
     private Resource payForm;
+    private Log log;
 
     public BillingController(){
-
+        log = LogFactory.getLog(BillingController.class.getName());
     }
 
     @RequestMapping(value = "/purchaseorder", method = RequestMethod.GET)
@@ -71,6 +73,7 @@ public class BillingController {
         try {
             billingRepository.cancelPurchaseOrder(buyer, id);
         }catch (UpdateException e) {
+            log.error(e);
             return new ResponseEntity<>("e", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>("purchase cancel success", HttpStatus.OK);
@@ -108,6 +111,7 @@ public class BillingController {
             billingRepository.updatePurchaseOrder(buyer, id, purchaseOrder);
             return new ResponseEntity<>("Purchase Order is Updated", HttpStatus.OK);
         } catch (InvocationTargetException | IllegalAccessException | IntrospectionException e) {
+            log.error(e);
             return new ResponseEntity<>("Error Message : " + e.getMessage() +
                     "\n Case : " + e.getCause().toString(),
                     HttpStatus.INTERNAL_SERVER_ERROR);
@@ -130,6 +134,7 @@ public class BillingController {
             pdfManager.fillForm(purchaseOrder);
             paySlipFile = pdfManager.getOutput();
         } catch (IOException | DocumentException e) {
+            log.error(e);
             return new ResponseEntity<>(e.getMessage().getBytes(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -186,6 +191,7 @@ public class BillingController {
             billingRepository.paidPaySlip(poNumber);
             return new ResponseEntity<>("Thank you for shopping", HttpStatus.OK);
         } catch (QueryException | UpdateException e) {
+            log.error(e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
