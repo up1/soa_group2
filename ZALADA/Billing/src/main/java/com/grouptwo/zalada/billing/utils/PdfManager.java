@@ -21,7 +21,7 @@ public class PdfManager {
 
         String fileName = pdfFile.getFilename();
         int i = pdfFile.getFilename().lastIndexOf('.');
-        if (i > 0 && fileName.substring(i + 1).equals("pdf")) {
+        if (i > 0 && "pdf".equals(fileName.substring(i + 1))) {
             setPdfFile(pdfFile);
         } else {
             throw new IOException("File Type Not Allow");
