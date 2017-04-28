@@ -136,7 +136,7 @@ public class BillingRepository {
         return new Query(wherePayStatusIs(payStatus).andOperator(whereBuyerIs(buyer)));
     }
 
-    public List findAllByPayStatus(String buyer, Integer payStatus) {
+    public List<PurchaseOrder> findAllByPayStatus(String buyer, Integer payStatus) {
         Query query = queryByPayStatusAndBuyer(payStatus, buyer);
 
         return Lists.newArrayList(mongoTemplate.find(query, PurchaseOrder.class));
