@@ -109,10 +109,8 @@ public class BillingController {
     @RequestMapping(value = "/payslip/{poNumber}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getPaySlip(@PathVariable String poNumber) {
         ByteArrayOutputStream paySlipFile;
-
-        String buyer = getUsername();
-
-        PurchaseOrder purchaseOrder = billingRepository.getPurchaseOrder(buyer, poNumber);
+        
+        PurchaseOrder purchaseOrder = billingRepository.getPurchaseOrder(poNumber);
         if (purchaseOrder == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

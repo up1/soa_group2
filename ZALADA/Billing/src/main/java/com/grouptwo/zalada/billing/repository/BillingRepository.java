@@ -73,8 +73,9 @@ public class BillingRepository {
         mongoTemplate.updateFirst(query, update, PurchaseOrder.class);
     }
 
-    public PurchaseOrder getPurchaseOrder(String buyer, String poNumber) {
-        Query query = queryByIdAndBuyer(poNumber, buyer);
+    public PurchaseOrder getPurchaseOrder(String poNumber) {
+
+        Query query = queryBuyId(poNumber);
         return mongoTemplate.findOne(query, PurchaseOrder.class);
     }
 
