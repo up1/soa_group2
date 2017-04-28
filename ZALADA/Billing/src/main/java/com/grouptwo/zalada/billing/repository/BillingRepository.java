@@ -1,24 +1,31 @@
 package com.grouptwo.zalada.billing.repository;
 
+import com.grouptwo.zalada.billing.domain.Member;
 import com.grouptwo.zalada.billing.domain.Product;
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
+import com.grouptwo.zalada.billing.exception.QueryException;
 import com.grouptwo.zalada.billing.exception.UpdateException;
+import com.grouptwo.zalada.billing.utils.JwtBuilder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.http.*;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.client.RestTemplate;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -29,9 +36,17 @@ public class BillingRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    @Autowired
+    private RestTemplate restTemplate;
     private Log log;
-    
     private static final String PAY_STATUS = "payStatus";
+
+    @Value("${service.member.port}")
+    private String memberServicePort;
+
+    @Value("${service.member.host}")
+    private String memberServiceHost;
+
 
     public PurchaseOrder findById(String buyer, String id) {
         log = LogFactory.getLog(BillingRepository.class.getName());
@@ -157,5 +172,34 @@ public class BillingRepository {
         update.set("patStatus", PurchaseOrder.STATUS_CODE_PAY);
         mongoTemplate.updateFirst(queryBuyId(poNumber), update, PurchaseOrder.class);
 
+    }
+
+    public void createPurchaseOrderWithDefaultInfo(String username, PurchaseOrder purchaseOrder) throws QueryException {
+
+        String accessToken = JwtBuilder.build(username);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", accessToken);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> entity = new HttpEntity<>("parameter", headers);
+
+        String url = "http://" + memberServiceHost + ":" + memberServicePort + "/member/profile/";
+
+        ResponseEntity<Member> response = restTemplate.exchange(url, HttpMethod.GET, entity, Member.class);
+
+        if(response.getStatusCode() != HttpStatus.OK){
+            throw new QueryException("Query user information error : " + response.getStatusCode());
+        }
+
+        Member member = response.getBody();
+
+        purchaseOrder.setBuyer(member.getUsername());
+        purchaseOrder.setBillingName(member.getName());
+        purchaseOrder.setTel(member.getTel());
+        purchaseOrder.setDeliveryAddress(member.getAddress());
+        purchaseOrder.setEmail(member.getEmail());
+
+        insertPurchaseOrder(purchaseOrder);
     }
 }
