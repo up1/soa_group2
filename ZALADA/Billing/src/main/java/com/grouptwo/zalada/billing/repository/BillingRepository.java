@@ -1,24 +1,31 @@
 package com.grouptwo.zalada.billing.repository;
 
+import com.grouptwo.zalada.billing.domain.Member;
 import com.grouptwo.zalada.billing.domain.Product;
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
+import com.grouptwo.zalada.billing.exception.QueryException;
 import com.grouptwo.zalada.billing.exception.UpdateException;
+import com.grouptwo.zalada.billing.utils.JwtBuilder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.http.*;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.client.RestTemplate;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -29,9 +36,17 @@ public class BillingRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    @Autowired
+    private RestTemplate restTemplate;
     private Log log;
-    
-    private static final String PAYSTATUS = "payStatus";
+    private static final String PAY_STATUS = "payStatus";
+
+    @Value("${service.member.port}")
+    private String memberServicePort;
+
+    @Value("${service.member.host}")
+    private String memberServiceHost;
+
 
     public PurchaseOrder findById(String buyer, String id) {
         log = LogFactory.getLog(BillingRepository.class.getName());
@@ -54,12 +69,13 @@ public class BillingRepository {
         Query query = queryByIdAndBuyer(id, buyer);
 
         Update update = new Update();
-        update.set(PAYSTATUS, PurchaseOrder.STATUS_CODE_CANCEL);
+        update.set(PAY_STATUS, PurchaseOrder.STATUS_CODE_CANCEL);
         mongoTemplate.updateFirst(query, update, PurchaseOrder.class);
     }
 
-    public PurchaseOrder getPurchaseOrder(String buyer, String poNumber) {
-        Query query = queryByIdAndBuyer(poNumber, buyer);
+    public PurchaseOrder getPurchaseOrder(String poNumber) {
+
+        Query query = queryBuyId(poNumber);
         return mongoTemplate.findOne(query, PurchaseOrder.class);
     }
 
@@ -120,14 +136,14 @@ public class BillingRepository {
         return new Query(wherePayStatusIs(payStatus).andOperator(whereBuyerIs(buyer)));
     }
 
-    public List findAllByPayStatus(String buyer, Integer payStatus) {
+    public List<PurchaseOrder> findAllByPayStatus(String buyer, Integer payStatus) {
         Query query = queryByPayStatusAndBuyer(payStatus, buyer);
 
         return Lists.newArrayList(mongoTemplate.find(query, PurchaseOrder.class));
     }
 
     private Criteria wherePayStatusIs(Integer payStatus){
-        return where(PAYSTATUS).is(payStatus);
+        return where(PAY_STATUS).is(payStatus);
     }
 
     private Criteria whereBuyerIs(String buyer){
@@ -141,7 +157,7 @@ public class BillingRepository {
 
     public void paidPaySlip(String poNumber) throws UpdateException {
         Query query = queryBuyId(poNumber);
-        query.fields().include(PAYSTATUS);
+        query.fields().include(PAY_STATUS);
         Update update = new Update();
         PurchaseOrder purchaseOrder = mongoTemplate.findOne(query, PurchaseOrder.class);
 
@@ -157,5 +173,34 @@ public class BillingRepository {
         update.set("patStatus", PurchaseOrder.STATUS_CODE_PAY);
         mongoTemplate.updateFirst(queryBuyId(poNumber), update, PurchaseOrder.class);
 
+    }
+
+    public void createPurchaseOrderWithDefaultInfo(String username, PurchaseOrder purchaseOrder) throws QueryException {
+
+        String accessToken = JwtBuilder.build(username);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", accessToken);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> entity = new HttpEntity<>("parameter", headers);
+
+        String url = "http://" + memberServiceHost + ":" + memberServicePort + "/member/profile/";
+
+        ResponseEntity<Member> response = restTemplate.exchange(url, HttpMethod.GET, entity, Member.class);
+
+        if(response.getStatusCode() != HttpStatus.OK){
+            throw new QueryException("Query user information error : " + response.getStatusCode());
+        }
+
+        Member member = response.getBody();
+
+        purchaseOrder.setBuyer(member.getUsername());
+        purchaseOrder.setBillingName(member.getName());
+        purchaseOrder.setTel(member.getTel());
+        purchaseOrder.setDeliveryAddress(member.getAddress());
+        purchaseOrder.setEmail(member.getEmail());
+
+        insertPurchaseOrder(purchaseOrder);
     }
 }
