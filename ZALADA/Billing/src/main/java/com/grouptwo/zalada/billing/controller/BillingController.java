@@ -1,6 +1,7 @@
 package com.grouptwo.zalada.billing.controller;
 
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
+import com.grouptwo.zalada.billing.exception.QueryException;
 import com.grouptwo.zalada.billing.exception.UpdateException;
 import com.grouptwo.zalada.billing.repository.BillingRepository;
 import com.grouptwo.zalada.billing.utils.EmailValidator;
@@ -68,17 +69,33 @@ public class BillingController {
     }
 
     @RequestMapping(value = "/purchaseorder", method = RequestMethod.POST)
-    public ResponseEntity<String> createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
+    public ResponseEntity<String> createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder,
+                                                      @RequestParam(name = "default", required = false, defaultValue = "false") Boolean isDefaultInfo) {
+
+        if(isDefaultInfo){
+            String username = getUsername();
+            try {
+                billingRepository.createPurchaseOrderWithDefaultInfo(username, purchaseOrder);
+            } catch (QueryException e) {
+                log.error(e);
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.OK);
+        }
 
         String buyer = getUsername();
-
         purchaseOrder.setBuyer(buyer);
-
-        if (emailValidator.validate(purchaseOrder.getEmail())) {
-            billingRepository.insertPurchaseOrder(purchaseOrder);
-            return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("invalid email format", HttpStatus.BAD_REQUEST);
+        try {
+            if (emailValidator.validate(purchaseOrder.getEmail())) {
+                billingRepository.insertPurchaseOrder(purchaseOrder);
+                return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("invalid email format", HttpStatus.BAD_REQUEST);
+            }
+        }catch (NullPointerException e){
+            String errorMessage = "Purchase order do not have email";
+            log.error(errorMessage, e.getCause());
+            return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
         }
     }
 
