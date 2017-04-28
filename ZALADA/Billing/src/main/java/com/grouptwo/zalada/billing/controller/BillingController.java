@@ -80,7 +80,7 @@ public class BillingController {
                 log.error(e);
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
-            return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.OK);
+            return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.CREATED);
         }
 
         String buyer = getUsername();
@@ -88,7 +88,7 @@ public class BillingController {
         try {
             if (emailValidator.validate(purchaseOrder.getEmail())) {
                 billingRepository.insertPurchaseOrder(purchaseOrder);
-                return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.OK);
+                return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>("invalid email format", HttpStatus.BAD_REQUEST);
             }
