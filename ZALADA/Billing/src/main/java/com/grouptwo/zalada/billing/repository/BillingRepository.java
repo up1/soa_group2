@@ -31,7 +31,7 @@ public class BillingRepository {
 
     private Log log;
     
-    private static final String PAYSTATUS = "payStatus";
+    private static final String PAY_STATUS = "payStatus";
 
     public PurchaseOrder findById(String buyer, String id) {
         log = LogFactory.getLog(BillingRepository.class.getName());
@@ -54,7 +54,7 @@ public class BillingRepository {
         Query query = queryByIdAndBuyer(id, buyer);
 
         Update update = new Update();
-        update.set(PAYSTATUS, PurchaseOrder.STATUS_CODE_CANCEL);
+        update.set(PAY_STATUS, PurchaseOrder.STATUS_CODE_CANCEL);
         mongoTemplate.updateFirst(query, update, PurchaseOrder.class);
     }
 
@@ -127,7 +127,7 @@ public class BillingRepository {
     }
 
     private Criteria wherePayStatusIs(Integer payStatus){
-        return where(PAYSTATUS).is(payStatus);
+        return where(PAY_STATUS).is(payStatus);
     }
 
     private Criteria whereBuyerIs(String buyer){
@@ -141,7 +141,7 @@ public class BillingRepository {
 
     public void paidPaySlip(String poNumber) throws UpdateException {
         Query query = queryBuyId(poNumber);
-        query.fields().include(PAYSTATUS);
+        query.fields().include(PAY_STATUS);
         Update update = new Update();
         PurchaseOrder purchaseOrder = mongoTemplate.findOne(query, PurchaseOrder.class);
 
