@@ -31,17 +31,17 @@ class ProductItemPreview extends React.Component {
                 className="btn-add"
                 onClick={() => {
                   this
-                  .props
-                  .addProduct({
-                    id: this.props.id,
-                    amount: 1,
-                    name: this.props.name,
-                    price: this.props.price,
-                    detail: this.props.detail,
-                    editDate: this.props.editDate,
-                    saleDate: this.props.saleDate,
-                    owner: this.props.owner,
-                  });
+                    .props
+                    .addProduct({
+                      id: this.props.id,
+                      amount: 1,
+                      name: this.props.name,
+                      price: this.props.price,
+                      detail: this.props.detail,
+                      editDate: this.props.editDate,
+                      saleDate: this.props.saleDate,
+                      owner: this.props.owner,
+                    });
                 }}
               ><i className="fa fa-shopping-cart" /><br />
                 <a href="#" className="hidden-sm">Add to cart</a>
