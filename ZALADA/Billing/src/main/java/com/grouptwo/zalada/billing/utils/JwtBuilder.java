@@ -1,12 +1,15 @@
 package com.grouptwo.zalada.billing.utils;
 
+import com.grouptwo.zalada.billing.domain.Authenticated;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @Component
 public class JwtBuilder {
@@ -16,7 +19,20 @@ public class JwtBuilder {
 
     private JwtBuilder(){}
 
-    public static Authentication build(HttpServletRequest request) {
+    public static String build(String username){
+
+        Claims claims = Jwts.claims().setSubject(username);
+
+        Long now = System.currentTimeMillis();
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(new Date(now))
+                .setExpiration(new Date(now + EXPIRATION_TIME))
+                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .compact();
+    }
+
+    public static Authentication parse(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
 
         if(token != null) {
