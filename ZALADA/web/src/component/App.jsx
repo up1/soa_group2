@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import cookie from 'react-cookie';
 import ReactTooltip from 'react-tooltip';
-import axios from 'axios';
 import NotificationSystem from 'react-notification-system';
 import ListProduct from './Stock/ListProduct';
 import UpdateProduct from './Stock/UpdateProduct';
@@ -15,6 +14,7 @@ import CategoryPage from './Sale/Category/CategoryPage';
 import SelectedCategory from './Sale/Category/SelectedCategory';
 import PurchaseOrder from '././Sale/PurchaseOrder';
 import ConfirmForm from './Sale/ConfirmForm';
+import { SaleService } from '../util/AxiosWrapper';
 
 class App extends React.Component {
 
@@ -65,9 +65,8 @@ class App extends React.Component {
   }
 
   getCartInfo(cartId) {
-    console.log(`http://localhost:9003/cart/${cartId}`);
-    axios
-      .get(`http://localhost:9003/cart/${cartId}`)
+    SaleService
+      .get(`cart/${cartId}`)
       .then((response) => {
         console.log(response.data);
         const storedCartItems = response.data.products;
@@ -85,15 +84,13 @@ class App extends React.Component {
 
   createCart(userType, username) {
     let endpoint;
-    console.log("testsss" + userType);
     if (userType !== '0') {
-      endpoint = `http://localhost:9003/cart?usertype=${userType}`;
-      
+      endpoint = `cart?usertype=${userType}`;
     } else if (userType === '1') {
-      endpoint = `http://localhost:9003/cart?usertype=${userType}&username=${username}`;
+      endpoint = `cart?usertype=${userType}&username=${username}`;
     }
     console.log(endpoint);
-    axios
+    SaleService
           .post(endpoint)
           .then((response) => {
             const generatedCartId = response.data;
@@ -106,8 +103,8 @@ class App extends React.Component {
   }
 
   addToCart(cartItem) {
-    axios
-      .post(`http://localhost:9003/cart/${this.state.cartId}?productId=${cartItem.id}&amount=${cartItem.amount}`)
+    SaleService
+      .post(`cart/${this.state.cartId}?productId=${cartItem.id}&amount=${cartItem.amount}`)
       .then(() => {
         const currentCart = {
           ...this.state.cart,
@@ -121,8 +118,8 @@ class App extends React.Component {
   }
 
   removeFromCart(itemId) {
-    axios
-      .delete(`http://localhost:9003/cart/${this.state.cartId}?productId=${itemId}`)
+    SaleService
+      .delete(`cart/${this.state.cartId}?productId=${itemId}`)
       .then(() => {
         const currentCart = {
           ...this.state.cart,
@@ -140,8 +137,8 @@ class App extends React.Component {
     const cartData = {
       products: [],
     };
-    axios
-      .put(`http://localhost:9003/cart/${this.state.cartId}`, cartData)
+    SaleService
+      .put(`cart/${this.state.cartId}`, cartData)
       .then(() => {
         this.setState({ cart: [] });
       })
@@ -165,7 +162,6 @@ class App extends React.Component {
   render() {
     const AddProductwithNoti = prop =>
     (<AddProduct noti={this.notifySuccessAddProduct} {...prop} />);
-
     const WrapSignIn = prop =>
     (<LoginPage updateUser={this.updateUser} {...prop} />);
     const WrapSignUp = prop =>
