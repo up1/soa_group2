@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class JwtBuilder {
 
 
-    @Value("${secretKey}")
-    private static String secretKey;
+    private static final String SECRET_KEY = "pOnAm2017";
 
     private JwtBuilder(){}
 
@@ -22,7 +21,7 @@ public class JwtBuilder {
 
         if(token != null) {
             Jws<Claims> claims = Jwts.parser()
-                    .setSigningKey(secretKey)
+                    .setSigningKey(SECRET_KEY)
                     .parseClaimsJws(token.replace("Bearer" + " ", ""));
 
             Claims body = claims.getBody();
