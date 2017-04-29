@@ -8,7 +8,6 @@ import org.springframework.context.annotation.PropertySources;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@PropertySources({@PropertySource("classpath:application.properties")})
 public class MemberManageMain {
 
     public static void main(String ... args){
