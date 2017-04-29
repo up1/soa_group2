@@ -28,9 +28,7 @@ class ListProduct extends React.Component {
 
   updateData() {
     StockService
-      .get(`/product?page=${this.state.page}`, {
-        headers: { Authorization: 'Bearer '.concat(cookie.load('acess_token')) },
-      })
+      .get(`/product?page=${this.state.page}`)
       .then((response) => {
         const productList = response
           .data

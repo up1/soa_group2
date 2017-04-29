@@ -14,7 +14,7 @@ import CategoryPage from './Sale/Category/CategoryPage';
 import SelectedCategory from './Sale/Category/SelectedCategory';
 import PurchaseOrder from '././Sale/PurchaseOrder';
 import ConfirmForm from './Sale/ConfirmForm';
-import { SaleService } from '../util/AxiosWrapper';
+import { SaleService, StockService, BillingService, MemberService } from '../util/AxiosWrapper';
 
 class App extends React.Component {
 
@@ -145,10 +145,13 @@ class App extends React.Component {
       });
   }
 
-  updateUser(username, acessToken, cartId) {
-    cookie.save('acess_token', acessToken);
+  updateUser(username, accessToken, cartId) {
+    cookie.save('acesss_token', accessToken);
+    SaleService.defaults.headers.common.Authorizaion = 'Bearer '.concat(accessToken);
+    StockService.defaults.headers.common.Authorizaion = 'Bearer '.concat(accessToken);
+    BillingService.defaults.headers.common.Authorizaion = 'Bearer '.concat(accessToken);
+    MemberService.defaults.headers.common.Authorizaion = 'Bearer '.concat(accessToken);
     this.getCartInfo(cartId);
-    console.log(cartId);
     cookie.save('user', username);
     this.setState({ username });
   }
