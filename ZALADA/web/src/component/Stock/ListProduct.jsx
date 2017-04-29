@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import cookie from 'react-cookie';
 import Product from './Product';
 import { StockService } from '../../util/AxiosWrapper';
 import './css/show-own-product-style.css';
@@ -27,7 +28,9 @@ class ListProduct extends React.Component {
 
   updateData() {
     StockService
-      .get(`/product?page=${this.state.page}`)
+      .get(`/product?page=${this.state.page}`, {
+        headers: { Authorization: 'Bearer '.concat(cookie.load('acess_token')) },
+      })
       .then((response) => {
         const productList = response
           .data
