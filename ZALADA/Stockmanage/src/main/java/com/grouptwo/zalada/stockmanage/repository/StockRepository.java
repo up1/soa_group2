@@ -74,7 +74,7 @@ public class StockRepository {
 
     public List findAllProductByCategory(String owner, Pageable pageable, String categoryName){
         List<String> categoryList = createCategoryList(categoryName);
-        return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList).andOperator(whereByOwner((owner)))));
+        return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList).andOperator(whereByOwner(owner))));
     }
 
     public  List<Product> findAllProductByCategory(String owner, String categoryName){
