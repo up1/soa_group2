@@ -1,5 +1,4 @@
 import React from 'react';
-import cookie from 'react-cookie';
 import UpperHeaderSection from './Sale/UpperHeaderSection';
 import FooterSection from './Sale/FooterSection';
 import './css/loginPage.css';
@@ -37,10 +36,9 @@ class LoginPage extends React.Component {
       .post('/member/signin', data)
       .then((response) => {
         console.log(response.data);
-        cookie.save('user', this.state.username);
         this
           .props
-          .updateUser(this.state.username);
+          .updateUser(this.state.username, response.data.access_token, response.data.cartId);
         this
           .context
           .router

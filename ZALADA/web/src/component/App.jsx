@@ -51,8 +51,6 @@ class App extends React.Component {
       const userCartId = cookie.load('cartid');
       if (userCartId) {
         this.getCartInfo(userCartId);
-      } else {
-        this.createCart(1, this.state.username);
       }
     } else {
       const cartId = cookie.load('cartid');
@@ -74,8 +72,8 @@ class App extends React.Component {
         for (let i = 0; i < storedCartItems.length; i += 1) {
           newCart[storedCartItems[i].id] = storedCartItems[i];
         }
-        this.setState({ cart: newCart });
-        this.setState({ cartId: response.data.id });
+        cookie.save('cartid', cartId);
+        this.setState({ cartId: response.data.id, cart: newCart });
       })
       .catch((error) => {
         console.log(error);
@@ -147,7 +145,10 @@ class App extends React.Component {
       });
   }
 
-  updateUser(username) {
+  updateUser(username, acess_token, cart_id) {
+    cookie.save('acess_token', acess_token);
+    this.getCartInfo(cart_id);
+    console.log(cart_id);
     cookie.save('user', username);
     this.setState({ username });
   }

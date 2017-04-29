@@ -46,17 +46,14 @@ class SignUpPage extends React.Component {
       .post('/member/signup', data)
       .then((response) => {
         this
-          .props
-          .updateUser(this.state.username);
-        this
           .context
           .router
           .history
           .push('/');
-      } )
+      })
       .catch((error) => {
         console.log(error);
-      } );
+      });
 
     console.log(data);
   }
