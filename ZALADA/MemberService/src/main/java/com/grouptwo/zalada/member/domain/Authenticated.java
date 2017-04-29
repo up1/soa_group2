@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
+import java.util.Collections;
 
 
 public class Authenticated implements Authentication {
@@ -17,22 +18,22 @@ public class Authenticated implements Authentication {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     public Object getCredentials() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     public Object getDetails() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     public Object getPrincipal() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
