@@ -8,6 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAutoConfiguration
 public class MemberManageMain {
 
+    public MemberManageMain(){
+        //Needs a constructor
+    }
+
     public static void main(String ... args){
         SpringApplication.run(MemberManageMain.class, args);
     }

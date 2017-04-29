@@ -67,6 +67,6 @@ public class MemberController {
 
     @RequestMapping(value = "/member/profile", method = RequestMethod.PUT)
     public void updateProfile() {
-
+        //Not yet complete
     }
 }
