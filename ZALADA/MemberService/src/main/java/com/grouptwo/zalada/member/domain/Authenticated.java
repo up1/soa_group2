@@ -4,12 +4,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
+import java.util.Collections;
 
 
 public class Authenticated implements Authentication {
 
     private String username;
-    private boolean authenticated = true;
+    private boolean userAuthenticated = true;
 
     public Authenticated(String username) {
         this.username = username;
@@ -17,32 +18,32 @@ public class Authenticated implements Authentication {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     public Object getCredentials() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     public Object getDetails() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     public Object getPrincipal() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     public boolean isAuthenticated() {
-        return authenticated;
+        return userAuthenticated;
     }
 
     @Override
-    public void setAuthenticated(boolean b) throws IllegalArgumentException {
-        this.authenticated = b;
+    public void setAuthenticated(boolean b) {
+        this.userAuthenticated = b;
     }
 
     @Override

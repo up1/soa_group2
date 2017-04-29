@@ -21,14 +21,14 @@ import java.util.HashMap;
 @CrossOrigin(origins = "*")
 public class MemberController {
 
+    private Log log;
+
     @Autowired
     private MemberRepository memberRepository;
 
     public MemberController(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
-
-    private Log log;
 
     public MemberController(){
         log = LogFactory.getLog(MemberController.class.getName());
@@ -67,6 +67,6 @@ public class MemberController {
 
     @RequestMapping(value = "/member/profile", method = RequestMethod.PUT)
     public void updateProfile() {
-
+        //Not yet complete
     }
 }

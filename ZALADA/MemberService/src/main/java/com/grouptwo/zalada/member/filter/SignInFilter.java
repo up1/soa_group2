@@ -34,7 +34,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, ServletException, IOException {
+    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         SignIn credentials = new ObjectMapper().readValue(httpServletRequest.getInputStream(), SignIn.class);
 
         String hashPassword = DigestUtils.sha256Hex(credentials.getPassword());
@@ -68,9 +68,8 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
         PrintWriter writer = response.getWriter();
 
-        HashMap<String, Object> mappingResponse = new HashMap<String, Object>() {{
-            put("error", failed.getMessage());
-        }};
+        HashMap<String, Object> mappingResponse = new HashMap<>();
+        mappingResponse.put("error", failed.getMessage());
         ObjectMapper mapper = new ObjectMapper();
 
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
