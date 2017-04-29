@@ -10,7 +10,9 @@ public class SignUp {
         this.signIn = signIn;
     }
 
-    public SignUp(){}
+    public SignUp(){
+        //Constructor for Spring
+    }
 
     public Member getMember() {
         return member;
