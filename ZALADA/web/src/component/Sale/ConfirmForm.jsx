@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import FooterSection from './FooterSection';
 import UpperHeaderSection from './UpperHeaderSection';
 import './css/confirm.css';
+import { BillingService } from '../../util/AxiosWrapper';
 
 class ConfirmForm extends React.Component {
 
@@ -47,10 +47,10 @@ class ConfirmForm extends React.Component {
       deliveryAddress: this.state.address + " " + this.state.state + " " + this.state.province + " " + this.state.post_code,
       payStatus: 0,
       tel: this.state.tel,
-      email: this.state.email
+      email: this.state.email,
     };
-    axios
-      .post('http://localhost:9002/purchaseorder', data)
+    BillingService
+      .post('/purchaseorder', data)
       .then((response) => {
         const purchaseorderId = response.data;
         this
@@ -287,12 +287,11 @@ class ConfirmForm extends React.Component {
 
               </div>
 
-            
             </div>
           </section>
         </div>
 
-        <FooterSection  />
+        <FooterSection />
       </div>
 
     );

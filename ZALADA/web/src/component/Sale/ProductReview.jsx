@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import './css/productReview.css';
 import ProductItemPreview from './ProductItemPreview'; // each product item component
+import { SaleService } from '../../util/AxiosWrapper';
 
 class ProductReview extends React.Component {
 
@@ -19,8 +19,8 @@ class ProductReview extends React.Component {
   }
 
   loadAllProduct() {
-    axios
-      .get('http://localhost:9003/sale')
+    SaleService
+      .get('/sale')
       .then((response) => {
         const productList = response
           .data
