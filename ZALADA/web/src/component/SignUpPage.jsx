@@ -2,7 +2,7 @@ import React from 'react';
 import UpperHeaderSection from './Sale/UpperHeaderSection';
 import FooterSection from './Sale/FooterSection';
 import './css/signupPage.css';
-import { UserService } from '../util/AxiosWrapper';
+import { MemberService } from '../util/AxiosWrapper';
 
 class SignUpPage extends React.Component {
 
@@ -42,7 +42,7 @@ class SignUpPage extends React.Component {
       },
     };
 
-    UserService
+    MemberService
       .post('/member/signup', data)
       .then((response) => {
         this
