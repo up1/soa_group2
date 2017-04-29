@@ -93,9 +93,8 @@ public class BillingController {
                 return new ResponseEntity<>("invalid email format", HttpStatus.BAD_REQUEST);
             }
         }catch (NullPointerException e){
-            String errorMessage = "Purchase order do not have email";
-            log.error(errorMessage, e.getCause());
-            return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+            log.error(e);
+            return new ResponseEntity<>("Purchase order do not have email", HttpStatus.BAD_REQUEST);
         }
     }
 
