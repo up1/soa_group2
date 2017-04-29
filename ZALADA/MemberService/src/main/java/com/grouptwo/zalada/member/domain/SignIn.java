@@ -16,7 +16,9 @@ public class SignIn {
         this.password = password;
     }
 
-    public SignIn(){}
+    public SignIn(){
+        //Constructor for Spring
+    }
 
     public String getUsername() {
         return username;
