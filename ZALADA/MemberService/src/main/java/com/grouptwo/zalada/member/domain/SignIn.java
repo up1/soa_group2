@@ -1,15 +1,14 @@
 package com.grouptwo.zalada.member.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "signin")
 public class SignIn {
 
     private String username;
     private String password;
-    private ArrayList<String> role;
+    private List<String> role;
 
     public SignIn(String username, String password){
         this.username = username;
@@ -36,11 +35,11 @@ public class SignIn {
         this.password = password;
     }
 
-    public ArrayList<String> getRole() {
+    public List<String> getRole() {
         return role;
     }
 
-    public void setRole(ArrayList<String> role) {
+    public void setRole(List<String> role) {
         this.role = role;
     }
 }
