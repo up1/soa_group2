@@ -10,7 +10,7 @@ import java.util.Collections;
 public class Authenticated implements Authentication {
 
     private String username;
-    private boolean authenticated = true;
+    private boolean userAuthenticated = true;
 
     public Authenticated(String username) {
         this.username = username;
@@ -38,12 +38,12 @@ public class Authenticated implements Authentication {
 
     @Override
     public boolean isAuthenticated() {
-        return authenticated;
+        return userAuthenticated;
     }
 
     @Override
     public void setAuthenticated(boolean b) {
-        this.authenticated = b;
+        this.userAuthenticated = b;
     }
 
     @Override
