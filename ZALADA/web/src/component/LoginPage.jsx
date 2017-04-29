@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import UpperHeaderSection from './Sale/UpperHeaderSection';
 import FooterSection from './Sale/FooterSection';
 import './css/loginPage.css';
@@ -44,10 +45,10 @@ class LoginPage extends React.Component {
           .router
           .history
           .push('/');
-      } )
+      })
       .catch((error) => {
         console.log(error);
-      } );
+      });
   }
 
   render() {
@@ -90,8 +91,13 @@ class LoginPage extends React.Component {
   }
 }
 
+LoginPage.propTypes = {
+  updateUser: PropTypes.func.isRequired,
+};
+
 LoginPage.contextTypes = {
   router: React.PropTypes.object,
 };
+
 
 export default LoginPage;

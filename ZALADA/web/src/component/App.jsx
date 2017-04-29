@@ -145,10 +145,10 @@ class App extends React.Component {
       });
   }
 
-  updateUser(username, acess_token, cart_id) {
-    cookie.save('acess_token', acess_token);
-    this.getCartInfo(cart_id);
-    console.log(cart_id);
+  updateUser(username, acessToken, cartId) {
+    cookie.save('acess_token', acessToken);
+    this.getCartInfo(cartId);
+    console.log(cartId);
     cookie.save('user', username);
     this.setState({ username });
   }

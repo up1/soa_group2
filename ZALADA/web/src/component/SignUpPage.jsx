@@ -44,7 +44,7 @@ class SignUpPage extends React.Component {
 
     MemberService
       .post('/member/signup', data)
-      .then((response) => {
+      .then(() => {
         this
           .context
           .router
@@ -69,8 +69,9 @@ class SignUpPage extends React.Component {
                 <h3 className="dark-grey">สร้างบัญชีลูกค้าใหม่</h3>
 
                 <div className="form-group col-lg-12">
-                  <label>ชื่อผู้ใช้</label>
+                  <label htmlFor="username">ชื่อผู้ใช้</label>
                   <input
+                    id="username"
                     type="text"
                     name="username"
                     className="form-control"
@@ -79,8 +80,9 @@ class SignUpPage extends React.Component {
                 </div>
 
                 <div className="form-group col-lg-6">
-                  <label>รหัสผ่าน</label>
+                  <label htmlFor="password">รหัสผ่าน</label>
                   <input
+                    id="password"
                     type="password"
                     name="password"
                     className="form-control"
@@ -89,8 +91,9 @@ class SignUpPage extends React.Component {
                 </div>
 
                 <div className="form-group col-lg-6">
-                  <label>ยืนยันรหัสผ่าน</label>
+                  <label htmlFor="password_re">ยืนยันรหัสผ่าน</label>
                   <input
+                    id="password_re"
                     type="password"
                     name="password_re"
                     className="form-control"
@@ -99,8 +102,9 @@ class SignUpPage extends React.Component {
                 </div>
 
                 <div className="form-group col-lg-6">
-                  <label>Email Address</label>
+                  <label htmlFor="email">Email Address</label>
                   <input
+                    id="email"
                     type="text"
                     name="email"
                     className="form-control"
@@ -109,8 +113,9 @@ class SignUpPage extends React.Component {
                 </div>
 
                 <div className="form-group col-lg-6">
-                  <label>ยืนยัน Email Address</label>
+                  <label htmlFor="email_re">ยืนยัน Email Address</label>
                   <input
+                    id="email_re"
                     type="text"
                     name="email_re"
                     className="form-control"
@@ -123,7 +128,9 @@ class SignUpPage extends React.Component {
               <div className="col-md-6">
                 <h3 className="dark-grey">Terms and Conditions</h3>
                 <p>
-                  By clicking on "Register" you agree to The Company's' Terms and Conditions</p>
+                  By clicking on &quot;Register&quot; you agree to
+                  The Company&#39;s&#39; Terms and Conditions
+                </p>
                 <p>
                   While rare, prices are subject to change based on exchange rate fluctuations -
                   should such a fluctuation happen, we may request an additional payment. You have
@@ -136,7 +143,9 @@ class SignUpPage extends React.Component {
                   Acceptance of an order by us is dependent on our suppliers ability to provide
                   the product. (Paragraph 13.5.6)</p>
 
-                <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>สมัครสมาชิก</button>
+                <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>
+                  สมัครสมาชิก
+                </button>
               </div>
             </div>
           </section>
