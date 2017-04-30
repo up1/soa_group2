@@ -36,7 +36,7 @@ public class StockRepository {
     public void updateProduct(String owner, String id, Product updateProduct) throws ProductNotFoundException {
 
         boolean isProductExits = mongoTemplate.exists(new Query(where("id").is(id).andOperator(whereByOwner(owner))), Product.class);
-        if (isProductExits){
+        if (! isProductExits){
             throw new ProductNotFoundException();
         }
 
