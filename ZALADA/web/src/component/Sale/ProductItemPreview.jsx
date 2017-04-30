@@ -10,7 +10,7 @@ class ProductItemPreview extends React.Component {
         <div className="col-item">
           <div className="photo">
             <img
-              src={`http://139.59.102.212:9001/product/image/productId=${this.props.id}`}
+              src={`http://139.59.102.212:9001/product/image/?productId=${this.props.id}`}
               className="img-responsive"
               alt={`${this.props.name}`}
             />
