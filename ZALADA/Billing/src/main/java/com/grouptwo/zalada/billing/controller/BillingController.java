@@ -1,9 +1,9 @@
 package com.grouptwo.zalada.billing.controller;
 
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
+import com.grouptwo.zalada.billing.exception.QueryException;
 import com.grouptwo.zalada.billing.exception.UpdateException;
 import com.grouptwo.zalada.billing.repository.BillingRepository;
-import com.grouptwo.zalada.billing.repository.SaleRepository;
 import com.grouptwo.zalada.billing.utils.EmailValidator;
 import com.grouptwo.zalada.billing.utils.PaySlipPdfManager;
 import com.itextpdf.text.DocumentException;
@@ -26,13 +26,11 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class BillingController {
 
     @Autowired
     private BillingRepository billingRepository;
-
-    @Autowired
-    SaleRepository saleRepository;
 
     @Autowired
     private EmailValidator emailValidator;
@@ -72,17 +70,32 @@ public class BillingController {
     }
 
     @RequestMapping(value = "/purchaseorder", method = RequestMethod.POST)
-    public ResponseEntity<String> createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
+    public ResponseEntity<String> createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder,
+                                                      @RequestParam(name = "default", required = false, defaultValue = "false") Boolean isDefaultInfo) {
+
+        if(isDefaultInfo){
+            String username = getUsername();
+            try {
+                billingRepository.createPurchaseOrderWithDefaultInfo(username, purchaseOrder);
+            } catch (QueryException e) {
+                log.error(e);
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.CREATED);
+        }
 
         String buyer = getUsername();
-
         purchaseOrder.setBuyer(buyer);
-
-        if (emailValidator.validate(purchaseOrder.getEmail())) {
-            billingRepository.insertPurchaseOrder(purchaseOrder);
-            return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("invalid email format", HttpStatus.BAD_REQUEST);
+        try {
+            if (emailValidator.validate(purchaseOrder.getEmail())) {
+                billingRepository.insertPurchaseOrder(purchaseOrder);
+                return new ResponseEntity<>(purchaseOrder.getId(), HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>("invalid email format", HttpStatus.BAD_REQUEST);
+            }
+        }catch (NullPointerException e){
+            log.error(e);
+            return new ResponseEntity<>("Purchase order do not have email", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -113,10 +126,8 @@ public class BillingController {
     @RequestMapping(value = "/payslip/{poNumber}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getPaySlip(@PathVariable String poNumber) {
         ByteArrayOutputStream paySlipFile;
-
-        String buyer = getUsername();
-
-        PurchaseOrder purchaseOrder = billingRepository.getPurchaseOrder(buyer, poNumber);
+        
+        PurchaseOrder purchaseOrder = billingRepository.getPurchaseOrder(poNumber);
         if (purchaseOrder == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

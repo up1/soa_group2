@@ -36,7 +36,7 @@ public class StockRepository {
     public void updateProduct(String owner, String id, Product updateProduct) throws ProductNotFoundException {
 
         boolean isProductExits = mongoTemplate.exists(new Query(where("id").is(id).andOperator(whereByOwner(owner))), Product.class);
-        if (isProductExits){
+        if (! isProductExits){
             throw new ProductNotFoundException();
         }
 
@@ -74,7 +74,7 @@ public class StockRepository {
 
     public List findAllProductByCategory(String owner, Pageable pageable, String categoryName){
         List<String> categoryList = createCategoryList(categoryName);
-        return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList).andOperator(whereByOwner((owner)))));
+        return getPaging(Product.class, pageable, new Query(where("category.name").in(categoryList).andOperator(whereByOwner(owner))));
     }
 
     public  List<Product> findAllProductByCategory(String owner, String categoryName){

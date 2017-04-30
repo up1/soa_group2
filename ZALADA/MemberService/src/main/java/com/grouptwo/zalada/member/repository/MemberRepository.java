@@ -6,6 +6,7 @@ import com.grouptwo.zalada.member.domain.SignUp;
 import com.grouptwo.zalada.member.exception.DuplicateUserException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpEntity;
@@ -27,6 +28,12 @@ public class MemberRepository {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Value("${service.sale.host}")
+    private String serviceSaleHost;
+
+    @Value("${service.sale.port}")
+    private String serviceSalePort;
+
     public Member findByUsername(String username){
         Query query = queryByUsername(username);
         return mongoTemplate.findOne(query, Member.class);
@@ -37,7 +44,7 @@ public class MemberRepository {
         return mongoTemplate.findOne(query, SignIn.class);
     }
 
-    public Query queryByUsername(String username){
+    private Query queryByUsername(String username){
         return new Query(where("username").is(username));
     }
 
@@ -60,7 +67,7 @@ public class MemberRepository {
             mockRole.add("user");
             signUp.getSignIn().setRole(mockRole);
         }
-        String url = "http://139.59.102.212:9003/cart?usertype=1&username=" + signUp.getMember().getUsername();
+        String url = "http://"+ serviceSaleHost + ":" + serviceSalePort + "/cart?usertype=1&username=" + signUp.getMember().getUsername();
         ResponseEntity<String> response = restTemplate.exchange(
                 url,
                 HttpMethod.POST,

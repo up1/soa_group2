@@ -7,6 +7,8 @@ import com.grouptwo.zalada.member.domain.Member;
 import com.grouptwo.zalada.member.domain.SignUp;
 import com.grouptwo.zalada.member.exception.DuplicateUserException;
 import com.grouptwo.zalada.member.repository.MemberRepository;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import java.util.HashMap;
 @CrossOrigin(origins = "*")
 public class MemberController {
 
+    private Log log;
+
     @Autowired
     private MemberRepository memberRepository;
 
@@ -26,7 +30,8 @@ public class MemberController {
         this.memberRepository = memberRepository;
     }
 
-    public MemberController() {
+    public MemberController(){
+        log = LogFactory.getLog(MemberController.class.getName());
     }
 
     @RequestMapping(value = "/member/signup", method = RequestMethod.POST)
@@ -34,6 +39,7 @@ public class MemberController {
         try{
             return new ResponseEntity<>(memberRepository.memberSignup(signUp), HttpStatus.CREATED);
         }catch (DuplicateUserException e){
+            log.error(e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
@@ -50,17 +56,17 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/member/profile", method = RequestMethod.GET)
-    public ResponseEntity<String> findProfile() {
+    public ResponseEntity<Member> findProfile() {
         Authenticated auth = (Authenticated) SecurityContextHolder.getContext().getAuthentication();
         Member member = memberRepository.findByUsername(auth.getName());
         if(member == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(member.toString(), HttpStatus.OK);
+        return new ResponseEntity<>(member, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/member/profile", method = RequestMethod.PUT)
     public void updateProfile() {
-
+        //Not yet complete
     }
 }

@@ -1,5 +1,6 @@
 package com.grouptwo.zalada.billing.config;
 
+import com.grouptwo.zalada.billing.utils.EmailValidator;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,5 +41,10 @@ public class ServiceConfig extends AbstractMongoConfiguration {
     @Bean
     public RestTemplate restTemplate(){
         return new RestTemplate();
+    }
+
+    @Bean
+    public EmailValidator emailValidator(){
+        return new EmailValidator();
     }
 }

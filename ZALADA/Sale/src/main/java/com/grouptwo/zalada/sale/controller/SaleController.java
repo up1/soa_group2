@@ -10,8 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -134,5 +132,18 @@ public class SaleController {
         }
         Pageable pageable = new PageRequest(page, size);
         return saleRepository.findSaleHistoryListByProduct(pageable, productId);
+    }
+
+    @RequestMapping(value = "/cart/{cartId}/{productId}", method = RequestMethod.PATCH)
+    public void updateAmount(@PathVariable String cartId,
+                             @PathVariable String productId,
+                             @RequestParam(name = "amount") Integer amount){
+        saleRepository.updateAmount(cartId, productId, amount);
+    }
+
+    @RequestMapping(value = "/cart/{cartId}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> removeFromCart(@PathVariable String cartId,
+                        @RequestParam(name = "productId") String productId) {
+        return saleRepository.removeFromCart(cartId, productId);
     }
 }

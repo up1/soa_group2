@@ -1,11 +1,9 @@
 package com.grouptwo.zalada.member.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.grouptwo.zalada.member.JwtBuilder;
 import com.grouptwo.zalada.member.domain.SignIn;
 import com.grouptwo.zalada.member.repository.MemberRepository;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,11 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.HashMap;
-
-import static com.grouptwo.zalada.member.JwtBuilder.expirationTime;
-import static com.grouptwo.zalada.member.JwtBuilder.secretKey;
 
 public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
@@ -40,7 +34,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, ServletException, IOException {
+    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         SignIn credentials = new ObjectMapper().readValue(httpServletRequest.getInputStream(), SignIn.class);
 
         String hashPassword = DigestUtils.sha256Hex(credentials.getPassword());
@@ -59,18 +53,9 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
         if (signIn == null) {
             throw new UsernameNotFoundException("User not found: " + username);
         }
+        String jwt = JwtBuilder.build(signIn.getUsername());
 
-        Claims claims = Jwts.claims().setSubject(signIn.getUsername());
-
-        Long now = System.currentTimeMillis();
-        String JWT = Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(new Date(now))
-                .setExpiration(new Date(now + expirationTime))
-                .signWith(SignatureAlgorithm.HS512, secretKey)
-                .compact();
-
-        request.setAttribute("access_token", JWT);
+        request.setAttribute("access_token", jwt);
         request.setAttribute("username", username);
 
         chain.doFilter(request, response);
@@ -83,9 +68,8 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
         PrintWriter writer = response.getWriter();
 
-        HashMap<String, Object> mappingResponse = new HashMap<String, Object>() {{
-            put("error", failed.getMessage());
-        }};
+        HashMap<String, Object> mappingResponse = new HashMap<>();
+        mappingResponse.put("error", failed.getMessage());
         ObjectMapper mapper = new ObjectMapper();
 
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

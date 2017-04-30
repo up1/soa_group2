@@ -15,6 +15,7 @@ public class Member {
     private String cartId;
 
     public Member() {
+        //Constructor for Spring
     }
 
     public String getUsername() {
