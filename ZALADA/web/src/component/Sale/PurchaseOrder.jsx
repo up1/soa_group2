@@ -14,8 +14,8 @@ class PurchaseOrder extends React.Component {
         return (
             <div>
                 <UpperHeaderSection/>
-                <ReactPDF file={`http://localhost:9002/payslip/${this.props.match.params.purchaseOrderId}`}/>
-                <form method="GET" action={`http://localhost:9002/payslip/${this.props.match.params.purchaseOrderId}`}>
+                <ReactPDF file={`http://139.59.102.212:9002/payslip/${this.props.match.params.purchaseOrderId}`}/>
+                <form method="GET" action={`http://139.59.102.212:9002/payslip/${this.props.match.params.purchaseOrderId}`}>
                 <button className="btn btn-primary" type="submit">
                     Download
                 </button>

@@ -9,7 +9,7 @@ class Product extends React.Component {
         <div className="media-left">
           <a href="#">
             <img
-              src={`http://139.59.102.212:9001/product/image/${this.props.id}`}
+              src={`http://139.59.102.212:9001/product/image/?productId=${this.props.id}`}
               alt={this.props.name}
               className="media-object img-rounded"
               width="144px;"
