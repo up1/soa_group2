@@ -15,7 +15,7 @@ public class JwtBuilder {
 
 
     private static final String SECRET_KEY = "pOnAm2017";
-    private static final Long EXPIRATION_TIME = 600000L;
+    private static final Long EXPIRATION_TIME = 1000L * 60 * 60;
 
     private JwtBuilder(){}
 
@@ -48,7 +48,6 @@ public class JwtBuilder {
                 return new Authenticated(username);
             }
         }
-
         return null;
     }
 
