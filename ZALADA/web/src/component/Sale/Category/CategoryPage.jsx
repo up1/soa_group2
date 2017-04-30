@@ -10,7 +10,7 @@ class CategoryPage extends React.Component {
   render() {
     return (
       <div id="category-page">
-        <Navbar />
+        <Navbar user={this.props.user} userLogout={this.props.userLogout} />
         <div className="container-fluid category-body">
           <h1>
             <FontAwesome name="tags" />

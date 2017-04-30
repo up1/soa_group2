@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Navbar from '../UpperHeaderSection';
 import Footer from '../FooterSection';
 import '../css/cart.css';
@@ -21,7 +22,6 @@ class Cart extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     const cartItems = Object.keys(nextProps.cart);
     let total = 0;
     for (let i = 0; i < cartItems.length; i += 1) {
@@ -58,7 +58,7 @@ class Cart extends React.Component {
       />));
     return (
       <div className="my-cart">
-        <Navbar  />
+        <Navbar user={this.props.user} userLogout={this.props.userLogout} />
         <div className="container" id="cart-container">
           <div className="row">
             <div className="col-sm-12 col-md-10 col-md-offset-1">
@@ -119,5 +119,9 @@ class Cart extends React.Component {
     );
   }
 }
+
+Cart.propType = {
+  user: PropTypes.string.isRequired,
+};
 
 export default Cart;

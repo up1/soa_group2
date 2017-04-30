@@ -1,5 +1,4 @@
 import React from 'react';
-import cookie from 'react-cookie';
 import FooterSection from './FooterSection';
 import UpperHeaderSection from './UpperHeaderSection';
 import './css/confirm.css';
@@ -52,9 +51,7 @@ class ConfirmForm extends React.Component {
       email: this.state.email,
     };
     BillingService
-      .post('/purchaseorder', data, {
-        headers: { Authorization: cookie.load('access_token') },
-      })
+      .post('/purchaseorder/', data)
       .then((response) => {
         const purchaseorderId = response.data;
         this

@@ -9,7 +9,7 @@ import { sliderTimer } from './slidertimer';
 function MainPage(props) {
   return (
     <div className="container-pager" onLoad={sliderTimer}>
-      <UpperHeaderSection user={props.user} />
+      <UpperHeaderSection user={props.user} userLogout={props.userLogout} />
       <SlideShow />
       <ProductReview addProduct={props.addProduct} />
       <FooterSection />

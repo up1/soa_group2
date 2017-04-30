@@ -61,7 +61,7 @@ class SignUpPage extends React.Component {
   render() {
     return (
       <div className="signup_page">
-        <UpperHeaderSection />
+        <UpperHeaderSection user={this.props.user} userLogout={this.props.userLogout} />
         <div className="container-fluid" id="container-Sign">
           <section className="container-signup">
             <div className="container-page" id="form-signup">

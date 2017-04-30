@@ -39,10 +39,9 @@ class LoginPage extends React.Component {
         console.log(response.data);
         this
           .props
-          .updateUser(this.state.username, response.data.access_token, response.data.cartId);
+          .userLogin(this.state.username, response.data.access_token, response.data.cartId);
         this
-          .context
-          .router
+          .props
           .history
           .push('/');
       })
@@ -54,7 +53,7 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div className="login-page">
-        <UpperHeaderSection />
+        <UpperHeaderSection user={this.props.user} userLogout={this.props.userLogout} />
         <div className="container-login">
           <div id="login-box">
             <div className="logo">
@@ -92,7 +91,8 @@ class LoginPage extends React.Component {
 }
 
 LoginPage.propTypes = {
-  updateUser: PropTypes.func.isRequired,
+  userLogin: PropTypes.func.isRequired,
+  user: PropTypes.string,
 };
 
 LoginPage.contextTypes = {

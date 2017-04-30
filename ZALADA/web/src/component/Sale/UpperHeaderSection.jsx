@@ -25,7 +25,7 @@ class UpperHeaderSection extends React.Component {
               <Link to="/stock">คลังสินค้า</Link>
             </li>
             <li>
-              <a href="#">ออกจากระบบ</a>
+              <a onClick={this.props.userLogout}href="#">ออกจากระบบ</a>
             </li>
           </ul>
       </li>)
@@ -91,8 +91,13 @@ class UpperHeaderSection extends React.Component {
   }
 }
 
+UpperHeaderSection.defaultProps = {
+  user: null,
+};
+
 UpperHeaderSection.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.string,
+  userLogout: PropTypes.func.isRequired,
 };
 
 export default UpperHeaderSection;
