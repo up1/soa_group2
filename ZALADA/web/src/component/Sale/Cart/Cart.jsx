@@ -21,10 +21,11 @@ class Cart extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     const cartItems = Object.keys(nextProps.cart);
     let total = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-      total += this.props.cart[cartItems[i]].amount * this.props.cart[cartItems[i]].price;
+    for (let i = 0; i < cartItems.length; i += 1) {
+      total += nextProps.cart[cartItems[i]].amount * nextProps.cart[cartItems[i]].price;
     }
     this.setState({ total });
   }
@@ -57,7 +58,7 @@ class Cart extends React.Component {
       />));
     return (
       <div className="my-cart">
-        <Navbar />
+        <Navbar  />
         <div className="container" id="cart-container">
           <div className="row">
             <div className="col-sm-12 col-md-10 col-md-offset-1">
@@ -71,15 +72,15 @@ class Cart extends React.Component {
                     <th>Quantity</th>
                     <th className="text-center">Price</th>
                     <th className="text-center">Total</th>
-                    <th />
+                    <th  />
                   </tr>
                 </thead>
                 <tbody>
                   {cartItems}
                   <tr>
-                    <td />
-                    <td />
-                    <td />
+                    <td  />
+                    <td  />
+                    <td  />
                     <td>
                       <h3>Total</h3>
                     </td>
@@ -90,12 +91,12 @@ class Cart extends React.Component {
                     </td>
                   </tr>
                   <tr>
-                    <td />
-                    <td />
-                    <td />
+                    <td  />
+                    <td  />
+                    <td  />
                     <td>
                       <button type="button" className="btn btn-default">
-                        <span className="glyphicon glyphicon-shopping-cart" />
+                        <span className="glyphicon glyphicon-shopping-cart"  />
                         Continue Shopping
                       </button>
                     </td>
@@ -103,7 +104,7 @@ class Cart extends React.Component {
                       <Link to="submit">
                         <button type="button" className="btn btn-success">
                           Checkout
-                          <span className="glyphicon glyphicon-play" />
+                          <span className="glyphicon glyphicon-play"  />
                         </button>
                       </Link>
                     </td>
@@ -113,7 +114,7 @@ class Cart extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
+        <Footer  />
       </div>
     );
   }

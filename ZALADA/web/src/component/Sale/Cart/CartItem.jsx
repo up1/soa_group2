@@ -1,5 +1,6 @@
 import React from 'react';
 import { SaleService } from '../../../util/AxiosWrapper';
+import cookie from 'react-cookie';
 
 class CartItem extends React.Component {
 
@@ -16,20 +17,21 @@ class CartItem extends React.Component {
   updateAmount(e) {
     const updatedItem = this.props.item;
     const amount = parseInt(e.target.value, 10);
-    console.log('amount = ' + amount);
+    console.log(`amount = ${amount}`);
     if (Number.isInteger(amount)) {
-      SaleService
-        .patch(`/cart/${this.props.cartId}/${updatedItem.id}?amount=${amount}`)
-        .then((response) => {
-          updatedItem.amount = amount;
-          this.setState({ amount });
-          this
-            .props
-            .setCartTotalPrice();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      SaleService.patch(`/cart/${this.props.cartId}/${updatedItem.id}?amount=${amount}`, {}, {
+        headers: {
+          Authorization: cookie.load('access_token'),
+        },
+      }).then((response) => {
+        updatedItem.amount = amount;
+        this.setState({ amount });
+        this
+          .props
+          .setCartTotalPrice();
+      }).catch((error) => {
+        console.log(error);
+      });
     } else if (e.target.value === '') {
       updatedItem.amount = e.target.value;
       this.setState({ amount });
@@ -78,7 +80,7 @@ class CartItem extends React.Component {
             textAlign: 'center',
           }}
         >
-          <input className="form-control" value={amount} onChange={this.updateAmount}  />
+          <input className="form-control" value={amount} onChange={this.updateAmount} />
         </td>
         <td className="col-sm-1 col-md-1 text-center">
           <strong>{this.props.item.price}</strong>

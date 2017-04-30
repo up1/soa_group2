@@ -29,8 +29,8 @@ class App extends React.Component {
     this.notifySuccessAddProduct = this
       .notifySuccessAddProduct
       .bind(this);
-    this.updateUser = this
-      .updateUser
+    this.userLogin = this
+      .userLogin
       .bind(this);
     this.addToCart = this
       .addToCart
@@ -64,7 +64,9 @@ class App extends React.Component {
 
   getCartInfo(cartId) {
     SaleService
-      .get(`cart/${cartId}`)
+      .get(`cart/${cartId}`, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then((response) => {
         console.log(response.data);
         const storedCartItems = response.data.products;
@@ -89,11 +91,13 @@ class App extends React.Component {
     }
     console.log(endpoint);
     SaleService
-          .post(endpoint)
+          .post(endpoint, {}, {
+            headers: { Authorization: cookie.load('access_token') },
+          })
           .then((response) => {
             const generatedCartId = response.data;
             cookie.save('cartid', generatedCartId);
-            this.setState({ cartId: generatedCartId });
+            this.setState({ cartId: generatedCartId, cart: [] });
           })
           .catch((error) => {
             console.log(error);
@@ -102,7 +106,9 @@ class App extends React.Component {
 
   addToCart(cartItem) {
     SaleService
-      .post(`cart/${this.state.cartId}?productId=${cartItem.id}&amount=${cartItem.amount}`)
+      .post(`cart/${this.state.cartId}?productId=${cartItem.id}&amount=${cartItem.amount}`, {}, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then(() => {
         const currentCart = {
           ...this.state.cart,
@@ -117,7 +123,9 @@ class App extends React.Component {
 
   removeFromCart(itemId) {
     SaleService
-      .delete(`cart/${this.state.cartId}?productId=${itemId}`)
+      .delete(`cart/${this.state.cartId}?productId=${itemId}`, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then(() => {
         const currentCart = {
           ...this.state.cart,
@@ -136,7 +144,9 @@ class App extends React.Component {
       products: [],
     };
     SaleService
-      .put(`cart/${this.state.cartId}`, cartData)
+      .put(`cart/${this.state.cartId}`, cartData, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then(() => {
         this.setState({ cart: [] });
       })
@@ -145,16 +155,19 @@ class App extends React.Component {
       });
   }
 
-  updateUser(username, accessToken, cartId) {
+  userLogin(username, accessToken, cartId) {
     cookie.save('access_token', accessToken);
-    // SaleService.defaults.headers.common.Authorizaion = accessToken;
-    // StockService.defaults.headers.common.Authorizaion = accessToken;
-    // console.log(StockService.defaults.headers.common.Authorizaion);
-    // BillingService.defaults.headers.common.Authorizaion = accessToken;
-    // MemberService.defaults.headers.common.Authorizaion = accessToken;
     this.getCartInfo(cartId);
     cookie.save('user', username);
     this.setState({ username });
+  }
+
+  userLogout() {
+    cookie.remove('access_token');
+    cookie.remove('user');
+    cookie.remove('cartid');
+    this.setState({ username: null });
+    this.createCart(0, null);
   }
 
 
@@ -168,29 +181,32 @@ class App extends React.Component {
     const AddProductwithNoti = prop =>
     (<AddProduct noti={this.notifySuccessAddProduct} {...prop} />);
     const WrapSignIn = prop =>
-    (<LoginPage updateUser={this.updateUser} {...prop} />);
+    (<LoginPage userLogin={this.userLogin} {...prop} user={this.state.username} />);
     const WrapSignUp = prop =>
-    (<SignUpPage updateUser={this.updateUser} {...prop} />);
+    (<SignUpPage {...prop} user={this.state.username} />);
     const WrapMainPage = prop =>
     (<MainPage user={this.state.username} {...prop} addProduct={this.addToCart} />);
     const MycartPage = prop => (<CartPage
       removeFromCart={this.removeFromCart}
       {...prop}
+      user={this.state.username}
       cartId={this.state.cartId}
       cart={this.state.cart}
     />);
 
-    const WrapCategoryPage = prop => (<SelectedCategory addProduct={this.addToCart} {...prop} />);
+    const WrapCategoryPage = prop =>
+     (<SelectedCategory addProduct={this.addToCart} {...prop} user={this.state.username} />);
 
     const SubmitCartForm = prop =>
-    (<ConfirmForm cart={this.state.cart} {...prop} clearCart={this.clearCart} />);
+    (<ConfirmForm
+      cart={this.state.cart} user={this.state.username}
+      {...prop} clearCart={this.clearCart}
+    />);
 
     return (
       <div>
         <NotificationSystem ref={(noti) => { this.notificationSystem = noti; }} />
-
         <ReactTooltip />
-
         <BrowserRouter>
           <Switch>
             <Route exact path="/" render={WrapMainPage} />

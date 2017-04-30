@@ -1,4 +1,5 @@
 import React from 'react';
+import cookie from 'react-cookie';
 import FooterSection from './FooterSection';
 import UpperHeaderSection from './UpperHeaderSection';
 import './css/confirm.css';
@@ -36,21 +37,24 @@ class ConfirmForm extends React.Component {
     const cart = this.props.cart;
     const buyProducts = [];
     let totalPrice = 0;
-    for (const product in Object.key(cart)) {
-      buyProducts.push(cart[product]);
-      totalPrice += cart[product].amount * cart[product].price;
+    const productIdList = Object.keys(cart);
+    for (let i = 0; i < productIdList.length; i += 1) {
+      totalPrice += cart[productIdList[i]].amount * cart[productIdList[i]].price;
+      buyProducts.push(cart[productIdList[i]]);
     }
     const data = {
       buyer: this.state.name,
       totalPrice,
       buyProducts,
-      deliveryAddress: this.state.address + " " + this.state.state + " " + this.state.province + " " + this.state.post_code,
+      deliveryAddress: `${this.state.address} ${this.state.state} ${this.state.province} ${this.state.post_code}`,
       payStatus: 0,
       tel: this.state.tel,
       email: this.state.email,
     };
     BillingService
-      .post('/purchaseorder', data)
+      .post('/purchaseorder', data, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then((response) => {
         const purchaseorderId = response.data;
         this
@@ -67,7 +71,7 @@ class ConfirmForm extends React.Component {
   render() {
     return (
       <div>
-        <UpperHeaderSection />
+        <UpperHeaderSection user={this.props.user} />
         <div className="container" id="confirm-page">
           <section className="container-signup">
             <h1>
@@ -96,7 +100,8 @@ class ConfirmForm extends React.Component {
                     type="email"
                     name="email"
                     className="form-control"
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                  />
                 </div>
 
                 <div className="form-group col-lg-12">
@@ -110,7 +115,8 @@ class ConfirmForm extends React.Component {
                     type="text"
                     name="post_code"
                     className="form-control"
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                  />
 
                 </div>
 
@@ -120,7 +126,8 @@ class ConfirmForm extends React.Component {
                     type="text"
                     name="state"
                     className="form-control"
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                  />
                 </div>
 
                 <div className="form-group col-lg-12">
@@ -282,7 +289,8 @@ class ConfirmForm extends React.Component {
                   <button
                     type="submit"
                     className="btn btn-primary pull-right"
-                    onClick={this.submitChange}>ยืนยันการสั่งซื้อ</button>
+                    onClick={this.submitChange}
+                  >ยืนยันการสั่งซื้อ</button>
                 </div>
 
               </div>

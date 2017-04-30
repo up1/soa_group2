@@ -5,25 +5,28 @@ import FooterSection from './FooterSection.jsx'
 
 class PurchaseOrder extends React.Component {
 
-    constructor() {
-        super()
-        this.state = {}
-    }
+  constructor() {
+    super()
+    this.state = {}
+  }
 
-    render() {
-        return (
-            <div>
-                <UpperHeaderSection/>
-                <ReactPDF file={`http://139.59.102.212:9002/payslip/${this.props.match.params.purchaseOrderId}`}/>
-                <form method="GET" action={`http://139.59.102.212:9002/payslip/${this.props.match.params.purchaseOrderId}`}>
-                <button className="btn btn-primary" type="submit">
-                    Download
-                </button>
-                </form>
-                <FooterSection/>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <UpperHeaderSection/>
+        <ReactPDF
+          file={`http://139.59.102.212:9002/payslip/${this.props.match.params.purchaseOrderId}`}/>
+        <form
+          method="GET"
+          action={`http://139.59.102.212:9002/payslip/${this.props.match.params.purchaseOrderId}`}>
+          <button className="btn btn-primary" type="submit">
+            Download
+          </button>
+        </form>
+        <FooterSection/>
+      </div>
+    )
+  }
 }
 
 export default PurchaseOrder
