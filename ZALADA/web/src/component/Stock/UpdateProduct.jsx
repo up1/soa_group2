@@ -25,7 +25,7 @@ class UpdateProduct extends React.Component {
     this.loadProductData(props.match.params.id);
     this.state = {
       imagefile: '',
-      imagePreviewUrl: `http://localhost:9001/product/image/${props.match.params.id}`,
+      imagePreviewUrl: `http://139.59.102.212:9001/product/image/${props.match.params.id}`,
       name: '',
       detail: '',
       price: null,

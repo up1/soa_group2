@@ -23,6 +23,9 @@ class ListProduct extends React.Component {
     this.countDataItem = this
       .countDataItem
       .bind(this);
+  }
+
+  componentDidMount() {
     this.countDataItem();
   }
 
