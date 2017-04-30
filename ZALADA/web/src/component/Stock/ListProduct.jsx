@@ -28,7 +28,9 @@ class ListProduct extends React.Component {
 
   updateData() {
     StockService
-      .get(`/product?page=${this.state.page}`)
+      .get(`/product?page=${this.state.page}`, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then((response) => {
         const productList = response
           .data
@@ -52,7 +54,9 @@ class ListProduct extends React.Component {
   countDataItem() {
     const pagerList = [];
     StockService
-      .get('/product')
+      .get('/product', {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then((response) => {
         const length = response.data.length;
         for (let i = 1; i <= Math.ceil(length / 10); i += 1) {
@@ -79,7 +83,9 @@ class ListProduct extends React.Component {
     const products = this.state.products;
     console.log(products[index]);
     StockService
-      .delete(`/product/${products[index].props.id}`)
+      .delete(`/product/${products[index].props.id}`, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then(() => {
         this.updateData();
       })

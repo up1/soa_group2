@@ -14,7 +14,7 @@ import CategoryPage from './Sale/Category/CategoryPage';
 import SelectedCategory from './Sale/Category/SelectedCategory';
 import PurchaseOrder from '././Sale/PurchaseOrder';
 import ConfirmForm from './Sale/ConfirmForm';
-import { SaleService, StockService, BillingService, MemberService } from '../util/AxiosWrapper';
+import { SaleService } from '../util/AxiosWrapper';
 
 class App extends React.Component {
 
@@ -146,11 +146,12 @@ class App extends React.Component {
   }
 
   updateUser(username, accessToken, cartId) {
-    cookie.save('acesss_token', accessToken);
-    SaleService.defaults.headers.common.Authorizaion = 'Bearer '.concat(accessToken);
-    StockService.defaults.headers.common.Authorizaion = 'Bearer '.concat(accessToken);
-    BillingService.defaults.headers.common.Authorizaion = 'Bearer '.concat(accessToken);
-    MemberService.defaults.headers.common.Authorizaion = 'Bearer '.concat(accessToken);
+    cookie.save('access_token', accessToken);
+    // SaleService.defaults.headers.common.Authorizaion = accessToken;
+    // StockService.defaults.headers.common.Authorizaion = accessToken;
+    // console.log(StockService.defaults.headers.common.Authorizaion);
+    // BillingService.defaults.headers.common.Authorizaion = accessToken;
+    // MemberService.defaults.headers.common.Authorizaion = accessToken;
     this.getCartInfo(cartId);
     cookie.save('user', username);
     this.setState({ username });
@@ -194,7 +195,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" render={WrapMainPage} />
             <Route path="/add" render={AddProductwithNoti} />
-            <Route path="/update/:id" render={UpdateProduct} />
+            <Route path="/update/:id" component={UpdateProduct} />
             <Route path="/login" render={WrapSignIn} />
             <Route path="/signup" render={WrapSignUp} />
             <Route path="/stock" component={ListProduct} />

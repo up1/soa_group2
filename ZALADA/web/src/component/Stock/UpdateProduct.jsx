@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import cookie from 'react-cookie';
 import { StockService } from '../../util/AxiosWrapper';
 
 class UpdateProduct extends React.Component {
@@ -45,8 +45,10 @@ class UpdateProduct extends React.Component {
       },
     };
     // console.log(data);
-    axios
-      .put(`http://localhost:9001/product/${this.props.match.params.id}`, data)
+    StockService
+      .put(`/product/${this.props.match.params.id}`, data, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then(() => {
         if (this.state.imagefile) {
           this.uploadImage(this.props.match.params.id);
@@ -58,12 +60,13 @@ class UpdateProduct extends React.Component {
   }
 
   uploadImage(productId) {
-    const instance = axios.create();
     const data = new FormData();
     data.append('file', this.state.imagefile);
     data.append('productId', productId);
-    instance
-      .post('http://localhost:9001/product/image', data)
+    StockService
+      .post('/product/image', data, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then((response) => {
         console.log(response);
       })
@@ -93,7 +96,9 @@ class UpdateProduct extends React.Component {
 
   loadProductData(id) {
     StockService
-      .get(`/product/${id}`)
+      .get(`/product/${id}`, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then((response) => {
         console.log(response.data);
         const newState = {

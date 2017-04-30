@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
+import cookie from 'react-cookie';
 import './css/add-product-style.css';
+import { StockService } from '../../util/AxiosWrapper';
 
 class AddProduct extends React.Component {
 
@@ -29,7 +30,7 @@ class AddProduct extends React.Component {
       .bind(this);
   }
 
-  handleSubmit(event) {
+  handleSubmit() {
     this
       .props
       .noti();
@@ -44,8 +45,10 @@ class AddProduct extends React.Component {
       },
     };
     console.log(data);
-    axios
-      .post('http://localhost:9001/product', data)
+    StockService
+      .post('/product', data, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then((response) => {
         console.log('success');
         console.log(response.data);
@@ -58,12 +61,13 @@ class AddProduct extends React.Component {
   }
 
   uploadImage(productId) {
-    const instance = axios.create();
     const data = new FormData();
     data.append('file', this.state.imagefile);
     data.append('productId', productId);
-    instance
-      .post('http://localhost:9001/product/image', data)
+    StockService
+      .post('/product/image', data, {
+        headers: { Authorization: cookie.load('access_token') },
+      })
       .then((response) => {
         console.log('test');
         this
