@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Slider from 'react-slick';
 import './css/productReview.css';
 import ProductItemPreview from './ProductItemPreview'; // each product item component
 import { SaleService } from '../../util/AxiosWrapper';
@@ -47,6 +48,14 @@ class ProductReview extends React.Component {
   }
 
   render() {
+    const settings = {
+      dots: true,
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+    };
     return (
       <div className="container" id="pd-review-container">
         <div className="row">
@@ -78,7 +87,8 @@ class ProductReview extends React.Component {
             <div className="carousel-inner">
               <div className="item active">
                 <div className="row">
-                  {this.state.products}
+                  {this.state.products}*
+                  {/* <Slider {...settings}>{this.state.products}</Slider> */}
                 </div>
               </div>
             </div>
