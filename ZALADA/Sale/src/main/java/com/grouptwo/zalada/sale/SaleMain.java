@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SaleMain {
 
     public SaleMain(){
-        //Needs a constructor
+        //Spring needs public constructor for running
     }
 
     public static void main(String... args){
