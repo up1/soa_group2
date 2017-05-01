@@ -1,12 +1,12 @@
 package com.grouptwo.zalada.billing.controller;
 
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
+import com.grouptwo.zalada.billing.exception.PaySlipException;
 import com.grouptwo.zalada.billing.exception.QueryException;
 import com.grouptwo.zalada.billing.exception.UpdateException;
 import com.grouptwo.zalada.billing.repository.BillingRepository;
 import com.grouptwo.zalada.billing.utils.EmailValidator;
 import com.grouptwo.zalada.billing.utils.PaySlipPdfManager;
-import com.itextpdf.text.DocumentException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
@@ -136,7 +136,7 @@ public class BillingController {
             PaySlipPdfManager pdfManager = new PaySlipPdfManager(payForm);
             pdfManager.fillForm(purchaseOrder);
             paySlipFile = pdfManager.getOutput();
-        } catch (IOException | DocumentException e) {
+        } catch (IOException | PaySlipException e) {
             log.error(e);
             return new ResponseEntity<>(e.getMessage().getBytes(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

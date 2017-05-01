@@ -1,6 +1,7 @@
 package com.grouptwo.zalada.billing.utils;
 
 import com.grouptwo.zalada.billing.domain.PurchaseOrder;
+import com.grouptwo.zalada.billing.exception.PaySlipException;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.Barcode128;
@@ -21,20 +22,25 @@ public class PaySlipPdfManager extends PdfManager {
         log = LogFactory.getLog(PaySlipPdfManager.class.getName());
     }
 
-    public void fillForm(PurchaseOrder purchaseOrder) throws IOException, DocumentException {
-        init();
+    public void fillForm(PurchaseOrder purchaseOrder) throws PaySlipException {
+        try{
+            init();
 
-        fillForm("poNumber", purchaseOrder.getId());
-        fillForm("buyer", purchaseOrder.getBillingName());
-        fillForm("buyDate", getDate(purchaseOrder.getBuyDate()));
-        fillForm("payScheduled", getDate(purchaseOrder.getPayScheduled()));
-        fillForm("tel", purchaseOrder.getTel());
-        fillForm("email", purchaseOrder.getEmail());
-        fillForm("totalPrice", purchaseOrder.getTotalPrice().toString() + " บาท");
-        addBarcode(purchaseOrder.getId());
+            fillForm("poNumber", purchaseOrder.getId());
+            fillForm("buyer", purchaseOrder.getBillingName());
+            fillForm("buyDate", getDate(purchaseOrder.getBuyDate()));
+            fillForm("payScheduled", getDate(purchaseOrder.getPayScheduled()));
+            fillForm("tel", purchaseOrder.getTel());
+            fillForm("email", purchaseOrder.getEmail());
+            fillForm("totalPrice", purchaseOrder.getTotalPrice().toString() + " บาท");
+            addBarcode(purchaseOrder.getId());
 
-        getStamper().setFormFlattening(true);
-        close();
+            getStamper().setFormFlattening(true);
+            close();
+        } catch (IOException | DocumentException e){
+            log.info(e);
+            throw new PaySlipException(e.getMessage());
+        }
     }
 
     private void addBarcode(String poNumber) {
