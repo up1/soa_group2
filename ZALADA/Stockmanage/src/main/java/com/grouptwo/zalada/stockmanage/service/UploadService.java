@@ -69,8 +69,7 @@ public class UploadService {
 
     public Resource loadImage(String productId) throws RepositoryException{
         try {
-            String owner = getUsername();
-            Product product = stockRepository.findProductById(owner, productId);
+            Product product = stockRepository.findProductById(productId);
             if(product == null){
                 throw new RepositoryException("Product Not Found");
             }

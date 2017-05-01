@@ -60,6 +60,11 @@ public class StockRepository {
         return mongoTemplate.findOne(query, Product.class);
     }
 
+    public Product findProductById(String id) {
+        Query query = queryById(id);
+        return mongoTemplate.findOne(query, Product.class);
+    }
+
     public Category findCategoryByName(String name) {
         return mongoTemplate.findOne(queryByName(name), Category.class);
     }
