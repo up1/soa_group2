@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20170501 17:02:24.925" generator="Robot 3.0.2 (Python 2.7.13 on win32)">
+<robot generated="20170501 18:33:47.387" generator="Robot 3.0.2 (Python 2.7.13 on win32)">
 <suite source="D:\SOA\soa_group2\Robot-test\example\example.robot" id="s1" name="Example">
 <test id="s1-t1" name="ทดสอบค้นหาเพลง never gonna give you up ด้วยการค้นหาแบบเต็มคำ">
-<kw type="setup" name="Start browser">
+<kw type="setup" name="Start Browser">
 <kw name="Open Browser" library="Selenium2Library">
 <doc>Opens a new browser instance to given URL.</doc>
 <arguments>
 <arg>${TESTADDRESS}</arg>
 <arg>${BROWSER}</arg>
 </arguments>
-<msg timestamp="20170501 17:02:25.133" level="INFO">Opening browser 'chrome' to base url 'https://www.youtube.com/'</msg>
-<status status="PASS" endtime="20170501 17:02:33.231" starttime="20170501 17:02:25.132"></status>
+<msg timestamp="20170501 18:33:48.079" level="INFO">Opening browser 'chrome' to base url 'https://www.youtube.com/'</msg>
+<status status="PASS" endtime="20170501 18:33:56.966" starttime="20170501 18:33:48.079"></status>
 </kw>
 <kw name="Maximize Browser Window" library="Selenium2Library">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" endtime="20170501 17:02:34.411" starttime="20170501 17:02:33.231"></status>
+<status status="PASS" endtime="20170501 18:33:58.239" starttime="20170501 18:33:56.966"></status>
 </kw>
-<status status="PASS" endtime="20170501 17:02:34.411" starttime="20170501 17:02:25.132"></status>
+<status status="PASS" endtime="20170501 18:33:58.240" starttime="20170501 18:33:48.078"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -24,16 +24,16 @@
 <arg>masthead-search-term</arg>
 <arg>never gonna give you up</arg>
 </arguments>
-<msg timestamp="20170501 17:02:34.413" level="INFO">Typing text 'never gonna give you up' into text field 'masthead-search-term'</msg>
-<status status="PASS" endtime="20170501 17:02:35.395" starttime="20170501 17:02:34.412"></status>
+<msg timestamp="20170501 18:33:58.243" level="INFO">Typing text 'never gonna give you up' into text field 'masthead-search-term'</msg>
+<status status="PASS" endtime="20170501 18:33:59.981" starttime="20170501 18:33:58.242"></status>
 </kw>
 <kw name="Click Button" library="Selenium2Library">
 <doc>Clicks a button identified by `locator`.</doc>
 <arguments>
 <arg>xpath=//*[@id="search-btn"]</arg>
 </arguments>
-<msg timestamp="20170501 17:02:35.398" level="INFO">Clicking button 'xpath=//*[@id="search-btn"]'.</msg>
-<status status="PASS" endtime="20170501 17:02:35.790" starttime="20170501 17:02:35.397"></status>
+<msg timestamp="20170501 18:33:59.984" level="INFO">Clicking button 'xpath=//*[@id="search-btn"]'.</msg>
+<status status="PASS" endtime="20170501 18:34:00.422" starttime="20170501 18:33:59.984"></status>
 </kw>
 <kw name="Wait Until Page Contains" library="Selenium2Library">
 <doc>Waits until `text` appears on current page.</doc>
@@ -41,64 +41,377 @@
 <arg>Rick Astley</arg>
 <arg>${FIVESECOND}</arg>
 </arguments>
-<status status="PASS" endtime="20170501 17:02:36.934" starttime="20170501 17:02:35.794"></status>
+<status status="PASS" endtime="20170501 18:34:01.826" starttime="20170501 18:34:00.426"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>link=Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<status status="PASS" endtime="20170501 18:34:02.234" starttime="20170501 18:34:01.828"></status>
 </kw>
 <kw name="Click Link" library="Selenium2Library">
 <doc>Clicks a link identified by locator.</doc>
 <arguments>
 <arg>link=Rick Astley - Never Gonna Give You Up</arg>
 </arguments>
-<msg timestamp="20170501 17:02:36.938" level="INFO">Clicking link 'link=Rick Astley - Never Gonna Give You Up'.</msg>
-<status status="PASS" endtime="20170501 17:02:37.423" starttime="20170501 17:02:36.938"></status>
+<msg timestamp="20170501 18:34:02.239" level="INFO">Clicking link 'link=Rick Astley - Never Gonna Give You Up'.</msg>
+<status status="PASS" endtime="20170501 18:34:02.736" starttime="20170501 18:34:02.238"></status>
 </kw>
-<kw name="Set Selenium Speed" library="Selenium2Library">
-<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
-<arguments>
-<arg>2.0</arg>
-</arguments>
-<status status="PASS" endtime="20170501 17:02:37.428" starttime="20170501 17:02:37.427"></status>
-</kw>
+<kw name="Check Rick Roll">
 <kw name="Wait Until Page Contains Element" library="Selenium2Library">
 <doc>Waits until element specified with `locator` appears on current page.</doc>
 <arguments>
 <arg>tag=video</arg>
 <arg>${TENSECOND}</arg>
 </arguments>
-<status status="PASS" endtime="20170501 17:02:39.463" starttime="20170501 17:02:37.429"></status>
+<status status="PASS" endtime="20170501 18:34:02.794" starttime="20170501 18:34:02.742"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${TENSECOND}</arg>
+</arguments>
+<msg timestamp="20170501 18:34:12.795" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" endtime="20170501 18:34:12.796" starttime="20170501 18:34:02.794"></status>
 </kw>
 <kw name="Page Should Contain" library="Selenium2Library">
 <doc>Verifies that current page contains `text`.</doc>
 <arguments>
 <arg>Rick Astley - Never Gonna Give You Up</arg>
 </arguments>
-<msg timestamp="20170501 17:02:43.514" level="INFO">Current page contains text 'Rick Astley - Never Gonna Give You Up'.</msg>
-<status status="PASS" endtime="20170501 17:02:43.515" starttime="20170501 17:02:39.464"></status>
+<msg timestamp="20170501 18:34:12.885" level="INFO">Current page contains text 'Rick Astley - Never Gonna Give You Up'.</msg>
+<status status="PASS" endtime="20170501 18:34:12.886" starttime="20170501 18:34:12.796"></status>
 </kw>
 <kw name="Page Should Contain" library="Selenium2Library">
 <doc>Verifies that current page contains `text`.</doc>
 <arguments>
 <arg>RickAstleyVEVO</arg>
 </arguments>
-<msg timestamp="20170501 17:02:47.573" level="INFO">Current page contains text 'RickAstleyVEVO'.</msg>
-<status status="PASS" endtime="20170501 17:02:47.574" starttime="20170501 17:02:43.516"></status>
+<msg timestamp="20170501 18:34:12.949" level="INFO">Current page contains text 'RickAstleyVEVO'.</msg>
+<status status="PASS" endtime="20170501 18:34:12.949" starttime="20170501 18:34:12.886"></status>
+</kw>
+<status status="PASS" endtime="20170501 18:34:12.949" starttime="20170501 18:34:02.742"></status>
 </kw>
 <kw type="teardown" name="Close All Browsers" library="Selenium2Library">
 <doc>Closes all open browsers and resets the browser cache.</doc>
-<status status="PASS" endtime="20170501 17:02:52.803" starttime="20170501 17:02:47.576"></status>
+<status status="PASS" endtime="20170501 18:34:16.252" starttime="20170501 18:34:12.951"></status>
 </kw>
-<status status="PASS" endtime="20170501 17:02:52.803" critical="yes" starttime="20170501 17:02:25.128"></status>
+<status status="PASS" endtime="20170501 18:34:16.253" critical="yes" starttime="20170501 18:33:48.072"></status>
 </test>
-<status status="PASS" endtime="20170501 17:02:52.808" starttime="20170501 17:02:24.930"></status>
+<test id="s1-t2" name="ทดสอบค้นหาเพลง never gonna give you up ด้วยการค้นหาแบบไม่เต็มคำ">
+<kw type="setup" name="Start Browser">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${TESTADDRESS}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20170501 18:34:16.269" level="INFO">Opening browser 'chrome' to base url 'https://www.youtube.com/'</msg>
+<status status="PASS" endtime="20170501 18:34:24.889" starttime="20170501 18:34:16.268"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20170501 18:34:26.122" starttime="20170501 18:34:24.889"></status>
+</kw>
+<status status="PASS" endtime="20170501 18:34:26.122" starttime="20170501 18:34:16.265"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>masthead-search-term</arg>
+<arg>never gonna</arg>
+</arguments>
+<msg timestamp="20170501 18:34:26.126" level="INFO">Typing text 'never gonna' into text field 'masthead-search-term'</msg>
+<status status="PASS" endtime="20170501 18:34:27.388" starttime="20170501 18:34:26.126"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>xpath=//*[@id="search-btn"]</arg>
+</arguments>
+<msg timestamp="20170501 18:34:27.393" level="INFO">Clicking button 'xpath=//*[@id="search-btn"]'.</msg>
+<status status="PASS" endtime="20170501 18:34:27.905" starttime="20170501 18:34:27.392"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>Rick Astley</arg>
+<arg>${FIVESECOND}</arg>
+</arguments>
+<status status="PASS" endtime="20170501 18:34:29.261" starttime="20170501 18:34:27.911"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>link=Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<status status="PASS" endtime="20170501 18:34:29.614" starttime="20170501 18:34:29.263"></status>
+</kw>
+<kw name="Click Link" library="Selenium2Library">
+<doc>Clicks a link identified by locator.</doc>
+<arguments>
+<arg>link=Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<msg timestamp="20170501 18:34:29.620" level="INFO">Clicking link 'link=Rick Astley - Never Gonna Give You Up'.</msg>
+<status status="PASS" endtime="20170501 18:34:30.124" starttime="20170501 18:34:29.620"></status>
+</kw>
+<kw name="Check Rick Roll">
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>tag=video</arg>
+<arg>${TENSECOND}</arg>
+</arguments>
+<status status="PASS" endtime="20170501 18:34:30.184" starttime="20170501 18:34:30.128"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${TENSECOND}</arg>
+</arguments>
+<msg timestamp="20170501 18:34:40.187" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" endtime="20170501 18:34:40.189" starttime="20170501 18:34:30.185"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<msg timestamp="20170501 18:34:40.287" level="INFO">Current page contains text 'Rick Astley - Never Gonna Give You Up'.</msg>
+<status status="PASS" endtime="20170501 18:34:40.288" starttime="20170501 18:34:40.190"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>RickAstleyVEVO</arg>
+</arguments>
+<msg timestamp="20170501 18:34:40.366" level="INFO">Current page contains text 'RickAstleyVEVO'.</msg>
+<status status="PASS" endtime="20170501 18:34:40.366" starttime="20170501 18:34:40.288"></status>
+</kw>
+<status status="PASS" endtime="20170501 18:34:40.367" starttime="20170501 18:34:30.127"></status>
+</kw>
+<kw type="teardown" name="Close All Browsers" library="Selenium2Library">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" endtime="20170501 18:34:43.850" starttime="20170501 18:34:40.368"></status>
+</kw>
+<status status="PASS" endtime="20170501 18:34:43.863" critical="yes" starttime="20170501 18:34:16.257"></status>
+</test>
+<test id="s1-t3" name="ทดสอบค้นหาเพลง never gonna give you up โดยหาจากชื่อศิลปิน">
+<kw type="setup" name="Start Browser">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${TESTADDRESS}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20170501 18:34:43.875" level="INFO">Opening browser 'chrome' to base url 'https://www.youtube.com/'</msg>
+<status status="PASS" endtime="20170501 18:34:53.116" starttime="20170501 18:34:43.875"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20170501 18:34:54.368" starttime="20170501 18:34:53.116"></status>
+</kw>
+<status status="PASS" endtime="20170501 18:34:54.368" starttime="20170501 18:34:43.874"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>masthead-search-term</arg>
+<arg>Rick Astley</arg>
+</arguments>
+<msg timestamp="20170501 18:34:54.389" level="INFO">Typing text 'Rick Astley' into text field 'masthead-search-term'</msg>
+<status status="PASS" endtime="20170501 18:34:56.109" starttime="20170501 18:34:54.388"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>xpath=//*[@id="search-btn"]</arg>
+</arguments>
+<msg timestamp="20170501 18:34:56.113" level="INFO">Clicking button 'xpath=//*[@id="search-btn"]'.</msg>
+<status status="PASS" endtime="20170501 18:34:56.550" starttime="20170501 18:34:56.113"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>Rick Astley</arg>
+<arg>${FIVESECOND}</arg>
+</arguments>
+<status status="PASS" endtime="20170501 18:34:57.042" starttime="20170501 18:34:56.555"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>link=Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<status status="PASS" endtime="20170501 18:34:59.032" starttime="20170501 18:34:57.048"></status>
+</kw>
+<kw name="Click Link" library="Selenium2Library">
+<doc>Clicks a link identified by locator.</doc>
+<arguments>
+<arg>link=Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<msg timestamp="20170501 18:34:59.036" level="INFO">Clicking link 'link=Rick Astley - Never Gonna Give You Up'.</msg>
+<status status="PASS" endtime="20170501 18:34:59.614" starttime="20170501 18:34:59.035"></status>
+</kw>
+<kw name="Check Rick Roll">
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>tag=video</arg>
+<arg>${TENSECOND}</arg>
+</arguments>
+<status status="PASS" endtime="20170501 18:34:59.698" starttime="20170501 18:34:59.621"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${TENSECOND}</arg>
+</arguments>
+<msg timestamp="20170501 18:35:09.699" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" endtime="20170501 18:35:09.699" starttime="20170501 18:34:59.698"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<msg timestamp="20170501 18:35:09.782" level="INFO">Current page contains text 'Rick Astley - Never Gonna Give You Up'.</msg>
+<status status="PASS" endtime="20170501 18:35:09.783" starttime="20170501 18:35:09.700"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>RickAstleyVEVO</arg>
+</arguments>
+<msg timestamp="20170501 18:35:09.837" level="INFO">Current page contains text 'RickAstleyVEVO'.</msg>
+<status status="PASS" endtime="20170501 18:35:09.837" starttime="20170501 18:35:09.783"></status>
+</kw>
+<status status="PASS" endtime="20170501 18:35:09.837" starttime="20170501 18:34:59.620"></status>
+</kw>
+<kw type="teardown" name="Close All Browsers" library="Selenium2Library">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" endtime="20170501 18:35:13.107" starttime="20170501 18:35:09.839"></status>
+</kw>
+<status status="PASS" endtime="20170501 18:35:13.108" critical="yes" starttime="20170501 18:34:43.867"></status>
+</test>
+<test id="s1-t4" name="ทดสอบค้นหาเพลง never gonna give you up โดยหาจาก คำว่า rick roll">
+<kw type="setup" name="Start Browser">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${TESTADDRESS}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20170501 18:35:13.121" level="INFO">Opening browser 'chrome' to base url 'https://www.youtube.com/'</msg>
+<status status="PASS" endtime="20170501 18:35:21.334" starttime="20170501 18:35:13.120"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20170501 18:35:22.583" starttime="20170501 18:35:21.335"></status>
+</kw>
+<status status="PASS" endtime="20170501 18:35:22.583" starttime="20170501 18:35:13.119"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>masthead-search-term</arg>
+<arg>rick roll</arg>
+</arguments>
+<msg timestamp="20170501 18:35:22.586" level="INFO">Typing text 'rick roll' into text field 'masthead-search-term'</msg>
+<status status="PASS" endtime="20170501 18:35:23.748" starttime="20170501 18:35:22.586"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>xpath=//*[@id="search-btn"]</arg>
+</arguments>
+<msg timestamp="20170501 18:35:23.751" level="INFO">Clicking button 'xpath=//*[@id="search-btn"]'.</msg>
+<status status="PASS" endtime="20170501 18:35:24.243" starttime="20170501 18:35:23.750"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>Rick Astley</arg>
+<arg>${FIVESECOND}</arg>
+</arguments>
+<status status="PASS" endtime="20170501 18:35:25.308" starttime="20170501 18:35:24.247"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>link=Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<status status="PASS" endtime="20170501 18:35:25.765" starttime="20170501 18:35:25.311"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>rick roll</arg>
+</arguments>
+<msg timestamp="20170501 18:35:25.840" level="INFO">Current page contains text 'rick roll'.</msg>
+<status status="PASS" endtime="20170501 18:35:25.840" starttime="20170501 18:35:25.767"></status>
+</kw>
+<kw name="Click Link" library="Selenium2Library">
+<doc>Clicks a link identified by locator.</doc>
+<arguments>
+<arg>link=Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<msg timestamp="20170501 18:35:25.842" level="INFO">Clicking link 'link=Rick Astley - Never Gonna Give You Up'.</msg>
+<status status="PASS" endtime="20170501 18:35:26.331" starttime="20170501 18:35:25.842"></status>
+</kw>
+<kw name="Check Rick Roll">
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>tag=video</arg>
+<arg>${TENSECOND}</arg>
+</arguments>
+<status status="PASS" endtime="20170501 18:35:26.387" starttime="20170501 18:35:26.333"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${TENSECOND}</arg>
+</arguments>
+<msg timestamp="20170501 18:35:36.390" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" endtime="20170501 18:35:36.390" starttime="20170501 18:35:26.387"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<msg timestamp="20170501 18:35:36.518" level="INFO">Current page contains text 'Rick Astley - Never Gonna Give You Up'.</msg>
+<status status="PASS" endtime="20170501 18:35:36.518" starttime="20170501 18:35:36.391"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>RickAstleyVEVO</arg>
+</arguments>
+<msg timestamp="20170501 18:35:36.619" level="INFO">Current page contains text 'RickAstleyVEVO'.</msg>
+<status status="PASS" endtime="20170501 18:35:36.620" starttime="20170501 18:35:36.519"></status>
+</kw>
+<status status="PASS" endtime="20170501 18:35:36.620" starttime="20170501 18:35:26.332"></status>
+</kw>
+<kw type="teardown" name="Close All Browsers" library="Selenium2Library">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" endtime="20170501 18:35:39.907" starttime="20170501 18:35:36.623"></status>
+</kw>
+<status status="PASS" endtime="20170501 18:35:39.909" critical="yes" starttime="20170501 18:35:13.112"></status>
+</test>
+<status status="PASS" endtime="20170501 18:35:39.917" starttime="20170501 18:33:47.408"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="0" pass="1">Critical Tests</stat>
-<stat fail="0" pass="1">All Tests</stat>
+<stat fail="0" pass="4">Critical Tests</stat>
+<stat fail="0" pass="4">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat fail="0" id="s1" name="Example" pass="1">Example</stat>
+<stat fail="0" id="s1" name="Example" pass="4">Example</stat>
 </suite>
 </statistics>
 <errors>
