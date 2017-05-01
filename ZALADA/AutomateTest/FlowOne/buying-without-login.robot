@@ -2,7 +2,7 @@
 Library           Selenium2Library
 
 *** Variables ***
-${TESTADDRESS}   http://139.59.102.212:5000/
+${TESTADDRESS}   http://localhost:9000/
 ${BROWSER}       chrome
 ${TWOSECOUND}    2.0
 ${FIVESECOND}    5.0
@@ -17,6 +17,9 @@ Start Browser
 Restart Test
     Select Window    title=Zalada
     Go To    ${TESTADDRESS}
+Add Item Check
+    Wait Until Page Contains    เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว    ${TENSECOND}
+    Wait Until Page Does Not Contain    เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว    ${TENSECOND}
 Assure Is Zalada Real Site
     Page Should Contain Image    id=brand-image
     Wait Until Page Contains    ประเภทสินค้า    ${FIVESECOND}
@@ -58,8 +61,7 @@ Checkout The Cart
     Assure Is Zalada Real Site
     Mouse Over    dom=document.links[6]
     Click Link    dom=document.links[6]
-    Wait Until Page Contains    เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว    ${TENSECOND}
-    Wait Until Page Does Not Contain    เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว    ${TENSECOND}
+    Add Item Check
     Basic Check Cart Page
     Checkout The Cart
 
@@ -67,3 +69,9 @@ Checkout The Cart
     Restart Test
     Assure Is Zalada Real Site
     Click Button    dom=document.getElementsByTagName('button')[9]
+    Wait Until Page Contains    รายละเอียด
+    Click Button    css=body > div:nth-child(3) > div > div:nth-child(2) > div > button.btn.btn-primary.pull-right
+    Add Item Check
+    Basic Check Cart Page
+    Checkout The Cart
+
