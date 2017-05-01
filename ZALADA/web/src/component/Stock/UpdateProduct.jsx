@@ -27,7 +27,7 @@ class UpdateProduct extends React.Component {
       imagePreviewUrl: `http://139.59.102.212:9001/product/image/?productId=${props.match.params.id}`,
       name: '',
       detail: '',
-      price: null,
+      price: 0,
       amount: '',
       category: '',
     };
@@ -225,7 +225,7 @@ class UpdateProduct extends React.Component {
               className="form-control"
             >
               {categoryOptions.map(categoryOption => (
-                <option value={categoryOption}>
+                <option value={categoryOption} key={categoryOption}>
                   {categoryOption}
                 </option>
               ))}

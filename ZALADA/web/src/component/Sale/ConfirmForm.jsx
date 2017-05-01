@@ -76,7 +76,6 @@ class ConfirmForm extends React.Component {
             </h1>
             <div className="container-page" id="form-signup">
               <div className="col-md-12">
-
                 <div className="form-group col-lg-12">
                   <label htmlFor="name">ชื่อ นามสกุล</label>
                   <input
