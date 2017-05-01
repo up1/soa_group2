@@ -78,6 +78,7 @@ class App extends React.Component {
         for (let i = 0; i < storedCartItems.length; i += 1) {
           newCart[storedCartItems[i].id] = storedCartItems[i];
         }
+        cookie.remove('cartid');
         cookie.save('cartid', cartId);
         this.setState({ cartId: response.data.id, cart: newCart });
       })
@@ -98,6 +99,7 @@ class App extends React.Component {
           .post(endpoint, {})
           .then((response) => {
             const generatedCartId = response.data;
+            cookie.remove('cartid');
             cookie.save('cartid', generatedCartId);
             this.setState({ cartId: generatedCartId, cart: [] });
           })
