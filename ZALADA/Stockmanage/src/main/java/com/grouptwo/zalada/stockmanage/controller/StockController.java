@@ -75,7 +75,7 @@ public class StockController {
             stockRepository.updateProduct(owner, id, upDateProduct);
         } catch (Exception e) {
             log.error(e);
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
