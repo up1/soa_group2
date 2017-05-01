@@ -8,7 +8,7 @@ ${TWOSECOUND}    2.0
 ${FIVESECOND}    5.0
 ${TENSECOND}     10.0
 ${CART}          document.links[2]
-${CHECKOUT}      document.getElementsByTagName('button')[4]
+${CHECKOUT}      checkout-btn
 ${AMOUNT}        25
 
 *** Keywords ***
@@ -18,9 +18,13 @@ Start Browser
 Restart Test
     Select Window    title=Zalada
     Go To    ${TESTADDRESS}
+    Assure Is Zalada Real Site
 Add Item Check
     Wait Until Page Contains    เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว    ${TENSECOND}
     Wait Until Page Does Not Contain    เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว    ${TENSECOND}
+Multiple Product Cart Check
+    Xpath Should Match X Times    //*[@id="cart-container"]/div/div/table/tbody/tr    5
+    Page Should Contain Element    dom=document.getElementsByTagName('tr')[5]
 Assure Is Zalada Real Site
     Page Should Contain Image    id=brand-image
     Wait Until Page Contains    ประเภทสินค้า    ${FIVESECOND}
@@ -40,8 +44,9 @@ Basic Check Cart Page
     Page Should Contain    Price
     Page Should Contain    Total
 Checkout The Cart
-    Page Should Contain Button    dom=${CHECKOUT}
-    Click Button    dom=${CHECKOUT}
+    Sleep    ${FIVESECOND}
+    Page Should Contain Button    id=${CHECKOUT}
+    Click Button    id=${CHECKOUT}
     Input Text    name=name    พลเอกประยงค์ จันทร์ชงชา อังคารชงกาแฟ
     Input Text    name=tel    0893693696
     Input Text    name=email    prayong.1111@thaigov.go.th
@@ -64,23 +69,19 @@ Checkout The Cart
     Click Link    dom=document.links[6]
     Add Item Check
     Basic Check Cart Page
-    Sleep    ${FIVESECOND}
     Checkout The Cart
 
 ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ โดยกดดูรายละเอียดสินค้าด้วย
     Restart Test
-    Assure Is Zalada Real Site
     Click Button    dom=document.getElementsByTagName('button')[9]
     Wait Until Page Contains    รายละเอียด
     Click Button    css=body > div:nth-child(3) > div > div:nth-child(2) > div > button.btn.btn-primary.pull-right
     Add Item Check
     Basic Check Cart Page
-    Sleep    ${FIVESECOND}
     Checkout The Cart
 
 ทดสอบซื้อสินค้าหลายชึ้น ด้วยสินค้าประเภทเดียว
     Restart Test
-    Assure Is Zalada Real Site
     Click Button    dom=document.getElementsByTagName('button')[9]
     Wait Until Page Contains    รายละเอียด
     Input Text    name=amount    ${AMOUNT}
@@ -88,5 +89,15 @@ Checkout The Cart
     Add Item Check
     Basic Check Cart Page   
     Textfield Value Should Be    dom=document.getElementsByTagName('input')[1]    ${AMOUNT}
-    Sleep    ${FIVESECOND}
     Checkout The Cart
+
+ทดสอบซื้อสืนค้ามากกว่าหนึ่งประเภท โดยซื้อสามประเภท ประเภทละหนึ่งชิ้น
+    Restart Test
+    Click Link    dom=document.links[5]
+    Click Link    dom=document.links[6]
+    Click Link    dom=document.links[7]
+    Add Item Check
+    Basic Check Cart Page
+    Multiple Product Cart Check
+    Checkout The Cart
+    [Teardown]    Close Browser
