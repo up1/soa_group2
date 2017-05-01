@@ -60,7 +60,7 @@ class ProductDetail extends React.Component {
                 <ModalContainer onClose={this.handleClose}>
                     <ModalDialog onClose={this.handleClose}>
                         <h1><FontAwesome name="info-circle" /> {this.props.productData.name}</h1>
-                        <img src={`http://localhost:9001/product/image/${this.props.productData.id}`} className="img-responsive img-rounded" alt={`${this.props.productData.name}`} />
+                        <img src={`http://139.59.102.212:9001/product/image/?productId=${this.props.productData.id}`} className="img-responsive img-rounded" alt={`${this.props.productData.name}`} />
                         <h3>ประเภทสินค้า : <small>{this.props.productData.category}</small></h3><hr />
                         <h3>รายละเอียด :</h3>
                         <p>

@@ -9,7 +9,7 @@ import { sliderTimer } from './slidertimer';
 function MainPage(props) {
   return (
     <div className="container-pager" onLoad={sliderTimer}>
-      <UpperHeaderSection user={props.user} />
+      <UpperHeaderSection user={props.user} userLogout={props.userLogout} />
       <SlideShow />
       <ProductReview addProduct={props.addProduct} />
       <FooterSection />
@@ -17,9 +17,13 @@ function MainPage(props) {
   );
 }
 
+MainPage.defaultProps = {
+  user: '',
+};
+
 MainPage.propTypes = {
   addProduct: PropTypes.func.isRequired,
-  user: PropTypes.string.isRequired,
+  user: PropTypes.string,
 };
 
 export default MainPage;
