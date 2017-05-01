@@ -1,8 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
+import Slider from 'react-slick';
 import './css/productReview.css';
 import ProductItemPreview from './ProductItemPreview'; // each product item component
+import { SaleService } from '../../util/AxiosWrapper';
 
 class ProductReview extends React.Component {
 
@@ -19,8 +20,8 @@ class ProductReview extends React.Component {
   }
 
   loadAllProduct() {
-    axios
-      .get('http://localhost:9003/sale')
+    SaleService
+      .get('/sale')
       .then((response) => {
         const productList = response
           .data
@@ -47,27 +48,21 @@ class ProductReview extends React.Component {
   }
 
   render() {
+    const settings = {
+      dots: true,
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+    };
     return (
       <div className="container" id="pd-review-container">
         <div className="row">
           <div className="row" id="header-row-list">
-            <div className="col-md-9">
+            <div className="col-md-12">
               <h3>
                 รายการสินค้าแนะนำ / ขายดี</h3>
-            </div>
-            <div className="col-md-3">
-              <div className="controls pull-right hidden-xs">
-                <a
-                  className="left fa fa-chevron-left btn btn-success"
-                  href="#carousel-example"
-                  data-slide="prev"
-                ></a>
-                <a
-                  className="right fa fa-chevron-right btn btn-success"
-                  href="#carousel-example"
-                  data-slide="next"
-                ></a>
-              </div>
             </div>
           </div>
           <div
@@ -79,6 +74,7 @@ class ProductReview extends React.Component {
               <div className="item active">
                 <div className="row">
                   {this.state.products}
+                  {/* <Slider {...settings}>{this.state.products}</Slider> */}
                 </div>
               </div>
             </div>
