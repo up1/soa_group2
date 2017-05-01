@@ -60,23 +60,9 @@ class ProductReview extends React.Component {
       <div className="container" id="pd-review-container">
         <div className="row">
           <div className="row" id="header-row-list">
-            <div className="col-md-9">
+            <div className="col-md-12">
               <h3>
                 รายการสินค้าแนะนำ / ขายดี</h3>
-            </div>
-            <div className="col-md-3">
-              <div className="controls pull-right hidden-xs">
-                <a
-                  className="left fa fa-chevron-left btn btn-success"
-                  href="#carousel-example"
-                  data-slide="prev"
-                ></a>
-                <a
-                  className="right fa fa-chevron-right btn btn-success"
-                  href="#carousel-example"
-                  data-slide="next"
-                ></a>
-              </div>
             </div>
           </div>
           <div
@@ -87,7 +73,7 @@ class ProductReview extends React.Component {
             <div className="carousel-inner">
               <div className="item active">
                 <div className="row">
-                  {this.state.products}*
+                  {this.state.products}
                   {/* <Slider {...settings}>{this.state.products}</Slider> */}
                 </div>
               </div>
