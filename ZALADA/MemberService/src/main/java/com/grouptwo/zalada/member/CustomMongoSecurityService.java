@@ -23,36 +23,28 @@ public class CustomMongoSecurityService implements UserDetailsService {
     private SignIn signIn;
 
     @Override
-    public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
-
-        try {
-
-            signIn = memberRepository.getAuth(username);
-            if(signIn == null){
-                throw new UsernameNotFoundException("User not found : " + username);
-            }
-
-            boolean enabled = true;
-            boolean accountNonExpired = true;
-            boolean credentialsNonExpired = true;
-            boolean accountNonLocked = true;
-
-            return new User
-                    (
-                            signIn.getUsername(),
-                            signIn.getPassword(),
-                            enabled,
-                            accountNonExpired,
-                            credentialsNonExpired,
-                            accountNonLocked,
-                            getGrantedAuthorities()
-                    );
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+    public UserDetails loadUserByUsername(String username) {
+        signIn = memberRepository.getAuth(username);
+        if (signIn == null) {
+            throw new UsernameNotFoundException("User not found : " + username);
         }
-    }
 
+        boolean enabled = true;
+        boolean accountNonExpired = true;
+        boolean credentialsNonExpired = true;
+        boolean accountNonLocked = true;
+
+        return new User
+                (
+                        signIn.getUsername(),
+                        signIn.getPassword(),
+                        enabled,
+                        accountNonExpired,
+                        credentialsNonExpired,
+                        accountNonLocked,
+                        getGrantedAuthorities()
+                );
+    }
 
     private Collection<SimpleGrantedAuthority> getGrantedAuthorities() {
 
