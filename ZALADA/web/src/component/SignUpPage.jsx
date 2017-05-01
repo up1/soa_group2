@@ -45,7 +45,7 @@ class SignUpPage extends React.Component {
       },
       member: {
         name: this.state.name,
-        tel: this.state.email,
+        tel: this.state.tel,
         address: `${this.state.address} ${this.state.state} ${this.state.province} ${this.state.post_code}`,
         email: this.state.email,
       },

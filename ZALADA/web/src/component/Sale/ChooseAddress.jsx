@@ -3,7 +3,6 @@ import cookie from 'react-cookie';
 import Navbar from './UpperHeaderSection';
 import FooterSection from './FooterSection';
 import './css/chooseaddress.css';
-
 import { BillingService } from '../../util/AxiosWrapper';
 
 class ChooseAddress extends React.Component {
@@ -92,6 +91,7 @@ class ChooseAddress extends React.Component {
     }
     const data = {
       buyer: this.state.name,
+      billingName: this.state.name,
       totalPrice,
       buyProducts,
       deliveryAddress: `${this.state.address} ${this.state.state} ${this.state.province} ${this.state.post_code}`,
@@ -99,6 +99,7 @@ class ChooseAddress extends React.Component {
       tel: this.state.tel,
       email: this.state.email,
     };
+    console.log(data);
     const config = this.props.user ? {
       headers: { Authorization: cookie.load('access_token') },
     } : {};
