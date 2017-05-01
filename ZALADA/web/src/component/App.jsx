@@ -14,6 +14,7 @@ import CategoryPage from './Sale/Category/CategoryPage';
 import SelectedCategory from './Sale/Category/SelectedCategory';
 import PurchaseOrder from '././Sale/PurchaseOrder';
 import ConfirmForm from './Sale/ConfirmForm';
+import ChooseAddress from './Sale/ChooseAddress';
 import { SaleService } from '../util/AxiosWrapper';
 
 class App extends React.Component {
@@ -185,6 +186,9 @@ class App extends React.Component {
   }
 
   render() {
+
+    const ChooseAddressWrap = prop =>
+    (<ChooseAddress user={this.state.username} {...prop} userLogout={this.userLogout} clearCart={this.clearCart} cart={this.state.cart} />);
     const AddProductwithNoti = prop =>
     (<AddProduct noti={this.notifySuccessAddProduct} {...prop} />);
     const WrapSignIn = prop =>
@@ -232,6 +236,7 @@ class App extends React.Component {
             <Route path="/category/:categoryName" render={WrapCategoryPage} />
             <Route path="/submit" render={SubmitCartForm} />
             <Route path="/purchaseorder/:purchaseOrderId" component={PurchaseOrder} />
+            <Route path="/chooseaddress" render={ChooseAddressWrap} />
           </Switch>
         </BrowserRouter>
       </div>
