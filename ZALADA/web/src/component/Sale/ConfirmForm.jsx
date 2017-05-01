@@ -44,6 +44,7 @@ class ConfirmForm extends React.Component {
     }
     const data = {
       buyer: this.state.name,
+      billingName: this.state.name,
       totalPrice,
       buyProducts,
       deliveryAddress: `${this.state.address} ${this.state.state} ${this.state.province} ${this.state.post_code}`,
