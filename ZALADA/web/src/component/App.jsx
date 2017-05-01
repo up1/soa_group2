@@ -68,6 +68,7 @@ class App extends React.Component {
     const config = this.state.username ? {
       headers: { Authorization: cookie.load('access_token') },
     } : {};
+    console.log(config);
     SaleService
       .get(`cart/${cartId}`, config)
       .then((response) => {
@@ -219,6 +220,15 @@ class App extends React.Component {
       userLogout={this.userLogout}
     />);
 
+    const PdfForm = prop => 
+    (
+      <PurchaseOrder 
+      user={this.state.username}
+      userLogout={this.userLogout}
+      {...prop}
+      />
+    );
+
     return (
       <div>
         <NotificationSystem ref={(noti) => { this.notificationSystem = noti; }} />
@@ -235,7 +245,7 @@ class App extends React.Component {
             <Route exact path="/category" render={WrapMainCategoryPage} />
             <Route path="/category/:categoryName" render={WrapCategoryPage} />
             <Route path="/submit" render={SubmitCartForm} />
-            <Route path="/purchaseorder/:purchaseOrderId" component={PurchaseOrder} />
+            <Route path="/purchaseorder/:purchaseOrderId" render={PdfForm} />
             <Route path="/chooseaddress" render={ChooseAddressWrap} />
           </Switch>
         </BrowserRouter>

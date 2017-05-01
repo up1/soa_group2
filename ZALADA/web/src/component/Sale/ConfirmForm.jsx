@@ -1,4 +1,5 @@
 import React from 'react';
+import cookie from 'react-cookie';
 import FooterSection from './FooterSection';
 import UpperHeaderSection from './UpperHeaderSection';
 import './css/confirm.css';
@@ -50,8 +51,11 @@ class ConfirmForm extends React.Component {
       tel: this.state.tel,
       email: this.state.email,
     };
+    const config = this.props.user ? {
+      headers: { Authorization: cookie.load('access_token') },
+    } : {};
     BillingService
-      .post('/purchaseorder/', data)
+      .post('/purchaseorder/', data, config)
       .then((response) => {
         const purchaseorderId = response.data;
         this
@@ -68,7 +72,7 @@ class ConfirmForm extends React.Component {
   render() {
     return (
       <div>
-        <UpperHeaderSection user={this.props.user} />
+        <UpperHeaderSection user={this.props.user} userLogout={this.props.userLogout} />
         <div className="container" id="confirm-page">
           <section className="container-signup">
             <h1>

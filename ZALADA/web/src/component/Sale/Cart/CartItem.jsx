@@ -1,5 +1,5 @@
 import React from 'react';
-import { SaleService } from '../../../util/AxiosWrapper';
+import {SaleService} from '../../../util/AxiosWrapper';
 import cookie from 'react-cookie';
 
 class CartItem extends React.Component {
@@ -7,7 +7,7 @@ class CartItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      amount: props.item.amount,
+      amount: props.item.amount
     };
     this.updateAmount = this
       .updateAmount
@@ -18,14 +18,17 @@ class CartItem extends React.Component {
     const updatedItem = this.props.item;
     const amount = parseInt(e.target.value, 10);
     console.log(`amount = ${amount}`);
-    if (Number.isInteger(amount)) {
-      SaleService.patch(`/cart/${this.props.cartId}/${updatedItem.id}?amount=${amount}`, {}, {
+    const config = this.props.user
+      ? {
         headers: {
           Authorization: cookie.load('access_token'),
-        },
-      }).then((response) => {
+        }
+      }
+      : {};
+    if (Number.isInteger(amount)) {
+      SaleService.patch(`/cart/${this.props.cartId}/${updatedItem.id}?amount=${amount}`, {}, config).then((response) => {
         updatedItem.amount = amount;
-        this.setState({ amount });
+        this.setState({amount});
         this
           .props
           .setCartTotalPrice();
@@ -34,7 +37,7 @@ class CartItem extends React.Component {
       });
     } else if (e.target.value === '') {
       updatedItem.amount = e.target.value;
-      this.setState({ amount });
+      this.setState({amount});
       this
         .props
         .setCartTotalPrice();
@@ -53,10 +56,9 @@ class CartItem extends React.Component {
                 src={`http://139.59.102.212:9001/product/image/?productId=${this.props.item.id}`}
                 alt="productname"
                 style={{
-                  width: '72px',
-                  height: '72px',
-                }}
-              />
+                width: '72px',
+                height: '72px'
+              }}/>
             </a>
             <div className="media-body">
               <h4 className="media-heading">
@@ -77,10 +79,9 @@ class CartItem extends React.Component {
         <td
           className="col-sm-1 col-md-1"
           style={{
-            textAlign: 'center',
-          }}
-        >
-          <input className="form-control" value={amount} onChange={this.updateAmount} />
+          textAlign: 'center'
+        }}>
+          <input className="form-control" value={amount} onChange={this.updateAmount}/>
         </td>
         <td className="col-sm-1 col-md-1 text-center">
           <strong>{this.props.item.price}</strong>
@@ -93,12 +94,11 @@ class CartItem extends React.Component {
             type="button"
             className="btn btn-danger"
             onClick={() => {
-              this
+            this
               .props
               .removeFromCart(this.props.index);
-            }}
-          >
-            <span className="glyphicon glyphicon-remove" />
+          }}>
+            <span className="glyphicon glyphicon-remove"/>
             Remove
           </button>
         </td>

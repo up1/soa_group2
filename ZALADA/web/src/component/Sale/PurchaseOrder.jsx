@@ -13,8 +13,8 @@ class PurchaseOrder extends React.Component {
   render() {
     return (
       <div>
-        <UpperHeaderSection />
-        <div className="container">
+        <UpperHeaderSection user={this.props.user} userLogout={this.props.userLogout} />
+        <div className="container" style={{ marginTop: '70px' }}>
 
           <ReactPDF
             file={`http://139.59.102.212:9002/payslip/${this.props.match.params.purchaseOrderId}`}

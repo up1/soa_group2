@@ -1,7 +1,10 @@
 import React from 'react';
+import cookie from 'react-cookie';
 import Navbar from './UpperHeaderSection';
 import FooterSection from './FooterSection';
-import {BillingService} from '../../util/AxiosWrapper';
+import './css/chooseaddress.css';
+
+import { BillingService } from '../../util/AxiosWrapper';
 
 class ChooseAddress extends React.Component {
 
@@ -15,21 +18,25 @@ class ChooseAddress extends React.Component {
       address: '',
       province: '',
       post_code: '',
-      state: ''
+      state: '',
     };
     this.onSelectChange = this
       .onSelectChange
       .bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.submitChange = this.submitChange.bind(this);
-    this.submitButtonClick = this.submitButtonClick.bind(this);
+    this.handleChange = this
+      .handleChange
+      .bind(this);
+    this.submitChange = this
+      .submitChange
+      .bind(this);
+    this.submitButtonClick = this
+      .submitButtonClick
+      .bind(this);
   }
-
 
   onSelectChange(event) {
-    this.setState({selectOption: event.target.value});
+    this.setState({ selectOption: event.target.value });
   }
-
 
   handleChange(event) {
     const newState = {};
@@ -37,12 +44,40 @@ class ChooseAddress extends React.Component {
     this.setState(newState);
   }
 
-  submitButtonClick(){
-    if (this.state.selectOption === '2'){
+  submitButtonClick() {
+    if (this.state.selectOption === '2') {
       this.submitChange();
-    }
-    else {
-      BillingService.post('/purchaseorder/')
+    } else {
+      const cart = this.props.cart;
+      const buyProducts = [];
+      let totalPrice = 0;
+      const productIdList = Object.keys(cart);
+      for (let i = 0; i < productIdList.length; i += 1) {
+        totalPrice += cart[productIdList[i]].amount * cart[productIdList[i]].price;
+        buyProducts.push(cart[productIdList[i]]);
+      }
+      const data = {
+        totalPrice,
+        buyProducts,
+      };
+      const config = this.props.user ? {
+        headers: { Authorization: cookie.load('access_token') },
+      } : {};
+      BillingService
+        .post('/purchaseorder/?default=true', data, config)
+        .then((response) => {
+          const purchaseorderId = response.data;
+          this
+            .props
+            .history
+            .push(`/purchaseorder/${purchaseorderId}`);
+          this
+            .props
+            .clearCart();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }
 
@@ -62,10 +97,13 @@ class ChooseAddress extends React.Component {
       deliveryAddress: `${this.state.address} ${this.state.state} ${this.state.province} ${this.state.post_code}`,
       payStatus: 0,
       tel: this.state.tel,
-      email: this.state.email
+      email: this.state.email,
     };
+    const config = this.props.user ? {
+      headers: { Authorization: cookie.load('access_token') },
+    } : {};
     BillingService
-      .post('/purchaseorder/', data)
+      .post('/purchaseorder/', data, config)
       .then((response) => {
         const purchaseorderId = response.data;
         this
@@ -94,12 +132,13 @@ class ChooseAddress extends React.Component {
                   type="text"
                   name="name"
                   className="form-control"
-                  onChange={this.handleChange}/>
+                  onChange={this.handleChange}
+                />
               </div>
 
               <div className="form-group col-lg-12">
                 <label>โทรศัพท์</label>
-                <input name="tel" className="form-control" onChange={this.handleChange}/>
+                <input name="tel" className="form-control" onChange={this.handleChange} />
               </div>
               <div className="form-group col-lg-12">
                 <label>อีเมล</label>
@@ -107,12 +146,13 @@ class ChooseAddress extends React.Component {
                   type="email"
                   name="email"
                   className="form-control"
-                  onChange={this.handleChange}/>
+                  onChange={this.handleChange}
+                />
               </div>
 
               <div className="form-group col-lg-12">
                 <label>ที่อยู่</label>
-                <textarea name="address" className="form-control" onChange={this.handleChange}/>
+                <textarea name="address" className="form-control" onChange={this.handleChange} />
               </div>
 
               <div className="form-group col-lg-12">
@@ -121,7 +161,8 @@ class ChooseAddress extends React.Component {
                   type="text"
                   name="post_code"
                   className="form-control"
-                  onChange={this.handleChange}/>
+                  onChange={this.handleChange}
+                />
 
               </div>
 
@@ -131,7 +172,8 @@ class ChooseAddress extends React.Component {
                   type="text"
                   name="state"
                   className="form-control"
-                  onChange={this.handleChange}/>
+                  onChange={this.handleChange}
+                />
               </div>
 
               <div className="form-group col-lg-12">
@@ -296,13 +338,13 @@ class ChooseAddress extends React.Component {
     );
     return (
       <div id="choose">
-        <Navbar user={this.props.user} userLogout={this.props.userLogout}/>
-        <div className="container-fluid">
+        <Navbar user={this.props.user} userLogout={this.props.userLogout} />
+        <div className="container" id="chooseaddress-container">
           <h1>
             เลือกที่อยู่ที่จะจัดส่ง</h1>
           <div className="form-group">
             <label className="col-md-2 control-label" htmlFor="address">เลือกที่อยู่ที่จะจัดส่ง</label>
-            <div className="col-md-4">
+            <div className="col-md-10">
               <div className="checkbox">
                 <label htmlFor="address-0">
                   <input
@@ -311,7 +353,8 @@ class ChooseAddress extends React.Component {
                     id="address-0"
                     value="1"
                     onChange={this.onSelectChange}
-                    checked={this.state.selectOption === '1'}/>
+                    checked={this.state.selectOption === '1'}
+                  />
                   ใช้ที่อยู่เดิมตอนสมัคร
                 </label>
               </div>
@@ -323,7 +366,8 @@ class ChooseAddress extends React.Component {
                     id="address-1"
                     value="2"
                     onChange={this.onSelectChange}
-                    checked={this.state.selectOption === '2'}/>
+                    checked={this.state.selectOption === '2'}
+                  />
                   กรอกข้อมูลใหม่
                 </label>
               </div>
@@ -336,10 +380,11 @@ class ChooseAddress extends React.Component {
             <button
               type="submit"
               className="btn btn-primary pull-right"
-              onClick={this.submitButtonClick}>ยืนยันการสั่งซื้อ</button>
+              onClick={this.submitButtonClick}
+            >ยืนยันการสั่งซื้อ</button>
           </div>
         </div>
-        <FooterSection/>
+        <FooterSection />
       </div>
     );
   }

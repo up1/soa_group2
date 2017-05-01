@@ -19,7 +19,9 @@ class Cart extends React.Component {
     this.setCartTotalPrice = this
       .setCartTotalPrice
       .bind(this);
-    this.checkOut = this.checkOut.bind(this);
+    this.checkOut = this
+      .checkOut
+      .bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,11 +49,16 @@ class Cart extends React.Component {
   }
 
   checkOut() {
-    if (this.props.user){
-      
-    }
-    else {
-      this.props.history.push('/submit');
+    if (this.props.user) {
+      this
+        .props
+        .history
+        .push('/chooseaddress');
+    } else {
+      this
+        .props
+        .history
+        .push('/submit');
     }
   }
 
@@ -64,11 +71,12 @@ class Cart extends React.Component {
         item={this.props.cart[itemId]}
         setCartTotalPrice={this.setCartTotalPrice}
         cartId={this.props.cartId}
-        removeFromCart={this.props.removeFromCart}
+        user={this.props.user}
+        removeFromCart={this.props.removeFromCart}  
       />));
     return (
       <div className="my-cart">
-        <Navbar user={this.props.user} userLogout={this.props.userLogout} />
+        <Navbar user={this.props.user} userLogout={this.props.userLogout}  />
         <div className="container" id="cart-container">
           <div className="row">
             <div className="col-sm-12 col-md-10 col-md-offset-1">
@@ -82,15 +90,15 @@ class Cart extends React.Component {
                     <th>Quantity</th>
                     <th className="text-center">Price</th>
                     <th className="text-center">Total</th>
-                    <th />
+                    <th  />
                   </tr>
                 </thead>
                 <tbody>
                   {cartItems}
                   <tr>
-                    <td />
-                    <td />
-                    <td />
+                    <td  />
+                    <td  />
+                    <td  />
                     <td>
                       <h3>Total</h3>
                     </td>
@@ -101,22 +109,22 @@ class Cart extends React.Component {
                     </td>
                   </tr>
                   <tr>
-                    <td />
-                    <td />
-                    <td />
+                    <td  />
+                    <td  />
+                    <td  />
                     <td>
                       <button type="button" className="btn btn-default">
-                        <span className="glyphicon glyphicon-shopping-cart" />
+                        <span className="glyphicon glyphicon-shopping-cart"  />
                         Continue Shopping
                       </button>
                     </td>
                     <td>
-                      <Link to="submit">
-                        <button type="button" className="btn btn-success">
-                          Checkout
-                          <span className="glyphicon glyphicon-play" />
-                        </button>
-                      </Link>
+
+                      <button type="button" className="btn btn-success" onClick={this.checkOut}>
+                        Checkout
+                        <span className="glyphicon glyphicon-play"  />
+                      </button>
+
                     </td>
                   </tr>
                 </tbody>
@@ -124,7 +132,7 @@ class Cart extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
+        <Footer  />
       </div>
     );
   }
