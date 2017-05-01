@@ -24,6 +24,13 @@ class ProductDetail extends React.Component {
         })
     }
 
+    handleInputChange = () => {
+        const element = document.querySelector('body > div:nth-child(3) > div > div:nth-child(2) > div > big > input[type="number"]')
+        this.setState({
+            amountValue: parseInt(element.value)
+        })
+    }
+
     handleSliderChangeComplete = (e) => {
         console.log('Change event completed')
     }
@@ -67,7 +74,7 @@ class ProductDetail extends React.Component {
                             {this.props.productData.detail}
                         </p><hr />
                         <h3>ราคา : <small>{this.props.productData.price} บาท</small></h3><hr />
-                        <big className="pull-left"> จำนวน {this.state.amountValue} ชิ้น </big><br />
+                        <big className="pull-left"> จำนวน <input type="number" name="amount" min="1" max={this.props.productData.amount} value={this.state.amountValue} onChange={this.handleInputChange} /> ชิ้น </big><br />
                         <div className='slider'>
                             <Slider
                                 min={1}

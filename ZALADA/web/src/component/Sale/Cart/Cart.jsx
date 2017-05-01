@@ -120,7 +120,7 @@ class Cart extends React.Component {
                     </td>
                     <td>
 
-                      <button type="button" className="btn btn-success" onClick={this.checkOut}>
+                      <button id="checkout-btn" type="button" className="btn btn-success" onClick={this.checkOut}>
                         Checkout
                         <span className="glyphicon glyphicon-play"  />
                       </button>
