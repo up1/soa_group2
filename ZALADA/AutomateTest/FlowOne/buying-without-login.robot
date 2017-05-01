@@ -9,6 +9,7 @@ ${FIVESECOND}    5.0
 ${TENSECOND}     10.0
 ${CART}          document.links[2]
 ${CHECKOUT}      document.getElementsByTagName('button')[4]
+${AMOUNT}        25
 
 *** Keywords ***
 Start Browser
@@ -63,6 +64,7 @@ Checkout The Cart
     Click Link    dom=document.links[6]
     Add Item Check
     Basic Check Cart Page
+    Sleep    ${FIVESECOND}
     Checkout The Cart
 
 ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ โดยกดดูรายละเอียดสินค้าด้วย
@@ -73,5 +75,18 @@ Checkout The Cart
     Click Button    css=body > div:nth-child(3) > div > div:nth-child(2) > div > button.btn.btn-primary.pull-right
     Add Item Check
     Basic Check Cart Page
+    Sleep    ${FIVESECOND}
     Checkout The Cart
 
+ทดสอบซื้อสินค้าหลายชึ้น ด้วยสินค้าประเภทเดียว
+    Restart Test
+    Assure Is Zalada Real Site
+    Click Button    dom=document.getElementsByTagName('button')[9]
+    Wait Until Page Contains    รายละเอียด
+    Input Text    name=amount    ${AMOUNT}
+    Click Button    css=body > div:nth-child(3) > div > div:nth-child(2) > div > button.btn.btn-primary.pull-right
+    Add Item Check
+    Basic Check Cart Page   
+    Textfield Value Should Be    dom=document.getElementsByTagName('input')[1]    ${AMOUNT}
+    Sleep    ${FIVESECOND}
+    Checkout The Cart
