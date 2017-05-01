@@ -19,13 +19,13 @@ class UpperHeaderSection extends React.Component {
               <a href="#">แก้ไขข้อมูล</a>
             </li>
             <li>
-              <a href="#">ตะกร้าสินค้า</a>
+              <Link to="/cart" >ตะกร้าสินค้า</Link>
             </li>
             <li>
               <Link to="/stock">คลังสินค้า</Link>
             </li>
             <li>
-              <a onClick={this.props.userLogout}href="#">ออกจากระบบ</a>
+              <a onClick={this.props.userLogout}>ออกจากระบบ</a>
             </li>
           </ul>
       </li>)

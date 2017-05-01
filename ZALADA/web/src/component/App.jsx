@@ -115,6 +115,9 @@ class App extends React.Component {
           ...this.state.cart,
         };
         currentCart[cartItem.id] = cartItem;
+        this
+      .notificationSystem
+      .addNotification({ message: 'เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว', level: 'success' });
         this.setState({ cart: currentCart });
       })
       .catch((error) => {

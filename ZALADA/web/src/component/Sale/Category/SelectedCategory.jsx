@@ -50,7 +50,7 @@ class SelectedCategory extends React.Component {
   render() {
     return (
       <div id="catalog-page">
-        <Navbar />
+        <Navbar user={this.props.user} userLogout={this.props.userLogout} />
         <div className="container">
           <h1>
             Welcome to {this.state.categoryName}

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import cookie from 'react-cookie';
 import { StockService } from '../../util/AxiosWrapper';
 
@@ -47,11 +46,18 @@ class UpdateProduct extends React.Component {
     // console.log(data);
     StockService
       .put(`/product/${this.props.match.params.id}`, data, {
-        headers: { Authorization: cookie.load('access_token') },
+        headers: {
+          Authorization: cookie.load('access_token'),
+        },
       })
       .then(() => {
         if (this.state.imagefile) {
           this.uploadImage(this.props.match.params.id);
+        } else {
+          this
+            .props
+            .history
+            .push('/stock');
         }
       })
       .catch((error) => {
@@ -65,9 +71,15 @@ class UpdateProduct extends React.Component {
     data.append('productId', productId);
     StockService
       .post('/product/image', data, {
-        headers: { Authorization: cookie.load('access_token') },
+        headers: {
+          Authorization: cookie.load('access_token'),
+        },
       })
       .then((response) => {
+        this
+          .props
+          .history
+          .push('/stock');
         console.log(response);
       })
       .catch((error) => {
@@ -97,7 +109,9 @@ class UpdateProduct extends React.Component {
   loadProductData(id) {
     StockService
       .get(`/product/${id}`, {
-        headers: { Authorization: cookie.load('access_token') },
+        headers: {
+          Authorization: cookie.load('access_token'),
+        },
       })
       .then((response) => {
         console.log(response.data);
@@ -214,7 +228,7 @@ class UpdateProduct extends React.Component {
                 <option value={categoryOption}>
                   {categoryOption}
                 </option>
-                ))}
+              ))}
             </select>
           </div>
           <div className="form-group">
@@ -233,12 +247,11 @@ class UpdateProduct extends React.Component {
               max="100"
             />
           </div>
-          <Link
-            to="/"
+          <button
             onClick={this.handleSubmit}
             className="btn btn-primary btn-lg pull-right"
             type="button"
-          >Submit</Link>
+          >Submit</button>
         </form>
       </div>
     );

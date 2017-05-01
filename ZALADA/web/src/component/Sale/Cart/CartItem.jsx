@@ -50,7 +50,7 @@ class CartItem extends React.Component {
             <a className="thumbnail pull-left" href="#">
               <img
                 className="media-object"
-                src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png"
+                src={`http://139.59.102.212:9001/product/image/?productId=${this.props.item.id}`}
                 alt="productname"
                 style={{
                   width: '72px',
