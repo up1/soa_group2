@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20170501 23:35:35.307" generator="Robot 3.0.2 (Python 2.7.13 on win32)">
+<suite source="D:\SOA\soa_group2\ZALADA\AutomateTest\FlowOne\buying-without-login.robot" id="s1" name="Buying-Without-Login">
+<test id="s1-t1" name="ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม Add to cart ในหน้าแรก">
+<kw name="Start Browser">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${TESTADDRESS}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20170501 23:35:35.558" level="INFO">Opening browser 'chrome' to base url 'http://localhost:9000/'</msg>
+<status status="PASS" endtime="20170501 23:35:49.355" starttime="20170501 23:35:35.558"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20170501 23:35:50.552" starttime="20170501 23:35:49.355"></status>
+</kw>
+<status status="PASS" endtime="20170501 23:35:50.552" starttime="20170501 23:35:35.557"></status>
+</kw>
+<kw name="Assure Is Zalada Real Site">
+<kw name="Page Should Contain Image" library="Selenium2Library">
+<doc>Verifies image identified by `locator` is found from current page.</doc>
+<arguments>
+<arg>id=brand-image</arg>
+</arguments>
+<msg timestamp="20170501 23:35:50.671" level="INFO">Current page contains image 'id=brand-image'.</msg>
+<status status="PASS" endtime="20170501 23:35:50.672" starttime="20170501 23:35:50.560"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>ประเภทสินค้า</arg>
+<arg>${FIVESECOND}</arg>
+</arguments>
+<status status="PASS" endtime="20170501 23:35:50.718" starttime="20170501 23:35:50.672"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>รายการสินค้าแนะนำ</arg>
+</arguments>
+<msg timestamp="20170501 23:35:50.759" level="INFO">Current page contains text 'รายการสินค้าแนะนำ'.</msg>
+<status status="PASS" endtime="20170501 23:35:50.759" starttime="20170501 23:35:50.718"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>ขอบคุณโปรแกรมเมอร์ทุกคนที่เขียนโค๊ดอย่างบ้าคลั่ง</arg>
+</arguments>
+<msg timestamp="20170501 23:35:50.799" level="INFO">Current page contains text 'ขอบคุณโปรแกรมเมอร์ทุกคนที่เขียนโค๊ดอย่างบ้าคลั่ง'.</msg>
+<status status="PASS" endtime="20170501 23:35:50.799" starttime="20170501 23:35:50.759"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>การออกแบบเป็นชีวิตจิตใจของพวกเขา</arg>
+</arguments>
+<msg timestamp="20170501 23:35:50.846" level="INFO">Current page contains text 'การออกแบบเป็นชีวิตจิตใจของพวกเขา'.</msg>
+<status status="PASS" endtime="20170501 23:35:50.847" starttime="20170501 23:35:50.800"></status>
+</kw>
+<kw name="Page Should Not Contain" library="Selenium2Library">
+<doc>Verifies the current page does not contain `text`.</doc>
+<arguments>
+<arg>Lazada</arg>
+</arguments>
+<msg timestamp="20170501 23:35:50.922" level="INFO">Current page does not contain text 'Lazada'.</msg>
+<status status="PASS" endtime="20170501 23:35:50.922" starttime="20170501 23:35:50.847"></status>
+</kw>
+<kw name="Page Should Not Contain" library="Selenium2Library">
+<doc>Verifies the current page does not contain `text`.</doc>
+<arguments>
+<arg>lazada</arg>
+</arguments>
+<msg timestamp="20170501 23:35:50.968" level="INFO">Current page does not contain text 'lazada'.</msg>
+<status status="PASS" endtime="20170501 23:35:50.968" starttime="20170501 23:35:50.922"></status>
+</kw>
+<kw name="Page Should Not Contain" library="Selenium2Library">
+<doc>Verifies the current page does not contain `text`.</doc>
+<arguments>
+<arg>ลาซาด้า</arg>
+</arguments>
+<msg timestamp="20170501 23:35:51.041" level="INFO">Current page does not contain text 'ลาซาด้า'.</msg>
+<status status="PASS" endtime="20170501 23:35:51.041" starttime="20170501 23:35:50.969"></status>
+</kw>
+<status status="PASS" endtime="20170501 23:35:51.042" starttime="20170501 23:35:50.560"></status>
+</kw>
+<kw name="Click Link" library="Selenium2Library">
+<doc>Clicks a link identified by locator.</doc>
+<arguments>
+<arg>dom=document.links[6]</arg>
+</arguments>
+<msg timestamp="20170501 23:35:51.044" level="INFO">Clicking link 'dom=document.links[6]'.</msg>
+<status status="PASS" endtime="20170501 23:35:51.228" starttime="20170501 23:35:51.044"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว</arg>
+<arg>${FIVESECOND}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20170501 23:35:56.811" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20170501 23:35:56.812" starttime="20170501 23:35:56.290"></status>
+</kw>
+<msg timestamp="20170501 23:35:56.813" level="FAIL">Text 'เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว' did not appear in 5 seconds</msg>
+<status status="FAIL" endtime="20170501 23:35:56.813" starttime="20170501 23:35:51.230"></status>
+</kw>
+<status status="FAIL" endtime="20170501 23:35:56.814" critical="yes" starttime="20170501 23:35:35.552">Text 'เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว' did not appear in 5 seconds</status>
+</test>
+<status status="FAIL" endtime="20170501 23:35:56.818" starttime="20170501 23:35:35.311"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="1" id="s1" name="Buying-Without-Login" pass="0">Buying-Without-Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
