@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20170502 01:16:41.233" generator="Robot 3.0.2 (Python 2.7.13 on win32)">
+<robot generated="20170502 02:07:37.310" generator="Robot 3.0.2 (Python 2.7.13 on win32)">
 <suite source="D:\SOA\soa_group2\ZALADA\AutomateTest\FlowOne\buying-without-login.robot" id="s1" name="Buying-Without-Login">
 <test id="s1-t1" name="ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม Add to cart ในหน้าแรก">
 <kw name="Start Browser">
@@ -9,14 +9,14 @@
 <arg>${TESTADDRESS}</arg>
 <arg>${BROWSER}</arg>
 </arguments>
-<msg timestamp="20170502 01:16:41.470" level="INFO">Opening browser 'chrome' to base url 'http://139.59.102.212:5000/'</msg>
-<status status="PASS" endtime="20170502 01:16:51.948" starttime="20170502 01:16:41.469"></status>
+<msg timestamp="20170502 02:07:37.554" level="INFO">Opening browser 'chrome' to base url 'http://139.59.102.212:5000/'</msg>
+<status status="PASS" endtime="20170502 02:07:48.306" starttime="20170502 02:07:37.553"></status>
 </kw>
 <kw name="Maximize Browser Window" library="Selenium2Library">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" endtime="20170502 01:16:53.131" starttime="20170502 01:16:51.948"></status>
+<status status="PASS" endtime="20170502 02:07:49.517" starttime="20170502 02:07:48.306"></status>
 </kw>
-<status status="PASS" endtime="20170502 01:16:53.131" starttime="20170502 01:16:41.469"></status>
+<status status="PASS" endtime="20170502 02:07:49.517" starttime="20170502 02:07:37.553"></status>
 </kw>
 <kw name="Assure Is Zalada Real Site">
 <kw name="Page Should Contain Image" library="Selenium2Library">
@@ -24,8 +24,8 @@
 <arguments>
 <arg>id=brand-image</arg>
 </arguments>
-<msg timestamp="20170502 01:16:53.171" level="INFO">Current page contains image 'id=brand-image'.</msg>
-<status status="PASS" endtime="20170502 01:16:53.172" starttime="20170502 01:16:53.133"></status>
+<msg timestamp="20170502 02:07:49.561" level="INFO">Current page contains image 'id=brand-image'.</msg>
+<status status="PASS" endtime="20170502 02:07:49.561" starttime="20170502 02:07:49.519"></status>
 </kw>
 <kw name="Wait Until Page Contains" library="Selenium2Library">
 <doc>Waits until `text` appears on current page.</doc>
@@ -33,65 +33,73 @@
 <arg>ประเภทสินค้า</arg>
 <arg>${FIVESECOND}</arg>
 </arguments>
-<status status="PASS" endtime="20170502 01:16:53.203" starttime="20170502 01:16:53.172"></status>
+<status status="PASS" endtime="20170502 02:07:49.593" starttime="20170502 02:07:49.561"></status>
 </kw>
 <kw name="Page Should Contain" library="Selenium2Library">
 <doc>Verifies that current page contains `text`.</doc>
 <arguments>
 <arg>รายการสินค้าแนะนำ</arg>
 </arguments>
-<msg timestamp="20170502 01:16:53.236" level="INFO">Current page contains text 'รายการสินค้าแนะนำ'.</msg>
-<status status="PASS" endtime="20170502 01:16:53.236" starttime="20170502 01:16:53.203"></status>
+<msg timestamp="20170502 02:07:49.633" level="INFO">Current page contains text 'รายการสินค้าแนะนำ'.</msg>
+<status status="PASS" endtime="20170502 02:07:49.633" starttime="20170502 02:07:49.593"></status>
 </kw>
 <kw name="Page Should Contain" library="Selenium2Library">
 <doc>Verifies that current page contains `text`.</doc>
 <arguments>
 <arg>ขอบคุณโปรแกรมเมอร์ทุกคนที่เขียนโค๊ดอย่างบ้าคลั่ง</arg>
 </arguments>
-<msg timestamp="20170502 01:16:53.269" level="INFO">Current page contains text 'ขอบคุณโปรแกรมเมอร์ทุกคนที่เขียนโค๊ดอย่างบ้าคลั่ง'.</msg>
-<status status="PASS" endtime="20170502 01:16:53.269" starttime="20170502 01:16:53.236"></status>
+<msg timestamp="20170502 02:07:49.669" level="INFO">Current page contains text 'ขอบคุณโปรแกรมเมอร์ทุกคนที่เขียนโค๊ดอย่างบ้าคลั่ง'.</msg>
+<status status="PASS" endtime="20170502 02:07:49.669" starttime="20170502 02:07:49.633"></status>
 </kw>
 <kw name="Page Should Contain" library="Selenium2Library">
 <doc>Verifies that current page contains `text`.</doc>
 <arguments>
 <arg>การออกแบบเป็นชีวิตจิตใจของพวกเขา</arg>
 </arguments>
-<msg timestamp="20170502 01:16:53.305" level="INFO">Current page contains text 'การออกแบบเป็นชีวิตจิตใจของพวกเขา'.</msg>
-<status status="PASS" endtime="20170502 01:16:53.305" starttime="20170502 01:16:53.270"></status>
+<msg timestamp="20170502 02:07:49.724" level="INFO">Current page contains text 'การออกแบบเป็นชีวิตจิตใจของพวกเขา'.</msg>
+<status status="PASS" endtime="20170502 02:07:49.725" starttime="20170502 02:07:49.670"></status>
 </kw>
 <kw name="Page Should Not Contain" library="Selenium2Library">
 <doc>Verifies the current page does not contain `text`.</doc>
 <arguments>
 <arg>Lazada</arg>
 </arguments>
-<msg timestamp="20170502 01:16:53.364" level="INFO">Current page does not contain text 'Lazada'.</msg>
-<status status="PASS" endtime="20170502 01:16:53.364" starttime="20170502 01:16:53.305"></status>
+<msg timestamp="20170502 02:07:49.819" level="INFO">Current page does not contain text 'Lazada'.</msg>
+<status status="PASS" endtime="20170502 02:07:49.819" starttime="20170502 02:07:49.725"></status>
 </kw>
 <kw name="Page Should Not Contain" library="Selenium2Library">
 <doc>Verifies the current page does not contain `text`.</doc>
 <arguments>
 <arg>lazada</arg>
 </arguments>
-<msg timestamp="20170502 01:16:53.406" level="INFO">Current page does not contain text 'lazada'.</msg>
-<status status="PASS" endtime="20170502 01:16:53.406" starttime="20170502 01:16:53.364"></status>
+<msg timestamp="20170502 02:07:49.863" level="INFO">Current page does not contain text 'lazada'.</msg>
+<status status="PASS" endtime="20170502 02:07:49.864" starttime="20170502 02:07:49.820"></status>
 </kw>
 <kw name="Page Should Not Contain" library="Selenium2Library">
 <doc>Verifies the current page does not contain `text`.</doc>
 <arguments>
 <arg>ลาซาด้า</arg>
 </arguments>
-<msg timestamp="20170502 01:16:53.449" level="INFO">Current page does not contain text 'ลาซาด้า'.</msg>
-<status status="PASS" endtime="20170502 01:16:53.449" starttime="20170502 01:16:53.407"></status>
+<msg timestamp="20170502 02:07:49.909" level="INFO">Current page does not contain text 'ลาซาด้า'.</msg>
+<status status="PASS" endtime="20170502 02:07:49.909" starttime="20170502 02:07:49.864"></status>
 </kw>
-<status status="PASS" endtime="20170502 01:16:53.449" starttime="20170502 01:16:53.133"></status>
+<status status="PASS" endtime="20170502 02:07:49.909" starttime="20170502 02:07:49.518"></status>
+</kw>
+<kw name="Mouse Over" library="Selenium2Library">
+<doc>Simulates hovering mouse over the element specified by `locator`.</doc>
+<arguments>
+<arg>dom=document.links[6]</arg>
+</arguments>
+<msg timestamp="20170502 02:07:49.911" level="INFO">Simulating Mouse Over on element 'dom=document.links[6]'</msg>
+<status status="PASS" endtime="20170502 02:07:49.970" starttime="20170502 02:07:49.910"></status>
 </kw>
 <kw name="Click Link" library="Selenium2Library">
 <doc>Clicks a link identified by locator.</doc>
 <arguments>
 <arg>dom=document.links[6]</arg>
 </arguments>
-<msg timestamp="20170502 01:16:53.451" level="INFO">Clicking link 'dom=document.links[6]'.</msg>
-<status status="PASS" endtime="20170502 01:16:53.608" starttime="20170502 01:16:53.450"></status>
+<msg timestamp="20170502 02:07:49.972" level="INFO">Clicking link 'dom=document.links[6]'.</msg>
+<status status="PASS" endtime="20170502 02:07:50.093" starttime="20170502 02:07:49.971"></status>
 </kw>
 <kw name="Wait Until Page Contains" library="Selenium2Library">
 <doc>Waits until `text` appears on current page.</doc>
@@ -99,7 +107,7 @@
 <arg>เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว</arg>
 <arg>${TENSECOND}</arg>
 </arguments>
-<status status="PASS" endtime="20170502 01:16:53.864" starttime="20170502 01:16:53.614"></status>
+<status status="PASS" endtime="20170502 02:07:50.347" starttime="20170502 02:07:50.096"></status>
 </kw>
 <kw name="Wait Until Page Does Not Contain" library="Selenium2Library">
 <doc>Waits until `text` disappears from current page.</doc>
@@ -107,7 +115,7 @@
 <arg>เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว</arg>
 <arg>${TENSECOND}</arg>
 </arguments>
-<status status="PASS" endtime="20170502 01:16:59.162" starttime="20170502 01:16:53.865"></status>
+<status status="PASS" endtime="20170502 02:07:55.625" starttime="20170502 02:07:50.347"></status>
 </kw>
 <kw name="Basic Check Cart Page">
 <kw name="Mouse Over" library="Selenium2Library">
@@ -115,16 +123,16 @@
 <arguments>
 <arg>dom=${CART}</arg>
 </arguments>
-<msg timestamp="20170502 01:16:59.165" level="INFO">Simulating Mouse Over on element 'dom=document.links[2]'</msg>
-<status status="PASS" endtime="20170502 01:16:59.212" starttime="20170502 01:16:59.165"></status>
+<msg timestamp="20170502 02:07:55.628" level="INFO">Simulating Mouse Over on element 'dom=document.links[2]'</msg>
+<status status="PASS" endtime="20170502 02:07:55.676" starttime="20170502 02:07:55.628"></status>
 </kw>
 <kw name="Click Link" library="Selenium2Library">
 <doc>Clicks a link identified by locator.</doc>
 <arguments>
 <arg>dom=${CART}</arg>
 </arguments>
-<msg timestamp="20170502 01:16:59.213" level="INFO">Clicking link 'dom=document.links[2]'.</msg>
-<status status="PASS" endtime="20170502 01:16:59.341" starttime="20170502 01:16:59.213"></status>
+<msg timestamp="20170502 02:07:55.677" level="INFO">Clicking link 'dom=document.links[2]'.</msg>
+<status status="PASS" endtime="20170502 02:07:55.813" starttime="20170502 02:07:55.676"></status>
 </kw>
 <kw name="Wait Until Page Contains" library="Selenium2Library">
 <doc>Waits until `text` appears on current page.</doc>
@@ -132,7 +140,7 @@
 <arg>ตระกร้าสินค้า</arg>
 <arg>${TENSECOND}</arg>
 </arguments>
-<status status="PASS" endtime="20170502 01:16:59.381" starttime="20170502 01:16:59.342"></status>
+<status status="PASS" endtime="20170502 02:07:55.857" starttime="20170502 02:07:55.813"></status>
 </kw>
 <kw name="Wait Until Page Contains Element" library="Selenium2Library">
 <doc>Waits until element specified with `locator` appears on current page.</doc>
@@ -140,41 +148,41 @@
 <arg>css=#cart-container &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1)</arg>
 <arg>${TENSECOND}</arg>
 </arguments>
-<status status="PASS" endtime="20170502 01:16:59.412" starttime="20170502 01:16:59.381"></status>
+<status status="PASS" endtime="20170502 02:07:55.888" starttime="20170502 02:07:55.857"></status>
 </kw>
 <kw name="Page Should Contain Image" library="Selenium2Library">
 <doc>Verifies image identified by `locator` is found from current page.</doc>
 <arguments>
 <arg>css=#cart-container &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.col-sm-8.col-md-6 &gt; div &gt; a &gt; img</arg>
 </arguments>
-<msg timestamp="20170502 01:16:59.449" level="INFO">Current page contains image 'css=#cart-container &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.col-sm-8.col-md-6 &gt; div &gt; a &gt; img'.</msg>
-<status status="PASS" endtime="20170502 01:16:59.449" starttime="20170502 01:16:59.412"></status>
+<msg timestamp="20170502 02:07:55.929" level="INFO">Current page contains image 'css=#cart-container &gt; div &gt; div &gt; table &gt; tbody &gt; tr:nth-child(1) &gt; td.col-sm-8.col-md-6 &gt; div &gt; a &gt; img'.</msg>
+<status status="PASS" endtime="20170502 02:07:55.929" starttime="20170502 02:07:55.888"></status>
 </kw>
 <kw name="Page Should Contain" library="Selenium2Library">
 <doc>Verifies that current page contains `text`.</doc>
 <arguments>
 <arg>Quantity</arg>
 </arguments>
-<msg timestamp="20170502 01:16:59.485" level="INFO">Current page contains text 'Quantity'.</msg>
-<status status="PASS" endtime="20170502 01:16:59.486" starttime="20170502 01:16:59.450"></status>
+<msg timestamp="20170502 02:07:55.966" level="INFO">Current page contains text 'Quantity'.</msg>
+<status status="PASS" endtime="20170502 02:07:55.967" starttime="20170502 02:07:55.930"></status>
 </kw>
 <kw name="Page Should Contain" library="Selenium2Library">
 <doc>Verifies that current page contains `text`.</doc>
 <arguments>
 <arg>Price</arg>
 </arguments>
-<msg timestamp="20170502 01:16:59.522" level="INFO">Current page contains text 'Price'.</msg>
-<status status="PASS" endtime="20170502 01:16:59.522" starttime="20170502 01:16:59.486"></status>
+<msg timestamp="20170502 02:07:56.008" level="INFO">Current page contains text 'Price'.</msg>
+<status status="PASS" endtime="20170502 02:07:56.008" starttime="20170502 02:07:55.967"></status>
 </kw>
 <kw name="Page Should Contain" library="Selenium2Library">
 <doc>Verifies that current page contains `text`.</doc>
 <arguments>
 <arg>Total</arg>
 </arguments>
-<msg timestamp="20170502 01:16:59.558" level="INFO">Current page contains text 'Total'.</msg>
-<status status="PASS" endtime="20170502 01:16:59.558" starttime="20170502 01:16:59.523"></status>
+<msg timestamp="20170502 02:07:56.041" level="INFO">Current page contains text 'Total'.</msg>
+<status status="PASS" endtime="20170502 02:07:56.042" starttime="20170502 02:07:56.008"></status>
 </kw>
-<status status="PASS" endtime="20170502 01:16:59.558" starttime="20170502 01:16:59.164"></status>
+<status status="PASS" endtime="20170502 02:07:56.042" starttime="20170502 02:07:55.627"></status>
 </kw>
 <kw name="Checkout The Cart">
 <kw name="Page Should Contain Button" library="Selenium2Library">
@@ -182,17 +190,17 @@
 <arguments>
 <arg>dom=${CHECKOUT}</arg>
 </arguments>
-<msg timestamp="20170502 01:16:59.582" level="INFO">&lt;!DOCTYPE html&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en"&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1" /&gt;&lt;link rel="shortcut icon" href="/favicon.ico" /&gt;&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" /&gt;&lt;link href="https://fonts.googleapis.com/css?family=Pridi:200,300,400,500" rel="stylesheet" /&gt;&lt;link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" /&gt;&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /&gt;&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" /&gt;&lt;link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" /&gt;&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"&gt;&lt;/script&gt;&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"&gt;&lt;/script&gt;&lt;title&gt;Zalada&lt;/title&gt;&lt;link href="/static/css/main.40fbd31b.css" rel="stylesheet" /&gt;&lt;style id="react-tooltip"&gt;.__react_component_tooltip{border-radius:3px;display:inline-block;font-size:13px;left:-999em;opacity:0;padding:8px 21px;position:fixed;pointer-events:none;transition:opacity 0.3s ease-out;top:-999em;visibility:hidden;z-index:999}.__react_component_tooltip:before,.__react_component_tooltip:after{content:"";width:0;height:0;position:absolute}.__react_component_tooltip.show{opacity:0.9;margin-top:0px;margin-left:0px;visibility:visible}.__react_component_tooltip.type-dark{color:#fff;background-color:#222}.__react_component_tooltip.type-dark.place-top:after{border-top-color:#222;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-dark.place-bottom:after{border-bottom-color:#222;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-dark.place-left:after{border-left-color:#222;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-dark.place-right:after{border-right-color:#222;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-dark.border{border:1px solid #fff}.__react_component_tooltip.type-dark.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-dark.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-dark.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-dark.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-success{color:#fff;background-color:#8DC572}.__react_component_tooltip.type-success.place-top:after{border-top-color:#8DC572;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-success.place-bottom:after{border-bottom-color:#8DC572;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-success.place-left:after{border-left-color:#8DC572;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-success.place-right:after{border-right-color:#8DC572;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-success.border{border:1px solid #fff}.__react_component_tooltip.type-success.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-success.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-success.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-success.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-warning{color:#fff;background-color:#F0AD4E}.__react_component_tooltip.type-warning.place-top:after{border-top-color:#F0AD4E;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-warning.place-bottom:after{border-bottom-color:#F0AD4E;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-warning.place-left:after{border-left-color:#F0AD4E;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-warning.place-right:after{border-right-color:#F0AD4E;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-warning.border{border:1px solid #fff}.__react_component_tooltip.type-warning.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-warning.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-warning.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-warning.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-error{color:#fff;background-color:#BE6464}.__react_component_tooltip.type-error.place-top:after{border-top-color:#BE6464;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-error.place-bottom:after{border-bottom-color:#BE6464;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-error.place-left:after{border-left-color:#BE6464;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-error.place-right:after{border-right-color:#BE6464;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-error.border{border:1px solid #fff}.__react_component_tooltip.type-error.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-error.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-error.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-error.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-info{color:#fff;background-color:#337AB7}.__react_component_tooltip.type-info.place-top:after{border-top-color:#337AB7;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-info.place-bottom:after{border-bottom-color:#337AB7;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-info.place-left:after{border-left-color:#337AB7;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-info.place-right:after{border-right-color:#337AB7;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-info.border{border:1px solid #fff}.__react_component_tooltip.type-info.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-info.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-info.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-info.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-light{color:#222;background-color:#fff}.__react_component_tooltip.type-light.place-top:after{border-top-color:#fff;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-light.place-bottom:after{border-bottom-color:#fff;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-light.place-left:after{border-left-color:#fff;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-light.place-right:after{border-right-color:#fff;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-light.border{border:1px solid #222}.__react_component_tooltip.type-light.border.place-top:before{border-top:8px solid #222}.__react_component_tooltip.type-light.border.place-bottom:before{border-bottom:8px solid #222}.__react_component_tooltip.type-light.border.place-left:before{border-left:8px solid #222}.__react_component_tooltip.type-light.border.place-right:before{border-right:8px solid #222}.__react_component_tooltip.place-top{margin-top:-10px}.__react_component_tooltip.place-top:before{border-left:10px solid transparent;border-right:10px solid transparent;bottom:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-top:after{border-left:8px solid transparent;border-right:8px solid transparent;bottom:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-bottom{margin-top:10px}.__react_component_tooltip.place-bottom:before{border-left:10px solid transparent;border-right:10px solid transparent;top:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-bottom:after{border-left:8px solid transparent;border-right:8px solid transparent;top:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-left{margin-left:-10px}.__react_component_tooltip.place-left:before{border-top:6px solid transparent;border-bottom:6px solid transparent;right:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-left:after{border-top:5px solid transparent;border-bottom:5px solid transparent;right:-6px;top:50%;margin-top:-4px}.__react_component_tooltip.place-right{margin-left:10px}.__react_component_tooltip.place-right:before{border-top:6px solid transparent;border-bottom:6px solid transparent;left:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-right:after{border-top:5px solid transparent;border-bottom:5px solid transparent;left:-6px;top:50%;margin-top:-4px}.__react_component_tooltip .multi-line{display:block;padding:2px 0px;text-align:center}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id="app"&gt;&lt;div data-reactroot=""&gt;&lt;div class="notifications-wrapper"&gt;&lt;/div&gt;&lt;wrapper class="__react_component_tooltip show place-bottom type-dark " data-id="tooltip" style="left: 1032px; top: 41px;"&gt;Cart(0)&lt;/wrapper&gt;&lt;div class="my-cart"&gt;&lt;nav class="navbar navbar-default navbar-fixed-top" role="navigation"&gt;&lt;div class="container-fluid"&gt;&lt;div class="navbar-header"&gt;&lt;button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"&gt;&lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;/button&gt;&lt;a class="navbar-brand" id="brand-image-link" href="/"&gt;&lt;img alt="Brand" id="brand-image" src="https://raw.githubusercontent.com/up1/soa_group2/master/Image/logoZALADA.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"&gt;&lt;form class="navbar-form navbar-left" role="search"&gt;&lt;div class="input-group"&gt;&lt;input type="text" class="form-control" placeholder="Search" /&gt;&lt;div class="input-group-btn"&gt;&lt;button class="btn btn-default" type="submit"&gt;&lt;i class="glyphicon glyphicon-search"&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/form&gt;&lt;a href="/category"&gt;&lt;span class="navbar-brand"&gt;ประเภทสินค้า&lt;/span&gt;&lt;/a&gt;&lt;ul class="nav navbar-nav navbar-right"&gt;&lt;li&gt;&lt;a href="/cart"&gt;&lt;img src="http://www.pngall.com/wp-content/uploads/2016/04/Cart-Free-Download-PNG.png" alt="" class="cart-icon image-responsive" width="22px" height="22px" data-tip="Cart(0)" /&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/signup"&gt;มี account แล้วหรือยัง?&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/login"&gt;เข้าสู่ระบบ&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/nav&gt;&lt;div class="container" id="cart-container"&gt;&lt;div class="row"&gt;&lt;div class="col-sm-12 col-md-10 col-md-offset-1"&gt;&lt;h1&gt;ตระกร้าสินค้า&lt;/h1&gt;&lt;table class="table table-hover"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Quantity&lt;/th&gt;&lt;th class="text-center"&gt;Price&lt;/th&gt;&lt;th class="text-center"&gt;Total&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="col-sm-8 col-md-6"&gt;&lt;div class="media"&gt;&lt;a class="thumbnail pull-left" href="#"&gt;&lt;img class="media-object" src="http://139.59.102.212:9001/product/image/?productId=59071467d601800001147bc2" alt="productname" style="width: 72px; height: 72px;" /&gt;&lt;/a&gt;&lt;div class="media-body"&gt;&lt;h4 class="media-heading"&gt;&lt;a href="#"&gt;galaxy&lt;/a&gt;&lt;/h4&gt;&lt;h5 class="media-heading"&gt;&lt;!-- react-text: 374 --&gt;by&lt;!-- /react-text --&gt;&lt;a href="#"&gt;&lt;/a&gt;&lt;/h5&gt;&lt;span&gt;Status:&lt;/span&gt;&lt;span class="text-success"&gt;&lt;strong&gt;In Stock&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="col-sm-1 col-md-1" style="text-align: center;"&gt;&lt;input class="form-control" value="1" /&gt;&lt;/td&gt;&lt;td class="col-sm-1 col-md-1 text-center"&gt;&lt;strong&gt;20000&lt;/strong&gt;&lt;/td&gt;&lt;td class="col-sm-1 col-md-1 text-center"&gt;&lt;strong&gt;20000&lt;/strong&gt;&lt;/td&gt;&lt;td class="col-sm-1 col-md-1"&gt;&lt;button type="button" class="btn btn-danger"&gt;&lt;span class="glyphicon glyphicon-remove"&gt;&lt;/span&gt;&lt;!-- react-text: 388 --&gt;Remove&lt;!-- /react-text --&gt;&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;h3&gt;Total&lt;/h3&gt;&lt;/td&gt;&lt;td class="text-right"&gt;&lt;h3&gt;&lt;strong&gt;20000&lt;/strong&gt;&lt;/h3&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;button type="button" class="btn btn-default"&gt;&lt;span class="glyphicon glyphicon-shopping-cart"&gt;&lt;/span&gt;&lt;!-- react-text: 405 --&gt;Continue Shopping&lt;!-- /react-text --&gt;&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button type="button" class="btn btn-success"&gt;&lt;!-- react-text: 408 --&gt;Checkout&lt;!-- /react-text --&gt;&lt;span class="glyphicon glyphicon-play"&gt;&lt;/span&gt;&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id="footer-section"&gt;&lt;center&gt;&lt;div class="container-Footer"&gt;&lt;div class="row"&gt;&lt;h3 class="footertext"&gt;เกี่ยวกับ&lt;/h3&gt;&lt;br /&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi60.tinypic.com/w8lycl.jpg" class="img-circle" alt="the-brains" /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Programmers&lt;/h4&gt;&lt;p class="footertext"&gt;ขอบคุณโปรแกรมเมอร์ทุกคนที่เขียนโค๊ดอย่างบ้าคลั่ง.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi60.tinypic.com/2z7enpc.jpg" class="img-circle" alt="..." /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Artists&lt;/h4&gt;&lt;p class="footertext"&gt;รูปทุกรูปถูกสรรหามาจากความคิดสร้างสรรค์ของคนเหล่านี้.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi61.tinypic.com/307n6ux.jpg" class="img-circle" alt="..." /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Designers&lt;/h4&gt;&lt;p class="footertext"&gt;การออกแบบเป็นชีวิตจิตใจของพวกเขา.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/center&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;script type="text/javascript" src="/static/js/main.6bb700f5.js"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</msg>
-<msg timestamp="20170502 01:16:59.595" level="INFO">Current page contains button 'dom=document.getElementsByTagName('button')[4]'.</msg>
-<status status="PASS" endtime="20170502 01:16:59.595" starttime="20170502 01:16:59.559"></status>
+<msg timestamp="20170502 02:07:56.069" level="INFO">&lt;!DOCTYPE html&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en"&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1" /&gt;&lt;link rel="shortcut icon" href="/favicon.ico" /&gt;&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" /&gt;&lt;link href="https://fonts.googleapis.com/css?family=Pridi:200,300,400,500" rel="stylesheet" /&gt;&lt;link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" /&gt;&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /&gt;&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" /&gt;&lt;link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" /&gt;&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"&gt;&lt;/script&gt;&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"&gt;&lt;/script&gt;&lt;title&gt;Zalada&lt;/title&gt;&lt;link href="/static/css/main.40fbd31b.css" rel="stylesheet" /&gt;&lt;style id="react-tooltip"&gt;.__react_component_tooltip{border-radius:3px;display:inline-block;font-size:13px;left:-999em;opacity:0;padding:8px 21px;position:fixed;pointer-events:none;transition:opacity 0.3s ease-out;top:-999em;visibility:hidden;z-index:999}.__react_component_tooltip:before,.__react_component_tooltip:after{content:"";width:0;height:0;position:absolute}.__react_component_tooltip.show{opacity:0.9;margin-top:0px;margin-left:0px;visibility:visible}.__react_component_tooltip.type-dark{color:#fff;background-color:#222}.__react_component_tooltip.type-dark.place-top:after{border-top-color:#222;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-dark.place-bottom:after{border-bottom-color:#222;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-dark.place-left:after{border-left-color:#222;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-dark.place-right:after{border-right-color:#222;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-dark.border{border:1px solid #fff}.__react_component_tooltip.type-dark.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-dark.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-dark.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-dark.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-success{color:#fff;background-color:#8DC572}.__react_component_tooltip.type-success.place-top:after{border-top-color:#8DC572;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-success.place-bottom:after{border-bottom-color:#8DC572;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-success.place-left:after{border-left-color:#8DC572;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-success.place-right:after{border-right-color:#8DC572;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-success.border{border:1px solid #fff}.__react_component_tooltip.type-success.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-success.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-success.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-success.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-warning{color:#fff;background-color:#F0AD4E}.__react_component_tooltip.type-warning.place-top:after{border-top-color:#F0AD4E;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-warning.place-bottom:after{border-bottom-color:#F0AD4E;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-warning.place-left:after{border-left-color:#F0AD4E;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-warning.place-right:after{border-right-color:#F0AD4E;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-warning.border{border:1px solid #fff}.__react_component_tooltip.type-warning.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-warning.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-warning.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-warning.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-error{color:#fff;background-color:#BE6464}.__react_component_tooltip.type-error.place-top:after{border-top-color:#BE6464;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-error.place-bottom:after{border-bottom-color:#BE6464;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-error.place-left:after{border-left-color:#BE6464;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-error.place-right:after{border-right-color:#BE6464;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-error.border{border:1px solid #fff}.__react_component_tooltip.type-error.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-error.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-error.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-error.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-info{color:#fff;background-color:#337AB7}.__react_component_tooltip.type-info.place-top:after{border-top-color:#337AB7;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-info.place-bottom:after{border-bottom-color:#337AB7;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-info.place-left:after{border-left-color:#337AB7;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-info.place-right:after{border-right-color:#337AB7;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-info.border{border:1px solid #fff}.__react_component_tooltip.type-info.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-info.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-info.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-info.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-light{color:#222;background-color:#fff}.__react_component_tooltip.type-light.place-top:after{border-top-color:#fff;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-light.place-bottom:after{border-bottom-color:#fff;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-light.place-left:after{border-left-color:#fff;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-light.place-right:after{border-right-color:#fff;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-light.border{border:1px solid #222}.__react_component_tooltip.type-light.border.place-top:before{border-top:8px solid #222}.__react_component_tooltip.type-light.border.place-bottom:before{border-bottom:8px solid #222}.__react_component_tooltip.type-light.border.place-left:before{border-left:8px solid #222}.__react_component_tooltip.type-light.border.place-right:before{border-right:8px solid #222}.__react_component_tooltip.place-top{margin-top:-10px}.__react_component_tooltip.place-top:before{border-left:10px solid transparent;border-right:10px solid transparent;bottom:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-top:after{border-left:8px solid transparent;border-right:8px solid transparent;bottom:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-bottom{margin-top:10px}.__react_component_tooltip.place-bottom:before{border-left:10px solid transparent;border-right:10px solid transparent;top:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-bottom:after{border-left:8px solid transparent;border-right:8px solid transparent;top:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-left{margin-left:-10px}.__react_component_tooltip.place-left:before{border-top:6px solid transparent;border-bottom:6px solid transparent;right:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-left:after{border-top:5px solid transparent;border-bottom:5px solid transparent;right:-6px;top:50%;margin-top:-4px}.__react_component_tooltip.place-right{margin-left:10px}.__react_component_tooltip.place-right:before{border-top:6px solid transparent;border-bottom:6px solid transparent;left:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-right:after{border-top:5px solid transparent;border-bottom:5px solid transparent;left:-6px;top:50%;margin-top:-4px}.__react_component_tooltip .multi-line{display:block;padding:2px 0px;text-align:center}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id="app"&gt;&lt;div data-reactroot=""&gt;&lt;div class="notifications-wrapper"&gt;&lt;/div&gt;&lt;wrapper class="__react_component_tooltip show place-bottom type-dark " data-id="tooltip" style="left: 1032px; top: 41px;"&gt;Cart(0)&lt;/wrapper&gt;&lt;div class="my-cart"&gt;&lt;nav class="navbar navbar-default navbar-fixed-top" role="navigation"&gt;&lt;div class="container-fluid"&gt;&lt;div class="navbar-header"&gt;&lt;button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"&gt;&lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;/button&gt;&lt;a class="navbar-brand" id="brand-image-link" href="/"&gt;&lt;img alt="Brand" id="brand-image" src="https://raw.githubusercontent.com/up1/soa_group2/master/Image/logoZALADA.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"&gt;&lt;form class="navbar-form navbar-left" role="search"&gt;&lt;div class="input-group"&gt;&lt;input type="text" class="form-control" placeholder="Search" /&gt;&lt;div class="input-group-btn"&gt;&lt;button class="btn btn-default" type="submit"&gt;&lt;i class="glyphicon glyphicon-search"&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/form&gt;&lt;a href="/category"&gt;&lt;span class="navbar-brand"&gt;ประเภทสินค้า&lt;/span&gt;&lt;/a&gt;&lt;ul class="nav navbar-nav navbar-right"&gt;&lt;li&gt;&lt;a href="/cart"&gt;&lt;img src="http://www.pngall.com/wp-content/uploads/2016/04/Cart-Free-Download-PNG.png" alt="" class="cart-icon image-responsive" width="22px" height="22px" data-tip="Cart(0)" /&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/signup"&gt;มี account แล้วหรือยัง?&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/login"&gt;เข้าสู่ระบบ&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/nav&gt;&lt;div class="container" id="cart-container"&gt;&lt;div class="row"&gt;&lt;div class="col-sm-12 col-md-10 col-md-offset-1"&gt;&lt;h1&gt;ตระกร้าสินค้า&lt;/h1&gt;&lt;table class="table table-hover"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Quantity&lt;/th&gt;&lt;th class="text-center"&gt;Price&lt;/th&gt;&lt;th class="text-center"&gt;Total&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="col-sm-8 col-md-6"&gt;&lt;div class="media"&gt;&lt;a class="thumbnail pull-left" href="#"&gt;&lt;img class="media-object" src="http://139.59.102.212:9001/product/image/?productId=59071467d601800001147bc2" alt="productname" style="width: 72px; height: 72px;" /&gt;&lt;/a&gt;&lt;div class="media-body"&gt;&lt;h4 class="media-heading"&gt;&lt;a href="#"&gt;galaxy&lt;/a&gt;&lt;/h4&gt;&lt;h5 class="media-heading"&gt;&lt;!-- react-text: 374 --&gt;by&lt;!-- /react-text --&gt;&lt;a href="#"&gt;&lt;/a&gt;&lt;/h5&gt;&lt;span&gt;Status:&lt;/span&gt;&lt;span class="text-success"&gt;&lt;strong&gt;In Stock&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="col-sm-1 col-md-1" style="text-align: center;"&gt;&lt;input class="form-control" value="1" /&gt;&lt;/td&gt;&lt;td class="col-sm-1 col-md-1 text-center"&gt;&lt;strong&gt;20000&lt;/strong&gt;&lt;/td&gt;&lt;td class="col-sm-1 col-md-1 text-center"&gt;&lt;strong&gt;20000&lt;/strong&gt;&lt;/td&gt;&lt;td class="col-sm-1 col-md-1"&gt;&lt;button type="button" class="btn btn-danger"&gt;&lt;span class="glyphicon glyphicon-remove"&gt;&lt;/span&gt;&lt;!-- react-text: 388 --&gt;Remove&lt;!-- /react-text --&gt;&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;h3&gt;Total&lt;/h3&gt;&lt;/td&gt;&lt;td class="text-right"&gt;&lt;h3&gt;&lt;strong&gt;20000&lt;/strong&gt;&lt;/h3&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;button type="button" class="btn btn-default"&gt;&lt;span class="glyphicon glyphicon-shopping-cart"&gt;&lt;/span&gt;&lt;!-- react-text: 405 --&gt;Continue Shopping&lt;!-- /react-text --&gt;&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button type="button" class="btn btn-success"&gt;&lt;!-- react-text: 408 --&gt;Checkout&lt;!-- /react-text --&gt;&lt;span class="glyphicon glyphicon-play"&gt;&lt;/span&gt;&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id="footer-section"&gt;&lt;center&gt;&lt;div class="container-Footer"&gt;&lt;div class="row"&gt;&lt;h3 class="footertext"&gt;เกี่ยวกับ&lt;/h3&gt;&lt;br /&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi60.tinypic.com/w8lycl.jpg" class="img-circle" alt="the-brains" /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Programmers&lt;/h4&gt;&lt;p class="footertext"&gt;ขอบคุณโปรแกรมเมอร์ทุกคนที่เขียนโค๊ดอย่างบ้าคลั่ง.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi60.tinypic.com/2z7enpc.jpg" class="img-circle" alt="..." /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Artists&lt;/h4&gt;&lt;p class="footertext"&gt;รูปทุกรูปถูกสรรหามาจากความคิดสร้างสรรค์ของคนเหล่านี้.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi61.tinypic.com/307n6ux.jpg" class="img-circle" alt="..." /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Designers&lt;/h4&gt;&lt;p class="footertext"&gt;การออกแบบเป็นชีวิตจิตใจของพวกเขา.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/center&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;script type="text/javascript" src="/static/js/main.6bb700f5.js"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</msg>
+<msg timestamp="20170502 02:07:56.083" level="INFO">Current page contains button 'dom=document.getElementsByTagName('button')[4]'.</msg>
+<status status="PASS" endtime="20170502 02:07:56.083" starttime="20170502 02:07:56.044"></status>
 </kw>
 <kw name="Click Button" library="Selenium2Library">
 <doc>Clicks a button identified by `locator`.</doc>
 <arguments>
 <arg>dom=${CHECKOUT}</arg>
 </arguments>
-<msg timestamp="20170502 01:16:59.596" level="INFO">Clicking button 'dom=document.getElementsByTagName('button')[4]'.</msg>
-<status status="PASS" endtime="20170502 01:16:59.737" starttime="20170502 01:16:59.595"></status>
+<msg timestamp="20170502 02:07:56.084" level="INFO">Clicking button 'dom=document.getElementsByTagName('button')[4]'.</msg>
+<status status="PASS" endtime="20170502 02:07:56.230" starttime="20170502 02:07:56.083"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -200,8 +208,8 @@
 <arg>name=name</arg>
 <arg>พลเอกประยงค์ จันทร์ชงชา อังคารชงกาแฟ</arg>
 </arguments>
-<msg timestamp="20170502 01:16:59.738" level="INFO">Typing text 'พลเอกประยงค์ จันทร์ชงชา อังคารชงกาแฟ' into text field 'name=name'</msg>
-<status status="PASS" endtime="20170502 01:17:00.157" starttime="20170502 01:16:59.737"></status>
+<msg timestamp="20170502 02:07:56.231" level="INFO">Typing text 'พลเอกประยงค์ จันทร์ชงชา อังคารชงกาแฟ' into text field 'name=name'</msg>
+<status status="PASS" endtime="20170502 02:07:56.655" starttime="20170502 02:07:56.230"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -209,8 +217,8 @@
 <arg>name=tel</arg>
 <arg>0893693696</arg>
 </arguments>
-<msg timestamp="20170502 01:17:00.158" level="INFO">Typing text '0893693696' into text field 'name=tel'</msg>
-<status status="PASS" endtime="20170502 01:17:00.371" starttime="20170502 01:17:00.157"></status>
+<msg timestamp="20170502 02:07:56.656" level="INFO">Typing text '0893693696' into text field 'name=tel'</msg>
+<status status="PASS" endtime="20170502 02:07:56.887" starttime="20170502 02:07:56.656"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -218,8 +226,8 @@
 <arg>name=email</arg>
 <arg>prayong.1111@thaigov.go.th</arg>
 </arguments>
-<msg timestamp="20170502 01:17:00.372" level="INFO">Typing text 'prayong.1111@thaigov.go.th' into text field 'name=email'</msg>
-<status status="PASS" endtime="20170502 01:17:00.728" starttime="20170502 01:17:00.371"></status>
+<msg timestamp="20170502 02:07:56.887" level="INFO">Typing text 'prayong.1111@thaigov.go.th' into text field 'name=email'</msg>
+<status status="PASS" endtime="20170502 02:07:57.252" starttime="20170502 02:07:56.887"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -227,8 +235,8 @@
 <arg>name=address</arg>
 <arg>เลขที่ 1 ถนนพิษณุโลก เขตดุสิต แขวงดุสิต กรุงเทพมหานคร 10300</arg>
 </arguments>
-<msg timestamp="20170502 01:17:00.728" level="INFO">Typing text 'เลขที่ 1 ถนนพิษณุโลก เขตดุสิต แขวงดุสิต กรุงเทพมหานคร 10300' into text field 'name=address'</msg>
-<status status="PASS" endtime="20170502 01:17:01.241" starttime="20170502 01:17:00.728"></status>
+<msg timestamp="20170502 02:07:57.253" level="INFO">Typing text 'เลขที่ 1 ถนนพิษณุโลก เขตดุสิต แขวงดุสิต กรุงเทพมหานคร 10300' into text field 'name=address'</msg>
+<status status="PASS" endtime="20170502 02:07:57.804" starttime="20170502 02:07:57.252"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -236,8 +244,8 @@
 <arg>name=post_code</arg>
 <arg>10300</arg>
 </arguments>
-<msg timestamp="20170502 01:17:01.242" level="INFO">Typing text '10300' into text field 'name=post_code'</msg>
-<status status="PASS" endtime="20170502 01:17:01.397" starttime="20170502 01:17:01.242"></status>
+<msg timestamp="20170502 02:07:57.805" level="INFO">Typing text '10300' into text field 'name=post_code'</msg>
+<status status="PASS" endtime="20170502 02:07:57.967" starttime="20170502 02:07:57.804"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -245,8 +253,8 @@
 <arg>name=state</arg>
 <arg>เขตดุสิต แขวงดุสิต</arg>
 </arguments>
-<msg timestamp="20170502 01:17:01.398" level="INFO">Typing text 'เขตดุสิต แขวงดุสิต' into text field 'name=state'</msg>
-<status status="PASS" endtime="20170502 01:17:01.645" starttime="20170502 01:17:01.398"></status>
+<msg timestamp="20170502 02:07:57.968" level="INFO">Typing text 'เขตดุสิต แขวงดุสิต' into text field 'name=state'</msg>
+<status status="PASS" endtime="20170502 02:07:58.226" starttime="20170502 02:07:57.967"></status>
 </kw>
 <kw name="Select From List By Value" library="Selenium2Library">
 <doc>Selects `*values` from list identified by `locator`</doc>
@@ -254,48 +262,152 @@
 <arg>name=province</arg>
 <arg>กรุงเทพมหานคร</arg>
 </arguments>
-<msg timestamp="20170502 01:17:01.646" level="INFO">Selecting value(s) 'กรุงเทพมหานคร' from list 'name=province'.</msg>
-<status status="PASS" endtime="20170502 01:17:01.802" starttime="20170502 01:17:01.645"></status>
+<msg timestamp="20170502 02:07:58.227" level="INFO">Selecting value(s) 'กรุงเทพมหานคร' from list 'name=province'.</msg>
+<status status="PASS" endtime="20170502 02:07:58.389" starttime="20170502 02:07:58.226"></status>
 </kw>
 <kw name="Page Should Contain Button" library="Selenium2Library">
 <doc>Verifies button identified by `locator` is found from current page.</doc>
 <arguments>
 <arg>css=#form-signup &gt; div &gt; div:nth-child(8) &gt; button</arg>
 </arguments>
-<msg timestamp="20170502 01:17:01.861" level="INFO">&lt;!DOCTYPE html&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en"&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1" /&gt;&lt;link rel="shortcut icon" href="/favicon.ico" /&gt;&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" /&gt;&lt;link href="https://fonts.googleapis.com/css?family=Pridi:200,300,400,500" rel="stylesheet" /&gt;&lt;link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" /&gt;&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /&gt;&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" /&gt;&lt;link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" /&gt;&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"&gt;&lt;/script&gt;&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"&gt;&lt;/script&gt;&lt;title&gt;Zalada&lt;/title&gt;&lt;link href="/static/css/main.40fbd31b.css" rel="stylesheet" /&gt;&lt;style id="react-tooltip"&gt;.__react_component_tooltip{border-radius:3px;display:inline-block;font-size:13px;left:-999em;opacity:0;padding:8px 21px;position:fixed;pointer-events:none;transition:opacity 0.3s ease-out;top:-999em;visibility:hidden;z-index:999}.__react_component_tooltip:before,.__react_component_tooltip:after{content:"";width:0;height:0;position:absolute}.__react_component_tooltip.show{opacity:0.9;margin-top:0px;margin-left:0px;visibility:visible}.__react_component_tooltip.type-dark{color:#fff;background-color:#222}.__react_component_tooltip.type-dark.place-top:after{border-top-color:#222;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-dark.place-bottom:after{border-bottom-color:#222;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-dark.place-left:after{border-left-color:#222;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-dark.place-right:after{border-right-color:#222;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-dark.border{border:1px solid #fff}.__react_component_tooltip.type-dark.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-dark.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-dark.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-dark.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-success{color:#fff;background-color:#8DC572}.__react_component_tooltip.type-success.place-top:after{border-top-color:#8DC572;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-success.place-bottom:after{border-bottom-color:#8DC572;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-success.place-left:after{border-left-color:#8DC572;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-success.place-right:after{border-right-color:#8DC572;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-success.border{border:1px solid #fff}.__react_component_tooltip.type-success.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-success.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-success.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-success.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-warning{color:#fff;background-color:#F0AD4E}.__react_component_tooltip.type-warning.place-top:after{border-top-color:#F0AD4E;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-warning.place-bottom:after{border-bottom-color:#F0AD4E;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-warning.place-left:after{border-left-color:#F0AD4E;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-warning.place-right:after{border-right-color:#F0AD4E;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-warning.border{border:1px solid #fff}.__react_component_tooltip.type-warning.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-warning.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-warning.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-warning.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-error{color:#fff;background-color:#BE6464}.__react_component_tooltip.type-error.place-top:after{border-top-color:#BE6464;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-error.place-bottom:after{border-bottom-color:#BE6464;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-error.place-left:after{border-left-color:#BE6464;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-error.place-right:after{border-right-color:#BE6464;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-error.border{border:1px solid #fff}.__react_component_tooltip.type-error.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-error.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-error.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-error.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-info{color:#fff;background-color:#337AB7}.__react_component_tooltip.type-info.place-top:after{border-top-color:#337AB7;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-info.place-bottom:after{border-bottom-color:#337AB7;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-info.place-left:after{border-left-color:#337AB7;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-info.place-right:after{border-right-color:#337AB7;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-info.border{border:1px solid #fff}.__react_component_tooltip.type-info.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-info.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-info.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-info.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-light{color:#222;background-color:#fff}.__react_component_tooltip.type-light.place-top:after{border-top-color:#fff;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-light.place-bottom:after{border-bottom-color:#fff;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-light.place-left:after{border-left-color:#fff;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-light.place-right:after{border-right-color:#fff;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-light.border{border:1px solid #222}.__react_component_tooltip.type-light.border.place-top:before{border-top:8px solid #222}.__react_component_tooltip.type-light.border.place-bottom:before{border-bottom:8px solid #222}.__react_component_tooltip.type-light.border.place-left:before{border-left:8px solid #222}.__react_component_tooltip.type-light.border.place-right:before{border-right:8px solid #222}.__react_component_tooltip.place-top{margin-top:-10px}.__react_component_tooltip.place-top:before{border-left:10px solid transparent;border-right:10px solid transparent;bottom:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-top:after{border-left:8px solid transparent;border-right:8px solid transparent;bottom:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-bottom{margin-top:10px}.__react_component_tooltip.place-bottom:before{border-left:10px solid transparent;border-right:10px solid transparent;top:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-bottom:after{border-left:8px solid transparent;border-right:8px solid transparent;top:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-left{margin-left:-10px}.__react_component_tooltip.place-left:before{border-top:6px solid transparent;border-bottom:6px solid transparent;right:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-left:after{border-top:5px solid transparent;border-bottom:5px solid transparent;right:-6px;top:50%;margin-top:-4px}.__react_component_tooltip.place-right{margin-left:10px}.__react_component_tooltip.place-right:before{border-top:6px solid transparent;border-bottom:6px solid transparent;left:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-right:after{border-top:5px solid transparent;border-bottom:5px solid transparent;left:-6px;top:50%;margin-top:-4px}.__react_component_tooltip .multi-line{display:block;padding:2px 0px;text-align:center}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id="app"&gt;&lt;div data-reactroot=""&gt;&lt;div class="notifications-wrapper"&gt;&lt;/div&gt;&lt;wrapper class="__react_component_tooltip place-bottom type-dark " data-id="tooltip" style="left: 1032px; top: 41px;"&gt;Cart(0)&lt;/wrapper&gt;&lt;div&gt;&lt;nav class="navbar navbar-default navbar-fixed-top" role="navigation"&gt;&lt;div class="container-fluid"&gt;&lt;div class="navbar-header"&gt;&lt;button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"&gt;&lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;/button&gt;&lt;a class="navbar-brand" id="brand-image-link" href="/"&gt;&lt;img alt="Brand" id="brand-image" src="https://raw.githubusercontent.com/up1/soa_group2/master/Image/logoZALADA.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"&gt;&lt;form class="navbar-form navbar-left" role="search"&gt;&lt;div class="input-group"&gt;&lt;input type="text" class="form-control" placeholder="Search" /&gt;&lt;div class="input-group-btn"&gt;&lt;button class="btn btn-default" type="submit"&gt;&lt;i class="glyphicon glyphicon-search"&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/form&gt;&lt;a href="/category"&gt;&lt;span class="navbar-brand"&gt;ประเภทสินค้า&lt;/span&gt;&lt;/a&gt;&lt;ul class="nav navbar-nav navbar-right"&gt;&lt;li&gt;&lt;a href="/cart"&gt;&lt;img src="http://www.pngall.com/wp-content/uploads/2016/04/Cart-Free-Download-PNG.png" alt="" class="cart-icon image-responsive" width="22px" height="22px" data-tip="Cart(0)" /&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/signup"&gt;มี account แล้วหรือยัง?&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/login"&gt;เข้าสู่ระบบ&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/nav&gt;&lt;div class="container" id="confirm-page"&gt;&lt;section class="container-signup"&gt;&lt;h1&gt;ยืนยันการสั่งซื้อ&lt;/h1&gt;&lt;div class="container-page" id="form-signup"&gt;&lt;div class="col-md-12"&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label for="name"&gt;ชื่อ นามสกุล&lt;/label&gt;&lt;input type="text" name="name" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;โทรศัพท์&lt;/label&gt;&lt;input name="tel" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;อีเมล&lt;/label&gt;&lt;input type="email" name="email" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;ที่อยู่&lt;/label&gt;&lt;textarea name="address" class="form-control"&gt;&lt;/textarea&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;รหัสไปรษณีย์&lt;/label&gt;&lt;input type="text" name="post_code" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;เขต/อำเภอ&lt;/label&gt;&lt;input type="text" name="state" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;จังหวัด&lt;/label&gt;&lt;select name="province" class="form-control"&gt;&lt;option value=""&gt;--------- เลือกจังหวัด ---------&lt;/option&gt;&lt;option value="กรุงเทพมหานคร"&gt;กรุงเทพมหานคร&lt;/option&gt;&lt;option value="กระบี่"&gt;กระบี่&lt;/option&gt;&lt;option value="กาญจนบุรี"&gt;กาญจนบุรี&lt;/option&gt;&lt;option value="กาฬสินธุ์"&gt;กาฬสินธุ์&lt;/option&gt;&lt;option value="กำแพงเพชร"&gt;กำแพงเพชร&lt;/option&gt;&lt;option value="ขอนแก่น"&gt;ขอนแก่น&lt;/option&gt;&lt;option value="จันทบุรี"&gt;จันทบุรี&lt;/option&gt;&lt;option value="ฉะเชิงเทรา"&gt;ฉะเชิงเทรา&lt;/option&gt;&lt;option value="ชัยนาท"&gt;ชัยนาท&lt;/option&gt;&lt;option value="ชัยภูมิ"&gt;ชัยภูมิ&lt;/option&gt;&lt;option value="ชุมพร"&gt;ชุมพร&lt;/option&gt;&lt;option value="ชลบุรี"&gt;ชลบุรี&lt;/option&gt;&lt;option value="เชียงใหม่"&gt;เชียงใหม่&lt;/option&gt;&lt;option value="เชียงราย"&gt;เชียงราย&lt;/option&gt;&lt;option value="ตรัง"&gt;ตรัง&lt;/option&gt;&lt;option value="ตราด"&gt;ตราด&lt;/option&gt;&lt;option value="ตาก"&gt;ตาก&lt;/option&gt;&lt;option value="นครนายก"&gt;นครนายก&lt;/option&gt;&lt;option value="นครปฐม"&gt;นครปฐม&lt;/option&gt;&lt;option value="นครพนม"&gt;นครพนม&lt;/option&gt;&lt;option value="นครราชสีมา"&gt;นครราชสีมา&lt;/option&gt;&lt;option value="นครศรีธรรมราช"&gt;นครศรีธรรมราช&lt;/option&gt;&lt;option value="นครสวรรค์"&gt;นครสวรรค์&lt;/option&gt;&lt;option value="นราธิวาส"&gt;นราธิวาส&lt;/option&gt;&lt;option value="น่าน"&gt;น่าน&lt;/option&gt;&lt;option value="นนทบุรี"&gt;นนทบุรี&lt;/option&gt;&lt;option value="บึงกาฬ"&gt;บึงกาฬ&lt;/option&gt;&lt;option value="บุรีรัมย์"&gt;บุรีรัมย์&lt;/option&gt;&lt;option value="ประจวบคีรีขันธ์"&gt;ประจวบคีรีขันธ์&lt;/option&gt;&lt;option value="ปทุมธานี"&gt;ปทุมธานี&lt;/option&gt;&lt;option value="ปราจีนบุรี"&gt;ปราจีนบุรี&lt;/option&gt;&lt;option value="ปัตตานี"&gt;ปัตตานี&lt;/option&gt;&lt;option value="พะเยา"&gt;พะเยา&lt;/option&gt;&lt;option value="พระนครศรีอยุธยา"&gt;พระนครศรีอยุธยา&lt;/option&gt;&lt;option value="พังงา"&gt;พังงา&lt;/option&gt;&lt;option value="พิจิตร"&gt;พิจิตร&lt;/option&gt;&lt;option value="พิษณุโลก"&gt;พิษณุโลก&lt;/option&gt;&lt;option value="เพชรบุรี"&gt;เพชรบุรี&lt;/option&gt;&lt;option value="เพชรบูรณ์"&gt;เพชรบูรณ์&lt;/option&gt;&lt;option value="แพร่"&gt;แพร่&lt;/option&gt;&lt;option value="พัทลุง"&gt;พัทลุง&lt;/option&gt;&lt;option value="ภูเก็ต"&gt;ภูเก็ต&lt;/option&gt;&lt;option value="มหาสารคาม"&gt;มหาสารคาม&lt;/option&gt;&lt;option value="มุกดาหาร"&gt;มุกดาหาร&lt;/option&gt;&lt;option value="แม่ฮ่องสอน"&gt;แม่ฮ่องสอน&lt;/option&gt;&lt;option value="ยโสธร"&gt;ยโสธร&lt;/option&gt;&lt;option value="ยะลา"&gt;ยะลา&lt;/option&gt;&lt;option value="ร้อยเอ็ด"&gt;ร้อยเอ็ด&lt;/option&gt;&lt;option value="ระนอง"&gt;ระนอง&lt;/option&gt;&lt;option value="ระยอง"&gt;ระยอง&lt;/option&gt;&lt;option value="ราชบุรี"&gt;ราชบุรี&lt;/option&gt;&lt;option value="ลพบุรี"&gt;ลพบุรี&lt;/option&gt;&lt;option value="ลำปาง"&gt;ลำปาง&lt;/option&gt;&lt;option value="ลำพูน"&gt;ลำพูน&lt;/option&gt;&lt;option value="เลย"&gt;เลย&lt;/option&gt;&lt;option value="ศรีสะเกษ"&gt;ศรีสะเกษ&lt;/option&gt;&lt;option value="สกลนคร"&gt;สกลนคร&lt;/option&gt;&lt;option value="สงขลา"&gt;สงขลา&lt;/option&gt;&lt;option value="สมุทรสาคร"&gt;สมุทรสาคร&lt;/option&gt;&lt;option value="สมุทรปราการ"&gt;สมุทรปราการ&lt;/option&gt;&lt;option value="สมุทรสงคราม"&gt;สมุทรสงคราม&lt;/option&gt;&lt;option value="สระแก้ว"&gt;สระแก้ว&lt;/option&gt;&lt;option value="สระบุรี"&gt;สระบุรี&lt;/option&gt;&lt;option value="สิงห์บุรี"&gt;สิงห์บุรี&lt;/option&gt;&lt;option value="สุโขทัย"&gt;สุโขทัย&lt;/option&gt;&lt;option value="สุพรรณบุรี"&gt;สุพรรณบุรี&lt;/option&gt;&lt;option value="สุราษฎร์ธานี"&gt;สุราษฎร์ธานี&lt;/option&gt;&lt;option value="สุรินทร์"&gt;สุรินทร์&lt;/option&gt;&lt;option value="สตูล"&gt;สตูล&lt;/option&gt;&lt;option value="หนองคาย"&gt;หนองคาย&lt;/option&gt;&lt;option value="หนองบัวลำภู"&gt;หนองบัวลำภู&lt;/option&gt;&lt;option value="อำนาจเจริญ"&gt;อำนาจเจริญ&lt;/option&gt;&lt;option value="อุดรธานี"&gt;อุดรธานี&lt;/option&gt;&lt;option value="อุตรดิตถ์"&gt;อุตรดิตถ์&lt;/option&gt;&lt;option value="อุทัยธานี"&gt;อุทัยธานี&lt;/option&gt;&lt;option value="อุบลราชธานี"&gt;อุบลราชธานี&lt;/option&gt;&lt;option value="อ่างทอง"&gt;อ่างทอง&lt;/option&gt;&lt;option value="อื่นๆ"&gt;อื่นๆ&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;button type="submit" class="btn btn-primary pull-right"&gt;ยืนยันการสั่งซื้อ&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;&lt;/div&gt;&lt;div id="footer-section"&gt;&lt;center&gt;&lt;div class="container-Footer"&gt;&lt;div class="row"&gt;&lt;h3 class="footertext"&gt;เกี่ยวกับ&lt;/h3&gt;&lt;br /&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi60.tinypic.com/w8lycl.jpg" class="img-circle" alt="the-brains" /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Programmers&lt;/h4&gt;&lt;p class="footertext"&gt;ขอบคุณโปรแกรมเมอร์ทุกคนที่เขียนโค๊ดอย่างบ้าคลั่ง.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi60.tinypic.com/2z7enpc.jpg" class="img-circle" alt="..." /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Artists&lt;/h4&gt;&lt;p class="footertext"&gt;รูปทุกรูปถูกสรรหามาจากความคิดสร้างสรรค์ของคนเหล่านี้.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi61.tinypic.com/307n6ux.jpg" class="img-circle" alt="..." /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Designers&lt;/h4&gt;&lt;p class="footertext"&gt;การออกแบบเป็นชีวิตจิตใจของพวกเขา.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/center&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;script type="text/javascript" src="/static/js/main.6bb700f5.js"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</msg>
-<msg timestamp="20170502 01:17:01.881" level="INFO">Current page contains button 'css=#form-signup &gt; div &gt; div:nth-child(8) &gt; button'.</msg>
-<status status="PASS" endtime="20170502 01:17:01.881" starttime="20170502 01:17:01.803"></status>
+<msg timestamp="20170502 02:07:58.456" level="INFO">&lt;!DOCTYPE html&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en"&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1" /&gt;&lt;link rel="shortcut icon" href="/favicon.ico" /&gt;&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" /&gt;&lt;link href="https://fonts.googleapis.com/css?family=Pridi:200,300,400,500" rel="stylesheet" /&gt;&lt;link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" /&gt;&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /&gt;&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" /&gt;&lt;link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" /&gt;&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"&gt;&lt;/script&gt;&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"&gt;&lt;/script&gt;&lt;title&gt;Zalada&lt;/title&gt;&lt;link href="/static/css/main.40fbd31b.css" rel="stylesheet" /&gt;&lt;style id="react-tooltip"&gt;.__react_component_tooltip{border-radius:3px;display:inline-block;font-size:13px;left:-999em;opacity:0;padding:8px 21px;position:fixed;pointer-events:none;transition:opacity 0.3s ease-out;top:-999em;visibility:hidden;z-index:999}.__react_component_tooltip:before,.__react_component_tooltip:after{content:"";width:0;height:0;position:absolute}.__react_component_tooltip.show{opacity:0.9;margin-top:0px;margin-left:0px;visibility:visible}.__react_component_tooltip.type-dark{color:#fff;background-color:#222}.__react_component_tooltip.type-dark.place-top:after{border-top-color:#222;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-dark.place-bottom:after{border-bottom-color:#222;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-dark.place-left:after{border-left-color:#222;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-dark.place-right:after{border-right-color:#222;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-dark.border{border:1px solid #fff}.__react_component_tooltip.type-dark.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-dark.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-dark.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-dark.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-success{color:#fff;background-color:#8DC572}.__react_component_tooltip.type-success.place-top:after{border-top-color:#8DC572;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-success.place-bottom:after{border-bottom-color:#8DC572;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-success.place-left:after{border-left-color:#8DC572;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-success.place-right:after{border-right-color:#8DC572;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-success.border{border:1px solid #fff}.__react_component_tooltip.type-success.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-success.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-success.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-success.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-warning{color:#fff;background-color:#F0AD4E}.__react_component_tooltip.type-warning.place-top:after{border-top-color:#F0AD4E;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-warning.place-bottom:after{border-bottom-color:#F0AD4E;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-warning.place-left:after{border-left-color:#F0AD4E;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-warning.place-right:after{border-right-color:#F0AD4E;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-warning.border{border:1px solid #fff}.__react_component_tooltip.type-warning.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-warning.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-warning.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-warning.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-error{color:#fff;background-color:#BE6464}.__react_component_tooltip.type-error.place-top:after{border-top-color:#BE6464;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-error.place-bottom:after{border-bottom-color:#BE6464;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-error.place-left:after{border-left-color:#BE6464;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-error.place-right:after{border-right-color:#BE6464;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-error.border{border:1px solid #fff}.__react_component_tooltip.type-error.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-error.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-error.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-error.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-info{color:#fff;background-color:#337AB7}.__react_component_tooltip.type-info.place-top:after{border-top-color:#337AB7;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-info.place-bottom:after{border-bottom-color:#337AB7;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-info.place-left:after{border-left-color:#337AB7;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-info.place-right:after{border-right-color:#337AB7;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-info.border{border:1px solid #fff}.__react_component_tooltip.type-info.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-info.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-info.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-info.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-light{color:#222;background-color:#fff}.__react_component_tooltip.type-light.place-top:after{border-top-color:#fff;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-light.place-bottom:after{border-bottom-color:#fff;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-light.place-left:after{border-left-color:#fff;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-light.place-right:after{border-right-color:#fff;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-light.border{border:1px solid #222}.__react_component_tooltip.type-light.border.place-top:before{border-top:8px solid #222}.__react_component_tooltip.type-light.border.place-bottom:before{border-bottom:8px solid #222}.__react_component_tooltip.type-light.border.place-left:before{border-left:8px solid #222}.__react_component_tooltip.type-light.border.place-right:before{border-right:8px solid #222}.__react_component_tooltip.place-top{margin-top:-10px}.__react_component_tooltip.place-top:before{border-left:10px solid transparent;border-right:10px solid transparent;bottom:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-top:after{border-left:8px solid transparent;border-right:8px solid transparent;bottom:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-bottom{margin-top:10px}.__react_component_tooltip.place-bottom:before{border-left:10px solid transparent;border-right:10px solid transparent;top:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-bottom:after{border-left:8px solid transparent;border-right:8px solid transparent;top:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-left{margin-left:-10px}.__react_component_tooltip.place-left:before{border-top:6px solid transparent;border-bottom:6px solid transparent;right:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-left:after{border-top:5px solid transparent;border-bottom:5px solid transparent;right:-6px;top:50%;margin-top:-4px}.__react_component_tooltip.place-right{margin-left:10px}.__react_component_tooltip.place-right:before{border-top:6px solid transparent;border-bottom:6px solid transparent;left:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-right:after{border-top:5px solid transparent;border-bottom:5px solid transparent;left:-6px;top:50%;margin-top:-4px}.__react_component_tooltip .multi-line{display:block;padding:2px 0px;text-align:center}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id="app"&gt;&lt;div data-reactroot=""&gt;&lt;div class="notifications-wrapper"&gt;&lt;/div&gt;&lt;wrapper class="__react_component_tooltip place-bottom type-dark " data-id="tooltip" style="left: 1032px; top: 41px;"&gt;Cart(0)&lt;/wrapper&gt;&lt;div&gt;&lt;nav class="navbar navbar-default navbar-fixed-top" role="navigation"&gt;&lt;div class="container-fluid"&gt;&lt;div class="navbar-header"&gt;&lt;button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"&gt;&lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;span class="icon-bar"&gt;&lt;/span&gt;&lt;/button&gt;&lt;a class="navbar-brand" id="brand-image-link" href="/"&gt;&lt;img alt="Brand" id="brand-image" src="https://raw.githubusercontent.com/up1/soa_group2/master/Image/logoZALADA.png" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"&gt;&lt;form class="navbar-form navbar-left" role="search"&gt;&lt;div class="input-group"&gt;&lt;input type="text" class="form-control" placeholder="Search" /&gt;&lt;div class="input-group-btn"&gt;&lt;button class="btn btn-default" type="submit"&gt;&lt;i class="glyphicon glyphicon-search"&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/form&gt;&lt;a href="/category"&gt;&lt;span class="navbar-brand"&gt;ประเภทสินค้า&lt;/span&gt;&lt;/a&gt;&lt;ul class="nav navbar-nav navbar-right"&gt;&lt;li&gt;&lt;a href="/cart"&gt;&lt;img src="http://www.pngall.com/wp-content/uploads/2016/04/Cart-Free-Download-PNG.png" alt="" class="cart-icon image-responsive" width="22px" height="22px" data-tip="Cart(0)" /&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/signup"&gt;มี account แล้วหรือยัง?&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="/login"&gt;เข้าสู่ระบบ&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/nav&gt;&lt;div class="container" id="confirm-page"&gt;&lt;section class="container-signup"&gt;&lt;h1&gt;ยืนยันการสั่งซื้อ&lt;/h1&gt;&lt;div class="container-page" id="form-signup"&gt;&lt;div class="col-md-12"&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label for="name"&gt;ชื่อ นามสกุล&lt;/label&gt;&lt;input type="text" name="name" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;โทรศัพท์&lt;/label&gt;&lt;input name="tel" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;อีเมล&lt;/label&gt;&lt;input type="email" name="email" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;ที่อยู่&lt;/label&gt;&lt;textarea name="address" class="form-control"&gt;&lt;/textarea&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;รหัสไปรษณีย์&lt;/label&gt;&lt;input type="text" name="post_code" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;เขต/อำเภอ&lt;/label&gt;&lt;input type="text" name="state" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;label&gt;จังหวัด&lt;/label&gt;&lt;select name="province" class="form-control"&gt;&lt;option value=""&gt;--------- เลือกจังหวัด ---------&lt;/option&gt;&lt;option value="กรุงเทพมหานคร"&gt;กรุงเทพมหานคร&lt;/option&gt;&lt;option value="กระบี่"&gt;กระบี่&lt;/option&gt;&lt;option value="กาญจนบุรี"&gt;กาญจนบุรี&lt;/option&gt;&lt;option value="กาฬสินธุ์"&gt;กาฬสินธุ์&lt;/option&gt;&lt;option value="กำแพงเพชร"&gt;กำแพงเพชร&lt;/option&gt;&lt;option value="ขอนแก่น"&gt;ขอนแก่น&lt;/option&gt;&lt;option value="จันทบุรี"&gt;จันทบุรี&lt;/option&gt;&lt;option value="ฉะเชิงเทรา"&gt;ฉะเชิงเทรา&lt;/option&gt;&lt;option value="ชัยนาท"&gt;ชัยนาท&lt;/option&gt;&lt;option value="ชัยภูมิ"&gt;ชัยภูมิ&lt;/option&gt;&lt;option value="ชุมพร"&gt;ชุมพร&lt;/option&gt;&lt;option value="ชลบุรี"&gt;ชลบุรี&lt;/option&gt;&lt;option value="เชียงใหม่"&gt;เชียงใหม่&lt;/option&gt;&lt;option value="เชียงราย"&gt;เชียงราย&lt;/option&gt;&lt;option value="ตรัง"&gt;ตรัง&lt;/option&gt;&lt;option value="ตราด"&gt;ตราด&lt;/option&gt;&lt;option value="ตาก"&gt;ตาก&lt;/option&gt;&lt;option value="นครนายก"&gt;นครนายก&lt;/option&gt;&lt;option value="นครปฐม"&gt;นครปฐม&lt;/option&gt;&lt;option value="นครพนม"&gt;นครพนม&lt;/option&gt;&lt;option value="นครราชสีมา"&gt;นครราชสีมา&lt;/option&gt;&lt;option value="นครศรีธรรมราช"&gt;นครศรีธรรมราช&lt;/option&gt;&lt;option value="นครสวรรค์"&gt;นครสวรรค์&lt;/option&gt;&lt;option value="นราธิวาส"&gt;นราธิวาส&lt;/option&gt;&lt;option value="น่าน"&gt;น่าน&lt;/option&gt;&lt;option value="นนทบุรี"&gt;นนทบุรี&lt;/option&gt;&lt;option value="บึงกาฬ"&gt;บึงกาฬ&lt;/option&gt;&lt;option value="บุรีรัมย์"&gt;บุรีรัมย์&lt;/option&gt;&lt;option value="ประจวบคีรีขันธ์"&gt;ประจวบคีรีขันธ์&lt;/option&gt;&lt;option value="ปทุมธานี"&gt;ปทุมธานี&lt;/option&gt;&lt;option value="ปราจีนบุรี"&gt;ปราจีนบุรี&lt;/option&gt;&lt;option value="ปัตตานี"&gt;ปัตตานี&lt;/option&gt;&lt;option value="พะเยา"&gt;พะเยา&lt;/option&gt;&lt;option value="พระนครศรีอยุธยา"&gt;พระนครศรีอยุธยา&lt;/option&gt;&lt;option value="พังงา"&gt;พังงา&lt;/option&gt;&lt;option value="พิจิตร"&gt;พิจิตร&lt;/option&gt;&lt;option value="พิษณุโลก"&gt;พิษณุโลก&lt;/option&gt;&lt;option value="เพชรบุรี"&gt;เพชรบุรี&lt;/option&gt;&lt;option value="เพชรบูรณ์"&gt;เพชรบูรณ์&lt;/option&gt;&lt;option value="แพร่"&gt;แพร่&lt;/option&gt;&lt;option value="พัทลุง"&gt;พัทลุง&lt;/option&gt;&lt;option value="ภูเก็ต"&gt;ภูเก็ต&lt;/option&gt;&lt;option value="มหาสารคาม"&gt;มหาสารคาม&lt;/option&gt;&lt;option value="มุกดาหาร"&gt;มุกดาหาร&lt;/option&gt;&lt;option value="แม่ฮ่องสอน"&gt;แม่ฮ่องสอน&lt;/option&gt;&lt;option value="ยโสธร"&gt;ยโสธร&lt;/option&gt;&lt;option value="ยะลา"&gt;ยะลา&lt;/option&gt;&lt;option value="ร้อยเอ็ด"&gt;ร้อยเอ็ด&lt;/option&gt;&lt;option value="ระนอง"&gt;ระนอง&lt;/option&gt;&lt;option value="ระยอง"&gt;ระยอง&lt;/option&gt;&lt;option value="ราชบุรี"&gt;ราชบุรี&lt;/option&gt;&lt;option value="ลพบุรี"&gt;ลพบุรี&lt;/option&gt;&lt;option value="ลำปาง"&gt;ลำปาง&lt;/option&gt;&lt;option value="ลำพูน"&gt;ลำพูน&lt;/option&gt;&lt;option value="เลย"&gt;เลย&lt;/option&gt;&lt;option value="ศรีสะเกษ"&gt;ศรีสะเกษ&lt;/option&gt;&lt;option value="สกลนคร"&gt;สกลนคร&lt;/option&gt;&lt;option value="สงขลา"&gt;สงขลา&lt;/option&gt;&lt;option value="สมุทรสาคร"&gt;สมุทรสาคร&lt;/option&gt;&lt;option value="สมุทรปราการ"&gt;สมุทรปราการ&lt;/option&gt;&lt;option value="สมุทรสงคราม"&gt;สมุทรสงคราม&lt;/option&gt;&lt;option value="สระแก้ว"&gt;สระแก้ว&lt;/option&gt;&lt;option value="สระบุรี"&gt;สระบุรี&lt;/option&gt;&lt;option value="สิงห์บุรี"&gt;สิงห์บุรี&lt;/option&gt;&lt;option value="สุโขทัย"&gt;สุโขทัย&lt;/option&gt;&lt;option value="สุพรรณบุรี"&gt;สุพรรณบุรี&lt;/option&gt;&lt;option value="สุราษฎร์ธานี"&gt;สุราษฎร์ธานี&lt;/option&gt;&lt;option value="สุรินทร์"&gt;สุรินทร์&lt;/option&gt;&lt;option value="สตูล"&gt;สตูล&lt;/option&gt;&lt;option value="หนองคาย"&gt;หนองคาย&lt;/option&gt;&lt;option value="หนองบัวลำภู"&gt;หนองบัวลำภู&lt;/option&gt;&lt;option value="อำนาจเจริญ"&gt;อำนาจเจริญ&lt;/option&gt;&lt;option value="อุดรธานี"&gt;อุดรธานี&lt;/option&gt;&lt;option value="อุตรดิตถ์"&gt;อุตรดิตถ์&lt;/option&gt;&lt;option value="อุทัยธานี"&gt;อุทัยธานี&lt;/option&gt;&lt;option value="อุบลราชธานี"&gt;อุบลราชธานี&lt;/option&gt;&lt;option value="อ่างทอง"&gt;อ่างทอง&lt;/option&gt;&lt;option value="อื่นๆ"&gt;อื่นๆ&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class="form-group col-lg-12"&gt;&lt;button type="submit" class="btn btn-primary pull-right"&gt;ยืนยันการสั่งซื้อ&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;&lt;/div&gt;&lt;div id="footer-section"&gt;&lt;center&gt;&lt;div class="container-Footer"&gt;&lt;div class="row"&gt;&lt;h3 class="footertext"&gt;เกี่ยวกับ&lt;/h3&gt;&lt;br /&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi60.tinypic.com/w8lycl.jpg" class="img-circle" alt="the-brains" /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Programmers&lt;/h4&gt;&lt;p class="footertext"&gt;ขอบคุณโปรแกรมเมอร์ทุกคนที่เขียนโค๊ดอย่างบ้าคลั่ง.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi60.tinypic.com/2z7enpc.jpg" class="img-circle" alt="..." /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Artists&lt;/h4&gt;&lt;p class="footertext"&gt;รูปทุกรูปถูกสรรหามาจากความคิดสร้างสรรค์ของคนเหล่านี้.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;div class="col-md-4"&gt;&lt;img src="http://oi61.tinypic.com/307n6ux.jpg" class="img-circle" alt="..." /&gt;&lt;br /&gt;&lt;h4 class="footertext"&gt;Designers&lt;/h4&gt;&lt;p class="footertext"&gt;การออกแบบเป็นชีวิตจิตใจของพวกเขา.&lt;/p&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/center&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;script type="text/javascript" src="/static/js/main.6bb700f5.js"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</msg>
+<msg timestamp="20170502 02:07:58.480" level="INFO">Current page contains button 'css=#form-signup &gt; div &gt; div:nth-child(8) &gt; button'.</msg>
+<status status="PASS" endtime="20170502 02:07:58.480" starttime="20170502 02:07:58.389"></status>
 </kw>
 <kw name="Click Button" library="Selenium2Library">
 <doc>Clicks a button identified by `locator`.</doc>
 <arguments>
 <arg>css=#form-signup &gt; div &gt; div:nth-child(8) &gt; button</arg>
 </arguments>
-<msg timestamp="20170502 01:17:01.882" level="INFO">Clicking button 'css=#form-signup &gt; div &gt; div:nth-child(8) &gt; button'.</msg>
-<status status="PASS" endtime="20170502 01:17:01.998" starttime="20170502 01:17:01.882"></status>
+<msg timestamp="20170502 02:07:58.481" level="INFO">Clicking button 'css=#form-signup &gt; div &gt; div:nth-child(8) &gt; button'.</msg>
+<status status="PASS" endtime="20170502 02:07:58.604" starttime="20170502 02:07:58.480"></status>
 </kw>
 <kw name="Wait Until Page Does Not Contain" library="Selenium2Library">
 <doc>Waits until `text` disappears from current page.</doc>
 <arguments>
 <arg>ยืนยันการสั่งซื้อ</arg>
+<arg>${TENSECOND}</arg>
 </arguments>
-<status status="PASS" endtime="20170502 01:17:02.301" starttime="20170502 01:17:01.998"></status>
+<status status="PASS" endtime="20170502 02:07:58.885" starttime="20170502 02:07:58.604"></status>
 </kw>
-<status status="PASS" endtime="20170502 01:17:02.301" starttime="20170502 01:16:59.559"></status>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>tag=canvas</arg>
+</arguments>
+<status status="PASS" endtime="20170502 02:07:59.323" starttime="20170502 02:07:58.886"></status>
 </kw>
-<status status="PASS" endtime="20170502 01:17:02.307" critical="yes" starttime="20170502 01:16:41.463"></status>
+<status status="PASS" endtime="20170502 02:07:59.324" starttime="20170502 02:07:56.043"></status>
+</kw>
+<status status="PASS" endtime="20170502 02:07:59.325" critical="yes" starttime="20170502 02:07:37.548"></status>
 </test>
-<status status="PASS" endtime="20170502 01:17:02.310" starttime="20170502 01:16:41.239"></status>
+<test id="s1-t2" name="ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ โดยกดดูรายละเอียดสินค้าด้วย">
+<kw name="Restart Test">
+<kw name="Select Window" library="Selenium2Library">
+<doc>Selects the window matching locator and return previous window handle.</doc>
+<arguments>
+<arg>title=Zalada</arg>
+</arguments>
+<status status="PASS" endtime="20170502 02:07:59.387" starttime="20170502 02:07:59.335"></status>
+</kw>
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${TESTADDRESS}</arg>
+</arguments>
+<msg timestamp="20170502 02:07:59.388" level="INFO">Opening url 'http://139.59.102.212:5000/'</msg>
+<status status="PASS" endtime="20170502 02:08:00.821" starttime="20170502 02:07:59.387"></status>
+</kw>
+<status status="PASS" endtime="20170502 02:08:00.822" starttime="20170502 02:07:59.334"></status>
+</kw>
+<kw name="Assure Is Zalada Real Site">
+<kw name="Page Should Contain Image" library="Selenium2Library">
+<doc>Verifies image identified by `locator` is found from current page.</doc>
+<arguments>
+<arg>id=brand-image</arg>
+</arguments>
+<msg timestamp="20170502 02:08:00.846" level="INFO">Current page contains image 'id=brand-image'.</msg>
+<status status="PASS" endtime="20170502 02:08:00.846" starttime="20170502 02:08:00.824"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>ประเภทสินค้า</arg>
+<arg>${FIVESECOND}</arg>
+</arguments>
+<status status="PASS" endtime="20170502 02:08:00.861" starttime="20170502 02:08:00.846"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>รายการสินค้าแนะนำ</arg>
+</arguments>
+<msg timestamp="20170502 02:08:00.879" level="INFO">Current page contains text 'รายการสินค้าแนะนำ'.</msg>
+<status status="PASS" endtime="20170502 02:08:00.879" starttime="20170502 02:08:00.862"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>ขอบคุณโปรแกรมเมอร์ทุกคนที่เขียนโค๊ดอย่างบ้าคลั่ง</arg>
+</arguments>
+<msg timestamp="20170502 02:08:00.897" level="INFO">Current page contains text 'ขอบคุณโปรแกรมเมอร์ทุกคนที่เขียนโค๊ดอย่างบ้าคลั่ง'.</msg>
+<status status="PASS" endtime="20170502 02:08:00.897" starttime="20170502 02:08:00.880"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>การออกแบบเป็นชีวิตจิตใจของพวกเขา</arg>
+</arguments>
+<msg timestamp="20170502 02:08:00.914" level="INFO">Current page contains text 'การออกแบบเป็นชีวิตจิตใจของพวกเขา'.</msg>
+<status status="PASS" endtime="20170502 02:08:00.914" starttime="20170502 02:08:00.897"></status>
+</kw>
+<kw name="Page Should Not Contain" library="Selenium2Library">
+<doc>Verifies the current page does not contain `text`.</doc>
+<arguments>
+<arg>Lazada</arg>
+</arguments>
+<msg timestamp="20170502 02:08:00.941" level="INFO">Current page does not contain text 'Lazada'.</msg>
+<status status="PASS" endtime="20170502 02:08:00.942" starttime="20170502 02:08:00.915"></status>
+</kw>
+<kw name="Page Should Not Contain" library="Selenium2Library">
+<doc>Verifies the current page does not contain `text`.</doc>
+<arguments>
+<arg>lazada</arg>
+</arguments>
+<msg timestamp="20170502 02:08:00.971" level="INFO">Current page does not contain text 'lazada'.</msg>
+<status status="PASS" endtime="20170502 02:08:00.971" starttime="20170502 02:08:00.942"></status>
+</kw>
+<kw name="Page Should Not Contain" library="Selenium2Library">
+<doc>Verifies the current page does not contain `text`.</doc>
+<arguments>
+<arg>ลาซาด้า</arg>
+</arguments>
+<msg timestamp="20170502 02:08:01.001" level="INFO">Current page does not contain text 'ลาซาด้า'.</msg>
+<status status="PASS" endtime="20170502 02:08:01.001" starttime="20170502 02:08:00.972"></status>
+</kw>
+<status status="PASS" endtime="20170502 02:08:01.001" starttime="20170502 02:08:00.823"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>dom=document.getElementsByTagName('button')[9]</arg>
+</arguments>
+<msg timestamp="20170502 02:08:01.002" level="INFO">Clicking button 'dom=document.getElementsByTagName('button')[9]'.</msg>
+<status status="PASS" endtime="20170502 02:08:01.186" starttime="20170502 02:08:01.002"></status>
+</kw>
+<status status="PASS" endtime="20170502 02:08:01.188" critical="yes" starttime="20170502 02:07:59.328"></status>
+</test>
+<status status="PASS" endtime="20170502 02:08:01.192" starttime="20170502 02:07:37.314"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="0" pass="1">Critical Tests</stat>
-<stat fail="0" pass="1">All Tests</stat>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat fail="0" id="s1" name="Buying-Without-Login" pass="1">Buying-Without-Login</stat>
+<stat fail="0" id="s1" name="Buying-Without-Login" pass="2">Buying-Without-Login</stat>
 </suite>
 </statistics>
 <errors>

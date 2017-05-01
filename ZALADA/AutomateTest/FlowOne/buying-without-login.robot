@@ -47,7 +47,8 @@ Checkout The Cart
     Select From List By Value    name=province    กรุงเทพมหานคร
     Page Should Contain Button    css=#form-signup > div > div:nth-child(8) > button
     Click Button    css=#form-signup > div > div:nth-child(8) > button
-    Wait Until Page Does Not Contain    ยืนยันการสั่งซื้อ
+    Wait Until Page Does Not Contain    ยืนยันการสั่งซื้อ    ${TENSECOND}
+    Wait Until Page Contains Element    tag=canvas
     
 
 *** Test Cases ***
@@ -55,6 +56,7 @@ Checkout The Cart
 ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม Add to cart ในหน้าแรก
     Start Browser
     Assure Is Zalada Real Site
+    Mouse Over    dom=document.links[6]
     Click Link    dom=document.links[6]
     Wait Until Page Contains    เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว    ${TENSECOND}
     Wait Until Page Does Not Contain    เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว    ${TENSECOND}
