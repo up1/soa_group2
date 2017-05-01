@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20170501 17:02:24.925" generator="Robot 3.0.2 (Python 2.7.13 on win32)">
+<suite source="D:\SOA\soa_group2\Robot-test\example\example.robot" id="s1" name="Example">
+<test id="s1-t1" name="ทดสอบค้นหาเพลง never gonna give you up ด้วยการค้นหาแบบเต็มคำ">
+<kw type="setup" name="Start browser">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${TESTADDRESS}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20170501 17:02:25.133" level="INFO">Opening browser 'chrome' to base url 'https://www.youtube.com/'</msg>
+<status status="PASS" endtime="20170501 17:02:33.231" starttime="20170501 17:02:25.132"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20170501 17:02:34.411" starttime="20170501 17:02:33.231"></status>
+</kw>
+<status status="PASS" endtime="20170501 17:02:34.411" starttime="20170501 17:02:25.132"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>masthead-search-term</arg>
+<arg>never gonna give you up</arg>
+</arguments>
+<msg timestamp="20170501 17:02:34.413" level="INFO">Typing text 'never gonna give you up' into text field 'masthead-search-term'</msg>
+<status status="PASS" endtime="20170501 17:02:35.395" starttime="20170501 17:02:34.412"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>xpath=//*[@id="search-btn"]</arg>
+</arguments>
+<msg timestamp="20170501 17:02:35.398" level="INFO">Clicking button 'xpath=//*[@id="search-btn"]'.</msg>
+<status status="PASS" endtime="20170501 17:02:35.790" starttime="20170501 17:02:35.397"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="Selenium2Library">
+<doc>Waits until `text` appears on current page.</doc>
+<arguments>
+<arg>Rick Astley</arg>
+<arg>${FIVESECOND}</arg>
+</arguments>
+<status status="PASS" endtime="20170501 17:02:36.934" starttime="20170501 17:02:35.794"></status>
+</kw>
+<kw name="Click Link" library="Selenium2Library">
+<doc>Clicks a link identified by locator.</doc>
+<arguments>
+<arg>link=Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<msg timestamp="20170501 17:02:36.938" level="INFO">Clicking link 'link=Rick Astley - Never Gonna Give You Up'.</msg>
+<status status="PASS" endtime="20170501 17:02:37.423" starttime="20170501 17:02:36.938"></status>
+</kw>
+<kw name="Set Selenium Speed" library="Selenium2Library">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>2.0</arg>
+</arguments>
+<status status="PASS" endtime="20170501 17:02:37.428" starttime="20170501 17:02:37.427"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>tag=video</arg>
+<arg>${TENSECOND}</arg>
+</arguments>
+<status status="PASS" endtime="20170501 17:02:39.463" starttime="20170501 17:02:37.429"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>Rick Astley - Never Gonna Give You Up</arg>
+</arguments>
+<msg timestamp="20170501 17:02:43.514" level="INFO">Current page contains text 'Rick Astley - Never Gonna Give You Up'.</msg>
+<status status="PASS" endtime="20170501 17:02:43.515" starttime="20170501 17:02:39.464"></status>
+</kw>
+<kw name="Page Should Contain" library="Selenium2Library">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>RickAstleyVEVO</arg>
+</arguments>
+<msg timestamp="20170501 17:02:47.573" level="INFO">Current page contains text 'RickAstleyVEVO'.</msg>
+<status status="PASS" endtime="20170501 17:02:47.574" starttime="20170501 17:02:43.516"></status>
+</kw>
+<kw type="teardown" name="Close All Browsers" library="Selenium2Library">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" endtime="20170501 17:02:52.803" starttime="20170501 17:02:47.576"></status>
+</kw>
+<status status="PASS" endtime="20170501 17:02:52.803" critical="yes" starttime="20170501 17:02:25.128"></status>
+</test>
+<status status="PASS" endtime="20170501 17:02:52.808" starttime="20170501 17:02:24.930"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Example" pass="1">Example</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
