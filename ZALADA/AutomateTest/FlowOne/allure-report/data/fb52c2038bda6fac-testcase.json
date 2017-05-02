@@ -1,0 +1,95 @@
+{
+  "uid" : "fb52c2038bda6fac",
+  "name" : "ทดสอบซื้อสืนค้ามากกว่าหนึ่งประเภท โดยซื้อสามประเภท ประเภทละหนึ่งชิ้น",
+  "title" : "ทดสอบซื้อสืนค้ามากกว่าหนึ่งประเภท โดยซื้อสามประเภท ประเภทละหนึ่งชิ้น",
+  "time" : {
+    "start" : 1493691743679,
+    "stop" : 1493691747171,
+    "duration" : 3492
+  },
+  "summary" : {
+    "attachments" : 1,
+    "steps" : 3
+  },
+  "failure" : {
+    "message" : "ValueError: Unable to locate window with title 'Zalada'",
+    "stackTrace" : ""
+  },
+  "description" : {
+    "value" : "ทดสอบซื้อสืนค้ามากกว่าหนึ่งประเภท โดยซื้อสามประเภท ประเภทละหนึ่งชิ้น",
+    "type" : "TEXT"
+  },
+  "severity" : "NORMAL",
+  "status" : "FAILED",
+  "suite" : {
+    "uid" : "ef2f9ed57147370d",
+    "name" : "Buying-Without-Login",
+    "title" : "Buying-Without-Login"
+  },
+  "steps" : [ {
+    "name" : "Restart Test",
+    "title" : "Restart Test",
+    "time" : {
+      "start" : 1493691743680,
+      "stop" : 1493691743920,
+      "duration" : 240
+    },
+    "summary" : {
+      "attachments" : 1,
+      "steps" : 2
+    },
+    "status" : "FAILED",
+    "attachments" : [ ],
+    "steps" : [ {
+      "name" : "Selenium2Library.Select Window",
+      "title" : "Selenium2Library.Select Window",
+      "time" : {
+        "start" : 1493691743681,
+        "stop" : 1493691743920,
+        "duration" : 239
+      },
+      "summary" : {
+        "attachments" : 1,
+        "steps" : 1
+      },
+      "status" : "FAILED",
+      "attachments" : [ ],
+      "steps" : [ {
+        "name" : "Selenium2Library.Capture Page Screenshot",
+        "title" : "Selenium2Library.Capture Page Screenshot",
+        "time" : {
+          "start" : 1493691743722,
+          "stop" : 1493691743918,
+          "duration" : 196
+        },
+        "summary" : {
+          "attachments" : 1,
+          "steps" : 0
+        },
+        "status" : "PASSED",
+        "attachments" : [ {
+          "title" : "selenium-screenshot-4.png",
+          "source" : "d856be38-80a3-4922-b5f4-e212bcd54ab2-attachment.png",
+          "type" : "AttachmentType.PNG",
+          "size" : 21810,
+          "uid" : "8600cd2dc055e412"
+        } ],
+        "steps" : [ ]
+      } ]
+    } ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "thread",
+    "value" : "7020"
+  }, {
+    "name" : "suite-title",
+    "value" : "Buying-Without-Login"
+  }, {
+    "name" : "suite-name",
+    "value" : "Buying-Without-Login"
+  } ],
+  "parameters" : [ ]
+}

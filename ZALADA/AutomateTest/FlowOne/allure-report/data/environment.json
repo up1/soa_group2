@@ -1,0 +1,38 @@
+{
+  "id" : "Robot Framework",
+  "name" : "CHAYUT-X550D.example.org",
+  "url" : "http://CHAYUT-X550D.example.org:8000",
+  "parameter" : [ {
+    "name" : "Robot Framework Platform",
+    "key" : "Robot Framework Platform",
+    "value" : "win32"
+  }, {
+    "name" : "Robot Framework Version",
+    "key" : "Robot Framework Version",
+    "value" : "3.0.2"
+  }, {
+    "name" : "Robot Framework Full Version",
+    "key" : "Robot Framework Full Version",
+    "value" : "3.0.2 (Python 2.7.13 on win32)"
+  }, {
+    "name" : "Python version",
+    "key" : "Python version",
+    "value" : "2.7.13"
+  }, {
+    "name" : "Interpreter",
+    "key" : "Interpreter",
+    "value" : "Python"
+  }, {
+    "name" : "Robot Framework Hostname",
+    "key" : "Robot Framework Hostname",
+    "value" : "CHAYUT-X550D.example.org"
+  }, {
+    "name" : "Allure Adapter version",
+    "key" : "Allure Adapter version",
+    "value" : "1.1.1"
+  }, {
+    "name" : "Robot Framework CLI Arguments",
+    "key" : "Robot Framework CLI Arguments",
+    "value" : "['.\\\\buying-without-login.robot']"
+  } ]
+}

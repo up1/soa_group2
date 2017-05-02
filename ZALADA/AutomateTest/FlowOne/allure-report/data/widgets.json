@@ -1,0 +1,93 @@
+{
+  "hash" : "e7105c43ada45c9f6e0006854ef1a1d95249231d",
+  "plugins" : {
+    "total" : {
+      "statistic" : {
+        "total" : 12,
+        "passed" : 7,
+        "pending" : 0,
+        "canceled" : 0,
+        "failed" : 5,
+        "broken" : 0
+      },
+      "time" : {
+        "start" : 1493691732536,
+        "stop" : 1493693455694,
+        "duration" : 1723158
+      }
+    },
+    "defects" : {
+      "totalCount" : 3,
+      "items" : [ {
+        "count" : 3,
+        "uid" : "3bd170ff4b388bd6",
+        "message" : "ValueError: Unable to locate window with title 'Zalada'",
+        "status" : "FAILED"
+      }, {
+        "count" : 1,
+        "uid" : "60cf22831bf55148",
+        "message" : "Page should have contained image 'id=brand-image' but did not",
+        "status" : "FAILED"
+      }, {
+        "count" : 1,
+        "uid" : "f53710f60499b09a",
+        "message" : "Text 'เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว' did not appear in 10 seconds",
+        "status" : "FAILED"
+      } ]
+    },
+    "xunit" : {
+      "totalCount" : 1,
+      "items" : [ {
+        "uid" : "ef2f9ed57147370d",
+        "title" : "Buying-Without-Login",
+        "statistic" : {
+          "total" : 12,
+          "passed" : 7,
+          "pending" : 0,
+          "canceled" : 0,
+          "failed" : 5,
+          "broken" : 0
+        }
+      } ]
+    },
+    "behaviors" : {
+      "totalCount" : 1,
+      "items" : [ {
+        "title" : "Without feature",
+        "statistic" : {
+          "total" : 12,
+          "passed" : 7,
+          "pending" : 0,
+          "canceled" : 0,
+          "failed" : 5,
+          "broken" : 0
+        }
+      } ]
+    },
+    "environment" : [ {
+      "key" : "Allure Adapter version",
+      "value" : "1.1.1"
+    }, {
+      "key" : "Interpreter",
+      "value" : "Python"
+    }, {
+      "key" : "Python version",
+      "value" : "2.7.13"
+    }, {
+      "key" : "Robot Framework CLI Arguments",
+      "value" : "['.\\\\buying-without-login.robot']"
+    }, {
+      "key" : "Robot Framework Full Version",
+      "value" : "3.0.2 (Python 2.7.13 on win32)"
+    }, {
+      "key" : "Robot Framework Hostname",
+      "value" : "CHAYUT-X550D.example.org"
+    }, {
+      "key" : "Robot Framework Platform",
+      "value" : "win32"
+    }, {
+      "key" : "Robot Framework Version",
+      "value" : "3.0.2"
+    } ]
+  }
+}

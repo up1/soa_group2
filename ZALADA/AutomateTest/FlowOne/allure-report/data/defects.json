@@ -1,0 +1,87 @@
+{
+  "defectsList" : [ {
+    "title" : "Product defects",
+    "status" : "FAILED",
+    "defects" : [ {
+      "uid" : "60cf22831bf55148",
+      "failure" : {
+        "message" : "Page should have contained image 'id=brand-image' but did not",
+        "stackTrace" : ""
+      },
+      "testCases" : [ {
+        "uid" : "8cac68d8d91232d3",
+        "name" : "ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม Add to cart ในหน้าแรก",
+        "title" : "ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม add to cart ในหน้าแรก",
+        "time" : {
+          "start" : 1493691732536,
+          "stop" : 1493691743147,
+          "duration" : 10611
+        },
+        "severity" : "NORMAL",
+        "status" : "FAILED"
+      } ]
+    }, {
+      "uid" : "3bd170ff4b388bd6",
+      "failure" : {
+        "message" : "ValueError: Unable to locate window with title 'Zalada'",
+        "stackTrace" : ""
+      },
+      "testCases" : [ {
+        "uid" : "413c85a6a8682261",
+        "name" : "ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ โดยกดดูรายละเอียดสินค้าด้วย",
+        "title" : "ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ โดยกดดูรายละเอียดสินค้าด้วย",
+        "time" : {
+          "start" : 1493691743160,
+          "stop" : 1493691743437,
+          "duration" : 277
+        },
+        "severity" : "NORMAL",
+        "status" : "FAILED"
+      }, {
+        "uid" : "9ecdf6259a31b474",
+        "name" : "ทดสอบซื้อสินค้าหลายชึ้น ด้วยสินค้าประเภทเดียว",
+        "title" : "ทดสอบซื้อสินค้าหลายชึ้น ด้วยสินค้าประเภทเดียว",
+        "time" : {
+          "start" : 1493691743447,
+          "stop" : 1493691743666,
+          "duration" : 219
+        },
+        "severity" : "NORMAL",
+        "status" : "FAILED"
+      }, {
+        "uid" : "fb52c2038bda6fac",
+        "name" : "ทดสอบซื้อสืนค้ามากกว่าหนึ่งประเภท โดยซื้อสามประเภท ประเภทละหนึ่งชิ้น",
+        "title" : "ทดสอบซื้อสืนค้ามากกว่าหนึ่งประเภท โดยซื้อสามประเภท ประเภทละหนึ่งชิ้น",
+        "time" : {
+          "start" : 1493691743679,
+          "stop" : 1493691747171,
+          "duration" : 3492
+        },
+        "severity" : "NORMAL",
+        "status" : "FAILED"
+      } ]
+    }, {
+      "uid" : "f53710f60499b09a",
+      "failure" : {
+        "message" : "Text 'เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว' did not appear in 10 seconds",
+        "stackTrace" : ""
+      },
+      "testCases" : [ {
+        "uid" : "8110383501b32dee",
+        "name" : "ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ โดยกดดูรายละเอียดสินค้าด้วย",
+        "title" : "ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ โดยกดดูรายละเอียดสินค้าด้วย",
+        "time" : {
+          "start" : 1493693397715,
+          "stop" : 1493693411504,
+          "duration" : 13789
+        },
+        "severity" : "NORMAL",
+        "status" : "FAILED"
+      } ]
+    } ]
+  }, {
+    "title" : "Test defects",
+    "status" : "BROKEN",
+    "defects" : [ ]
+  } ]
+}

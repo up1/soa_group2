@@ -1,8 +1,9 @@
 *** Settings ***
 Library           Selenium2Library
+Library           AllureReportLibrary    ./superReport
 
 *** Variables ***
-${TESTADDRESS}   http://localhost:9000/
+${TESTADDRESS}   http://161.246.132.243:5000/
 ${BROWSER}       chrome
 ${TWOSECOUND}    2.0
 ${FIVESECOND}    5.0

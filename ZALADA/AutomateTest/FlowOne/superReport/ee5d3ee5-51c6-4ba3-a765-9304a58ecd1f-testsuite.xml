@@ -1,0 +1,961 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1493693366861" stop="1493693455707">
+  <name>Buying-Without-Login</name>
+  <title>Buying-Without-Login</title>
+  <labels/>
+  <test-cases>
+    <test-case severity="None" start="1493693366868" status="passed" stop="1493693397700">
+      <description>ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม Add to cart ในหน้าแรก</description>
+      <name>ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม Add to cart ในหน้าแรก</name>
+      <attachments/>
+      <labels>
+        <label name="thread" value="13484"/>
+      </labels>
+      <steps>
+        <step start="1493693366869" status="passed" stop="1493693381508">
+          <name>Start Browser</name>
+          <title>Start Browser</title>
+          <attachments/>
+          <steps>
+            <step start="1493693366871" status="passed" stop="1493693380256">
+              <name>Selenium2Library.Open Browser</name>
+              <title>Selenium2Library.Open Browser</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693380256" status="passed" stop="1493693381507">
+              <name>Selenium2Library.Maximize Browser Window</name>
+              <title>Selenium2Library.Maximize Browser Window</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693381515" status="passed" stop="1493693381997">
+          <name>Assure Is Zalada Real Site</name>
+          <title>Assure Is Zalada Real Site</title>
+          <attachments/>
+          <steps>
+            <step start="1493693381517" status="passed" stop="1493693381579">
+              <name>Selenium2Library.Page Should Contain Image</name>
+              <title>Selenium2Library.Page Should Contain Image</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693381580" status="passed" stop="1493693381625">
+              <name>Selenium2Library.Wait Until Page Contains</name>
+              <title>Selenium2Library.Wait Until Page Contains</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693381626" status="passed" stop="1493693381675">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693381675" status="passed" stop="1493693381725">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693381726" status="passed" stop="1493693381779">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693381780" status="passed" stop="1493693381862">
+              <name>Selenium2Library.Page Should Not Contain</name>
+              <title>Selenium2Library.Page Should Not Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693381862" status="passed" stop="1493693381922">
+              <name>Selenium2Library.Page Should Not Contain</name>
+              <title>Selenium2Library.Page Should Not Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693381922" status="passed" stop="1493693381997">
+              <name>Selenium2Library.Page Should Not Contain</name>
+              <title>Selenium2Library.Page Should Not Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693381999" status="passed" stop="1493693382062">
+          <name>Selenium2Library.Mouse Over</name>
+          <title>Selenium2Library.Mouse Over</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693382068" status="passed" stop="1493693382230">
+          <name>Selenium2Library.Click Link</name>
+          <title>Selenium2Library.Click Link</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693382234" status="passed" stop="1493693387767">
+          <name>Add Item Check</name>
+          <title>Add Item Check</title>
+          <attachments/>
+          <steps>
+            <step start="1493693382236" status="passed" stop="1493693382504">
+              <name>Selenium2Library.Wait Until Page Contains</name>
+              <title>Selenium2Library.Wait Until Page Contains</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693382505" status="passed" stop="1493693387766">
+              <name>Selenium2Library.Wait Until Page Does Not Contain</name>
+              <title>Selenium2Library.Wait Until Page Does Not Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693387770" status="passed" stop="1493693388337">
+          <name>Basic Check Cart Page</name>
+          <title>Basic Check Cart Page</title>
+          <attachments/>
+          <steps>
+            <step start="1493693387771" status="passed" stop="1493693387842">
+              <name>Selenium2Library.Mouse Over</name>
+              <title>Selenium2Library.Mouse Over</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693387843" status="passed" stop="1493693388032">
+              <name>Selenium2Library.Click Link</name>
+              <title>Selenium2Library.Click Link</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693388033" status="passed" stop="1493693388089">
+              <name>Selenium2Library.Wait Until Page Contains</name>
+              <title>Selenium2Library.Wait Until Page Contains</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693388090" status="passed" stop="1493693388140">
+              <name>Selenium2Library.Wait Until Page Contains Element</name>
+              <title>Selenium2Library.Wait Until Page Contains Element</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693388142" status="passed" stop="1493693388193">
+              <name>Selenium2Library.Page Should Contain Image</name>
+              <title>Selenium2Library.Page Should Contain Image</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693388194" status="passed" stop="1493693388243">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693388244" status="passed" stop="1493693388290">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693388291" status="passed" stop="1493693388336">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693388338" status="passed" stop="1493693397688">
+          <name>Checkout The Cart</name>
+          <title>Checkout The Cart</title>
+          <attachments/>
+          <steps>
+            <step start="1493693388339" status="passed" stop="1493693393340">
+              <name>BuiltIn.Sleep</name>
+              <title>BuiltIn.Sleep</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693393340" status="passed" stop="1493693393476">
+              <name>Selenium2Library.Page Should Contain Button</name>
+              <title>Selenium2Library.Page Should Contain Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693393477" status="passed" stop="1493693393744">
+              <name>Selenium2Library.Click Button</name>
+              <title>Selenium2Library.Click Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693393745" status="passed" stop="1493693394337">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693394338" status="passed" stop="1493693394668">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693394668" status="passed" stop="1493693395110">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693395110" status="passed" stop="1493693395885">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693395885" status="passed" stop="1493693396110">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693396111" status="passed" stop="1493693396476">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693396476" status="passed" stop="1493693396694">
+              <name>Selenium2Library.Select From List By Value</name>
+              <title>Selenium2Library.Select From List By Value</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693396695" status="passed" stop="1493693396809">
+              <name>Selenium2Library.Page Should Contain Button</name>
+              <title>Selenium2Library.Page Should Contain Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693396810" status="passed" stop="1493693396977">
+              <name>Selenium2Library.Click Button</name>
+              <title>Selenium2Library.Click Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693396977" status="passed" stop="1493693397259">
+              <name>Selenium2Library.Wait Until Page Does Not Contain</name>
+              <title>Selenium2Library.Wait Until Page Does Not Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693397260" status="passed" stop="1493693397688">
+              <name>Selenium2Library.Wait Until Page Contains Element</name>
+              <title>Selenium2Library.Wait Until Page Contains Element</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+      </steps>
+    </test-case>
+    <test-case severity="None" start="1493693397715" status="failed" stop="1493693411504">
+      <description>ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ โดยกดดูรายละเอียดสินค้าด้วย</description>
+      <name>ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ โดยกดดูรายละเอียดสินค้าด้วย</name>
+      <failure>
+        <message>Text 'เพิ่มสินค้าเข้าสู่ตะกร้าเรียบร้อยแล้ว' did not appear in 10 seconds</message>
+        <stack-trace></stack-trace>
+      </failure>
+      <attachments/>
+      <labels>
+        <label name="thread" value="13484"/>
+      </labels>
+      <steps>
+        <step start="1493693397715" status="passed" stop="1493693400454">
+          <name>Restart Test</name>
+          <title>Restart Test</title>
+          <attachments/>
+          <steps>
+            <step start="1493693397716" status="passed" stop="1493693397786">
+              <name>Selenium2Library.Select Window</name>
+              <title>Selenium2Library.Select Window</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693397787" status="passed" stop="1493693400015">
+              <name>Selenium2Library.Go To</name>
+              <title>Selenium2Library.Go To</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693400016" status="passed" stop="1493693400453">
+              <name>Assure Is Zalada Real Site</name>
+              <title>Assure Is Zalada Real Site</title>
+              <attachments/>
+              <steps>
+                <step start="1493693400017" status="passed" stop="1493693400077">
+                  <name>Selenium2Library.Page Should Contain Image</name>
+                  <title>Selenium2Library.Page Should Contain Image</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693400077" status="passed" stop="1493693400117">
+                  <name>Selenium2Library.Wait Until Page Contains</name>
+                  <title>Selenium2Library.Wait Until Page Contains</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693400118" status="passed" stop="1493693400162">
+                  <name>Selenium2Library.Page Should Contain</name>
+                  <title>Selenium2Library.Page Should Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693400163" status="passed" stop="1493693400207">
+                  <name>Selenium2Library.Page Should Contain</name>
+                  <title>Selenium2Library.Page Should Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693400207" status="passed" stop="1493693400253">
+                  <name>Selenium2Library.Page Should Contain</name>
+                  <title>Selenium2Library.Page Should Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693400253" status="passed" stop="1493693400331">
+                  <name>Selenium2Library.Page Should Not Contain</name>
+                  <title>Selenium2Library.Page Should Not Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693400332" status="passed" stop="1493693400393">
+                  <name>Selenium2Library.Page Should Not Contain</name>
+                  <title>Selenium2Library.Page Should Not Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693400394" status="passed" stop="1493693400453">
+                  <name>Selenium2Library.Page Should Not Contain</name>
+                  <title>Selenium2Library.Page Should Not Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+              </steps>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693400455" status="passed" stop="1493693400684">
+          <name>Selenium2Library.Click Button</name>
+          <title>Selenium2Library.Click Button</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693400688" status="passed" stop="1493693400758">
+          <name>Selenium2Library.Wait Until Page Contains</name>
+          <title>Selenium2Library.Wait Until Page Contains</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693400759" status="passed" stop="1493693401181">
+          <name>Selenium2Library.Click Button</name>
+          <title>Selenium2Library.Click Button</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693401188" status="failed" stop="1493693411499">
+          <name>Add Item Check</name>
+          <title>Add Item Check</title>
+          <attachments/>
+          <steps>
+            <step start="1493693401189" status="failed" stop="1493693411498">
+              <name>Selenium2Library.Wait Until Page Contains</name>
+              <title>Selenium2Library.Wait Until Page Contains</title>
+              <attachments/>
+              <steps>
+                <step start="1493693411227" status="passed" stop="1493693411495">
+                  <name>Selenium2Library.Capture Page Screenshot</name>
+                  <title>Selenium2Library.Capture Page Screenshot</title>
+                  <attachments>
+                    <attachment source="8be95c66-6125-499a-ad3f-74bf980731ab-attachment.png" title="selenium-screenshot-1.png" type="AttachmentType.PNG"/>
+                  </attachments>
+                  <steps/>
+                </step>
+              </steps>
+            </step>
+          </steps>
+        </step>
+      </steps>
+    </test-case>
+    <test-case severity="None" start="1493693411515" status="passed" stop="1493693432524">
+      <description>ทดสอบซื้อสินค้าหลายชึ้น ด้วยสินค้าประเภทเดียว</description>
+      <name>ทดสอบซื้อสินค้าหลายชึ้น ด้วยสินค้าประเภทเดียว</name>
+      <attachments/>
+      <labels>
+        <label name="thread" value="13484"/>
+      </labels>
+      <steps>
+        <step start="1493693411516" status="passed" stop="1493693415997">
+          <name>Restart Test</name>
+          <title>Restart Test</title>
+          <attachments/>
+          <steps>
+            <step start="1493693411516" status="passed" stop="1493693411548">
+              <name>Selenium2Library.Select Window</name>
+              <title>Selenium2Library.Select Window</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693411549" status="passed" stop="1493693415708">
+              <name>Selenium2Library.Go To</name>
+              <title>Selenium2Library.Go To</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693415709" status="passed" stop="1493693415996">
+              <name>Assure Is Zalada Real Site</name>
+              <title>Assure Is Zalada Real Site</title>
+              <attachments/>
+              <steps>
+                <step start="1493693415710" status="passed" stop="1493693415754">
+                  <name>Selenium2Library.Page Should Contain Image</name>
+                  <title>Selenium2Library.Page Should Contain Image</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693415754" status="passed" stop="1493693415777">
+                  <name>Selenium2Library.Wait Until Page Contains</name>
+                  <title>Selenium2Library.Wait Until Page Contains</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693415778" status="passed" stop="1493693415806">
+                  <name>Selenium2Library.Page Should Contain</name>
+                  <title>Selenium2Library.Page Should Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693415807" status="passed" stop="1493693415834">
+                  <name>Selenium2Library.Page Should Contain</name>
+                  <title>Selenium2Library.Page Should Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693415834" status="passed" stop="1493693415862">
+                  <name>Selenium2Library.Page Should Contain</name>
+                  <title>Selenium2Library.Page Should Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693415862" status="passed" stop="1493693415906">
+                  <name>Selenium2Library.Page Should Not Contain</name>
+                  <title>Selenium2Library.Page Should Not Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693415907" status="passed" stop="1493693415949">
+                  <name>Selenium2Library.Page Should Not Contain</name>
+                  <title>Selenium2Library.Page Should Not Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693415950" status="passed" stop="1493693415996">
+                  <name>Selenium2Library.Page Should Not Contain</name>
+                  <title>Selenium2Library.Page Should Not Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+              </steps>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693415998" status="passed" stop="1493693416174">
+          <name>Selenium2Library.Click Button</name>
+          <title>Selenium2Library.Click Button</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693416192" status="passed" stop="1493693416275">
+          <name>Selenium2Library.Wait Until Page Contains</name>
+          <title>Selenium2Library.Wait Until Page Contains</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693416284" status="passed" stop="1493693416675">
+          <name>Selenium2Library.Input Text</name>
+          <title>Selenium2Library.Input Text</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693416683" status="passed" stop="1493693416851">
+          <name>Selenium2Library.Click Button</name>
+          <title>Selenium2Library.Click Button</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693416853" status="passed" stop="1493693422487">
+          <name>Add Item Check</name>
+          <title>Add Item Check</title>
+          <attachments/>
+          <steps>
+            <step start="1493693416854" status="passed" stop="1493693417194">
+              <name>Selenium2Library.Wait Until Page Contains</name>
+              <title>Selenium2Library.Wait Until Page Contains</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693417195" status="passed" stop="1493693422487">
+              <name>Selenium2Library.Wait Until Page Does Not Contain</name>
+              <title>Selenium2Library.Wait Until Page Does Not Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693422490" status="passed" stop="1493693423156">
+          <name>Basic Check Cart Page</name>
+          <title>Basic Check Cart Page</title>
+          <attachments/>
+          <steps>
+            <step start="1493693422493" status="passed" stop="1493693422592">
+              <name>Selenium2Library.Mouse Over</name>
+              <title>Selenium2Library.Mouse Over</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693422593" status="passed" stop="1493693422870">
+              <name>Selenium2Library.Click Link</name>
+              <title>Selenium2Library.Click Link</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693422871" status="passed" stop="1493693422934">
+              <name>Selenium2Library.Wait Until Page Contains</name>
+              <title>Selenium2Library.Wait Until Page Contains</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693422935" status="passed" stop="1493693422975">
+              <name>Selenium2Library.Wait Until Page Contains Element</name>
+              <title>Selenium2Library.Wait Until Page Contains Element</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693422975" status="passed" stop="1493693423024">
+              <name>Selenium2Library.Page Should Contain Image</name>
+              <title>Selenium2Library.Page Should Contain Image</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693423025" status="passed" stop="1493693423068">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693423069" status="passed" stop="1493693423111">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693423112" status="passed" stop="1493693423156">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693423158" status="passed" stop="1493693423212">
+          <name>Selenium2Library.Textfield Value Should Be</name>
+          <title>Selenium2Library.Textfield Value Should Be</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693423214" status="passed" stop="1493693432518">
+          <name>Checkout The Cart</name>
+          <title>Checkout The Cart</title>
+          <attachments/>
+          <steps>
+            <step start="1493693423215" status="passed" stop="1493693428217">
+              <name>BuiltIn.Sleep</name>
+              <title>BuiltIn.Sleep</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693428218" status="passed" stop="1493693428331">
+              <name>Selenium2Library.Page Should Contain Button</name>
+              <title>Selenium2Library.Page Should Contain Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693428332" status="passed" stop="1493693428531">
+              <name>Selenium2Library.Click Button</name>
+              <title>Selenium2Library.Click Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693428532" status="passed" stop="1493693429146">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693429147" status="passed" stop="1493693429442">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693429443" status="passed" stop="1493693429927">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693429928" status="passed" stop="1493693430673">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693430674" status="passed" stop="1493693430892">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693430893" status="passed" stop="1493693431238">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693431239" status="passed" stop="1493693431446">
+              <name>Selenium2Library.Select From List By Value</name>
+              <title>Selenium2Library.Select From List By Value</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693431447" status="passed" stop="1493693431589">
+              <name>Selenium2Library.Page Should Contain Button</name>
+              <title>Selenium2Library.Page Should Contain Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693431590" status="passed" stop="1493693431749">
+              <name>Selenium2Library.Click Button</name>
+              <title>Selenium2Library.Click Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693431750" status="passed" stop="1493693432025">
+              <name>Selenium2Library.Wait Until Page Does Not Contain</name>
+              <title>Selenium2Library.Wait Until Page Does Not Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693432026" status="passed" stop="1493693432517">
+              <name>Selenium2Library.Wait Until Page Contains Element</name>
+              <title>Selenium2Library.Wait Until Page Contains Element</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+      </steps>
+    </test-case>
+    <test-case severity="None" start="1493693432537" status="passed" stop="1493693455694">
+      <description>ทดสอบซื้อสืนค้ามากกว่าหนึ่งประเภท โดยซื้อสามประเภท ประเภทละหนึ่งชิ้น</description>
+      <name>ทดสอบซื้อสืนค้ามากกว่าหนึ่งประเภท โดยซื้อสามประเภท ประเภทละหนึ่งชิ้น</name>
+      <attachments/>
+      <labels>
+        <label name="thread" value="13484"/>
+      </labels>
+      <steps>
+        <step start="1493693432537" status="passed" stop="1493693436799">
+          <name>Restart Test</name>
+          <title>Restart Test</title>
+          <attachments/>
+          <steps>
+            <step start="1493693432538" status="passed" stop="1493693432574">
+              <name>Selenium2Library.Select Window</name>
+              <title>Selenium2Library.Select Window</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693432575" status="passed" stop="1493693436279">
+              <name>Selenium2Library.Go To</name>
+              <title>Selenium2Library.Go To</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693436280" status="passed" stop="1493693436798">
+              <name>Assure Is Zalada Real Site</name>
+              <title>Assure Is Zalada Real Site</title>
+              <attachments/>
+              <steps>
+                <step start="1493693436281" status="passed" stop="1493693436346">
+                  <name>Selenium2Library.Page Should Contain Image</name>
+                  <title>Selenium2Library.Page Should Contain Image</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693436347" status="passed" stop="1493693436394">
+                  <name>Selenium2Library.Wait Until Page Contains</name>
+                  <title>Selenium2Library.Wait Until Page Contains</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693436394" status="passed" stop="1493693436451">
+                  <name>Selenium2Library.Page Should Contain</name>
+                  <title>Selenium2Library.Page Should Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693436452" status="passed" stop="1493693436504">
+                  <name>Selenium2Library.Page Should Contain</name>
+                  <title>Selenium2Library.Page Should Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693436504" status="passed" stop="1493693436558">
+                  <name>Selenium2Library.Page Should Contain</name>
+                  <title>Selenium2Library.Page Should Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693436559" status="passed" stop="1493693436648">
+                  <name>Selenium2Library.Page Should Not Contain</name>
+                  <title>Selenium2Library.Page Should Not Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693436649" status="passed" stop="1493693436722">
+                  <name>Selenium2Library.Page Should Not Contain</name>
+                  <title>Selenium2Library.Page Should Not Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+                <step start="1493693436723" status="passed" stop="1493693436798">
+                  <name>Selenium2Library.Page Should Not Contain</name>
+                  <title>Selenium2Library.Page Should Not Contain</title>
+                  <attachments/>
+                  <steps/>
+                </step>
+              </steps>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693436803" status="passed" stop="1493693437001">
+          <name>Selenium2Library.Click Link</name>
+          <title>Selenium2Library.Click Link</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693437005" status="passed" stop="1493693437189">
+          <name>Selenium2Library.Click Link</name>
+          <title>Selenium2Library.Click Link</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693437193" status="passed" stop="1493693437426">
+          <name>Selenium2Library.Click Link</name>
+          <title>Selenium2Library.Click Link</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1493693437450" status="passed" stop="1493693443003">
+          <name>Add Item Check</name>
+          <title>Add Item Check</title>
+          <attachments/>
+          <steps>
+            <step start="1493693437452" status="passed" stop="1493693437504">
+              <name>Selenium2Library.Wait Until Page Contains</name>
+              <title>Selenium2Library.Wait Until Page Contains</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693437505" status="passed" stop="1493693443001">
+              <name>Selenium2Library.Wait Until Page Does Not Contain</name>
+              <title>Selenium2Library.Wait Until Page Does Not Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693443004" status="passed" stop="1493693443541">
+          <name>Basic Check Cart Page</name>
+          <title>Basic Check Cart Page</title>
+          <attachments/>
+          <steps>
+            <step start="1493693443006" status="passed" stop="1493693443091">
+              <name>Selenium2Library.Mouse Over</name>
+              <title>Selenium2Library.Mouse Over</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693443092" status="passed" stop="1493693443364">
+              <name>Selenium2Library.Click Link</name>
+              <title>Selenium2Library.Click Link</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693443365" status="passed" stop="1493693443401">
+              <name>Selenium2Library.Wait Until Page Contains</name>
+              <title>Selenium2Library.Wait Until Page Contains</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693443402" status="passed" stop="1493693443421">
+              <name>Selenium2Library.Wait Until Page Contains Element</name>
+              <title>Selenium2Library.Wait Until Page Contains Element</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693443422" status="passed" stop="1493693443459">
+              <name>Selenium2Library.Page Should Contain Image</name>
+              <title>Selenium2Library.Page Should Contain Image</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693443459" status="passed" stop="1493693443484">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693443485" status="passed" stop="1493693443515">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693443516" status="passed" stop="1493693443540">
+              <name>Selenium2Library.Page Should Contain</name>
+              <title>Selenium2Library.Page Should Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693443543" status="passed" stop="1493693443595">
+          <name>Multiple Product Cart Check</name>
+          <title>Multiple Product Cart Check</title>
+          <attachments/>
+          <steps>
+            <step start="1493693443544" status="passed" stop="1493693443583">
+              <name>Selenium2Library.Xpath Should Match X Times</name>
+              <title>Selenium2Library.Xpath Should Match X Times</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693443584" status="passed" stop="1493693443595">
+              <name>Selenium2Library.Page Should Contain Element</name>
+              <title>Selenium2Library.Page Should Contain Element</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+        <step start="1493693443597" status="passed" stop="1493693452382">
+          <name>Checkout The Cart</name>
+          <title>Checkout The Cart</title>
+          <attachments/>
+          <steps>
+            <step start="1493693443597" status="passed" stop="1493693448599">
+              <name>BuiltIn.Sleep</name>
+              <title>BuiltIn.Sleep</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693448600" status="passed" stop="1493693448693">
+              <name>Selenium2Library.Page Should Contain Button</name>
+              <title>Selenium2Library.Page Should Contain Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693448693" status="passed" stop="1493693448883">
+              <name>Selenium2Library.Click Button</name>
+              <title>Selenium2Library.Click Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693448883" status="passed" stop="1493693449482">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693449483" status="passed" stop="1493693449755">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693449756" status="passed" stop="1493693450209">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693450210" status="passed" stop="1493693450896">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693450897" status="passed" stop="1493693451105">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693451105" status="passed" stop="1493693451429">
+              <name>Selenium2Library.Input Text</name>
+              <title>Selenium2Library.Input Text</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693451430" status="passed" stop="1493693451618">
+              <name>Selenium2Library.Select From List By Value</name>
+              <title>Selenium2Library.Select From List By Value</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693451619" status="passed" stop="1493693451708">
+              <name>Selenium2Library.Page Should Contain Button</name>
+              <title>Selenium2Library.Page Should Contain Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693451709" status="passed" stop="1493693451870">
+              <name>Selenium2Library.Click Button</name>
+              <title>Selenium2Library.Click Button</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693451870" status="passed" stop="1493693452129">
+              <name>Selenium2Library.Wait Until Page Does Not Contain</name>
+              <title>Selenium2Library.Wait Until Page Does Not Contain</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493693452130" status="passed" stop="1493693452381">
+              <name>Selenium2Library.Wait Until Page Contains Element</name>
+              <title>Selenium2Library.Wait Until Page Contains Element</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+      </steps>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>

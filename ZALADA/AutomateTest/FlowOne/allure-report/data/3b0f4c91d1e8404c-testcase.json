@@ -1,0 +1,656 @@
+{
+  "uid" : "3b0f4c91d1e8404c",
+  "name" : "ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม Add to cart ในหน้าแรก",
+  "title" : "ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม add to cart ในหน้าแรก",
+  "time" : {
+    "start" : 1493692096969,
+    "stop" : 1493692129938,
+    "duration" : 32969
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 41
+  },
+  "failure" : null,
+  "description" : {
+    "value" : "ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม Add to cart ในหน้าแรก",
+    "type" : "TEXT"
+  },
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "suite" : {
+    "uid" : "ef2f9ed57147370d",
+    "name" : "Buying-Without-Login",
+    "title" : "Buying-Without-Login"
+  },
+  "steps" : [ {
+    "name" : "Start Browser",
+    "title" : "Start Browser",
+    "time" : {
+      "start" : 1493692096970,
+      "stop" : 1493692112217,
+      "duration" : 15247
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 2
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ {
+      "name" : "Selenium2Library.Open Browser",
+      "title" : "Selenium2Library.Open Browser",
+      "time" : {
+        "start" : 1493692096970,
+        "stop" : 1493692110979,
+        "duration" : 14009
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Maximize Browser Window",
+      "title" : "Selenium2Library.Maximize Browser Window",
+      "time" : {
+        "start" : 1493692110980,
+        "stop" : 1493692112217,
+        "duration" : 1237
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    } ]
+  }, {
+    "name" : "Assure Is Zalada Real Site",
+    "title" : "Assure Is Zalada Real Site",
+    "time" : {
+      "start" : 1493692112231,
+      "stop" : 1493692112862,
+      "duration" : 631
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 8
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ {
+      "name" : "Selenium2Library.Page Should Contain Image",
+      "title" : "Selenium2Library.Page Should Contain Image",
+      "time" : {
+        "start" : 1493692112232,
+        "stop" : 1493692112332,
+        "duration" : 100
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Wait Until Page Contains",
+      "title" : "Selenium2Library.Wait Until Page Contains",
+      "time" : {
+        "start" : 1493692112333,
+        "stop" : 1493692112391,
+        "duration" : 58
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Contain",
+      "title" : "Selenium2Library.Page Should Contain",
+      "time" : {
+        "start" : 1493692112392,
+        "stop" : 1493692112458,
+        "duration" : 66
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Contain",
+      "title" : "Selenium2Library.Page Should Contain",
+      "time" : {
+        "start" : 1493692112458,
+        "stop" : 1493692112535,
+        "duration" : 77
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Contain",
+      "title" : "Selenium2Library.Page Should Contain",
+      "time" : {
+        "start" : 1493692112535,
+        "stop" : 1493692112596,
+        "duration" : 61
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Not Contain",
+      "title" : "Selenium2Library.Page Should Not Contain",
+      "time" : {
+        "start" : 1493692112597,
+        "stop" : 1493692112711,
+        "duration" : 114
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Not Contain",
+      "title" : "Selenium2Library.Page Should Not Contain",
+      "time" : {
+        "start" : 1493692112712,
+        "stop" : 1493692112797,
+        "duration" : 85
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Not Contain",
+      "title" : "Selenium2Library.Page Should Not Contain",
+      "time" : {
+        "start" : 1493692112798,
+        "stop" : 1493692112861,
+        "duration" : 63
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    } ]
+  }, {
+    "name" : "Selenium2Library.Mouse Over",
+    "title" : "Selenium2Library.Mouse Over",
+    "time" : {
+      "start" : 1493692112864,
+      "stop" : 1493692112947,
+      "duration" : 83
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  }, {
+    "name" : "Selenium2Library.Click Link",
+    "title" : "Selenium2Library.Click Link",
+    "time" : {
+      "start" : 1493692112950,
+      "stop" : 1493692113186,
+      "duration" : 236
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  }, {
+    "name" : "Add Item Check",
+    "title" : "Add Item Check",
+    "time" : {
+      "start" : 1493692113190,
+      "stop" : 1493692118735,
+      "duration" : 5545
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 2
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ {
+      "name" : "Selenium2Library.Wait Until Page Contains",
+      "title" : "Selenium2Library.Wait Until Page Contains",
+      "time" : {
+        "start" : 1493692113191,
+        "stop" : 1493692113462,
+        "duration" : 271
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Wait Until Page Does Not Contain",
+      "title" : "Selenium2Library.Wait Until Page Does Not Contain",
+      "time" : {
+        "start" : 1493692113463,
+        "stop" : 1493692118734,
+        "duration" : 5271
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    } ]
+  }, {
+    "name" : "Basic Check Cart Page",
+    "title" : "Basic Check Cart Page",
+    "time" : {
+      "start" : 1493692118738,
+      "stop" : 1493692119401,
+      "duration" : 663
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 8
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ {
+      "name" : "Selenium2Library.Mouse Over",
+      "title" : "Selenium2Library.Mouse Over",
+      "time" : {
+        "start" : 1493692118740,
+        "stop" : 1493692118828,
+        "duration" : 88
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Click Link",
+      "title" : "Selenium2Library.Click Link",
+      "time" : {
+        "start" : 1493692118829,
+        "stop" : 1493692119052,
+        "duration" : 223
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Wait Until Page Contains",
+      "title" : "Selenium2Library.Wait Until Page Contains",
+      "time" : {
+        "start" : 1493692119053,
+        "stop" : 1493692119122,
+        "duration" : 69
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Wait Until Page Contains Element",
+      "title" : "Selenium2Library.Wait Until Page Contains Element",
+      "time" : {
+        "start" : 1493692119123,
+        "stop" : 1493692119181,
+        "duration" : 58
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Contain Image",
+      "title" : "Selenium2Library.Page Should Contain Image",
+      "time" : {
+        "start" : 1493692119182,
+        "stop" : 1493692119237,
+        "duration" : 55
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Contain",
+      "title" : "Selenium2Library.Page Should Contain",
+      "time" : {
+        "start" : 1493692119238,
+        "stop" : 1493692119293,
+        "duration" : 55
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Contain",
+      "title" : "Selenium2Library.Page Should Contain",
+      "time" : {
+        "start" : 1493692119293,
+        "stop" : 1493692119348,
+        "duration" : 55
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Contain",
+      "title" : "Selenium2Library.Page Should Contain",
+      "time" : {
+        "start" : 1493692119348,
+        "stop" : 1493692119400,
+        "duration" : 52
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    } ]
+  }, {
+    "name" : "Checkout The Cart",
+    "title" : "Checkout The Cart",
+    "time" : {
+      "start" : 1493692119403,
+      "stop" : 1493692129928,
+      "duration" : 10525
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 14
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ {
+      "name" : "BuiltIn.Sleep",
+      "title" : "BuiltIn.Sleep",
+      "time" : {
+        "start" : 1493692119404,
+        "stop" : 1493692124405,
+        "duration" : 5001
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Contain Button",
+      "title" : "Selenium2Library.Page Should Contain Button",
+      "time" : {
+        "start" : 1493692124406,
+        "stop" : 1493692124549,
+        "duration" : 143
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Click Button",
+      "title" : "Selenium2Library.Click Button",
+      "time" : {
+        "start" : 1493692124550,
+        "stop" : 1493692124860,
+        "duration" : 310
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Input Text",
+      "title" : "Selenium2Library.Input Text",
+      "time" : {
+        "start" : 1493692124861,
+        "stop" : 1493692125739,
+        "duration" : 878
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Input Text",
+      "title" : "Selenium2Library.Input Text",
+      "time" : {
+        "start" : 1493692125740,
+        "stop" : 1493692126100,
+        "duration" : 360
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Input Text",
+      "title" : "Selenium2Library.Input Text",
+      "time" : {
+        "start" : 1493692126100,
+        "stop" : 1493692126780,
+        "duration" : 680
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Input Text",
+      "title" : "Selenium2Library.Input Text",
+      "time" : {
+        "start" : 1493692126781,
+        "stop" : 1493692127911,
+        "duration" : 1130
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Input Text",
+      "title" : "Selenium2Library.Input Text",
+      "time" : {
+        "start" : 1493692127911,
+        "stop" : 1493692128167,
+        "duration" : 256
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Input Text",
+      "title" : "Selenium2Library.Input Text",
+      "time" : {
+        "start" : 1493692128168,
+        "stop" : 1493692128652,
+        "duration" : 484
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Select From List By Value",
+      "title" : "Selenium2Library.Select From List By Value",
+      "time" : {
+        "start" : 1493692128653,
+        "stop" : 1493692128872,
+        "duration" : 219
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Page Should Contain Button",
+      "title" : "Selenium2Library.Page Should Contain Button",
+      "time" : {
+        "start" : 1493692128873,
+        "stop" : 1493692128990,
+        "duration" : 117
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Click Button",
+      "title" : "Selenium2Library.Click Button",
+      "time" : {
+        "start" : 1493692128991,
+        "stop" : 1493692129161,
+        "duration" : 170
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Wait Until Page Does Not Contain",
+      "title" : "Selenium2Library.Wait Until Page Does Not Contain",
+      "time" : {
+        "start" : 1493692129162,
+        "stop" : 1493692129457,
+        "duration" : 295
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    }, {
+      "name" : "Selenium2Library.Wait Until Page Contains Element",
+      "title" : "Selenium2Library.Wait Until Page Contains Element",
+      "time" : {
+        "start" : 1493692129458,
+        "stop" : 1493692129928,
+        "duration" : 470
+      },
+      "summary" : {
+        "attachments" : 0,
+        "steps" : 0
+      },
+      "status" : "PASSED",
+      "attachments" : [ ],
+      "steps" : [ ]
+    } ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-title",
+    "value" : "Buying-Without-Login"
+  }, {
+    "name" : "suite-name",
+    "value" : "Buying-Without-Login"
+  }, {
+    "name" : "thread",
+    "value" : "16768"
+  } ],
+  "parameters" : [ ]
+}

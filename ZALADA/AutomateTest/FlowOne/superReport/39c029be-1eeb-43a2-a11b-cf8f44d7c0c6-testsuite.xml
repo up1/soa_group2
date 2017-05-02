@@ -1,0 +1,170 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1493691732526" stop="1493691747179">
+  <name>Buying-Without-Login</name>
+  <title>Buying-Without-Login</title>
+  <labels/>
+  <test-cases>
+    <test-case severity="None" start="1493691732536" status="failed" stop="1493691743147">
+      <description>ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม Add to cart ในหน้าแรก</description>
+      <name>ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ ผ่านปุ่ม Add to cart ในหน้าแรก</name>
+      <failure>
+        <message>Page should have contained image 'id=brand-image' but did not</message>
+        <stack-trace></stack-trace>
+      </failure>
+      <attachments/>
+      <labels>
+        <label name="thread" value="7020"/>
+      </labels>
+      <steps>
+        <step start="1493691732537" status="passed" stop="1493691742798">
+          <name>Start Browser</name>
+          <title>Start Browser</title>
+          <attachments/>
+          <steps>
+            <step start="1493691732538" status="passed" stop="1493691741598">
+              <name>Selenium2Library.Open Browser</name>
+              <title>Selenium2Library.Open Browser</title>
+              <attachments/>
+              <steps/>
+            </step>
+            <step start="1493691741599" status="passed" stop="1493691742798">
+              <name>Selenium2Library.Maximize Browser Window</name>
+              <title>Selenium2Library.Maximize Browser Window</title>
+              <attachments/>
+              <steps/>
+            </step>
+          </steps>
+        </step>
+        <step start="1493691742800" status="failed" stop="1493691743142">
+          <name>Assure Is Zalada Real Site</name>
+          <title>Assure Is Zalada Real Site</title>
+          <attachments/>
+          <steps>
+            <step start="1493691742800" status="failed" stop="1493691743141">
+              <name>Selenium2Library.Page Should Contain Image</name>
+              <title>Selenium2Library.Page Should Contain Image</title>
+              <attachments/>
+              <steps>
+                <step start="1493691742914" status="passed" stop="1493691743138">
+                  <name>Selenium2Library.Capture Page Screenshot</name>
+                  <title>Selenium2Library.Capture Page Screenshot</title>
+                  <attachments>
+                    <attachment source="5a8e025c-bb77-4ed2-adbe-fdd126445ed9-attachment.png" title="selenium-screenshot-1.png" type="AttachmentType.PNG"/>
+                  </attachments>
+                  <steps/>
+                </step>
+              </steps>
+            </step>
+          </steps>
+        </step>
+      </steps>
+    </test-case>
+    <test-case severity="None" start="1493691743160" status="failed" stop="1493691743437">
+      <description>ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ โดยกดดูรายละเอียดสินค้าด้วย</description>
+      <name>ทดสอบซื้อสินค้าหนึ่งชิ้นแบบปกติ โดยกดดูรายละเอียดสินค้าด้วย</name>
+      <failure>
+        <message>ValueError: Unable to locate window with title 'Zalada'</message>
+        <stack-trace></stack-trace>
+      </failure>
+      <attachments/>
+      <labels>
+        <label name="thread" value="7020"/>
+      </labels>
+      <steps>
+        <step start="1493691743161" status="failed" stop="1493691743433">
+          <name>Restart Test</name>
+          <title>Restart Test</title>
+          <attachments/>
+          <steps>
+            <step start="1493691743162" status="failed" stop="1493691743432">
+              <name>Selenium2Library.Select Window</name>
+              <title>Selenium2Library.Select Window</title>
+              <attachments/>
+              <steps>
+                <step start="1493691743218" status="passed" stop="1493691743430">
+                  <name>Selenium2Library.Capture Page Screenshot</name>
+                  <title>Selenium2Library.Capture Page Screenshot</title>
+                  <attachments>
+                    <attachment source="c4f5f3e7-6e5f-4dce-94ac-509bf2c01616-attachment.png" title="selenium-screenshot-2.png" type="AttachmentType.PNG"/>
+                  </attachments>
+                  <steps/>
+                </step>
+              </steps>
+            </step>
+          </steps>
+        </step>
+      </steps>
+    </test-case>
+    <test-case severity="None" start="1493691743447" status="failed" stop="1493691743666">
+      <description>ทดสอบซื้อสินค้าหลายชึ้น ด้วยสินค้าประเภทเดียว</description>
+      <name>ทดสอบซื้อสินค้าหลายชึ้น ด้วยสินค้าประเภทเดียว</name>
+      <failure>
+        <message>ValueError: Unable to locate window with title 'Zalada'</message>
+        <stack-trace></stack-trace>
+      </failure>
+      <attachments/>
+      <labels>
+        <label name="thread" value="7020"/>
+      </labels>
+      <steps>
+        <step start="1493691743448" status="failed" stop="1493691743662">
+          <name>Restart Test</name>
+          <title>Restart Test</title>
+          <attachments/>
+          <steps>
+            <step start="1493691743449" status="failed" stop="1493691743661">
+              <name>Selenium2Library.Select Window</name>
+              <title>Selenium2Library.Select Window</title>
+              <attachments/>
+              <steps>
+                <step start="1493691743492" status="passed" stop="1493691743660">
+                  <name>Selenium2Library.Capture Page Screenshot</name>
+                  <title>Selenium2Library.Capture Page Screenshot</title>
+                  <attachments>
+                    <attachment source="bfe1ca19-00e9-49bf-b46a-4eb71219f4a2-attachment.png" title="selenium-screenshot-3.png" type="AttachmentType.PNG"/>
+                  </attachments>
+                  <steps/>
+                </step>
+              </steps>
+            </step>
+          </steps>
+        </step>
+      </steps>
+    </test-case>
+    <test-case severity="None" start="1493691743679" status="failed" stop="1493691747171">
+      <description>ทดสอบซื้อสืนค้ามากกว่าหนึ่งประเภท โดยซื้อสามประเภท ประเภทละหนึ่งชิ้น</description>
+      <name>ทดสอบซื้อสืนค้ามากกว่าหนึ่งประเภท โดยซื้อสามประเภท ประเภทละหนึ่งชิ้น</name>
+      <failure>
+        <message>ValueError: Unable to locate window with title 'Zalada'</message>
+        <stack-trace></stack-trace>
+      </failure>
+      <attachments/>
+      <labels>
+        <label name="thread" value="7020"/>
+      </labels>
+      <steps>
+        <step start="1493691743680" status="failed" stop="1493691743920">
+          <name>Restart Test</name>
+          <title>Restart Test</title>
+          <attachments/>
+          <steps>
+            <step start="1493691743681" status="failed" stop="1493691743920">
+              <name>Selenium2Library.Select Window</name>
+              <title>Selenium2Library.Select Window</title>
+              <attachments/>
+              <steps>
+                <step start="1493691743722" status="passed" stop="1493691743918">
+                  <name>Selenium2Library.Capture Page Screenshot</name>
+                  <title>Selenium2Library.Capture Page Screenshot</title>
+                  <attachments>
+                    <attachment source="d856be38-80a3-4922-b5f4-e212bcd54ab2-attachment.png" title="selenium-screenshot-4.png" type="AttachmentType.PNG"/>
+                  </attachments>
+                  <steps/>
+                </step>
+              </steps>
+            </step>
+          </steps>
+        </step>
+      </steps>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>

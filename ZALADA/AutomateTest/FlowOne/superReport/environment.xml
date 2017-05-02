@@ -1,0 +1,45 @@
+<ns0:environment xmlns:ns0="urn:model.commons.qatools.yandex.ru">
+  <id>Robot Framework</id>
+  <name>CHAYUT-X550D.example.org</name>
+  <url>http://CHAYUT-X550D.example.org:8000</url>
+  <parameter>
+    <key>Robot Framework Platform</key>
+    <name>Robot Framework Platform</name>
+    <value>win32</value>
+  </parameter>
+  <parameter>
+    <key>Robot Framework Version</key>
+    <name>Robot Framework Version</name>
+    <value>3.0.2</value>
+  </parameter>
+  <parameter>
+    <key>Robot Framework Full Version</key>
+    <name>Robot Framework Full Version</name>
+    <value>3.0.2 (Python 2.7.13 on win32)</value>
+  </parameter>
+  <parameter>
+    <key>Python version</key>
+    <name>Python version</name>
+    <value>2.7.13</value>
+  </parameter>
+  <parameter>
+    <key>Interpreter</key>
+    <name>Interpreter</name>
+    <value>Python</value>
+  </parameter>
+  <parameter>
+    <key>Robot Framework Hostname</key>
+    <name>Robot Framework Hostname</name>
+    <value>CHAYUT-X550D.example.org</value>
+  </parameter>
+  <parameter>
+    <key>Allure Adapter version</key>
+    <name>Allure Adapter version</name>
+    <value>1.1.1</value>
+  </parameter>
+  <parameter>
+    <key>Robot Framework CLI Arguments</key>
+    <name>Robot Framework CLI Arguments</name>
+    <value>['.\\buying-without-login.robot']</value>
+  </parameter>
+</ns0:environment>
